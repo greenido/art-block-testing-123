@@ -109,7 +109,7 @@ function randomSentence() {
     "All the benefits in life come from compound interest — money, relationships, habits — anything of importance.",
     "The compound interest from many quick small iterations is greater than the compound interest from a few slow big iterations.",
     "Compound interest operates in most intellectual and social domains.",
-    "Relax. You’ll live longer *and* perform better.",
+    "Relax. You will live longer and perform better.",
     "Twitter is television for intellectuals.",
     "If you cant decide, the answer is No.",
     "You don’t get rich by spending your time to save money. You get rich by saving your time to make money.",
