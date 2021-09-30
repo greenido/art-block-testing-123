@@ -1,45 +1,95 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <title>Art-B Circles 2</title>
+    <meta name="description" content="Some tests for ArtBlock style 'auto AI art' " />
+    <meta name="author" content="@greenido" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        padding: 10;
-        margin: 10;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
-    <script src="sketch.js"></script>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+ <!-- Favicons -->
+ <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" sizes="180x180">
+ <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32" type="image/png">
+ <link rel="icon" href="/images/favicon-16x16.png" sizes="16x16" type="image/png">
+ <link rel="manifest" href="/manifest.json">
+ <link rel="icon" href="/images/favicon.ico">
+ <meta name="theme-color" content="#7952b3">
+ 
+    
   </head>
-  <body>
-    <h1>
-      Art Block Testing 1-2-3
-    </h1>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">Art Block Testing 1-2-3</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="https://github.com/greenido/art-block-testing-123" target="_blank">Code</a>
+            <a class="nav-link" href="http://ido-green.appspot.com/contact.html" target="_blank">Contact</a>
+          </nav>
+        </div>
+      </header>
 
-    <label for="cars">Choose shape:</label>
-    <select id="shape" name="shape" onchange="setup(this.value)">
-      <option value="1">Circle</option>
-      <option value="2">Square</option>
-      <option value="3">Line</option>
-      <option value="4">Triangle</option>
-    </select>
+        
+          
+      <main class="px-3">
+        <label for="cars">Choose shape:</label>
+        <select id="shape" name="shape" onchange="setup(this.value)">
+          <option value="1">Circle</option>
+          <option value="2" selected="selected">Square</option>
+          <option value="3">Line</option>
+          <option value="4">Triangle</option>
+        </select>
 
-    <br /><br />
-    <label for="volume">Max Shapes</label>
-    <input
-      type="range"
-      id="maxShapes"
-      name="maxShapes"
-      min="50"
-      max="500"
-      onchange="updateMaxShapesNum(this.value);"
-    />
-    <input type="text" id="maxShapesNum" value="250" minlength="2" maxlength="3" size="3"/>
-    <br /><br />
-    <hr />
-    <br /><br />
-    <footer>
-      <div id="prop"></div>
+        <br /><br />
+        <label for="volume">Max Shapes</label>
+        <input
+          type="range"
+          id="maxShapes"
+          name="maxShapes"
+          min="1"
+          max="500"
+          onchange="updateMaxShapesNum(this.value);"
+        />
+        <input type="text" id="maxShapesNum" value="250" minlength="2" maxlength="3" size="3"/>
+        <br /><br />
+        <hr />
+        
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="card text-white bg-dark" >
+                <!-- <div class="card-header text-white bg-dark">
+                  Featured
+                </div> -->
+                <div id="prop" class="card-body">
+                  
+                </div>
+              </div>
+      
+            </div>
+            <div id="img-canvas" class="col">
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <br><br>
+    <footer class="mt-auto text-white-50">
+      <p>Made by <a href="https://twitter.com/greenido" class="text-white">@greenido</a></p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <!-- <script>
+      let sketch = function(p) {
+        p.setup = function(){
+          p.createCanvas(600, 600);
+        }
+      };
+      new p5(sketch, 'img-canvas');
+      </script> -->
+    <script src="sketch.js"></script>
   </body>
 </html>

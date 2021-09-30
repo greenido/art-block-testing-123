@@ -24,22 +24,23 @@ function setup(shapeVal, maxShapes = 120) {
       shapeName = "Triangle";
     }
   }
-
-  createCanvas(600, 600);
+  let renderer = createCanvas(600, 600);
+  renderer.parent("img-canvas");
   rectMode(CENTER);
   let r = Math.floor(random(10, 200)); // r is a random number between 0 - 255
   let g = Math.floor(random(10, 255)); // g is a random number betwen 100 - 200
   let b = Math.floor(random(20, 255));
   background(r, g, b); //"lightblue");
   main(maxShapes, shape);
-  let propStr = "<h1>" + randomTitle() + "</h1>";
-  propStr += "<h4>" + randomSentence() + "</h4> <br>";
+  
+  let propStr = "<h3>" + randomTitle() + "</h3>";
+  propStr += "<h4>" + randomSentence() + "</h4>";
 
-  propStr += "<ul>";
+  propStr += '<ul class="list-group list-group-flush">';
   propStr +=
-    "<li>Background Color: <b>" + r + " , " + g + " , " + b + "</b></li>";
-  propStr += "<li>Shape: <b>" + shapeName + "</b></li>";
-  propStr += "<li>Max Shapes: <b>" + maxShapes + "</b></li>";
+    "<li class='list-group-item'>Background Color: <b>" + r + " , " + g + " , " + b + "</b></li>";
+  propStr += "<li class='list-group-item'>Shape: <b>" + shapeName + "</b></li>";
+  propStr += "<li class='list-group-item'>Max Shapes: <b>" + maxShapes + "</b></li>";
   propStr += "</ul>";
   document.getElementById("prop").innerHTML = propStr;
 }
@@ -80,13 +81,12 @@ function draw(x, y, shape) {
 //
 //
 //
-function main(maxShapes, shape) {
+function main(maxShapes, shape, element) {
   let noCircles = 0;
   console.log("-- Max: " + maxShapes);
   for (var i = 0; i < 400; i = i + 2) {
-    draw(random(600), random(600), shape);
+    draw(random(600), random(600), shape, element);
     noCircles++;
-    console.log("--- current: " + noCircles);
     if (noCircles > maxShapes) {
       break;
     }
