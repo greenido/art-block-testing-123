@@ -17,3 +17,9 @@ Feedback is most welome.
 ## Triangles 🔺
 <img src="images/tri-1.png"/> 
 
+
+## Resources
+* https://p5js.org
+* fotor.com
+* https://greenido.wordpress.com/2011/04/20/git-101-quick-start-guide/
+

@@ -1,5 +1,5 @@
 //
-// Author: Ido
+// Author: Ido / @greenido
 // Date: 9-2021
 //
 // See:
@@ -10,10 +10,9 @@
 // runs once at the beginning
 //
 function setup(shapeVal, maxShapes = 120) {
-  //const maxShapes = Math.floor(random(60, 80));
   // 1=circle, 2=Square, 3=line, 4=triangle
   let shape = 2; //4; //3; //2;
-  let shapeName = "Square"; // "Circle"; //"Triangle"; //"Line"; //"Square";
+  let shapeName = "Square";
   if (shapeVal) {
     shape = shapeVal;
 
