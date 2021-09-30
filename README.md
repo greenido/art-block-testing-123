@@ -19,7 +19,8 @@ Feedback is most welome.
 
 
 ## Resources
-* https://p5js.org
-* fotor.com
 * https://greenido.wordpress.com/2011/04/20/git-101-quick-start-guide/
-
+* https://p5js.org
+* https://getbootstrap.com/docs/4.0/
+* fotor.com
+* https://github.com/ArtBlocks/artblocks-docs 
