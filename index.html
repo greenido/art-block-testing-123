@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Art-B Circles 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        padding: 10;
+        margin: 10;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+    <h1>
+      Art Block Testing 1-2-3
+    </h1>
+
+    <label for="cars">Choose shape:</label>
+    <select id="shape" name="shape" onchange="setup(this.value)">
+      <option value="1">Circle</option>
+      <option value="2">Square</option>
+      <option value="3">Line</option>
+      <option value="4">Triangle</option>
+    </select>
+
+    <br /><br />
+    <label for="volume">Max Shapes</label>
+    <input
+      type="range"
+      id="maxShapes"
+      name="maxShapes"
+      min="50"
+      max="500"
+      onchange="updateMaxShapesNum(this.value);"
+    />
+    <input type="text" id="maxShapesNum" value="250" minlength="2" maxlength="3" size="3"/>
+    <br /><br />
+    <hr />
+    <br /><br />
+    <footer>
+      <div id="prop"></div>
+    </footer>
+  </body>
+</html>
