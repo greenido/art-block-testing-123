@@ -1,0 +1,218 @@
+<html><body><h1>Name: Orthogone</h1><h3>Artist: Pandelune</h3><h3>Description: 'Orthogone' is a succession of main colored rectangles, echoed with white - sometimes black - rectangles. You may guess buildings or squared ricochets, and sense the underlying rhythm.</h3><h3>https://twitter.com/PandeluneA/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.2.0&quot;,&quot;aspectRatio&quot;:&quot;4&quot;}</p><p>Script Type: p5js</p><p>Version: 1.2.0</p><p>Script Ratio: 4</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x5eee5da68899be5db204c6451fd2ee8824e77fc2</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.11</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 777</p><p>Maximum Invocations: 777</p><p>License: NFT License 2.0</p><p>Token Ids: 88000000,88000001,88000002,88000003,88000004,88000005,88000006,88000007,88000008,88000009,88000010,88000011,88000012,88000013,88000014,88000015,88000016,88000017,88000018,88000019,88000020,88000021,88000022,88000023,88000024,88000025,88000026,88000027,88000028,88000029,88000030,88000031,88000032,88000033,88000034,88000035,88000036,88000037,88000038,88000039,88000040,88000041,88000042,88000043,88000044,88000045,88000046,88000047,88000048,88000049,88000050,88000051,88000052,88000053,88000054,88000055,88000056,88000057,88000058,88000059,88000060,88000061,88000062,88000063,88000064,88000065,88000066,88000067,88000068,88000069,88000070,88000071,88000072,88000073,88000074,88000075,88000076,88000077,88000078,88000079,88000080,88000081,88000082,88000083,88000084,88000085,88000086,88000087,88000088,88000089,88000090,88000091,88000092,88000093,88000094,88000095,88000096,88000097,88000098,88000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>(() =&gt; {
+     var t = {
+               124: function(t, e, r) {
+                    var o;
+                    t = r.nmd(t),
+                         function() {
+                              var r;
+                              r = function() {
+                                   var t, e, r, o;
+                                   for (Array.isArray, n.SCHEMES = {}, t = 0, e = (r = &quot;contrast triade tetrade analogic&quot;.split(/\s+/)).length; t &lt; e; t++) o = r[t], n.SCHEMES[o] = !0;
+
+                                   function n() {
+                                        var t, e;
+                                        for (t = [], e = 1; e &lt;= 4; e++) t.push(new n.mutablecolor(60));
+                                        this.col = t
+                                   }
+                                   return n.PRESETS = {
+                                        default: [-1, -1, 1, -.7, .25, 1, .5, 1],
+                                        pastel: [.5, -.9, .5, .5, .1, .9, .75, .75],
+                                        soft: [.3, -.8, .3, .5, .1, .9, .5, .75],
+                                        light: [.25, 1, .5, .75, .1, 1, .5, 1]
+                                   }, n.COLOR_WHEEL = {
+                                        0: [255, 0, 0, 100],
+                                        15: [255, 51, 0, 100],
+                                        30: [255, 102, 0, 100],
+                                        45: [255, 128, 0, 100],
+                                        60: [255, 153, 0, 100],
+                                        75: [255, 178, 0, 100],
+                                        90: [255, 204, 0, 100],
+                                        105: [255, 229, 0, 100],
+                                        120: [255, 255, 0, 100],
+                                        135: [204, 255, 0, 100],
+                                        150: [153, 255, 0, 100],
+                                        165: [51, 255, 0, 100],
+                                        180: [0, 204, 0, 80],
+                                        195: [0, 178, 102, 70],
+                                        210: [0, 153, 153, 60],
+                                        225: [0, 102, 178, 70],
+                                        240: [0, 51, 204, 80],
+                                        255: [25, 25, 178, 70],
+                                        270: [51, 0, 153, 60],
+                                        285: [64, 0, 153, 60],
+                                        300: [102, 0, 153, 60],
+                                        315: [153, 0, 153, 60],
+                                        330: [204, 0, 153, 80],
+                                        345: [229, 0, 102, 90]
+                                   }, n.prototype.colors = function() {
+                                        var t, e, r, o, n, a, s, i, u, h;
+                                        if (u = 1, e = this.col[0].get_hue(), null == (t = {
+                                                  contrast: (h = this, function() {
+                                                       return u = 2, h.col[1].set_hue(e), h.col[1].rotate(180)
+                                                  }),
+                                                  triade: function(t) {
+                                                       return function() {
+                                                            var r;
+                                                            return u = 3, r = 60 * t._distance, t.col[1].set_hue(e), t.col[1].rotate(180 - r), t.col[2].set_hue(e), t.col[2].rotate(180 + r)
+                                                       }
+                                                  }(this),
+                                                  tetrade: function(t) {
+                                                       return function() {
+                                                            var r;
+                                                            return u = 4, r = 90 * t._distance, t.col[1].set_hue(e), t.col[1].rotate(180), t.col[2].set_hue(e), t.col[2].rotate(180 + r), t.col[3].set_hue(e), t.col[3].rotate(r)
+                                                       }
+                                                  }(this),
+                                                  analogic: function(t) {
+                                                       return function() {
+                                                            var r;
+                                                            return u = 3, r = 60 * t._distance, t.col[1].set_hue(e), t.col[1].rotate(r), t.col[2].set_hue(e), t.col[2].rotate(360 - r), t.col[3].set_hue(e), t.col[3].rotate(180)
+                                                       }
+                                                  }(this)
+                                             })[this._scheme]) throw &quot;X&quot;;
+                                        for (t[this._scheme](), s = [], r = n = 0, i = u - 1; 0 &lt;= i ? n &lt;= i : n &gt;= i; r = 0 &lt;= i ? ++n : --n)
+                                             for (o = a = 0; a &lt;= 3; o = ++a) s[4 * r + o] = this.col[r].get_hex(o);
+                                        return s
+                                   }, n.prototype.from_hue = function(t) {
+                                        if (null == t) throw &quot;from_hue needs an argument&quot;;
+                                        return this.col[0].set_hue(t), this
+                                   }, n.prototype.distance = function(t) {
+                                        return this._distance = t, this
+                                   }, n.prototype.scheme = function(t) {
+                                        return null == t ? this._scheme : (this._scheme = t, this)
+                                   }, n.prototype.variation = function(t) {
+                                        return this._set_variant_preset(n.PRESETS[t]), this
+                                   }, n.prototype._set_variant_preset = function(t) {
+                                        var e, r, o;
+                                        for (o = [], e = r = 0; r &lt;= 3; e = ++r) o.push(this.col[e].set_variant_preset(t));
+                                        return o
+                                   }, n.mutablecolor = function() {
+                                        function t(t) {
+                                             this.saturation = [], this.value = [], this.base_red = 0, this.base_green = 0, this.base_blue = 0, this.base_saturation = 0, this.base_value = 0, this.set_hue(t), this.set_variant_preset(n.PRESETS.default)
+                                        }
+                                        return t.prototype.hue = 0, t.prototype.saturation = [], t.prototype.value = [], t.prototype.base_red = 0, t.prototype.base_green = 0, t.prototype.base_saturation = 0, t.prototype.base_value = 0, t.prototype.get_hue = function() {
+                                             return this.hue
+                                        }, t.prototype.set_hue = function(t) {
+                                             var e, r, o, a, s, i, u, h, l, c;
+                                             for (r in e = function(t, e, r) {
+                                                       return t + Math.round((e - t) * r)
+                                                  }, this.hue = Math.round(t % 360), c = (s = this.hue % 15 + (this.hue - Math.floor(this.hue))) / 15, u = (15 + (i = this.hue - Math.floor(s))) % 360, 360 === i &amp;&amp; (i = 0), 360 === u &amp;&amp; (u = 0), o = n.COLOR_WHEEL[i], a = n.COLOR_WHEEL[u], h = {
+                                                       red: 0,
+                                                       green: 1,
+                                                       blue: 2,
+                                                       value: 3
+                                                  }) l = h[r], this[&quot;base_&quot; + r] = e(o[l], a[l], c);
+                                             return this.base_saturation = e(100, 100, c) / 100, this.base_value /= 100
+                                        }, t.prototype.rotate = function(t) {
+                                             var e;
+                                             return e = (this.hue + t) % 360, this.set_hue(e)
+                                        }, t.prototype.get_saturation = function(t) {
+                                             var e, r;
+                                             return (e = (r = this.saturation[t]) &lt; 0 ? -r * this.base_saturation : r) &gt; 1 &amp;&amp; (e = 1), e &lt; 0 &amp;&amp; (e = 0), e
+                                        }, t.prototype.get_value = function(t) {
+                                             var e, r;
+                                             return (e = (r = this.value[t]) &lt; 0 ? -r * this.base_value : r) &gt; 1 &amp;&amp; (e = 1), e &lt; 0 &amp;&amp; (e = 0), e
+                                        }, t.prototype.set_variant = function(t, e, r) {
+                                             return this.saturation[t] = e, this.value[t] = r
+                                        }, t.prototype.set_variant_preset = function(t) {
+                                             var e, r, o;
+                                             for (o = [], e = r = 0; r &lt;= 3; e = ++r) o.push(this.set_variant(e, t[2 * e], t[2 * e + 1]));
+                                             return o
+                                        }, t.prototype.get_hex = function(t) {
+                                             var e, r, o, n, a, s, i, u, h, l, c, p, f, _;
+                                             for (i = Math.max.apply(Math, function() {
+                                                       var t, r, o, n;
+                                                       for (n = [], r = 0, t = (o = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]).length; r &lt; t; r++) e = o[r], n.push(this[&quot;base_&quot; + e]);
+                                                       return n
+                                                  }.call(this)), Math.min.apply(Math, function() {
+                                                       var t, r, o, n;
+                                                       for (n = [], r = 0, t = (o = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]).length; r &lt; t; r++) e = o[r], n.push(this[&quot;base_&quot; + e]);
+                                                       return n
+                                                  }.call(this)), _ = 255 * (t &lt; 0 ? this.base_value : this.get_value(t)), p = t &lt; 0 ? this.base_saturation : this.get_saturation(t), o = i &gt; 0 ? _ / i : 0, l = [], s = 0, n = (h = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]).length; s &lt; n; s++) e = h[s], c = Math.min.apply(Math, [255, Math.round(_ - (_ - this[&quot;base_&quot; + e] * o) * p)]), l.push(c);
+                                             for (r = &quot;&quot;, u = 0, a = l.length; u &lt; a; u++)(f = l[u].toString(16)).length &lt; 2 &amp;&amp; (f = &quot;0&quot; + f), r += f;
+                                             return r
+                                        }, t
+                                   }(), n
+                              }(), null !== t &amp;&amp; null != t.exports ? t.exports = r : void 0 === (o = function() {
+                                   return r
+                              }.apply(e, [])) || (t.exports = o)
+                         }.call(this)
+               }
+          },
+          e = {};
+
+     function r(o) {
+          var n = e[o];
+          if (void 0 !== n) return n.exports;
+          var a = e[o] = {
+               id: o,
+               loaded: !1,
+               exports: {}
+          };
+          return t[o].call(a.exports, a, a.exports, r), a.loaded = !0, a.exports
+     }
+     r.n = t =&gt; {
+          var e = t &amp;&amp; t.__esModule ? () =&gt; t.default : () =&gt; t;
+          return r.d(e, {
+               a: e
+          }), e
+     }, r.d = (t, e) =&gt; {
+          for (var o in e) r.o(e, o) &amp;&amp; !r.o(t, o) &amp;&amp; Object.defineProperty(t, o, {
+               enumerable: !0,
+               get: e[o]
+          })
+     }, r.o = (t, e) =&gt; Object.prototype.hasOwnProperty.call(t, e), r.nmd = t =&gt; (t.paths = [], t.children || (t.children = []), t), (() =&gt; {
+          &quot;use strict&quot;;
+          var t = r(124),
+               e = r.n(t);
+          new p5((function(t) {
+               const r = window.innerWidth,
+                    o = window.innerHeight,
+                    n = r / 1200,
+                    a = 4 * n,
+                    s = 7 * n;
+               let i, u = parseInt(tokenData.hash.slice(0, 16), 16);
+
+               function h() {
+                    return u ^= u &lt;&lt; 13, u ^= u &gt;&gt; 17, u ^= u &lt;&lt; 5, (u &lt; 0 ? 1 + ~u : u) % 1e3 / 1e3
+               }
+
+               function l(t, e) {
+                    return t + h() * e
+               }
+
+               function c(t, e) {
+                    return Math.floor(h() * (e - t) + t)
+               }
+
+               function p(t) {
+                    const e = t / s - Math.floor(t / s);
+                    return Math.abs(.5 - e) &gt; 1e-4 ? Math.round(t / s) * s : Math.floor(t / s) * s
+               }
+
+               function f(e, r, a, s) {
+                    t.rect(p(e * n), p(r - o / 2) + o / 2, p(a * n), p(s))
+               }
+               t.setup = function() {
+                    t.createCanvas(r, o), t.background(250), t.noLoop();
+                    const n = c(.25, .5),
+                         a = [&quot;contrast&quot;, &quot;triade&quot;, &quot;tetrade&quot;, &quot;analogic&quot;][c(0, 4)],
+                         s = [&quot;light&quot;, &quot;soft&quot;, &quot;pastel&quot;][c(0, 3)];
+                    i = (new(e())).from_hue(c(0, 360)).scheme(a).distance(n).variation(s).colors().map((t =&gt; &quot;#&quot; + t))
+               }, t.draw = function() {
+                    const e = 150 * h(),
+                         r = -20 * h();
+                    t.strokeWeight(a);
+                    let s = 10;
+                    for (; s &lt; 1080;) {
+                         t.fill(i[c(0, i.length)]);
+                         let a = l(20, 100),
+                              u = l(40, 100) * n;
+                         const h = c(-1, 2) * u / 2,
+                              p = o / 2 - u / 2 + h;
+                         t.stroke(1), f(s, p, a, u), s += a + l(r, e), t.stroke(1), t.fill(t.color(2 == c(0, 100) ? &quot;black&quot; : &quot;white&quot;));
+                         for (let t = 0; t &lt; c(0, 5) &amp;&amp; (a = c(20, a), u = c(40, u / n) * n, !(s + a &gt; 1200)); t++) f(s, p, a, u)
+                    }
+               }
+          }))
+     })()
+})();</pre></body></html>

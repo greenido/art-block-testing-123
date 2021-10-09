@@ -1,0 +1,1672 @@
+<html><body><h1>Name: CatBlocks</h1><h3>Artist: Kristy Glas</h3><h3>Description: Adorable and purrfect, these carefully bred kitties express a wide range of emotions and personalities. They live entirely on-chain and they just love receiving pets.</h3><h3>https://www.kristyglas.com/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;}</p><p>Script Type: p5js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x0eb47beabd9ce2cab7cbed57aa6b040975bdc1b7</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.09</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 512</p><p>Maximum Invocations: 512</p><p>License: NIFTY</p><p>Token Ids: 73000000,73000001,73000002,73000003,73000004,73000005,73000006,73000007,73000008,73000009,73000010,73000011,73000012,73000013,73000014,73000015,73000016,73000017,73000018,73000019,73000020,73000021,73000022,73000023,73000024,73000025,73000026,73000027,73000028,73000029,73000030,73000031,73000032,73000033,73000034,73000035,73000036,73000037,73000038,73000039,73000040,73000041,73000042,73000043,73000044,73000045,73000046,73000047,73000048,73000049,73000050,73000051,73000052,73000053,73000054,73000055,73000056,73000057,73000058,73000059,73000060,73000061,73000062,73000063,73000064,73000065,73000066,73000067,73000068,73000069,73000070,73000071,73000072,73000073,73000074,73000075,73000076,73000077,73000078,73000079,73000080,73000081,73000082,73000083,73000084,73000085,73000086,73000087,73000088,73000089,73000090,73000091,73000092,73000093,73000094,73000095,73000096,73000097,73000098,73000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let hashPairs = new Array(32),
+     rvs = new Array(32);
+for (let e = 0; e &lt; 32; e++) hashPairs[e] = tokenData.hash.slice(2 + 2 * e, 4 + 2 * e), rvs[e] = parseInt(hashPairs[e], 16);
+let s = {
+          eeo: 0,
+          ns: {
+               x: 9,
+               y: 11
+          },
+          flip: !1,
+          swap: !1,
+          heterochromia: !1,
+          eyeSwap: !1,
+          tng: !1
+     },
+     breed = {
+          name: &quot;&quot;
+     },
+     palette = {},
+     colors = {},
+     bps = [],
+     fps = [],
+     b = {},
+     fa = [, , , ],
+     fc = [, , , , , ],
+     fn = [, , , ],
+     fm = [, , ],
+     ea = [, , , ],
+     ec = [, , , , , ],
+     ei = [, , , ],
+     eic = [, , , , , ],
+     en = [, , ],
+     em = [, , ],
+     eim = [, , ],
+     eya = [, , , ],
+     eyc = [, , , , , , , ],
+     na = [, , ],
+     nc = [, , , , , ],
+     ni = [, , , ],
+     nn = [, , ],
+     nm = [, , ],
+     m = [, , , ],
+     wa = [, ],
+     wc = [, ],
+     heads = [{
+          fh: {
+               x: 0,
+               y: -55
+          },
+          tpl: {
+               x: 73,
+               y: -29
+          },
+          chk: {
+               x: 86,
+               y: 23
+          },
+          chn: {
+               x: 0,
+               y: 91
+          },
+          chkc: .01,
+          chko: 0,
+          chnc: -1,
+          chno: .44,
+          bw: .55
+     }, {
+          fh: {
+               x: 0,
+               y: -50
+          },
+          tpl: {
+               x: 78,
+               y: -29
+          },
+          chk: {
+               x: 80,
+               y: 28
+          },
+          chn: {
+               x: 0,
+               y: 88
+          },
+          chkc: .03,
+          chko: 0,
+          chnc: -1,
+          chno: .35,
+          bw: .51
+     }, {
+          fh: {
+               x: 0,
+               y: -54
+          },
+          tpl: {
+               x: 79,
+               y: -24
+          },
+          chk: {
+               x: 96,
+               y: 25
+          },
+          chn: {
+               x: 0,
+               y: 86
+          },
+          chkc: .11,
+          chko: .63,
+          chnc: -.74,
+          chno: .06,
+          bw: .47
+     }, {
+          fh: {
+               x: 0,
+               y: -52
+          },
+          tpl: {
+               x: 77,
+               y: -25
+          },
+          chk: {
+               x: 95,
+               y: 47
+          },
+          chn: {
+               x: 0,
+               y: 86
+          },
+          chkc: -.01,
+          chko: 0,
+          chnc: -1,
+          chno: .32,
+          bw: .52
+     }, {
+          fh: {
+               x: 0,
+               y: -50
+          },
+          tpl: {
+               x: 70,
+               y: -26
+          },
+          chk: {
+               x: 100,
+               y: 25
+          },
+          chn: {
+               x: 0,
+               y: 90
+          },
+          chkc: -.6,
+          chko: .95,
+          chnc: -1,
+          chno: .2,
+          bw: .5
+     }, {
+          fh: {
+               x: 0,
+               y: -50
+          },
+          tpl: {
+               x: 77,
+               y: -25
+          },
+          chk: {
+               x: 91,
+               y: 38
+          },
+          chn: {
+               x: 0,
+               y: 79
+          },
+          chkc: .39,
+          chko: .89,
+          chnc: .14,
+          chno: .48,
+          bw: .54
+     }, {
+          fh: {
+               x: 0,
+               y: -55
+          },
+          tpl: {
+               x: 79,
+               y: -27
+          },
+          chk: {
+               x: 89,
+               y: 37
+          },
+          chn: {
+               x: 0,
+               y: 88
+          },
+          chkc: -.06,
+          chko: 0,
+          chnc: -.36,
+          chno: .43,
+          bw: .52
+     }, {
+          fh: {
+               x: 0,
+               y: -47
+          },
+          tpl: {
+               x: 70,
+               y: -24
+          },
+          chk: {
+               x: 99,
+               y: 21
+          },
+          chn: {
+               x: 0,
+               y: 92
+          },
+          chkc: -.26,
+          chko: .63,
+          chnc: -1,
+          chno: .49,
+          bw: .56
+     }, {
+          fh: {
+               x: 0,
+               y: -51
+          },
+          tpl: {
+               x: 73,
+               y: -5
+          },
+          chk: {
+               x: 102,
+               y: 20
+          },
+          chn: {
+               x: 0,
+               y: 84
+          },
+          chkc: -.6,
+          chko: .26,
+          chnc: -1,
+          chno: .37,
+          bw: .59,
+          eeo: .13
+     }, {
+          fh: {
+               x: 0,
+               y: -52
+          },
+          tpl: {
+               x: 86,
+               y: -13
+          },
+          chk: {
+               x: 91,
+               y: 55
+          },
+          chn: {
+               x: 0,
+               y: 80
+          },
+          chkc: .12,
+          chko: .76,
+          chnc: .85,
+          chno: .33,
+          bw: .5
+     }, {
+          fh: {
+               x: 0,
+               y: -48
+          },
+          tpl: {
+               x: 75,
+               y: -30
+          },
+          chk: {
+               x: 89,
+               y: 33
+          },
+          chn: {
+               x: 0,
+               y: 79
+          },
+          chkc: .04,
+          chko: 0,
+          chnc: -.36,
+          chno: .48,
+          bw: .56
+     }, {
+          fh: {
+               x: 0,
+               y: -50
+          },
+          tpl: {
+               x: 70,
+               y: -28
+          },
+          chk: {
+               x: 92,
+               y: 41
+          },
+          chn: {
+               x: 0,
+               y: 84
+          },
+          chkc: -.29,
+          chko: .3,
+          chnc: -.54,
+          chno: .37,
+          bw: .53
+     }, {
+          fh: {
+               x: 0,
+               y: -49
+          },
+          tpl: {
+               x: 80,
+               y: -1
+          },
+          chk: {
+               x: 97,
+               y: 24
+          },
+          chn: {
+               x: 0,
+               y: 84
+          },
+          chkc: -.03,
+          chko: 0,
+          chnc: -1,
+          chno: .37,
+          bw: .56,
+          eeo: .15
+     }, {
+          fh: {
+               x: 0,
+               y: -50
+          },
+          tpl: {
+               x: 70,
+               y: -10
+          },
+          chk: {
+               x: 99,
+               y: 41
+          },
+          chn: {
+               x: 0,
+               y: 85
+          },
+          chkc: -.6,
+          chko: 1,
+          chnc: .14,
+          chno: .36,
+          bw: .55,
+          eeo: .13
+     }, {
+          fh: {
+               x: 0,
+               y: -53
+          },
+          tpl: {
+               x: 74,
+               y: -6
+          },
+          chk: {
+               x: 88,
+               y: 39
+          },
+          chn: {
+               x: 0,
+               y: 83
+          },
+          chkc: .6,
+          chko: 0,
+          chnc: -1,
+          chno: .4,
+          bw: .55,
+          eeo: .15
+     }, {
+          fh: {
+               x: 0,
+               y: -44
+          },
+          tpl: {
+               x: 77,
+               y: -19
+          },
+          chk: {
+               x: 68,
+               y: 31
+          },
+          chn: {
+               x: 0,
+               y: 83
+          },
+          chkc: .6,
+          chko: .43,
+          chnc: .76,
+          chno: .5,
+          bw: .5
+     }, {
+          fh: {
+               x: 0,
+               y: -54
+          },
+          tpl: {
+               x: 98,
+               y: -19
+          },
+          chk: {
+               x: 87,
+               y: 40
+          },
+          chn: {
+               x: 0,
+               y: 81
+          },
+          chkc: -.01,
+          chko: 0,
+          chnc: 0,
+          chno: .3,
+          bw: .45
+     }, {
+          fh: {
+               x: 0,
+               y: -52
+          },
+          tpl: {
+               x: 80,
+               y: -26
+          },
+          chk: {
+               x: 98,
+               y: 53
+          },
+          chn: {
+               x: 0,
+               y: 87
+          },
+          chkc: .04,
+          chko: 0,
+          chnc: -1,
+          chno: .32,
+          bw: .5
+     }],
+     ears = [{
+          eso: .27,
+          eto: {
+               x: -1,
+               y: 52
+          },
+          eb: .07,
+          ebr: 0,
+          esc: .19,
+          etc: .49,
+          eec: .13,
+          eitc: .53,
+          esi: .25,
+          eti: .8,
+          eei: .1,
+          eito: 0
+     }, {
+          eso: .29,
+          eto: {
+               x: -21,
+               y: 70
+          },
+          eb: .2,
+          ebr: 0,
+          esc: -.04,
+          etc: .16,
+          eec: .22,
+          eitc: .16,
+          esi: .3,
+          eti: .8,
+          eei: .1,
+          eito: 0
+     }, {
+          eso: .23,
+          eto: {
+               x: -41,
+               y: 69
+          },
+          eb: .17,
+          ebr: 0,
+          esc: -.03,
+          etc: .17,
+          eec: .2,
+          eitc: .23,
+          esi: .3,
+          eti: .77,
+          eei: .13,
+          eito: 0
+     }, {
+          eso: .29,
+          eto: {
+               x: -9,
+               y: 53
+          },
+          eb: 0,
+          ebr: 0,
+          esc: .1,
+          etc: .1,
+          eec: .1,
+          eitc: .1,
+          esi: .3,
+          eti: .76,
+          eei: .1,
+          eito: .95
+     }, {
+          eso: .3,
+          eto: {
+               x: -19,
+               y: 50
+          },
+          eb: .1,
+          ebr: .02,
+          esc: .09,
+          etc: .11,
+          eec: .26,
+          eitc: .21,
+          esi: .3,
+          eti: .73,
+          eei: .1,
+          eito: 1.19
+     }, {
+          eso: .28,
+          eto: {
+               x: -4,
+               y: 50
+          },
+          eb: .17,
+          ebr: 0,
+          esc: .25,
+          etc: .29,
+          eec: .04,
+          eitc: .37,
+          esi: .3,
+          eti: .8,
+          eei: .1,
+          eito: 0
+     }, {
+          eso: .25,
+          eto: {
+               x: 10,
+               y: 39
+          },
+          eb: 0,
+          ebr: 0,
+          esc: .1,
+          etc: .1,
+          eec: .1,
+          eitc: .1,
+          esi: .52,
+          eti: .81,
+          eei: .06,
+          eito: 0
+     }, {
+          eso: .25,
+          eto: {
+               x: 10,
+               y: 70
+          },
+          eb: .62,
+          ebr: .74,
+          esc: .18,
+          etc: .03,
+          eec: .3,
+          eitc: -.34,
+          esi: .2,
+          eti: .63,
+          eei: .06,
+          eito: -4.05
+     }, {
+          eso: .25,
+          eto: {
+               x: 16,
+               y: 51
+          },
+          eb: .5,
+          ebr: .12,
+          esc: .19,
+          etc: .24,
+          eec: -.24,
+          eitc: .24,
+          esi: .44,
+          eti: .63,
+          eei: .12,
+          eito: -3.57
+     }, {
+          eso: .25,
+          eto: {
+               x: -1,
+               y: 51
+          },
+          eb: 0,
+          ebr: -.5,
+          esc: .09,
+          etc: .1,
+          eec: .1,
+          eitc: .1,
+          esi: .64,
+          eti: .76,
+          eei: .06,
+          eito: -.24
+     }, {
+          eso: .27,
+          eto: {
+               x: -1,
+               y: 58
+          },
+          eb: .05,
+          ebr: 0,
+          esc: .01,
+          etc: .26,
+          eec: .13,
+          eitc: .53,
+          esi: .35,
+          eti: .8,
+          eei: .1,
+          eito: 0
+     }, {
+          eso: .25,
+          eto: {
+               x: 1,
+               y: 84
+          },
+          eb: .14,
+          ebr: .95,
+          esc: .14,
+          etc: .36,
+          eec: .3,
+          eitc: .33,
+          esi: .18,
+          eti: .8,
+          eei: .13,
+          eito: -1.19
+     }, {
+          eso: .25,
+          eto: {
+               x: -16,
+               y: 80
+          },
+          eb: .1,
+          ebr: .02,
+          esc: .04,
+          etc: .47,
+          eec: .08,
+          eitc: .49,
+          esi: .3,
+          eti: .8,
+          eei: .1,
+          eito: 0
+     }, {
+          eso: .25,
+          eto: {
+               x: -4,
+               y: 55
+          },
+          eb: .37,
+          ebr: -.05,
+          esc: .1,
+          etc: .46,
+          eec: .3,
+          eitc: .43,
+          esi: .26,
+          eti: .84,
+          eei: .06,
+          eito: 1.43
+     }],
+     eyes = [{
+          eyo: {
+               x: 40,
+               y: 4
+          },
+          eyw: 20,
+          eyt: 18,
+          eyb: 18,
+          eyr: -.04,
+          eypo: {
+               x: -4,
+               y: 0
+          },
+          no: -3
+     }, {
+          eyo: {
+               x: 40,
+               y: 5
+          },
+          eyw: 21,
+          eyt: 12,
+          eyb: 18,
+          eyr: -.44,
+          eypo: {
+               x: -4,
+               y: 0
+          },
+          no: -1
+     }, {
+          eyo: {
+               x: 40,
+               y: 5
+          },
+          eyw: 20,
+          eyt: 15,
+          eyb: 7,
+          eyr: -.24,
+          eypo: {
+               x: -3,
+               y: 0
+          },
+          no: -7
+     }, {
+          eyo: {
+               x: 38,
+               y: 1
+          },
+          eyw: 21,
+          eyt: 2,
+          eyb: 17,
+          eyr: .36,
+          eypo: {
+               x: -3,
+               y: 5
+          },
+          no: -5
+     }, {
+          eyo: {
+               x: 40,
+               y: 5
+          },
+          eyw: 21,
+          eyt: 13,
+          eyb: 18,
+          eyr: .26,
+          eypo: {
+               x: -4,
+               y: 0
+          },
+          no: -4
+     }, {
+          eyo: {
+               x: 37,
+               y: 8
+          },
+          eyw: 20,
+          eyt: 7,
+          eyb: 18,
+          eyr: -.64,
+          eypo: {
+               x: -2,
+               y: 0
+          },
+          no: 4
+     }, {
+          eyo: {
+               x: 37,
+               y: 4
+          },
+          eyw: 20,
+          eyt: -1,
+          eyb: 17,
+          eyr: -.14,
+          eypo: {
+               x: -2,
+               y: 2
+          },
+          no: -2
+     }, {
+          eyo: {
+               x: 40,
+               y: 2
+          },
+          eyw: 20,
+          eyt: -3,
+          eyb: 22,
+          eyr: .26,
+          eypo: {
+               x: -4,
+               y: 5
+          },
+          no: -1
+     }, {
+          eyo: {
+               x: 40,
+               y: 3
+          },
+          eyw: 19,
+          eyt: 14,
+          eyb: 16,
+          eyr: -.24,
+          eypo: {
+               x: -8,
+               y: 0
+          },
+          no: -4
+     }, {
+          eyo: {
+               x: 40,
+               y: 5
+          },
+          eyw: 19,
+          eyt: 13,
+          eyb: 14,
+          eyr: -.04,
+          eypo: {
+               x: -4,
+               y: 0
+          },
+          no: -4
+     }, {
+          eyo: {
+               x: 40,
+               y: 4
+          },
+          eyw: 21,
+          eyt: 12,
+          eyb: 18,
+          eyr: -.14,
+          eypo: {
+               x: -4,
+               y: 0
+          },
+          no: -1
+     }, {
+          eyo: {
+               x: 40,
+               y: 2
+          },
+          eyw: 21,
+          eyt: 19,
+          eyb: 2,
+          eyr: -.14,
+          eypo: {
+               x: -4,
+               y: 1
+          },
+          no: -13
+     }, {
+          eyo: {
+               x: 40,
+               y: 8
+          },
+          eyw: 20,
+          eyt: 12,
+          eyb: 3,
+          eyr: .06,
+          eypo: {
+               x: -4,
+               y: -3
+          },
+          no: -7
+     }, {
+          eyo: {
+               x: 40,
+               y: 11
+          },
+          eyw: 22,
+          eyt: 14,
+          eyb: 15,
+          eyr: .36,
+          eypo: {
+               x: -7,
+               y: -8
+          },
+          no: -1
+     }],
+     pupils = [{
+          eypw: 12,
+          eyph: 30
+     }, {
+          eypw: 21,
+          eyph: 28
+     }, {
+          eypw: 29,
+          eyph: 30
+     }, {
+          eypw: 15,
+          eyph: 22
+     }, {
+          eypw: 13,
+          eyph: 13
+     }, {
+          eypw: 7,
+          eyph: 30
+     }],
+     mouths = [{
+          mh: 11,
+          mo: {
+               x: 10,
+               y: 6
+          },
+          mc: .5,
+          tngo: 5,
+          tng: !0
+     }, {
+          mh: 8,
+          mo: {
+               x: 5,
+               y: 8
+          },
+          mc: .5,
+          tngo: 8,
+          tng: !1
+     }, {
+          mh: 12,
+          mo: {
+               x: 15,
+               y: 4
+          },
+          mc: .5,
+          tngo: 3.4,
+          tng: !0
+     }, {
+          mh: 11,
+          mo: {
+               x: 5,
+               y: 12
+          },
+          mc: .05,
+          tngo: 8,
+          tng: !1
+     }, {
+          mh: 12,
+          mo: {
+               x: 10,
+               y: 12
+          },
+          mc: -.17,
+          tngo: 4.3,
+          tng: !1
+     }, {
+          mh: 13,
+          mo: {
+               x: 11,
+               y: 6
+          },
+          mc: -.14,
+          tngo: 1.2,
+          tng: !0
+     }, {
+          mh: 10,
+          mo: {
+               x: 10,
+               y: 13
+          },
+          mc: .21,
+          tngo: 8,
+          tng: !1
+     }, {
+          mh: 13,
+          mo: {
+               x: 8,
+               y: 1
+          },
+          mc: .02,
+          tngo: -.5,
+          tng: !0
+     }, {
+          mh: 13,
+          mo: {
+               x: 14,
+               y: -2
+          },
+          mc: .71,
+          tngo: 1.5,
+          tng: !0
+     }],
+     whiskers = [{
+          whl: 4,
+          wha: .18,
+          who: {
+               x: 7,
+               y: 4
+          },
+          wheo: {
+               x: 100,
+               y: 30
+          },
+          whc: .15
+     }, {
+          whl: 3,
+          wha: .18,
+          who: {
+               x: 7,
+               y: 4
+          },
+          wheo: {
+               x: 100,
+               y: 30
+          },
+          whc: .15
+     }, {
+          whl: 4,
+          wha: .2,
+          who: {
+               x: 7,
+               y: 4
+          },
+          wheo: {
+               x: 102,
+               y: 0
+          },
+          whc: -.18
+     }, {
+          whl: 3,
+          wha: .2,
+          who: {
+               x: 7,
+               y: 4
+          },
+          wheo: {
+               x: 102,
+               y: 0
+          },
+          whc: -.18
+     }],
+     palettes = [{
+          bg: &quot;#b8deff&quot;,
+          body: &quot;#1a1b1e&quot;,
+          neck: &quot;#cfd2de&quot;,
+          face: &quot;#1a1b1e&quot;,
+          prim: &quot;#fafafa&quot;,
+          sec: &quot;#fafafa&quot;,
+          ear: &quot;#0f0f10&quot;,
+          earIn: &quot;#874f60&quot;,
+          eyeline: &quot;#000000&quot;,
+          nose: &quot;#f09d9d&quot;,
+          noseIn: &quot;#2d1f16&quot;,
+          mouth: &quot;#a06a6a&quot;,
+          whiskers: &quot;#ededed&quot;
+     }, {
+          bg: &quot;#8b92e9&quot;,
+          body: &quot;#fafafa&quot;,
+          neck: &quot;#ededed&quot;,
+          face: &quot;#fafafa&quot;,
+          prim: &quot;#121212&quot;,
+          sec: &quot;#050505&quot;,
+          ear: &quot;#f6f6f6&quot;,
+          earIn: &quot;#f3b4d9&quot;,
+          eyeline: &quot;#383838&quot;,
+          nose: &quot;#ffc2d4&quot;,
+          noseIn: &quot;#822673&quot;,
+          mouth: &quot;#3c252e&quot;,
+          whiskers: &quot;#050505&quot;
+     }, {
+          bg: &quot;#5d7bb1&quot;,
+          body: &quot;#ffae70&quot;,
+          neck: &quot;#ecddd5&quot;,
+          face: &quot;#ffae70&quot;,
+          prim: &quot;#fcfcfc&quot;,
+          sec: &quot;#e98649&quot;,
+          ear: &quot;#f7a464&quot;,
+          earIn: &quot;#ffede0&quot;,
+          eyeline: &quot;#8a400f&quot;,
+          nose: &quot;#ce5f5f&quot;,
+          noseIn: &quot;#32271f&quot;,
+          mouth: &quot;#4b291b&quot;,
+          whiskers: &quot;#6f3f2a&quot;
+     }, {
+          bg: &quot;#b8deff&quot;,
+          body: &quot;#7e849a&quot;,
+          neck: &quot;#d2d2db&quot;,
+          face: &quot;#7e849a&quot;,
+          prim: &quot;#fcfcfc&quot;,
+          sec: &quot;#555463&quot;,
+          ear: &quot;#6a6e7c&quot;,
+          earIn: &quot;#f5c7df&quot;,
+          eyeline: &quot;#3d3d3d&quot;,
+          nose: &quot;#f5b2d4&quot;,
+          noseIn: &quot;#703e57&quot;,
+          mouth: &quot;#383838&quot;,
+          whiskers: &quot;#383838&quot;
+     }, {
+          bg: &quot;#f0f0f0&quot;,
+          body: &quot;#815d41&quot;,
+          neck: &quot;#ded1c9&quot;,
+          face: &quot;#815d41&quot;,
+          prim: &quot;#f2dfce&quot;,
+          sec: &quot;#40301c&quot;,
+          ear: &quot;#6e4e35&quot;,
+          earIn: &quot;#dd9797&quot;,
+          eyeline: &quot;#492c18&quot;,
+          nose: &quot;#f08e8e&quot;,
+          noseIn: &quot;#752f40&quot;,
+          mouth: &quot;#2f2323&quot;,
+          whiskers: &quot;#121212&quot;
+     }, {
+          bg: &quot;#f0f0f0&quot;,
+          body: &quot;#5e6373&quot;,
+          neck: &quot;#cdd0d5&quot;,
+          face: &quot;#5e6373&quot;,
+          prim: &quot;#dadce7&quot;,
+          sec: &quot;#4d516a&quot;,
+          ear: &quot;#505568&quot;,
+          earIn: &quot;#dca7c1&quot;,
+          eyeline: &quot;#26242d&quot;,
+          nose: &quot;#13121c&quot;,
+          noseIn: &quot;#575757&quot;,
+          mouth: &quot;#191a1f&quot;,
+          whiskers: &quot;#171617&quot;
+     }, {
+          bg: &quot;#b8deff&quot;,
+          body: &quot;#fcfcfc&quot;,
+          neck: &quot;#e7e2de&quot;,
+          face: &quot;#fcfcfc&quot;,
+          prim: &quot;#1a1b1e&quot;,
+          sec: &quot;#e2843c&quot;,
+          ear: &quot;#1a1b1e&quot;,
+          earIn: &quot;#ffede0&quot;,
+          eyeline: &quot;#8a400f&quot;,
+          nose: &quot;#f39696&quot;,
+          noseIn: &quot;#6b1e62&quot;,
+          mouth: &quot;#6d4040&quot;,
+          whiskers: &quot;#262626&quot;
+     }, {
+          bg: &quot;#f0f0f0&quot;,
+          body: &quot;#e1d0c6&quot;,
+          neck: &quot;#e3d6ce&quot;,
+          face: &quot;#e1d0c6&quot;,
+          prim: &quot;#2e2520&quot;,
+          sec: &quot;#bfa89b&quot;,
+          ear: &quot;#2e2520&quot;,
+          earIn: &quot;#5f4534&quot;,
+          eyeline: &quot;#43352d&quot;,
+          nose: &quot;#5f4534&quot;,
+          noseIn: &quot;#000000&quot;,
+          mouth: &quot;#795944&quot;,
+          whiskers: &quot;#292929&quot;
+     }, {
+          bg: &quot;#5e4c9a&quot;,
+          body: &quot;#ffb8ee&quot;,
+          neck: &quot;#f1dfef&quot;,
+          face: &quot;#ffb8ee&quot;,
+          prim: &quot;#fff0fe&quot;,
+          sec: &quot;#d373be&quot;,
+          ear: &quot;#fbb1ea&quot;,
+          earIn: &quot;#d56dbe&quot;,
+          eyeline: &quot;#5c2e52&quot;,
+          nose: &quot;#a84d94&quot;,
+          noseIn: &quot;#3e1829&quot;,
+          mouth: &quot;#602957&quot;,
+          whiskers: &quot;#341b36&quot;
+     }, {
+          bg: &quot;#5e4c9a&quot;,
+          body: &quot;#b8f4ff&quot;,
+          neck: &quot;#cedcdf&quot;,
+          face: &quot;#b8f4ff&quot;,
+          prim: &quot;#ebf8ff&quot;,
+          sec: &quot;#6da4c0&quot;,
+          ear: &quot;#a0ebf8&quot;,
+          earIn: &quot;#599bb1&quot;,
+          eyeline: &quot;#385561&quot;,
+          nose: &quot;#6891b1&quot;,
+          noseIn: &quot;#24223f&quot;,
+          mouth: &quot;#182a35&quot;,
+          whiskers: &quot;#151e23&quot;
+     }, {
+          bg: &quot;#566a8f&quot;,
+          body: &quot;#7ca269&quot;,
+          neck: &quot;#ceded6&quot;,
+          face: &quot;#7ca269&quot;,
+          prim: &quot;#507141&quot;,
+          sec: &quot;#375845&quot;,
+          ear: &quot;#7a9a6a&quot;,
+          earIn: &quot;#355744&quot;,
+          eyeline: &quot;#1f2320&quot;,
+          nose: &quot;#343a31&quot;,
+          noseIn: &quot;#000000&quot;,
+          mouth: &quot;#242e1f&quot;,
+          whiskers: &quot;#ededed&quot;
+     }, {
+          bg: &quot;#5d7bb1&quot;,
+          body: &quot;#f3d8d8&quot;,
+          neck: &quot;#f2e9e9&quot;,
+          face: &quot;#f3d8d8&quot;,
+          prim: &quot;#ffebeb&quot;,
+          sec: &quot;#ecb6b6&quot;,
+          ear: &quot;#f3cece&quot;,
+          earIn: &quot;#d38897&quot;,
+          eyeline: &quot;#b47979&quot;,
+          nose: &quot;#f0a8a8&quot;,
+          noseIn: &quot;#5e4040&quot;,
+          mouth: &quot;#a97575&quot;,
+          whiskers: &quot;#f5f5f5&quot;
+     }, {
+          bg: &quot;#f0f0f0&quot;,
+          body: &quot;#e4c7b4&quot;,
+          neck: &quot;#efe0d7&quot;,
+          face: &quot;#e4c7b4&quot;,
+          prim: &quot;#ffede0&quot;,
+          sec: &quot;#c19d8a&quot;,
+          ear: &quot;#d7b8a3&quot;,
+          earIn: &quot;#ba8882&quot;,
+          eyeline: &quot;#603e3e&quot;,
+          nose: &quot;#7b5656&quot;,
+          noseIn: &quot;#000000&quot;,
+          mouth: &quot;#3a2727&quot;,
+          whiskers: &quot;#6f5858&quot;
+     }, {
+          bg: &quot;#5d7bb1&quot;,
+          body: &quot;#f09475&quot;,
+          neck: &quot;#decadc&quot;,
+          face: &quot;#f09475&quot;,
+          prim: &quot;#fff0fe&quot;,
+          sec: &quot;#49241d&quot;,
+          ear: &quot;#38251f&quot;,
+          earIn: &quot;#d491bb&quot;,
+          eyeline: &quot;#000000&quot;,
+          nose: &quot;#371515&quot;,
+          noseIn: &quot;#808080&quot;,
+          mouth: &quot;#000000&quot;,
+          whiskers: &quot;#000000&quot;
+     }],
+     eyeColors = [&quot;#d6f9ff&quot;, &quot;#f9e9ae&quot;, &quot;#cafaa3&quot;, &quot;#ff9c66&quot;, &quot;#000000&quot;, &quot;#ef0902&quot;],
+     patterns = {
+          body: [
+               [],
+               [&quot;tabby&quot;],
+               [&quot;tabby&quot;, &quot;belly&quot;],
+               [&quot;tabby&quot;, &quot;necktie&quot;],
+               [&quot;belly&quot;],
+               [&quot;necktie&quot;],
+               [&quot;corners&quot;],
+               [&quot;stripes&quot;],
+               [&quot;tabby&quot;, &quot;corners&quot;]
+          ],
+          face: [
+               [],
+               [&quot;mask&quot;],
+               [&quot;round&quot;],
+               [&quot;nose&quot;, &quot;round&quot;],
+               [&quot;nose&quot;, &quot;chin&quot;],
+               [&quot;triangle&quot;],
+               [&quot;triangle&quot;, &quot;whiskers&quot;],
+               [&quot;whiskers&quot;],
+               [&quot;whiskers&quot;, &quot;nose&quot;],
+               [&quot;whiskers&quot;, &quot;chin&quot;],
+               [&quot;ear&quot;],
+               [&quot;temple&quot;],
+               [&quot;ear&quot;, &quot;temple&quot;],
+               [&quot;forehead&quot;, &quot;cheeks&quot;]
+          ]
+     },
+     breeds = [{
+          name: &quot;black&quot;,
+          odds: 51,
+          body: [0, 4, 5, 6],
+          face: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          palettes: [0],
+          eyes: [0, 1, 2, 3]
+     }, {
+          name: &quot;white&quot;,
+          odds: 26,
+          body: [0, 6],
+          face: [0, 10, 11, 12],
+          palettes: [1],
+          eyes: [0, 1, 2]
+     }, {
+          name: &quot;tabby&quot;,
+          odds: 100,
+          body: [1, 2, 3, 4, 5, 6, 7],
+          face: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          palettes: [2, 3, 4],
+          eyes: [0, 1, 2]
+     }, {
+          name: &quot;shorthair&quot;,
+          odds: 20,
+          body: [0, 4, 5, 6],
+          face: [0, 1, 4, 6, 7, 8],
+          palettes: [5],
+          eyes: [3]
+     }, {
+          name: &quot;calico&quot;,
+          odds: 17,
+          body: [6],
+          face: [1, 12],
+          palettes: [6],
+          eyes: [0, 1, 2]
+     }, {
+          name: &quot;siamese&quot;,
+          odds: 10,
+          body: [0, 6],
+          face: [0, 8],
+          palettes: [7],
+          eyes: [0, 1, 2]
+     }, {
+          name: &quot;sphynx&quot;,
+          odds: 5,
+          body: [0],
+          face: [0],
+          palettes: [11],
+          eyes: [0, 1, 2],
+          head: 15,
+          ear: 11
+     }, {
+          name: &quot;sandcat&quot;,
+          odds: 5,
+          body: [3, 8],
+          face: [6],
+          palettes: [12],
+          eyes: [0, 1],
+          head: 16,
+          ear: 12
+     }, {
+          name: &quot;toyger&quot;,
+          odds: 5,
+          body: [3, 8],
+          face: [6],
+          palettes: [13],
+          eyes: [0, 1, 2],
+          head: 17,
+          ear: 13
+     }, {
+          name: &quot;alien&quot;,
+          odds: 12,
+          body: [1, 2, 3, 4, 5, 6, 8],
+          face: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          palettes: [8, 9],
+          eyes: [4]
+     }, {
+          name: &quot;zombie&quot;,
+          odds: 5,
+          body: [1, 2, 3, 4, 5, 6, 7, 8],
+          face: [2, 3, 4, 5, 6, 9],
+          palettes: [10],
+          eyes: [5]
+     }];
+let assign = Object.assign;
+
+function determine(e, y) {
+     for (let n = 0; n &lt; breeds.length; n++)
+          if ((y -= e[n].odds) &lt; 0) return n
+}
+
+function generate() {
+     breed = breeds[determine(breeds, rvs[0])], bps = patterns.body[breed.body[rvs[1] % breed.body.length]], fps = patterns.face[breed.face[rvs[2] % breed.face.length]], [&quot;tabby&quot;, &quot;toyger&quot;, &quot;sandcat&quot;].includes(breed.name) &amp;&amp; (fps = fps.concat(patterns.face[13])), [&quot;alien&quot;, &quot;zombie&quot;].includes(breed.name) &amp;&amp; rvs[15] &lt; 128 &amp;&amp; (fps = fps.concat(patterns.face[13])), palette = palettes[breed.palettes[rvs[3] % breed.palettes.length]], assign(colors, palette), assign(s, breed.head ? heads[breed.head] : heads[rvs[4] % (heads.length - 3)]), assign(s, breed.ear ? ears[breed.ear] : ears[rvs[5] % (ears.length - 3)]), assign(s, eyes[rvs[6] % eyes.length]), assign(s, pupils[rvs[7] % pupils.length]), assign(s, mouths[rvs[8] % mouths.length]), assign(s, whiskers[rvs[9] % whiskers.length]), 1 == s.tng &amp;&amp; (s.tng = rvs[15] &lt; 18 &amp;&amp; ![&quot;alien&quot;, &quot;zombie&quot;].includes(breed.name)), s.flip = rvs[10] &lt; 128, s.swap = rvs[11] &lt; 128, s.swap &amp;&amp; &quot;calico&quot; == breed.name &amp;&amp; (colors.prim = palette.sec, colors.sec = palette.prim), s.heterochromia = rvs[12] &lt; 13, breed.eyes.length &gt; 1 &amp;&amp; s.heterochromia ? (colors.eye = eyeColors[0], colors.eyeAlt = eyeColors[breed.eyes[rvs[13] % (breed.eyes.length &gt; 2 ? 2 : 1) + 1]]) : colors.eye = colors.eyeAlt = eyeColors[breed.eyes[rvs[13] % breed.eyes.length]], s.eyeSwap = rvs[14] &lt; 128
+}
+let SIZE, SCALE, MID, BASE = 300;
+
+function setup() {
+     SIZE = Math.min(windowWidth, windowHeight), SCALE = SIZE / BASE, MID = SIZE / 2, createCanvas(SIZE, SIZE), generate(), update()
+}
+
+function update() {
+     updateFace(), updateBody(), updateEars(), updateEyes(), updateNose(), updateMouth(), updateWhiskers()
+}
+
+function updateFace() {
+     fa[0] = s.fh, fa[1] = s.tpl, fa[2] = s.chk, fa[3] = s.chn, fm[0] = midPoint(fa[0], fa[1]), fm[1] = midPoint(fa[1], fa[2]), fm[2] = midPoint(fa[2], fa[3]);
+     let e = (fm[0].y - fa[0].y) / (fa[1].x - fa[0].x),
+          y = s.chkc,
+          n = s.chnc * (fm[2].y - fa[2].y) / (fa[3].x - fa[2].x);
+     fn[0] = {
+          y: fm[0].y - e * (fa[1].x - fa[0].x),
+          x: fm[0].x + e * (fa[1].y - fa[0].y)
+     }, fn[1] = {
+          y: fm[1].y - y * (fa[2].x - fa[1].x),
+          x: fm[1].x + y * (fa[2].y - fa[1].y)
+     }, fn[2] = {
+          y: fm[1].y + y * (fa[2].x - fa[1].x),
+          x: fm[1].x - y * (fa[2].y - fa[1].y)
+     }, fn[3] = {
+          y: fm[2].y - n * (fa[3].x - fa[2].x),
+          x: fm[2].x + n * (fa[3].y - fa[2].y)
+     }, fc[0] = {
+          x: .4 * fa[1].x,
+          y: fa[0].y
+     }, fc[1] = lerpPoint(fa[1], fn[0], .5), fc[2] = midPoint(fa[1], lerpPoint(fn[1], fn[2], s.chko)), fc[3] = midPoint(fa[2], lerpPoint(fn[2], fn[1], 1)), fc[4] = lerpPoint(fa[2], fn[3], .5), fc[5] = {
+          x: fa[2].x * s.chno,
+          y: fa[3].y
+     }
+}
+
+function updateBody() {
+     b = {
+          x: bezierPoint(fa[2].x, fc[4].x, fc[5].x, fa[3].x, s.bw),
+          y: bezierPoint(fa[2].y, fc[4].y, fc[5].y, fa[3].y, s.bw)
+     }
+}
+let earTip, earMid;
+
+function updateEars() {
+     ea[0] = {
+          x: bezierPoint(fa[0].x, fc[0].x, fc[1].x, fa[1].x, s.eso),
+          y: bezierPoint(fa[0].y, fc[0].y, fc[1].y, fa[1].y, s.eso)
+     }, ea[3] = {
+          x: bezierPoint(fa[1].x, fc[1].x, fc[0].x, fa[0].x, s.eeo),
+          y: bezierPoint(fa[1].y, fc[1].y, fc[0].y, fa[0].y, s.eeo)
+     }, earTip = ea[1] = ea[2] = {
+          x: ea[3].x + s.eto.x,
+          y: ea[3].y - s.eto.y
+     }, ea[1] = lerpPoint(earTip, ea[0], s.eb + (.8 - s.eb) * ceil(s.eb) * -constrain(s.ebr, -1, 0)), ea[2] = lerpPoint(earTip, ea[3], s.eb + (.8 - s.eb) * ceil(s.eb) * constrain(s.ebr, 0, 1)), ei[0] = {
+          x: lerp(ea[0].x, ea[3].x, s.esi),
+          y: lerp(ea[0].y, ea[3].y, s.esi)
+     }, ei[3] = {
+          x: lerp(ea[0].x, ea[3].x, 1 - s.eei),
+          y: lerp(ea[0].y, ea[3].y, 1 - s.eei)
+     }, earMid = midPoint(ei[0], ei[3]), eit = ei[1] = ei[2] = lerpPoint(earMid, earTip, s.eti), eit.x += s.eito, ei[1] = lerpPoint(eit, ei[0], s.eb + (.8 - s.eb) * ceil(s.eb) * -constrain(s.ebr, -1, 0)), ei[2] = lerpPoint(eit, ei[3], s.eb + (.8 - s.eb) * ceil(s.eb) * constrain(s.ebr, 0, 1)), em[0] = midPoint(ea[0], ea[1]), em[1] = midPoint(ea[1], ea[2]), em[2] = midPoint(ea[2], ea[3]), en[0] = {
+          y: em[0].y - s.esc * (ea[1].x - ea[0].x),
+          x: em[0].x + s.esc * (ea[1].y - ea[0].y)
+     }, en[1] = {
+          y: em[1].y - s.etc * (ea[2].x - ea[1].x),
+          x: em[1].x + s.etc * (ea[2].y - ea[1].y)
+     }, en[2] = {
+          y: em[2].y - s.eec * (ea[3].x - ea[2].x),
+          x: em[2].x + s.eec * (ea[3].y - ea[2].y)
+     }, ec[0] = midPoint(ea[0], en[0]), ec[1] = midPoint(ea[1], en[0]), ec[2] = midPoint(ea[1], en[1]), ec[3] = midPoint(ea[2], en[1]), ec[4] = midPoint(ea[2], en[2]), ec[5] = midPoint(ea[3], en[2]), eim[0] = midPoint(ei[0], ei[1]), eim[1] = midPoint(ei[1], ei[2]), eim[2] = midPoint(ei[2], ei[3]), en[0] = {
+          y: eim[0].y - s.esc * (ei[1].x - ei[0].x),
+          x: eim[0].x + s.esc * (ei[1].y - ei[0].y)
+     }, en[1] = {
+          y: eim[1].y - s.eitc * (ei[2].x - ei[1].x),
+          x: eim[1].x + s.eitc * (ei[2].y - ei[1].y)
+     }, en[2] = {
+          y: eim[2].y - s.eec * (ei[3].x - ei[2].x),
+          x: eim[2].x + s.eec * (ei[3].y - ei[2].y)
+     }, eic[0] = midPoint(ei[0], en[0]), eic[1] = midPoint(ei[1], en[0]), eic[2] = midPoint(ei[1], en[1]), eic[3] = midPoint(ei[2], en[1]), eic[4] = midPoint(ei[2], en[2]), eic[5] = midPoint(ei[3], en[2])
+}
+
+function updateEyes() {
+     eya[0] = {
+          x: -s.eyw,
+          y: 0
+     }, eya[1] = {
+          x: 0,
+          y: lerp(-s.eyt, s.eyb, blinkAmt)
+     }, eya[2] = {
+          x: s.eyw,
+          y: 0
+     }, eya[3] = {
+          x: 0,
+          y: lerp(s.eyb, -s.eyt, petAmt)
+     }, eyc[0] = {
+          x: eya[0].x,
+          y: .5 * eya[1].y
+     }, eyc[1] = {
+          x: .5 * eya[0].x,
+          y: eya[1].y
+     }, eyc[2] = {
+          x: .5 * eya[2].x,
+          y: eya[1].y
+     }, eyc[3] = {
+          x: eya[2].x,
+          y: .5 * eya[1].y
+     }, eyc[4] = {
+          x: eya[2].x,
+          y: .5 * eya[3].y
+     }, eyc[5] = {
+          x: .5 * eya[2].x,
+          y: eya[3].y
+     }, eyc[6] = {
+          x: .5 * eya[0].x,
+          y: eya[3].y
+     }, eyc[7] = {
+          x: eya[0].x,
+          y: .5 * eya[3].y
+     }
+}
+
+function updateNose() {
+     na[0] = {
+          x: 0,
+          y: 37 + s.no
+     }, na[1] = {
+          x: -s.ns.x,
+          y: na[0].y - s.ns.y
+     }, na[2] = {
+          x: s.ns.x,
+          y: na[0].y - s.ns.y
+     }, nm[0] = midPoint(na[0], na[1]), nm[1] = midPoint(na[1], na[2]), nm[2] = midPoint(na[2], na[0]), nn[0] = {
+          y: nm[0].y - .2 * (na[1].x - na[0].x),
+          x: nm[0].x + .2 * (na[1].y - na[0].y)
+     }, nn[1] = {
+          y: nm[1].y - .2 * (na[2].x - na[1].x),
+          x: nm[1].x + .2 * (na[2].y - na[1].y)
+     }, nn[2] = {
+          y: nm[2].y - .2 * (na[0].x - na[2].x),
+          x: nm[2].x + .2 * (na[0].y - na[2].y)
+     }, nc[0] = midPoint(na[0], nn[0]), nc[1] = midPoint(na[1], nn[0]), nc[2] = midPoint(na[1], nn[1]), nc[3] = midPoint(na[2], nn[1]), nc[4] = midPoint(na[2], nn[2]), nc[5] = midPoint(na[0], nn[2]), ni[0] = {
+          x: bezierPoint(na[0].x, nc[0].x, nc[1].x, na[1].x, .2),
+          y: bezierPoint(na[0].y, nc[0].y, nc[1].y, na[1].y, .2)
+     }, ni[3] = {
+          x: bezierPoint(na[0].x, nc[0].x, nc[1].x, na[1].x, .8),
+          y: bezierPoint(na[0].y, nc[0].y, nc[1].y, na[1].y, .8)
+     }, ni[1] = {
+          x: ni[0].x + 1,
+          y: ni[0].y - .4 * s.ns.x
+     }, ni[2] = {
+          x: ni[0].x + .4 * s.ns.x,
+          y: ni[0].y - .6 * s.ns.y
+     }
+}
+
+function updateMouth() {
+     m[0] = {
+          x: 0,
+          y: constrain(na[0].y + s.mh, na[0].y, fa[3].y)
+     }, m[3] = {
+          x: s.mo.x,
+          y: constrain(m[0].y + s.mo.y, na[0].y, fa[3].y)
+     };
+     let e = midPoint(m[0], m[3]),
+          y = {
+               y: e.y + s.mc * (m[3].x - m[0].x),
+               x: e.x - s.mc * (m[3].y - m[0].y)
+          };
+     m[1] = midPoint(m[0], y), m[2] = midPoint(m[3], y)
+}
+
+function updateWhiskers() {
+     wa[0] = {
+          x: 1.5 * s.who.x,
+          y: 0
+     }, wa[1] = {
+          x: s.wheo.x,
+          y: s.wheo.y
+     };
+     let e = midPoint(wa[0], wa[1]),
+          y = {
+               x: e.x + s.whc * (wa[1].y - wa[0].y),
+               y: e.y - s.whc * (wa[1].x - wa[0].x)
+          };
+     wc[0] = midPoint(wa[0], y), wc[1] = midPoint(wa[1], y)
+}
+let petTimeout = 0,
+     petAmt = 0,
+     petting = !1;
+
+function updatePetting() {
+     petTimeout &gt; 0 &amp;&amp; (petTimeout -= .001 * deltaTime, blinkTimeout = 3, blinkAmt = 0);
+     let e = (mouseX - MID) / SCALE,
+          y = (mouseY - MID) / SCALE;
+     if (e &gt; -fa[2].x &amp;&amp; e &lt; fa[2].x &amp;&amp; y &gt; fa[0].y &amp;&amp; y &lt; 150) {
+          let n = (pmouseX - MID) / SCALE,
+               c = (pmouseY - MID) / SCALE;
+          (e - n) * (e - n) + (y - c) * (y - c) &gt; 200 &amp;&amp; (petting &amp;&amp; (petTimeout = .5), petting = !0)
+     }
+     petTimeout &gt; 0 ? petAmt &lt; 1 &amp;&amp; (petAmt = constrain(petAmt + .012 * deltaTime, 0, 1)) : petAmt &gt; 0 &amp;&amp; 0 == (petAmt = constrain(petAmt - .01 * deltaTime, 0, 1)) &amp;&amp; (petting = !1)
+}
+let blinkTimeout = 5,
+     blinkAmt = 0,
+     blinking = !1;
+
+function updateBlinking() {
+     blinkTimeout &gt; 0 ? blinkTimeout -= .001 * deltaTime : blinkAmt &lt; 1 &amp;&amp; !blinking ? 1 == (blinkAmt = constrain(blinkAmt + .01 * deltaTime, 0, 1)) &amp;&amp; (blinking = !0, blinkTimeout = .08) : blinkAmt &gt; 0 &amp;&amp; blinking &amp;&amp; 0 == (blinkAmt = constrain(blinkAmt - .01 * deltaTime, 0, 1)) &amp;&amp; (blinking = !1, blinkTimeout = 5)
+}
+
+function draw() {
+     updatePetting(), updateBlinking(), updateEyes(), background(colors.bg), translate(MID, MID), scale(SCALE), drawBody(), drawEars(), drawFace(), drawEyes(), drawTongue(), drawMouth(), drawNose(), drawWhiskers()
+}
+
+function drawBody() {
+     push(), noStroke(), fill(colors.body), bps.includes(&quot;corners&quot;) &amp;&amp; ![&quot;calico&quot;, &quot;white&quot;, &quot;siamese&quot;].includes(breed.name) &amp;&amp; fill(colors.prim), beginShape(), vertex(b.x, b.y), vertex(b.x + 30, b.y + 150), vertex(-b.x - 30, b.y + 150), vertex(-b.x, b.y), endShape(), drawingContext.clip(), drawBodyPatterns(), strokeWeight(12), stroke(colors.neck), noFill(), blendMode(MULTIPLY), beginShape(), vertex(fa[2].x, fa[2].y), bezierVertex(fc[4].x, fc[4].y, fc[5].x, fc[5].y, fa[3].x, fa[3].y), bezierVertex(-fc[5].x, fc[5].y, -fc[4].x, fc[4].y, -fa[2].x, fa[2].y), endShape(), pop()
+}
+
+function drawBodyPatterns() {
+     if (push(), bps.includes(&quot;stripes&quot;)) {
+          strokeWeight(14), stroke(colors.sec), noFill();
+          for (let e = 1; e &lt; 5; e++) {
+               let y = lerpPoint(b, {
+                         x: b.x + 30,
+                         y: b.y + 150
+                    }, .18 * e),
+                    n = lerp(50, 0, s.bw);
+               bezier(y.x, y.y, .5 * y.x, y.y + n, .5 * -y.x, y.y + n, -y.x, y.y)
+          }
+     }
+     if (bps.includes(&quot;corners&quot;)) {
+          noStroke(), fill(colors.body), [&quot;calico&quot;, &quot;white&quot;, &quot;siamese&quot;].includes(breed.name) &amp;&amp; fill(colors.prim);
+          let e = lerpPoint(b, {
+               x: b.x + 30,
+               y: b.y + 150
+          }, lerp(.4, .1, s.bw));
+          triangle(e.x, e.y, e.x - 110, e.y + 150, e.x + 30, e.y + 150), &quot;calico&quot; == breed.name &amp;&amp; fill(colors.sec), triangle(-e.x, e.y, 110 - e.x, e.y + 150, -e.x - 30, e.y + 150)
+     }
+     if (bps.includes(&quot;tabby&quot;)) {
+          strokeWeight(2), strokeJoin(ROUND), stroke(colors.sec), fill(colors.sec);
+          for (let e = 0; e &lt; 4; e++) {
+               let y = lerpPoint(b, {
+                    x: b.x + 30,
+                    y: b.y + 150
+               }, lerp(.42, 0, s.bw) + .12 * e);
+               &quot;calico&quot; == breed.name &amp;&amp; (stroke(e % 2 == 1 ? colors.prim : colors.sec), fill(e % 2 == 1 ? colors.prim : colors.sec)), triangle(y.x, y.y, y.x, y.y - 7, y.x - 32, y.y + 6), triangle(-y.x, y.y, -y.x, y.y - 7, 32 - y.x, y.y + 6)
+          }
+     }
+     if (bps.includes(&quot;necktie&quot;)) {
+          noStroke(), fill(colors.prim);
+          let e = lerp(70, 0, s.bw);
+          quad(b.x - e, b.y, b.x, b.y + 5 * e, -b.x, b.y + 5 * e, -b.x + e, b.y)
+     }
+     if (bps.includes(&quot;belly&quot;)) {
+          noStroke(), fill(colors.prim);
+          let e = lerp(100, 50, s.bw);
+          ellipse(0, 165, e, 100)
+     }
+     pop()
+}
+
+function drawFace() {
+     push(), noStroke(), fill(colors.face), fps.includes(&quot;mask&quot;) &amp;&amp; &quot;calico&quot; != breed.name &amp;&amp; fill(colors.prim), beginShape(), vertex(fa[0].x, fa[0].y), bezierVertex(fc[0].x, fc[0].y, fc[1].x, fc[1].y, fa[1].x, fa[1].y), bezierVertex(fc[2].x, fc[2].y, fc[3].x, fc[3].y, fa[2].x, fa[2].y), bezierVertex(fc[4].x, fc[4].y, fc[5].x, fc[5].y, fa[3].x, fa[3].y), bezierVertex(-fc[5].x, fc[5].y, -fc[4].x, fc[4].y, -fa[2].x, fa[2].y), bezierVertex(-fc[3].x, fc[3].y, -fc[2].x, fc[2].y, -fa[1].x, fa[1].y), bezierVertex(-fc[1].x, fc[1].y, -fc[0].x, fc[0].y, -fa[0].x, fa[0].y), endShape(), drawingContext.clip(), drawFacePatterns(), pop()
+}
+
+function drawFacePatterns() {
+     push();
+     let e = s.flip ? -1 : 1;
+     if (fps.includes(&quot;round&quot;) &amp;&amp; (noStroke(), fill(colors.prim), ellipse(0, na[0].y + 60, 120, 120)), fps.includes(&quot;triangle&quot;) &amp;&amp; (strokeWeight(6), strokeJoin(ROUND), stroke(colors.prim), fill(colors.prim), triangle(0, na[0].y, -124, na[0].y + 100, 124, na[0].y + 100)), fps.includes(&quot;whiskers&quot;) &amp;&amp; (noStroke(), fill(colors.prim), ellipse(10, na[0].y + 6, 22, 22), ellipse(-10, na[0].y + 6, 22, 22)), fps.includes(&quot;ear&quot;) &amp;&amp; (noStroke(), fill(colors.prim), beginShape(), vertex(e * ea[0].x, ea[0].y), bezierVertex(e * (earMid.x - 20), earMid.y + 15, e * (earMid.x + 15), earMid.y + 15, e * ea[3].x, ea[3].y), vertex(e * ea[3].x, ea[0].y), endShape()), fps.includes(&quot;temple&quot;) &amp;&amp; (noStroke(), fill(colors.prim), &quot;calico&quot; == breed.name &amp;&amp; fill(colors.sec), ellipse(68 * -e, s.eyo.y - 72, 150, 200)), fps.includes(&quot;chin&quot;)) {
+          strokeWeight(12), strokeJoin(ROUND), stroke(colors.prim), fill(colors.prim);
+          let e = lerp(40, 10, s.bw);
+          quad(-16, na[0].y + 5, 16, na[0].y + 5, e, na[0].y + 80, -e, na[0].y + 80)
+     }
+     if (fps.includes(&quot;nose&quot;) &amp;&amp; (strokeWeight(12), strokeJoin(ROUND), stroke(colors.prim), fill(colors.prim), triangle(0, 5, -16, na[0].y + 5, 16, na[0].y + 5)), fps.includes(&quot;mask&quot;) &amp;&amp; (noStroke(), fill(colors.face), &quot;calico&quot; == breed.name &amp;&amp; fill(colors.prim), ellipse(0, s.fh.y, 32, 70), ellipse(76 * e, s.eyo.y - 50, 140, 200), &quot;calico&quot; == breed.name &amp;&amp; fill(colors.sec), ellipse(-76 * e, s.eyo.y - 50, 140, 200)), fps.includes(&quot;forehead&quot;)) {
+          strokeWeight(2), strokeJoin(ROUND), stroke(colors.sec), fill(colors.sec);
+          for (let e = -1; e &lt;= 1; e++) triangle(s.fh.x - (e &lt; 0 ? 5 : 3) + 14 * e, s.fh.y, s.fh.x + (e &gt; 0 ? 5 : 3) + 14 * e, s.fh.y, s.fh.x + 14 * e, s.fh.y + (e % 2 == 0 ? 30 : 26))
+     }
+     if (fps.includes(&quot;cheeks&quot;)) {
+          strokeWeight(2), strokeJoin(ROUND), stroke(colors.sec), fill(colors.sec);
+          for (let e = -1; e &lt;= 1; e++)
+               for (let y = 1; y &gt;= -1; y -= 2) triangle(y * (s.chk.x + 14), s.chk.y - (e &lt; 0 ? 8 : 4) + 14 * e, y * (s.chk.x + 14), s.chk.y + (e &gt; 0 ? 8 : 4) + 14 * e, y * (s.chk.x - 30), s.chk.y + 14 * e)
+     }
+     pop()
+}
+
+function drawEars() {
+     push();
+     let e = s.flip ? 1 : -1;
+     noStroke();
+     for (let y = 1; y &gt;= -1; y -= 2) fill(colors.ear), &quot;calico&quot; == breed.name ? fill(y == e ? colors.sec : colors.prim) : (fps.includes(&quot;ear&quot;) &amp;&amp; y == -e || fps.includes(&quot;temple&quot;) &amp;&amp; y == e) &amp;&amp; fill(colors.prim), beginShape(), vertex(y * ea[0].x, ea[0].y), bezierVertex(y * ec[0].x, ec[0].y, y * ec[1].x, ec[1].y, y * ea[1].x, ea[1].y), bezierVertex(y * ec[2].x, ec[2].y, y * ec[3].x, ec[3].y, y * ea[2].x, ea[2].y), bezierVertex(y * ec[4].x, ec[4].y, y * ec[5].x, ec[5].y, y * ea[3].x, ea[3].y), endShape(), fill(colors.earIn), beginShape(), vertex(y * ei[0].x, ei[0].y), bezierVertex(y * eic[0].x, eic[0].y, y * eic[1].x, eic[1].y, y * ei[1].x, ei[1].y), bezierVertex(y * eic[2].x, eic[2].y, y * eic[3].x, eic[3].y, y * ei[2].x, ei[2].y), bezierVertex(y * eic[4].x, eic[4].y, y * eic[5].x, eic[5].y, y * ei[3].x, ei[3].y), endShape();
+     pop()
+}
+
+function drawEyes() {
+     for (let e = 1; e &gt;= -1; e -= 2) push(), translate(e * s.eyo.x, s.eyo.y), rotate(e * s.eyr), noStroke(), fill(e == (s.eyeSwap ? -1 : 1) ? colors.eye : colors.eyeAlt), drawingContext.miterLimit = 2, drawEyeShape(e), push(), rotate(e * -s.eyr), drawingContext.clip(), fill(&quot;#000000&quot;), &quot;zombie&quot; == breed.name &amp;&amp; fill(&quot;#FFFFFF&quot;), ellipse(e * s.eypo.x, s.eypo.y, s.eypw, s.eyph), fill(&quot;#FFFFFF&quot;), drawingContext.shadowColor = &quot;#FFFFFF&quot;, drawingContext.shadowBlur = 10, &quot;zombie&quot; != breed.name &amp;&amp; (s.eyt &gt;= 0 &amp;&amp; ellipse(e * (s.eypo.x + s.eypw / 4), s.eypo.y - s.eyph / 5, constrain(s.eypw / 3, 4, 12), s.eyph / 3.5), ellipse(e * (s.eypo.x - s.eypw / 4), s.eypo.y + s.eyph / 5, constrain(s.eypw / 4, 3, 12), s.eyph / 4.5)), pop(), strokeWeight(1.5), stroke(colors.eyeline), noFill(), drawEyeShape(e), pop()
+}
+
+function drawEyeShape(e) {
+     beginShape(), vertex(e * (eya[0].x - 0), eya[0].y), bezierVertex(e * eyc[0].x, eyc[0].y, e * eyc[1].x, eyc[1].y, e * eya[1].x, eya[1].y), bezierVertex(e * eyc[2].x, eyc[2].y, e * eyc[3].x, eyc[3].y, e * (eya[2].x + 4), eya[2].y), bezierVertex(e * eyc[4].x, eyc[4].y, e * eyc[5].x, eyc[5].y, e * eya[3].x, eya[3].y), bezierVertex(e * eyc[6].x, eyc[6].y, e * eyc[7].x, eyc[7].y, e * (eya[0].x - 0), eya[0].y), endShape(CLOSE)
+}
+
+function drawNose() {
+     push(), strokeWeight(2), strokeJoin(ROUND), stroke(colors.nose), fill(colors.nose), beginShape(), vertex(na[0].x, na[0].y), bezierVertex(nc[0].x, nc[0].y, nc[1].x, nc[1].y, na[1].x, na[1].y), bezierVertex(nc[2].x, nc[2].y, nc[3].x, nc[3].y, na[2].x, na[2].y), bezierVertex(nc[4].x, nc[4].y, nc[5].x, nc[5].y, na[0].x, na[0].y), endShape(), fill(colors.noseIn), bezier(ni[0].x, ni[0].y, ni[1].x, ni[1].y, ni[2].x, ni[2].y, ni[3].x, ni[3].y), bezier(-ni[0].x, ni[0].y, -ni[1].x, ni[1].y, -ni[2].x, ni[2].y, -ni[3].x, ni[3].y), pop()
+}
+
+function drawMouth() {
+     push(), strokeWeight(1.5), stroke(colors.mouth), noFill(), line(na[0].x, na[0].y, m[0].x, m[0].y), bezier(m[0].x, m[0].y, m[1].x, m[1].y, m[2].x, m[2].y, m[3].x, m[3].y), bezier(-m[0].x, m[0].y, -m[1].x, m[1].y, -m[2].x, m[2].y, -m[3].x, m[3].y), pop()
+}
+
+function drawWhiskers() {
+     if (&quot;sphynx&quot; != breed.name) {
+          push(), strokeWeight(.8), stroke(colors.whiskers), noFill();
+          for (let e = 1; e &gt;= -1; e -= 2) push(), drawingContext.shadowOffsetY = .5, drawingContext.shadowColor = &quot;#505050&quot;, translate(e * -s.who.x * .5, na[0].y + s.who.y), rotate(-.3 * e), bezier(e * wa[0].x, wa[0].y, e * wc[0].x, wc[0].y, e * wc[1].x, wc[1].y, e * wa[1].x, wa[1].y), rotate(e * s.wha * 2), bezier(e * wa[0].x, wa[0].y, e * wc[0].x, wc[0].y, e * wc[1].x * .9, wc[1].y, e * wa[1].x * .9, wa[1].y), rotate(e * -s.wha), s.whl &gt; 2 &amp;&amp; bezier(e * wa[0].x, wa[0].y, e * wc[0].x, wc[0].y, e * wc[1].x, wc[1].y, e * wa[1].x, wa[1].y), rotate(e * s.wha * 2), s.whl &gt; 3 &amp;&amp; bezier(e * wa[0].x, wa[0].y, e * wc[0].x, wc[0].y, e * wc[1].x * .75, wc[1].y, e * wa[1].x * .75, wa[1].y), pop();
+          pop()
+     }
+}
+
+function drawTongue() {
+     if (!s.tng) return;
+     push(), noStroke(), fill(&quot;#DB7093&quot;), triangle(m[0].x, m[0].y + s.mc, m[0].x + 7, m[0].y + s.tngo + 2, m[0].x - 7, m[0].y + s.tngo + 2), translate(0, s.tngo), beginShape(), vertex(m[0].x + 7, m[0].y + 1), bezierVertex(m[0].x + 7, m[0].y + 10, m[0].x + 7, m[0].y + 19, m[0].x, m[0].y + 19), bezierVertex(m[0].x - 7, m[0].y + 19, m[0].x - 7, m[0].y + 10, m[0].x - 7, m[0].y + 1), endShape(), strokeWeight(1.5), strokeCap(ROUND), stroke(&quot;#E38FAB&quot;), line(m[0].x, m[0].y + 2, m[0].x, m[0].y + 19 - 2), pop()
+}
+
+function midPoint(e, y) {
+     return {
+          x: .5 * (e.x + y.x),
+          y: .5 * (e.y + y.y)
+     }
+}
+
+function lerpPoint(e, y, n) {
+     return {
+          x: e.x + (y.x - e.x) * n,
+          y: e.y + (y.y - e.y) * n
+     }
+}</pre></body></html>

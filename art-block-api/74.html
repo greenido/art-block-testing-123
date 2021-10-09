@@ -1,0 +1,722 @@
+<html><body><h1>Name: The Blocks of Art</h1><h3>Artist: Shvembldr</h3><h3>Description: This project is dedicated to Art Blocks. Each panel on the block is a small generative art piece with several random parameters that lives its own life, at the same time being part of the composition. This symbolizes generative artists united by the common idea of ArtBlocks. Each art contains one letter of the words ART BLOCKS. A collector who possesses all nine letters becomes a member of The Blocks of Art Club and receives the opportunity to do a free mint of Shvembldr's projects on Artblocks Playground before the official release for a year, as well as other bonuses and perks</h3><h3>https://www.theblocksofart.com/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;instructions&quot;:&quot;Click to pause | Press \&quot;s\&quot; to save png | Press 1 to 9 to set pixel density according to the numbers&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: Click to pause | Press &quot;s&quot; to save png | Press 1 to 9 to set pixel density according to the numbers</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x4666fd1f89576e2d6fb3f2ecec5eefd3e1ba6b59</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 500</p><p>Maximum Invocations: 500</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 74000000,74000001,74000002,74000003,74000004,74000005,74000006,74000007,74000008,74000009,74000010,74000011,74000012,74000013,74000014,74000015,74000016,74000017,74000018,74000019,74000020,74000021,74000022,74000023,74000024,74000025,74000026,74000027,74000028,74000029,74000030,74000031,74000032,74000033,74000034,74000035,74000036,74000037,74000038,74000039,74000040,74000041,74000042,74000043,74000044,74000045,74000046,74000047,74000048,74000049,74000050,74000051,74000052,74000053,74000054,74000055,74000056,74000057,74000058,74000059,74000060,74000061,74000062,74000063,74000064,74000065,74000066,74000067,74000068,74000069,74000070,74000071,74000072,74000073,74000074,74000075,74000076,74000077,74000078,74000079,74000080,74000081,74000082,74000083,74000084,74000085,74000086,74000087,74000088,74000089,74000090,74000091,74000092,74000093,74000094,74000095,74000096,74000097,74000098,74000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>function generateSeedFromTokenData(e) {
+     return parseInt(e.hash.slice(0, 16), 16)
+}
+let seed = generateSeedFromTokenData(tokenData),
+     DEFAULT_SIZE = 1e3,
+     WIDTH = window.innerWidth,
+     HEIGHT = window.innerHeight,
+     DIM = .99 * Math.min(WIDTH, HEIGHT),
+     M = DIM / DEFAULT_SIZE;
+const makeHex = (e, o, t, r) =&gt; {
+     const i = [];
+     for (let h = 0; h &lt; 6; h += 1) i.push({
+          x: e + t * cos(r),
+          y: o + t * sin(r)
+     }), r += 60;
+     return {
+          dots: i,
+          center: {
+               x: e,
+               y: o
+          }
+     }
+};
+let randomGrid, backs, things, images, grid;
+const panelWidth = 95 * M,
+     panelHeight = 110 * M,
+     pDim = Math.min(panelWidth, panelHeight);
+let color1, color2, color3, play = !0;
+
+function mouseClicked() {
+     play ? (noLoop(), play = !1) : (loop(), play = !0)
+}
+
+function keyPressed() {
+     83 === keyCode &amp;&amp; saveCanvas(tokenData.hash, &quot;png&quot;), keyCode &gt; 48 &amp;&amp; keyCode &lt; 59 &amp;&amp; pixelDensity(keyCode - 48)
+}
+
+function setup() {
+     createCanvas(DIM, DIM), angleMode(DEGREES);
+     let e = displayDensity();
+     pixelDensity(e);
+     const o = sS(shA(palettes)[0], 3).map((e =&gt; color(e)));
+     color1 = o[0], color2 = o[1], color3 = o[2];
+     const t = [pick([1, 2, 3]), pick([3, 4]), pick([2, 3, 4]), pick([3, 4]), pick([2, 3])],
+          r = 250 * M,
+          i = 170 * M,
+          h = 190 * M,
+          s = 165 * M,
+          c = 110 * M,
+          n = (() =&gt; {
+               const e = [];
+               for (let o = 0; o &lt; 5; o += 1) {
+                    const t = [];
+                    for (let e = 0; e &lt; 4; e += 1) o % 2 == 0 ? t.push(makeHex(r + e * h, i + o * s, c, 30)) : t.push(makeHex(r - h / 2 + e * h, i + o * s, c, 30));
+                    e.push(t)
+               }
+               return e
+          })();
+     randomGrid = n.map(((e, o) =&gt; sS(e, t[o]))), grid = randomGrid.flat();
+     const l = 3 * grid.length;
+     backs = array(l).map((() =&gt; createGraphics(panelWidth, panelHeight))), backs.forEach((o =&gt; {
+          o.angleMode(DEGREES), o.pixelDensity(e)
+     }));
+     const p = [],
+          d = [],
+          a = [],
+          g = pick([2, 3]);
+     dR4(0, 0, panelWidth, panelHeight, 3, p, .7, rnd), dR4(0, 0, panelWidth, panelHeight, 3, d, .7, rnd), dR4(0, 0, panelWidth, panelHeight, g, a, .9, rnd);
+     const f = [{
+               thing: thing0,
+               params: {
+                    offset: rG(.1, .4),
+                    rects: p,
+                    colors: shA([color1, color2, color3]),
+                    i: pick([0, 1, 2, 3]),
+                    speed: rG(10, 35)
+               }
+          }, {
+               thing: thing0,
+               params: {
+                    offset: rG(.1, .4),
+                    rects: d,
+                    colors: shA([color1, color2, color3]),
+                    i: pick([0, 1, 2, 3]),
+                    speed: rG(10, 35)
+               }
+          }, {
+               thing: thing1,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    lineCount: rF(8, 20),
+                    speed: rG(5, 20),
+                    speed2: rG(10, 40),
+                    invert: rnd() &gt; .5,
+                    flick: rnd() &gt; .5
+               }
+          }, {
+               thing: thing1,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    lineCount: rF(8, 20),
+                    speed: rG(5, 20),
+                    speed2: rG(10, 40),
+                    invert: rnd() &gt; .5,
+                    flick: rnd() &gt; .5
+               }
+          }, {
+               thing: thing2,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(4, 18)
+               }
+          }, {
+               thing: thing2,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(4, 18)
+               }
+          }, {
+               thing: thing3,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .5,
+                    rects: a,
+                    speed1: rG(5, 15),
+                    speed2: rG(5, 15)
+               }
+          }, {
+               thing: thing3,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .5,
+                    rects: a,
+                    speed1: rG(5, 15),
+                    speed2: rG(5, 15)
+               }
+          }, {
+               thing: thing4,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    wave: rnd() &gt; .5,
+                    double: rnd() &gt; .5,
+                    speed: rG(10, 30)
+               }
+          }, {
+               thing: thing4,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    wave: rnd() &gt; .5,
+                    double: rnd() &gt; .5,
+                    speed: rG(10, 30)
+               }
+          }, {
+               thing: thing5,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(1, 3),
+                    pointCount: pick([3, 4, 5, 6])
+               }
+          }, {
+               thing: thing5,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(1, 3),
+                    pointCount: pick([3, 4, 5, 6])
+               }
+          }, {
+               thing: thing6,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(.1, .4)
+               }
+          }, {
+               thing: thing6,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(.1, .4)
+               }
+          }, {
+               thing: thing7,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(.02, .06),
+                    ms: rG(10, 20),
+                    u1: pick([1, -1]),
+                    u2: pick([1, -1])
+               }
+          }, {
+               thing: thing7,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(.02, .06),
+                    ms: rG(10, 20),
+                    u1: pick([1, -1]),
+                    u2: pick([1, -1])
+               }
+          }, {
+               thing: thing8,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .7,
+                    speed1: rG(2, 10),
+                    speed2: rG(5, 20)
+               }
+          }, {
+               thing: thing8,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed1: rG(2, 10),
+                    speed2: rG(5, 20)
+               }
+          }, {
+               thing: thing9,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    cap: rnd() &gt; .5,
+                    type: rnd() &gt; .5,
+                    speed: rG(3, 10),
+                    invertSize: rnd() &gt; .5,
+                    dist: rG(-.5, .5)
+               }
+          }, {
+               thing: thing9,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    cap: rnd() &gt; .5,
+                    type: rnd() &gt; .5,
+                    speed: rG(3, 10),
+                    invertSize: rnd() &gt; .5,
+                    dist: rG(-.5, .5)
+               }
+          }, {
+               thing: thing10,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .5,
+                    type2: rnd() &gt; .5,
+                    speed: rG(10, 30)
+               }
+          }, {
+               thing: thing10,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .5,
+                    type2: rnd() &gt; .5,
+                    speed: rG(10, 30)
+               }
+          }, {
+               thing: thing11
+          }, {
+               thing: thing12,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: !1
+               }
+          }, {
+               thing: thing15,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed1: rG(10, 40),
+                    speed2: rG(10, 40),
+                    p1: pick([-1, 1]),
+                    p2: pick([-1, 1]),
+                    count: rF(6, 12)
+               }
+          }, {
+               thing: thing15,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed1: rG(10, 40),
+                    speed2: rG(10, 40),
+                    p1: pick([-1, 1]),
+                    p2: pick([-1, 1]),
+                    count: rF(6, 12)
+               }
+          }, {
+               thing: thing16,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(10, 30),
+                    angle: rF(0, 3)
+               }
+          }, {
+               thing: thing16,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    speed: rG(10, 30),
+                    angle: rF(0, 3)
+               }
+          }, {
+               thing: thing17,
+               params: {
+                    colors: shA([color1, color2, color3]),
+                    type: rnd() &gt; .5,
+                    speed: rG(10, 40)
+               }
+          }],
+          m = {
+               thing: thing14,
+               params: {
+                    letter: pick(&quot;ARTBLOCKS&quot;.split(&quot;&quot;)),
+                    colors: shA([color1, color2, color3])
+               }
+          };
+     things = array(l - 1).map((() =&gt; pick(f))), things.push(m), things = shA(things);
+     let k = 0;
+     images = array(l / 3).map((() =&gt; {
+          const e = [backs[k], backs[k + 1], backs[k + 2]];
+          return k += 3, e
+     }))
+}
+
+function draw() {
+     color2.setAlpha(100), background(color2), color2.setAlpha(255);
+     let e = frameCount / 60 * 8;
+     backs.forEach(((o, t) =&gt; {
+          things[t].thing(o, e, things[t].params)
+     })), grid.forEach((({
+          center: e
+     }, o) =&gt; {
+          const [t, r, i] = images[o];
+          stroke(color2), strokeWeight(2 * M), push(), translate(e.x, e.y), shearY(30), rect(0, -panelHeight, panelWidth, panelHeight), drawingContext.clip(), image(t, 0, -panelHeight), pop(), push(), translate(e.x, e.y), shearY(-30), rect(-panelWidth, -panelHeight, panelWidth, panelHeight), drawingContext.clip(), image(r, -panelWidth, -panelHeight), pop(), push(), translate(e.x, e.y), shearY(30), shearX(-41), rect(0, 0, panelWidth, panelHeight), drawingContext.clip(), image(i, 0, 0), pop()
+     })), strokeWeight(M), stroke(color1), line(.8 * width, .97 * height, .97 * width, .97 * height), line(.97 * width, .97 * height, .97 * width, .8 * height), line(.75 * width, .98 * height, .98 * width, .98 * height), line(.98 * width, .98 * height, .98 * width, .75 * height), line(.02 * width, .02 * height, .2 * width, .02 * height), line(.02 * width, .02 * height, .02 * width, .25 * height);
+     for (let e = 0; e &lt; 400; e++) {
+          let e = rG(0, width),
+               o = rG(0, height),
+               t = 3 * noise(.02 * e * M, .02 * o * M, frameCount) * M + .1 * M;
+          fill(color1), noStroke(), ellipse(e, o, t, t)
+     }
+}
+const thing0 = (e, o, t) =&gt; {
+          const {
+               rects: r,
+               offset: i,
+               colors: h,
+               i: s,
+               speed: c
+          } = t, [n, l, p] = h;
+          e.background(n), r.forEach((({
+               x: t,
+               y: r,
+               w: h,
+               h: d
+          }) =&gt; {
+               const a = h * i,
+                    g = d * i,
+                    f = [
+                         [t, r, t + h, r],
+                         [t + h, r, t + h, r + d],
+                         [t + h, r + d, t, r + d],
+                         [t, r + d, t, r]
+                    ],
+                    m = map(cos(o * c), -1, 1, 0, 1);
+               e.push(), e.fill(l), e.strokeWeight(M), e.stroke(lerpColor(n, p, m)), e.line(...f[s]), e.noStroke(), e.rect(t + a, r + g, h - 2 * a, d - 2 * g), e.pop()
+          }))
+     },
+     thing1 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               lineCount: i,
+               speed: h,
+               speed2: s,
+               invert: c,
+               flick: n
+          } = t;
+          e.background(r[0]);
+          const l = c ? e.width : e.height;
+          for (let t = 0; t &lt; l; t += l / i) e.stroke(r[1]), e.strokeWeight(n ? M * map(cos((o + t) * s), -1, 1, .1, 1.2) : M), c ? e.line(t, 0, t, map(e.cos((o + t) * h), -1, 1, 0, e.height)) : e.line(0, t, e.map(e.cos((o + t) * h), -1, 1, 0, e.width), t)
+     },
+     thing2 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i
+          } = t, [h, s] = r, c = {
+               x: e.width / 2,
+               y: e.height / 2
+          };
+          e.background(h), e.stroke(s), e.strokeWeight(pDim / 16 + sin(o * i) * (pDim / 16)), e.fill(h), e.circle(c.x, c.y, pDim / 2 + cos(2 * o * i) * pDim / 4)
+     },
+     thing3 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               rects: i,
+               speed1: h,
+               speed2: s,
+               type: c
+          } = t, [n, l] = r;
+          e.background(n), i.forEach((({
+               x: t,
+               y: r,
+               w: i,
+               h: p
+          }) =&gt; {
+               const d = min(i, p),
+                    a = map(sin(Math.hypot(t + o * h, r + o * s)), -1, 1, 0, 1),
+                    g = lerpColor(n, l, a);
+               e.fill(g), e.rectMode(CENTER), e.noStroke(), c ? e.circle(t + i / 2, r + p / 2, .7 * d) : e.square(t + i / 2, r + p / 2, .7 * d)
+          }))
+     },
+     thing4 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               wave: h,
+               double: s
+          } = t, [c, n] = r, l = mDL(e.width, 0, 0, 0, 12), p = mDL(0, e.height, e.width, e.height, 12);
+          e.background(color2);
+          for (let t = 0; t &lt; l.length - 1; t += 1) {
+               const {
+                    x: r,
+                    y: h
+               } = l[t], {
+                    x: s,
+                    y: d
+               } = l[(t + 1) % l.length], {
+                    x: a,
+                    y: g
+               } = p[(t + 1) % p.length], {
+                    x: f,
+                    y: m
+               } = p[t], k = map(cos((o + 4 * t) * i / 2), -1, 1, 0, 1), y = lerpColor(c, n, k);
+               e.fill(y), e.noStroke(), e.beginShape(), vertex(r, h), vertex(s, d), vertex(a, g), vertex(f, m), e.endShape(e.CLOSE)
+          }
+          const d = h ? map(cos(o * i / 4), -1, 1, .4, .6) : .5,
+               a = map(cos(o * i), -1, 1, .25 * e.width, .75 * e.width),
+               g = map(cos(o * i), -1, 1, e.height * d, e.height * (1 - d)),
+               f = map(cos(o * i), 1, -1, .25 * e.width, .75 * e.width),
+               m = map(cos(o * i), 1, -1, e.height * (1 - d), e.height * d),
+               k = map(sin(o * i), -1, 1, 0, 30 * M),
+               y = map(sin(o * i), 1, -1, 0, 30 * M);
+          e.fill(n), e.stroke(c), e.strokeWeight(M), e.circle(a, g, k), s &amp;&amp; (e.stroke(n), e.fill(c), e.circle(f, m, y))
+     },
+     thing5 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               pointCount: h
+          } = t, [s, c] = r, n = {
+               x: e.width / 2,
+               y: e.height / 2
+          };
+          e.angleMode(DEGREES), e.background(s);
+          const l = mDP(n.x, n.y, h, h, pDim / 3, 30 + o * i);
+          for (let o = 0; o &lt; l.length; o += 1) {
+               const {
+                    x: t,
+                    y: r
+               } = l[o];
+               e.fill(c), e.circle(t, r, pDim / 4)
+          }
+          for (let t = 0; t &lt; l.length; t += 1) {
+               const {
+                    x: r,
+                    y: h
+               } = l[t], {
+                    x: n,
+                    y: p
+               } = l[(t + 1) % l.length], d = e.lerp(r, n, e.abs(e.cos(3 * o * i))), a = e.lerp(h, p, e.abs(e.cos(3 * o * i)));
+               e.strokeWeight(M), e.stroke(c), e.fill(s), e.line(r, h, d, a), e.circle(d, a, pDim / 8)
+          }
+     },
+     thing6 = (e, o, t) =&gt; {
+          const {
+               speed: r,
+               colors: i
+          } = t, [h, s] = i;
+          let c;
+          e.background(h), e.fill(s), e.beginShape(), e.strokeWeight(M);
+          let n = 0;
+          for (let t = 0; t &lt;= e.width; t += 2) c = e.map(e.noise(n, o * r), 0, 1, pDim, pDim / 4), e.vertex(t, c), n += .5, t % 8 == 0 &amp;&amp; (push(), e.stroke(s), e.fill(h), e.circle(t, c, pDim / 20), pop());
+          e.vertex(e.width, e.height), e.vertex(0, e.height), e.endShape(e.CLOSE)
+     },
+     thing7 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               u1: h,
+               u2: s
+          } = t, [c, n, l] = r, p = e.width / 2, d = e.height / 2;
+          e.background(c);
+          const a = map(o * i % 2, 0, 1, -p * h, p * h),
+               g = map(o * i % 2, 0, 1, -d * s, d * s);
+          e.stroke(n), e.fill(l), e.strokeWeight(pDim / 32), e.line(p + a, 0, p + a, e.height), e.line(0, d + g, e.width, d + g), e.circle(p + a, d + g, pDim / 8)
+     },
+     thing8 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed1: i,
+               speed2: h,
+               type: s
+          } = t, [c, n] = r, l = {
+               x: e.width / 2,
+               y: e.height / 2
+          };
+          e.background(c);
+          for (let t = 0; t &lt; 10; t += 1) {
+               const r = map(cos((o + t * i) * h), -1, 1, 0, 1);
+               e.strokeWeight(M), e.fill(lerpColor(c, n, r)), e.stroke(n), e.rectMode(CENTER), s ? e.rect(l.x, l.y, e.width - t * (e.width / 10), e.height - t * (e.height / 10)) : e.ellipse(l.x, l.y, 1.5 * e.width - t * (e.width / 7), 1.5 * e.height - t * (e.height / 7))
+          }
+     },
+     thing9 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               invertSize: h,
+               cap: s,
+               type: c,
+               dist: n
+          } = t, [l, p] = r;
+          l.setAlpha(100), e.background(l), e.stroke(p), e.strokeCap(s ? SQUARE : ROUND), e.strokeWeight(pDim / 4);
+          const d = e.map(abs(cos(o * i)), 0, 1, -e.height, e.height + e.height * n),
+               a = e.map(abs(cos(o * i)), 0, 1, -e.height, e.height),
+               g = e.map(abs(cos(o * i)), 0, 1, e.height + e.height * n, 0),
+               f = e.map(abs(cos(o * i)), 0, 1, e.height, -e.height),
+               m = h ? d : g,
+               k = h ? a : f;
+          e.line(e.width / 2, m, e.width / 2, e.height + k), e.noStroke(), e.fill(p), c ? (e.circle(.25 * e.width - pDim / 20, e.height / 2, e.map(e.cos(2 * o * i), -1, 1, 0, pDim / 4)), e.circle(.75 * e.width + pDim / 20, e.height / 2, e.map(e.cos(2 * o * i), -1, 1, 0, pDim / 4))) : (e.rectMode(CENTER), e.square(.25 * e.width - pDim / 20, e.height / 2, e.map(e.cos(2 * o * i), -1, 1, 0, pDim / 4)), e.square(.75 * e.width + pDim / 20, e.height / 2, e.map(e.cos(2 * o * i), -1, 1, 0, pDim / 4))), l.setAlpha(255)
+     },
+     thing10 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               type: h,
+               type2: s
+          } = t, [c, n] = r, l = {
+               x: e.width / 2,
+               y: e.height / 2
+          };
+          e.background(c);
+          const p = pDim / 20,
+               d = pDim / 5;
+          e.noFill(), e.stroke(n), e.strokeWeight(map(cos(o * i), -1, 1, p, d)), s ? e.rect(0, 0, e.width, e.height) : e.circle(l.x, l.y, e.width, e.height), e.line(0, 0, e.width, e.height), e.line(e.width, 0, 0, e.height), e.stroke(c), e.strokeWeight(map(cos(o * i), -1, 1, d, p)), e.push(), e.rectMode(CENTER), h ? e.circle(l.x, l.y, pDim / 2) : e.square(l.x, l.y, pDim / 2), e.pop()
+     },
+     thing11 = e =&gt; {
+          e.background(color2)
+     },
+     thing12 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               type: i
+          } = t, [h, s] = r, c = i ? e.width : e.height;
+          e.background(h);
+          for (let o = -1; o &lt;= c; o += c / 12) e.strokeWeight(M), e.stroke(s), i ? e.line(o, 0, o, e.height) : e.line(0, o, e.width, o)
+     },
+     thing14 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               letter: i
+          } = t, [h, s, c] = r, n = e.width / 2, l = e.height / 2, p = map(cos(20 * o), -1, 1, -pDim / 100, pDim / 25);
+          e.background(h), noStroke(), e.textSize(pDim / 1.5), e.fill(s), e.text(i, n - pDim / 5 - p, l + pDim / 5 + p), e.strokeWeight(M), e.stroke(h), e.fill(c), e.text(i, n - pDim / 4 + p, l + pDim / 4 - p)
+     },
+     thing15 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed1: i,
+               speed2: h,
+               p1: s,
+               p2: c,
+               count: n
+          } = t, [l, p, d] = r;
+          e.background(l);
+          const a = .1 * e.width,
+               g = .8 * e.width / n;
+          for (let t = a; t &lt; e.width - a; t += g) {
+               const r = map(cos((o + (e.width / 2 + t)) * i * s), -1, 1, .2 * e.height, .8 * e.height),
+                    n = map(sin((o + (e.width / 2 + t)) * h * c), -1, 1, .2 * e.height, .8 * e.height);
+               e.push(), e.rectMode(CENTER), e.noStroke(), e.fill(p), e.rect(t + g / 2, e.height / 2, g, r), e.fill(d), e.rect(t + g / 4, e.height / 2, g / 2, n), e.pop()
+          }
+     },
+     thing16 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               speed: i,
+               angle: h
+          } = t, [s, c, n] = r;
+          e.background(s);
+          const l = {
+                    x: e.width / 2,
+                    y: e.height / 2
+               },
+               p = makeHex(l.x, l.y, pDim / 3, 60 * h),
+               d = map(cos(o * i), -1, 1, 0, 1),
+               a = map(sin(o * i * .75), -1, 1, 0, 1),
+               g = map(cos(o * i / 2), -1, 1, 0, 1);
+          e.push(), e.strokeWeight(M), e.stroke(c), e.fill(lerpColor(s, n, d)), e.beginShape(), vertex(p.dots[0].x, p.dots[0].y), vertex(p.dots[1].x, p.dots[1].y), vertex(p.dots[2].x, p.dots[2].y), vertex(l.x, l.y), e.endShape(e.CLOSE), e.fill(lerpColor(s, n, a)), e.beginShape(), vertex(p.dots[2].x, p.dots[2].y), vertex(p.dots[3].x, p.dots[3].y), vertex(p.dots[4].x, p.dots[4].y), vertex(l.x, l.y), e.endShape(e.CLOSE), e.fill(lerpColor(s, n, g)), e.beginShape(), vertex(p.dots[4].x, p.dots[4].y), vertex(p.dots[5].x, p.dots[5].y), vertex(p.dots[0].x, p.dots[0].y), vertex(l.x, l.y), e.endShape(e.CLOSE), e.pop()
+     },
+     thing17 = (e, o, t) =&gt; {
+          const {
+               colors: r,
+               type: i,
+               speed: h
+          } = t, [s, c, n] = r;
+          e.background(s);
+          const l = {
+                    x: e.width / 2,
+                    y: e.height / 2
+               },
+               p = e.width / 2,
+               d = e.height / 2,
+               a = map(cos(o * h), -1, 1, 0, i ? d : p),
+               g = cos(o * h / 2) &lt; 0 ? c : n,
+               f = cos(o * h / 2) &lt; 0 ? n : c;
+          e.push(), e.strokeWeight(M), e.rectMode(CENTER), e.stroke(c), e.fill(g), i ? (e.line(l.x, .2 * d, l.x, e.height - .2 * d), e.line(l.x, .2 * d, e.width, .2 * d), e.line(l.x, e.height - .2 * d, e.width, e.height - .2 * d), e.noStroke(), e.rect(l.x, l.y, a, d), e.fill(f), e.rect(l.x, l.y, a / 2, d / 2)) : (e.line(.2 * p, l.y, e.width - .2 * p, l.y), e.line(.2 * p, l.y, .2 * p, e.height), e.line(e.width - .2 * p, l.y, e.width - .2 * p, e.height), e.noStroke(), e.rect(l.x, l.y, p, a), e.fill(f), e.rect(l.x, l.y, p, a / 2)), e.pop()
+     },
+     array = e =&gt; new Array(e).fill(0).map(((e, o) =&gt; o)),
+     dR4 = (e, o, t, r, i, h, s = .7, c) =&gt; {
+          if (--i &gt;= 0 &amp;&amp; c() &lt; s) {
+               let n = t / 2,
+                    l = r / 2;
+               dR4(e, o, n, l, i, h, s, c), dR4(e + n, o, n, l, i, h, s, c), dR4(e + n, o + l, n, l, i, h, s, c), dR4(e, o + l, n, l, i, h, s, c)
+          } else h.push({
+               x: e,
+               y: o,
+               w: t,
+               h: r,
+               n: i
+          })
+     };
+
+function rnd() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, seed ^= seed &lt;&lt; 5, (seed &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3
+}
+
+function rG(e, o) {
+     return rnd() * (o - e) + e
+}
+
+function rF(e, o) {
+     return Math.floor(rG(e, o))
+}
+
+function pick(e) {
+     return e[rF(0, e.length)]
+}
+
+function shA(e) {
+     for (var o, t, r = e.length, i = e.slice(); r;) o = Math.floor(rnd() * r--), t = i[r], i[r] = i[o], i[o] = t;
+     return i
+}
+
+function sS(e, o) {
+     return shA(e).slice(0, o)
+}
+const mDL = (e, o, t, r, i) =&gt; {
+          const h = [];
+          for (let s = 0; s &lt; i - 1; s += 1) {
+               const c = lerp(e, t, s / (i - 1)),
+                    n = lerp(o, r, s / (i - 1));
+               h.push({
+                    x: c,
+                    y: n
+               })
+          }
+          return h.push({
+               x: t,
+               y: r
+          }), h
+     },
+     mDP = (e, o, t, r, i, h) =&gt; {
+          const s = [];
+          for (let t = 0; t &lt; r; t += 1) s.push({
+               x: e + i * cos(h),
+               y: o + i * sin(h)
+          }), h += 360 / r;
+          const c = t / r,
+               n = [];
+          for (let e = 0; e &lt; r; e += 1)
+               for (let o = 0; o &lt; c; o += 1) {
+                    const t = lerp(s[e].x, s[(e + 1) % s.length].x, o / c),
+                         r = lerp(s[e].y, s[(e + 1) % s.length].y, o / c);
+                    n.push({
+                         x: t,
+                         y: r
+                    })
+               }
+          return n
+     },
+     palettes = [
+          [&quot;#000000&quot;, &quot;#ffffff&quot;, &quot;#c8c8c8&quot;],
+          [&quot;#ccc5b9&quot;, &quot;#403d39&quot;, &quot;#eb5e28&quot;],
+          [&quot;#002642&quot;, &quot;#840032&quot;, &quot;#e5dada&quot;],
+          [&quot;#0c0a3e&quot;, &quot;#f9564f&quot;, &quot;#f3c677&quot;],
+          [&quot;#264653&quot;, &quot;#e9c46a&quot;, &quot;#e76f51&quot;],
+          [&quot;#e63946&quot;, &quot;#f1faee&quot;, &quot;#1d3557&quot;],
+          [&quot;#2b2d42&quot;, &quot;#edf2f4&quot;, &quot;#d90429&quot;],
+          [&quot;#003049&quot;, &quot;#d62828&quot;, &quot;#eae2b7&quot;],
+          [&quot;#14213d&quot;, &quot;#fca311&quot;, &quot;#e5e5e5&quot;],
+          [&quot;#e0fbfc&quot;, &quot;#ee6c4d&quot;, &quot;#293241&quot;],
+          [&quot;#011627&quot;, &quot;#e71d36&quot;, &quot;#ff9f1c&quot;],
+          [&quot;#1a535c&quot;, &quot;#ff6b6b&quot;, &quot;#ffe66d&quot;],
+          [&quot;#355070&quot;, &quot;#e56b6f&quot;, &quot;#eaac8b&quot;],
+          [&quot;#283d3b&quot;, &quot;#197278&quot;, &quot;#edddd4&quot;],
+          [&quot;#2b2d42&quot;, &quot;#edf2f4&quot;, &quot;#d80032&quot;],
+          [&quot;#ffe066&quot;, &quot;#247ba0&quot;, &quot;#70c1b3&quot;],
+          [&quot;#ff6700&quot;, &quot;#ebebeb&quot;, &quot;#004e98&quot;],
+          [&quot;#177e89&quot;, &quot;#db3a34&quot;, &quot;#ffc857&quot;],
+          [&quot;#b80c09&quot;, &quot;#fbfbff&quot;, &quot;#040f16&quot;],
+          [&quot;#001427&quot;, &quot;#f4d58d&quot;, &quot;#8d0801&quot;],
+          [&quot;#1f271b&quot;, &quot;#28afb0&quot;, &quot;#f4d35e&quot;],
+          [&quot;#e0fbfc&quot;, &quot;#9db4c0&quot;, &quot;#253237&quot;],
+          [&quot;#001427&quot;, &quot;#708d81&quot;, &quot;#f4d58d&quot;],
+          [&quot;#0029c1&quot;, &quot;#f7dc09&quot;, &quot;#e22b00&quot;],
+          [&quot;#0c090d&quot;, &quot;#f9c22e&quot;, &quot;#53b3cb&quot;],
+          [&quot;#ed1c24&quot;, &quot;#fdfffc&quot;, &quot;#020100&quot;],
+          [&quot;#fff2cd&quot;, &quot;#ff004c&quot;, &quot;#610d4b&quot;],
+          [&quot;#fbfef9&quot;, &quot;#191923&quot;, &quot;#f39237&quot;],
+          [&quot;#ffba08&quot;, &quot;#3f88c5&quot;, &quot;#032b43&quot;],
+          [&quot;#f1faee&quot;, &quot;#a8dadc&quot;, &quot;#1d3557&quot;],
+          [&quot;#010000&quot;, &quot;#ffa100&quot;, &quot;#f1f2f1&quot;],
+          [&quot;#0d3b66&quot;, &quot;#faf0ca&quot;, &quot;#f95738&quot;],
+          [&quot;#e6eed6&quot;, &quot;#bbc5aa&quot;, &quot;#090c02&quot;],
+          [&quot;#0d0b0b&quot;, &quot;#d80056&quot;, &quot;#ecedef&quot;],
+          [&quot;#55827A&quot;, &quot;#362D2D&quot;, &quot;#EBA58A&quot;],
+          [&quot;#fff3b0&quot;, &quot;#9e2a2b&quot;, &quot;#540b0e&quot;],
+          [&quot;#0d1b2a&quot;, &quot;#778da9&quot;, &quot;#e0e1dd&quot;],
+          [&quot;#0c0f0a&quot;, &quot;#ff206e&quot;, &quot;#fbff12&quot;],
+          [&quot;#2f4550&quot;, &quot;#b8dbd9&quot;, &quot;#f4f4f9&quot;],
+          [&quot;#ebd4cb&quot;, &quot;#da9f93&quot;, &quot;#b6465f&quot;],
+          [&quot;#3e92cc&quot;, &quot;#fffaff&quot;, &quot;#1e1b18&quot;],
+          [&quot;#fecc50&quot;, &quot;#010b8b&quot;, &quot;#1e0521&quot;],
+          [&quot;#c9e4ca&quot;, &quot;#3b6064&quot;, &quot;#364958&quot;]
+     ];</pre></body></html>

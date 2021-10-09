@@ -1,0 +1,219 @@
+<html><body><h1>Name: 70s Pop Series Two</h1><h3>Artist: Daniel Catt</h3><h3>Description: Series Two of the popular 70s Pop. Here we're cruising down Lake Shore Drive in our shag carpet lined Chevy van, with sweet custom airbrushed art on the side. Barbarella meets Saturday Night Fever 🌈🕺 in tiny code form.</h3><h3>https://70sPop.love</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;}</p><p>Script Type: p5js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x29b2f895343cadfb3f5101bef6484b1f01c83dc9</p><p>Additional Payee: 0x29b2f895343cadfb3f5101bef6484b1f01c83dc9</p><p>Additional Payee Percentage: 100</p><p>Price: 0.095</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 256</p><p>Maximum Invocations: 256</p><p>License: NIFTY</p><p>Token Ids: 85000000,85000001,85000002,85000003,85000004,85000005,85000006,85000007,85000008,85000009,85000010,85000011,85000012,85000013,85000014,85000015,85000016,85000017,85000018,85000019,85000020,85000021,85000022,85000023,85000024,85000025,85000026,85000027,85000028,85000029,85000030,85000031,85000032,85000033,85000034,85000035,85000036,85000037,85000038,85000039,85000040,85000041,85000042,85000043,85000044,85000045,85000046,85000047,85000048,85000049,85000050,85000051,85000052,85000053,85000054,85000055,85000056,85000057,85000058,85000059,85000060,85000061,85000062,85000063,85000064,85000065,85000066,85000067,85000068,85000069,85000070,85000071,85000072,85000073,85000074,85000075,85000076,85000077,85000078,85000079,85000080,85000081,85000082,85000083,85000084,85000085,85000086,85000087,85000088,85000089,85000090,85000091,85000092,85000093,85000094,85000095,85000096,85000097,85000098,85000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>const Painting_A_Wave = '\n&quot;Painting a wave requires no system,&quot;\nThe painter said, painting a wave.\n&quot;Systems may get you flotsam and jetsam,\nSeaweed and so forth. But never a wave.&quot;\n - Howard Moss';
+S = Uint32Array.from([0, 1, s = t = 2, 3].map(e =&gt; parseInt(tokenData.hash.substr(8 * e + 2, 8), 16))), R = (e =&gt; (t = S[3], S[3] = S[2], S[2] = S[1], S[1] = s = S[0], t ^= t &lt;&lt; 11, S[0] ^= t ^ t &gt;&gt;&gt; 8 ^ s &gt;&gt;&gt; 19, S[0] / 2 ** 32));
+const pp1 = [];
+pp1.push([0, 0, 0, 0, 0, 100]), pp1.push([249, 100, 50, 0, 0, 100, 0, 100, 50, 0, 0, 100]), pp1.push([59, 100, 50, 175, 100, 50, 59, 100, 50, 175, 100, 50, 59, 100, 50, 175, 100, 50]), pp1.push([175, 100, 50, 125, 100, 64, 300, 100, 64]), pp1.push([321, 100, 50, 24, 100, 22, 32, 100, 50]), pp1.push([321, 100, 50, 24, 100, 22, 32, 100, 50]), pp1.push([201, 100, 50, 264, 100, 22, 272, 100, 50]), pp1.push([4, 79, 27, 29, 59, 18, 15, 75, 50]), pp1.push([4, 79, 27, 29, 59, 18, 15, 75, 50]), pp1.push([359, 100, 50, 325, 100, 37, 352, 100, 6]), pp1.push([5, 90, 62, 19, 90, 66, 170, 100, 99, 332, 96, 74, 330, 98, 43]);
+const pp2 = [];
+pp2.push([36, 99, 56, 50, 100, 51, 92, 92, 57, 189, 100, 53, 223, 100, 73, 300, 100, 71]), pp2.push([351, 88, 62, 353, 82, 63, 355, 77, 65, 359, 67, 67, 4, 59, 67, 11, 48, 67, 22, 40, 66, 36, 30, 66, 56, 23, 66, 78, 26, 68]), pp2.push([53, 100, 67, 23, 97, 59, 62, 48, 46, 307, 4, 34]), pp2.push([357, 96, 60, 38, 96, 78, 0, 0, 90, 190, 60, 50, 198, 64, 38, 214, 60, 31, 220, 54, 25]), pp2.push([295, 98, 78, 193, 92, 79, 152, 100, 73]), pp2.push([131, 62, 74, 141, 66, 42, 134, 39, 20]);
+let pp3 = [];
+const calculatePalette = (e, t, i) =&gt; {
+          let l = e.paletteUse[t],
+               s = [];
+          p5.colorMode(HSB, 360);
+          for (let e = 0; e &lt; l.length; e += 3) s.push([l[e], l[e + 1], l[e + 2]]);
+          let o = Math.floor(i / 2) + 1,
+               a = [];
+          for (let e = 0; e &lt; s.length - 1; e++) {
+               const t = p5.color(s[e]),
+                    i = p5.color(s[e + 1]);
+               for (j = 0; j &lt; 1; j += .1) a.push(p5.lerpColor(t, i, j))
+          }
+          a.push(p5.color(s[s.length - 1]));
+          let n = [];
+          for (var p = 0; p &lt; o; p++) n.push(a[Math.floor(p / Math.max(1, o - 1) * (a.length - 1))]);
+          return n = n.map(e =&gt; `hsl(${Math.floor(e._getHue())}, ${Math.floor(e._getSaturation())}%, ${Math.floor(e._getBrightness())}%)`), secondHalf = JSON.parse(JSON.stringify(n)), secondHalf.shift(), secondHalf.reverse(), i % 2 == 0 &amp;&amp; secondHalf.shift(), [...n, ...secondHalf]
+     },
+     getPalette = (e, t) =&gt; {
+          const l = JSON.parse(JSON.stringify(e.palRandoms));
+          let s = l.pop(),
+               o = null;
+          e.hasSmall ? (o = calculatePalette(e, e.paletteIndex, e.lines / 2), o = [...o, ...o]) : o = calculatePalette(e, e.paletteIndex, e.lines);
+          let a = JSON.parse(JSON.stringify(o));
+          if (&quot;Flat&quot; !== e.fill) {
+               let n = 1;
+               e.hasSmall &amp;&amp; (n = .5);
+               let p = null,
+                    r = Math.floor(e.lines / 2) + 1,
+                    c = Math.floor(s * r * n),
+                    d = c,
+                    f = 0;
+               for (; d === c &amp;&amp; f &lt; 10;) s = l.pop(), d = Math.floor(s * r * n), f++;
+               c &gt; d &amp;&amp; ([c, d] = [d, c]), &quot;Single Grad&quot; === e.fill &amp;&amp; ((p = t.ctx.createLinearGradient(0, 0, 0, t.size)).addColorStop(0, o[c]), p.addColorStop(1, o[d])), &quot;Zap Grad&quot; === e.fill &amp;&amp; ((p = t.ctx.createLinearGradient(0, 0, 0, t.size)).addColorStop(0, o[c]), p.addColorStop(.5, o[d]), p.addColorStop(1, o[c])), &quot;Metallic&quot; === e.fill &amp;&amp; ((p = t.ctx.createLinearGradient(.333 * t.size, 0, .666 * t.size, t.size)).addColorStop(0, &quot;#FFFFFF&quot;), p.addColorStop(1, &quot;#000000&quot;));
+               const h = (new Date).getTime() - e.startTime,
+                    S = Math.floor(h / 10 % 360),
+                    m = [0, 60, 120, 180, 240, 300, 360].map(e =&gt; ((e -= S) &lt; 0 &amp;&amp; (e += 360), e));
+               if (&quot;Rainbow&quot; === e.fill &amp;&amp; ((p = t.ctx.createLinearGradient(0, 0, 0, t.size)).addColorStop(0, `hsl(${m[0]}, 100%, 50%)`), p.addColorStop(1 / 6, `hsl(${m[1]}, 100%, 50%)`), p.addColorStop(1 / 6 * 2, `hsl(${m[2]}, 100%, 50%)`), p.addColorStop(.5, `hsl(${m[3]}, 100%, 50%)`), p.addColorStop(1 / 6 * 4, `hsl(${m[4]}, 100%, 50%)`), p.addColorStop(1 / 6 * 5, `hsl(${m[5]}, 100%, 50%)`), p.addColorStop(1, `hsl(${m[0]}, 100%, 50%)`)), &quot;Stripes&quot; === e.fill || &quot;Ninja&quot; === e.fill) return &quot;Stripes&quot; === e.fill ? o : [&quot;hsl(0, 0%, 100%)&quot;]; {
+                    const t = Math.ceil(e.lines / 8);
+                    for (i = 0; i &lt; t; i++) {
+                         s = l.pop();
+                         let e = Math.floor(s * (d - c)) + d - 1;
+                         0 === e &amp;&amp; (e = 1), 9 === i &amp;&amp; (e = 1);
+                         const t = o[e];
+                         a = o.map(e =&gt; e === t ? p : e)
+                    }
+               }
+          } else a = [a[0]];
+          return a
+     };
+let scaled = !1;
+const resizeCanvas = e =&gt; {
+          const t = {};
+          Object.entries(document.getElementsByTagName(&quot;canvas&quot;)).forEach(e =&gt; e[1].remove());
+          const i = document.createElement(&quot;canvas&quot;);
+          for (i.setAttribute(&quot;id&quot;, &quot;canv&quot;), document.body.appendChild(i), t.canvas = document.getElementById(&quot;canv&quot;), t.ctx = t.canvas.getContext(&quot;2d&quot;), t.def = 2400, t.size = Math.min(window.innerWidth, window.innerHeight), t.canvas.width = t.size * devicePixelRatio, t.canvas.height = t.size * devicePixelRatio, t.canvas.style.width = t.size + &quot;px&quot;, t.canvas.style.height = t.size + &quot;px&quot;, t.sizeMod = t.size / t.def, scaled || t.ctx.scale(devicePixelRatio, devicePixelRatio), t.mkr = 18 * t.sizeMod * .8, s = 260; s &gt; 0; s -= 20) t.size &lt;= s &amp;&amp; (t.mkr *= .95);
+          return t.tileSize = t.size / e.tiles, t.step = t.tileSize / e.lines, t.stepOffset = t.step / 2, t.midPoint = t.size / 2 - t.tileSize / 2, t.cornerDistance = 2 * Math.pow(t.midPoint, 2), t.midPoint = t.size / 2, t
+     },
+     makeFeatures = e =&gt; {
+          const t = {
+               needsAnimating: !1,
+               palRandoms: []
+          };
+          for (let e = 0; e &lt; 275; e++) t.palRandoms.push(R());
+          const i = R(),
+               l = R();
+          R();
+          t.tiles = Math.floor((i + l / 2) / 1.5 * 8 + 4), t.tileBoost = 0, R() &lt; .1 &amp;&amp; (t.tileBoost += 2), R() &lt; .1 &amp;&amp; (t.tileBoost += 4), t.tiles += t.tileBoost, t.lines = Math.floor(9 - (i + l) / 2 * 14) + 8, t.linesBoost = 0, R() &lt; .1 &amp;&amp; t.linesBoost--, R() &lt; .1 &amp;&amp; (t.linesBoost -= 2), R() &lt; .1 &amp;&amp; t.linesBoost++, R() &lt; .1 &amp;&amp; (t.linesBoost += 2), t.lines += t.linesBoost, t.tiles &gt;= 16 &amp;&amp; t.lines--, t.tiles &gt; 17 &amp;&amp; t.lines &gt; 5 &amp;&amp; (t.lines = 6), t.tiles + t.lines &gt; 19 &amp;&amp; (t.lines -= 4), t.lines &lt; 1 &amp;&amp; (t.lines = 1), chance = .5;
+          R();
+          if (t.fill = &quot;Flat&quot;, t.lines &gt; 5 &amp;&amp; (R() &lt; .75 &amp;&amp; (t.fill = &quot;Stripes&quot;), R() &lt; .13 &amp;&amp; (t.fill = &quot;Zap Grad&quot;), R() &lt; .48 &amp;&amp; t.lines &lt; 8 &amp;&amp; (t.fill = &quot;Single Grad&quot;), R() &lt; .075 &amp;&amp; (t.fill = &quot;Metallic&quot;), R() &lt; .15 &amp;&amp; 6 !== t.lines &amp;&amp; 10 !== t.lines &amp;&amp; (t.fill = &quot;Rainbow&quot;)), t.pal = 1, &quot;Flat&quot; !== t.fill ? R() &lt; .25 &amp;&amp; t.lines &gt;= 6 &amp;&amp; (t.pal = 2) : (t.pal = 3, (pp3 = []).push([Math.floor(360 * R()), 87, 77]), pp3.push([Math.floor(360 * R()), 87, 77]), pp3.push([Math.floor(360 * R()), 100, 58])), t.paletteUse = pp1, 2 === t.pal &amp;&amp; (t.paletteUse = pp2), 3 === t.pal &amp;&amp; (t.paletteUse = pp3), t.paletteIndex = Math.floor(R() * t.paletteUse.length), t.lines &lt;= 2 &amp;&amp; R() &gt; .66) t.pal = 1, t.paletteUse = pp1, t.paletteIndex = 0, t.fill = &quot;Ninja&quot;;
+          else if (&quot;Flat&quot; === t.fill || t.lines &lt; 5 || &quot;Metallic&quot; === t.fill || &quot;Single Grad&quot; === t.fill)
+               for (; 0 === t.paletteIndex;) t.paletteIndex = Math.floor(R() * t.paletteUse.length);
+          if (t.hasSmall = 0, t.hasBig = 0, R() &gt; .2 &amp;&amp; (t.hasBig = 1), t.lines % 2 == 0 &amp;&amp; R() &gt; .2 &amp;&amp; (t.hasSmall = 1), t.format = &quot;Normal&quot;, (t.hasBig &gt; 0 || t.hasSmall &gt; 0) &amp;&amp; (R() &lt; .29 &amp;&amp; (t.format = &quot;Outer&quot;), R() &lt; .21 &amp;&amp; (t.format = &quot;Middle&quot;), R() &lt; .14 &amp;&amp; (t.format = &quot;Bottom-up&quot;), R() &lt; .09 &amp;&amp; (t.format = &quot;Top-down&quot;)), &quot;Flat&quot; === t.fill) {
+               for (; 0 === t.hasBig &amp;&amp; 0 === t.hasSmall;) R() &gt; .5 &amp;&amp; (t.hasBig = 1), t.lines % 2 == 0 &amp;&amp; R() &gt; .5 &amp;&amp; (t.hasSmall = 1);
+               for (;
+                    &quot;Normal&quot; === t.format;) R() &lt; .29 &amp;&amp; (t.format = &quot;Outer&quot;), R() &lt; .21 &amp;&amp; (t.format = &quot;Middle&quot;), R() &lt; .14 &amp;&amp; (t.format = &quot;Bottom-up&quot;), R() &lt; .09 &amp;&amp; (t.format = &quot;Top-down&quot;)
+          }
+          return t.tiles &lt; 8 &amp;&amp; (t.hasBig = 0, &quot;Flat&quot; === t.fill &amp;&amp; t.lines % 2 == 0 &amp;&amp; (t.hasSmall = 1)), t.ticktock = &quot;None&quot;, 0 === t.hasBig &amp;&amp; 0 === t.hasSmall &amp;&amp; &quot;Rainbow&quot; !== t.fill &amp;&amp; (&quot;Flat&quot; === t.fill || R() &lt; .2) &amp;&amp; (t.ticktock = &quot;Chaser1&quot;, R() &lt; .51 &amp;&amp; (t.ticktock = &quot;Chess&quot;), R() &lt; .21 &amp;&amp; (t.ticktock = &quot;Wipe&quot;), R() &lt; .21 &amp;&amp; (t.ticktock = &quot;Chaser4&quot;), R() &lt; .11 &amp;&amp; (t.ticktock = &quot;Sweep&quot;)), t.paletteSeed = R(), t.lastTick = (new Date).getTime(), t.tickSpeed = 100, t.tick = 0, &quot;Rainbow&quot; !== t.fill &amp;&amp; &quot;None&quot; === t.ticktock || (t.needsAnimating = !0), t
+     },
+     drawTile = (e, t, i, a, n, p, r, c, d, f) =&gt; {
+          o = n / (2 * p), st = n / p, pi = Math.PI, s = 0, i &amp;&amp; !a &amp;&amp; (s = 1), i &amp;&amp; a &amp;&amp; (s = 2), !i &amp;&amp; a &amp;&amp; (s = 3), s1 = .5 * s * pi, s2 = .5 * (s + 1) * pi;
+          const h = {
+               0: {
+                    0: (e, t) =&gt; [
+                         [e, 0],
+                         [0, t]
+                    ],
+                    1: (e, t) =&gt; [
+                         [0, n - e],
+                         [t, n]
+                    ]
+               },
+               1: {
+                    0: (e, t) =&gt; [
+                         [n, e],
+                         [n - e, 0]
+                    ],
+                    1: (e, t) =&gt; [
+                         [n - e, n],
+                         [n, n - t]
+                    ]
+               }
+          };
+          for (r.lineCap = &quot;round&quot;, l = p - 1; l &gt;= 0; l--) {
+               r.fillStyle = c[l % c.length], r.strokeStyle = c[l % c.length], r.lineWidth = 4 * f;
+               const s = l * st + o,
+                    p = (l - 1) * st + o,
+                    S = h[i][a](s, p)[0],
+                    m = h[i][a](s, p)[1];
+               r.lineCap = &quot;round&quot;, l &gt; 0 &amp;&amp; (r.beginPath(), r.moveTo(e + S[0], t + S[1]), r.arc(e + n * i, t + n * a, s, s1, s2), r.lineTo(e + m[0], t + m[1]), r.arc(e + n * i, t + n * a, p, s2, s1, !0), r.closePath(), r.stroke(), r.fill()), r.lineCap = &quot;round&quot;, r.lineWidth = d, r.strokeStyle = &quot;black&quot;, r.beginPath(), r.arc(e + n * i, t + n * a, s, s1, s2), r.stroke()
+          }
+     },
+     drawStraight = (e, t, i, s, o, a, n, p, r) =&gt; {
+          const c = s / (2 * o),
+               d = s / o;
+          for (a.lineCap = &quot;round&quot;, l = o - 1; l &gt;= 0; l--) {
+               a.fillStyle = n[l % n.length], a.strokeStyle = n[l % n.length], a.lineWidth = 4 * r;
+               l;
+               let o = p2x = l * d + c,
+                    f = p2xp = (l - 1) * d + c,
+                    h = p1yp = 0,
+                    S = p2yp = s;
+               i &amp;&amp; ([o, h, p2x, S] = [h, o, S, p2x]), i &amp;&amp; ([f, p1yp, p2xp, p2yp] = [p1yp, f, p2yp, p2xp]), l &gt; 0 &amp;&amp; (a.beginPath(), a.moveTo(e + o, t + h), a.lineTo(e + p2x, t + S), a.lineTo(e + p2xp, t + p2yp), a.lineTo(e + f, t + p1yp), a.closePath(), a.stroke(), a.fill()), a.lineWidth = p, a.strokeStyle = &quot;black&quot;, a.beginPath(), a.moveTo(e + o, t + h), a.lineTo(e + p2x, t + S), a.stroke()
+          }
+     },
+     getPos = (e, t, i) =&gt; ({
+          left: i.tileSize * e,
+          right: i.tileSize * (e + 1),
+          top: i.tileSize * t,
+          bottom: i.tileSize * (t + 1)
+     }),
+     makeTileHolders = (e, t) =&gt; {
+          const l = (new Date).getTime();
+          let s = 200;
+          &quot;Chaser1&quot; !== t.ticktock &amp;&amp; &quot;Chaser4&quot; !== t.ticktock || (s = 1e3);
+          let o = t.tiles * s + 4e3;
+          &quot;Chaser1&quot; === t.ticktock &amp;&amp; (o = t.tiles * t.tiles * s);
+          const a = {};
+          for (let n = 0; n &lt; t.tiles; n++)
+               for (let p = 0; p &lt; t.tiles; p++) {
+                    pos = getPos(p, n, e), d = R(), index = `${p}:${n}`, index2 = `${p+1}:${n}`, index3 = `${p}:${n+1}`, index4 = `${p+1}:${n+1}`, scM = 1, scM2 = 1;
+                    const r = .25;
+                    if (!a[index] || a[index] &amp;&amp; &quot;skip&quot; in a[index][0] &amp;&amp; !0 !== a[index][0].skip) {
+                         let e = .7 - R(),
+                              c = (.7 - R()) * r * t.hasBig,
+                              d = (.7 - R()) * scM2 * ((t.lines + 1) % 2);
+                         &quot;Top-down&quot; === t.format &amp;&amp; (d = 1 - (c = (t.tiles - n) / t.tiles * t.hasBig)), &quot;Bottom-up&quot; === t.format &amp;&amp; (d = 1 - (c = n / t.tiles * t.hasBig)), &quot;Middle&quot; === t.format &amp;&amp; (d = (t.tiles - 1 - n) / (t.tiles - 1) * 2 - 1, n &gt;= t.tiles / 2 &amp;&amp; (d = n / (t.tiles - 1) * 2 - 1), c = 1 - ((t.tiles - 1 - n) / (t.tiles - 1) * 2 - 1), n &gt;= t.tiles / 2 &amp;&amp; (c = 1 - (n / (t.tiles - 1) * 2 - 1))), &quot;Outer&quot; === t.format &amp;&amp; (c = (t.tiles - 1 - n) / (t.tiles - 1) * 2 - 1, n &gt;= t.tiles / 2 &amp;&amp; (c = n / (t.tiles - 1) * 2 - 1), d = 1 - ((t.tiles - 1 - n) / (t.tiles - 1) * 2 - 1), n &gt;= t.tiles / 2 &amp;&amp; (d = 1 - (n / (t.tiles - 1) * 2 - 1))), c &lt; .1 &amp;&amp; (c = .1), c &gt; .9 &amp;&amp; (c = .9), d &lt; .1 &amp;&amp; (d = .1), d &gt; .9 &amp;&amp; (d = .9), e &lt; .1 &amp;&amp; (e = .1), e &gt; .9 &amp;&amp; (e = .9), c *= t.hasBig, d *= t.hasSmall;
+                         let f = !1,
+                              h = !1,
+                              S = !1,
+                              m = [0, 0];
+                         R() &lt; d &amp;&amp; t.lines &gt; 1 &amp;&amp; (S = !0), !(p &lt; t.tiles - 1 &amp;&amp; n &lt; t.tiles - 1 &amp;&amp; R() &lt; c) || a[index2] &amp;&amp; a[index2][0].skip || a[index3] &amp;&amp; a[index3][0].skip || a[index4] &amp;&amp; a[index4][0].skip || S || (h = !0);
+                         let u = {
+                              goBig: h,
+                              goSmall: S,
+                              sizeMod: 1,
+                              subOffset: m
+                         };
+                         S &amp;&amp; (u.sizeMod = .5), h &amp;&amp; (u.sizeMod = 2);
+                         let g = [],
+                              x = S ? 4 : 1;
+                         if (&quot;Sweep&quot; === t.ticktock &amp;&amp; (u.nextCycle = o, u.nextAction = l + n * s * 2 + 2 * s), &quot;Wipe&quot; === t.ticktock &amp;&amp; (u.nextCycle = o, u.nextAction = l + p * s * 2 + 2 * s), &quot;Chaser1&quot; === t.ticktock &amp;&amp; (u.nextCycle = o, u.nextAction = l + (n * t.tiles + p) * s + s + 2e3), &quot;Chaser4&quot; === t.ticktock &amp;&amp; (u.nextCycle = o, u.nextAction = l + (n * t.tiles + p) * s + s + 2e3), &quot;Chess&quot; === t.ticktock &amp;&amp; (u.nextCycle = 2e3, u.nextAction = l + 2e3, (p + n) % 2 == 0 &amp;&amp; (u.nextAction += 1e3)), !f)
+                              for (i = 0; i &lt; x; i++) {
+                                   const t = JSON.parse(JSON.stringify(u));
+                                   if (R() &gt;= e) {
+                                        t.type = 2;
+                                        const e = R();
+                                        e &lt; .75 &amp;&amp; (t.type = 3), e &lt; .5 &amp;&amp; (t.type = 4), e &lt; .25 &amp;&amp; (t.type = 5)
+                                   } else t.type = -1, R() &lt; .5 &amp;&amp; (t.type = 1);
+                                   1 === i &amp;&amp; (t.subOffset = [.5, 0]), 2 === i &amp;&amp; (t.subOffset = [0, .5]), 3 === i &amp;&amp; (t.subOffset = [.5, .5]), g.push(t)
+                              }
+                         a[index] = g, g[0].goBig &amp;&amp; (a[`${p+1}:${n}`] = a[`${p}:${n+1}`] = a[`${p+1}:${n+1}`] = [{
+                              skip: !0
+                         }])
+                    }
+               }
+          return a
+     },
+     drawImage = (e, t, i) =&gt; {
+          const l = (new Date).getTime();
+          for (let s = 0; s &lt; t.tiles; s++)
+               for (let o = 0; o &lt; t.tiles; o++) {
+                    const a = i[`${o}:${s}`];
+                    a[0].skip || a.forEach(i =&gt; {
+                         i.nextAction &amp;&amp; l &gt; i.nextAction &amp;&amp; (i.type &lt; 2 &amp;&amp; (i.type *= -1), i.type &gt; 1 &amp;&amp; i.type++, i.type &gt; 5 &amp;&amp; (i.type = 2), i.nextAction += i.nextCycle);
+                         getPos(o, s, e);
+                         if (i.type &gt; 1) {
+                              let l = 0,
+                                   a = 0;
+                              3 !== i.type &amp;&amp; 4 !== i.type || (l = 1), 4 !== i.type &amp;&amp; 5 !== i.type || (a = 1), drawTile(e.tileSize * o + i.subOffset[0] * e.tileSize, e.tileSize * s + i.subOffset[1] * e.tileSize, l, a, e.tileSize * i.sizeMod, t.lines * i.sizeMod, e.ctx, t.colours, e.mkr, e.sizeMod), drawTile(e.tileSize * o + i.subOffset[0] * e.tileSize, e.tileSize * s + i.subOffset[1] * e.tileSize, +!l, +!a, e.tileSize * i.sizeMod, t.lines * i.sizeMod, e.ctx, t.colours, e.mkr, e.sizeMod)
+                         }
+                         i.type &lt; 2 &amp;&amp; (drawStraight(e.tileSize * o + i.subOffset[0] * e.tileSize, e.tileSize * s + i.subOffset[1] * e.tileSize, 1 === i.type, e.tileSize * i.sizeMod, t.lines * i.sizeMod, e.ctx, t.colours, e.mkr, e.sizeMod), drawStraight(e.tileSize * o + i.subOffset[0] * e.tileSize, e.tileSize * s + i.subOffset[1] * e.tileSize, 1 !== i.type, e.tileSize * i.sizeMod, t.lines * i.sizeMod, e.ctx, t.colours, e.mkr, e.sizeMod))
+                    })
+               }
+     },
+     drawTheThing = (e, t) =&gt; {
+          const i = gTarget;
+          e.tick++, e.colours = getPalette(e, i), i.ctx.globalCompositeOperation = &quot;source-over&quot;, i.ctx.fillStyle = e.colours[0], i.ctx.beginPath(), i.ctx.rect(0, 0, i.size, i.size), i.ctx.fill(), i.ctx.lineWidth = i.mkr, drawImage(i, e, t), &quot;Ninja&quot; === e.fill &amp;&amp; (i.ctx.globalCompositeOperation = &quot;difference&quot;, i.ctx.fillStyle = &quot;#FFFFFF&quot;, i.ctx.beginPath(), i.ctx.rect(0, 0, i.size, i.size), i.ctx.fill()), e.needsAnimating &amp;&amp; window.requestAnimationFrame(() =&gt; {
+               drawTheThing(e, t)
+          })
+     };
+let features, target, gTarget, tileHolders = null;
+p5 = new p5, counter = 0, window.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+     (features = makeFeatures(tokenData.hash)).startTime = (new Date).getTime(), gTarget = resizeCanvas(features), tileHolders = makeTileHolders(gTarget, features);
+     (new Date).getTime();
+     window.requestAnimationFrame(() =&gt; {
+          drawTheThing(features, tileHolders, !1)
+     }), window.onresize = (() =&gt; {
+          gTarget = resizeCanvas(features), features.needsAnimating || window.requestAnimationFrame(() =&gt; {
+               drawTheThing(features, tileHolders, !1)
+          })
+     })
+});</pre></body></html>

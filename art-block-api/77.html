@@ -1,0 +1,334 @@
+<html><body><h1>Name: Return</h1><h3>Artist: Aaron Penne</h3><h3>Description: &quot;Return&quot; is a meditation on returning inward, cyclical change, and the beauty of iteration. The composition of each piece slowly loops, providing a new experience for the viewer over time. Created by Aaron Penne</h3><h3>https://twitter.com/aaronpenne</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x92fb249865ae0d26120031868ba07434674a1600</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 300</p><p>Maximum Invocations: 300</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 77000000,77000001,77000002,77000003,77000004,77000005,77000006,77000007,77000008,77000009,77000010,77000011,77000012,77000013,77000014,77000015,77000016,77000017,77000018,77000019,77000020,77000021,77000022,77000023,77000024,77000025,77000026,77000027,77000028,77000029,77000030,77000031,77000032,77000033,77000034,77000035,77000036,77000037,77000038,77000039,77000040,77000041,77000042,77000043,77000044,77000045,77000046,77000047,77000048,77000049,77000050,77000051,77000052,77000053,77000054,77000055,77000056,77000057,77000058,77000059,77000060,77000061,77000062,77000063,77000064,77000065,77000066,77000067,77000068,77000069,77000070,77000071,77000072,77000073,77000074,77000075,77000076,77000077,77000078,77000079,77000080,77000081,77000082,77000083,77000084,77000085,77000086,77000087,77000088,77000089,77000090,77000091,77000092,77000093,77000094,77000095,77000096,77000097,77000098,77000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>// CC BY-NC 4.0  https://github.com/aaronpenne/
+let dim = Math.min(window.innerWidth, window.innerHeight),
+     mil = 0,
+     sd = gs(tokenData.hash),
+     hi = hti(tokenData.hash),
+     cw = &quot;#F2F3EE&quot;,
+     cb = &quot;#222&quot;,
+     p_pal = [{
+          w: 10,
+          n: &quot;Riley&quot;,
+          v: [&quot;#E8E2D6&quot;, &quot;#333&quot;]
+     }, {
+          w: 5,
+          n: &quot;Light&quot;,
+          v: [&quot;#E8E2D6&quot;, &quot;#eee&quot;, &quot;#fff&quot;, cw]
+     }, {
+          w: 5,
+          n: &quot;Darkness&quot;,
+          v: [&quot;#111&quot;, &quot;#333&quot;, &quot;#313035&quot;, &quot;#000&quot;, cb]
+     }, {
+          w: 5,
+          n: &quot;Phoenix&quot;,
+          v: [&quot;#8F3935&quot;, &quot;#D94&quot;, &quot;#E8E2D6&quot;]
+     }, {
+          w: 10,
+          n: &quot;Sands&quot;,
+          v: [&quot;#BA7182&quot;, &quot;#C99&quot;, &quot;#DA9&quot;, &quot;#D94&quot;]
+     }, {
+          w: 20,
+          n: &quot;Bacon&quot;,
+          v: [&quot;#A33&quot;, &quot;#89292D&quot;]
+     }, {
+          w: 20,
+          n: &quot;South Beach&quot;,
+          v: [&quot;#253122&quot;, &quot;#f9c1ce&quot;, &quot;#fdd4bd&quot;, &quot;#78cdd0&quot;]
+     }, {
+          w: 20,
+          n: &quot;Young Again&quot;,
+          v: [&quot;#a36aa5&quot;, &quot;#fcb315&quot;, &quot;#006eb8&quot;, &quot;#e31f26&quot;]
+     }, {
+          w: 10,
+          n: &quot;Laguna&quot;,
+          v: [&quot;#9bc&quot;, &quot;#cee&quot;, &quot;#099&quot;, &quot;#78cdd0&quot;]
+     }, {
+          w: 10,
+          n: &quot;Slayer&quot;,
+          v: [&quot;#6d4145&quot;, &quot;#ca92a8&quot;, &quot;#713b4c&quot;, &quot;#f9c1ce&quot;]
+     }, {
+          w: 20,
+          n: &quot;Thaddeus&quot;,
+          v: [&quot;#064f6e&quot;, &quot;#f68c50&quot;, &quot;#40456a&quot;, &quot;#f3a257&quot;]
+     }, {
+          w: 10,
+          n: &quot;Squidgit&quot;,
+          v: [&quot;#7a4456&quot;, &quot;#c2ae93&quot;, &quot;#c27544&quot;, &quot;#762c19&quot;]
+     }, {
+          w: 10,
+          n: &quot;BB&quot;,
+          v: [&quot;#12354e&quot;, &quot;#c2ae93&quot;, &quot;#bb7125&quot;, &quot;#eea78c&quot;]
+     }, {
+          w: 20,
+          n: &quot;Cat's Game&quot;,
+          v: [&quot;#45A&quot;, &quot;#336&quot;, &quot;#A33&quot;, &quot;#f3a257&quot;]
+     }, {
+          w: 20,
+          n: &quot;Cat's Cradle&quot;,
+          v: [&quot;#45A&quot;, &quot;#336&quot;, &quot;#358&quot;, &quot;#5493B6&quot;]
+     }, {
+          w: 20,
+          n: &quot;Sycamore&quot;,
+          v: [&quot;#6E4E37&quot;, &quot;#B73&quot;, &quot;#CCC&quot;, &quot;#C54&quot;, &quot;#C95&quot;, &quot;#D57C30&quot;, &quot;#D94&quot;]
+     }, {
+          w: 40,
+          n: &quot;Zephyr&quot;,
+          v: [&quot;#336&quot;, &quot;#358&quot;, &quot;#365&quot;, &quot;#45A&quot;, &quot;#4C3F5D&quot;, &quot;#4E6E61&quot;, &quot;#576&quot;, &quot;#5493B6&quot;, &quot;#7AC&quot;, &quot;#89292D&quot;, &quot;#87A&quot;, &quot;#8F3935&quot;, &quot;#A33&quot;, &quot;#B8513B&quot;, &quot;#B78&quot;, &quot;#CCC&quot;, &quot;#C54&quot;, &quot;#C95&quot;, &quot;#D57C30&quot;, &quot;#D94&quot;, &quot;#DA9&quot;, &quot;#C99&quot;, &quot;#DEC254&quot;, &quot;#E8E2D6&quot;]
+     }],
+     out = gj(p_pal, &quot;Zephyr&quot;, !0);
+p_pal.push({
+     w: 20,
+     n: &quot;Oracle&quot;,
+     v: [cb, cw, rndC(...out)]
+});
+let p_bg = [{
+          w: 250,
+          n: &quot;Light&quot;,
+          v: cw
+     }, {
+          w: 50,
+          n: &quot;Darkness&quot;,
+          v: cb
+     }],
+     p_form = [{
+          w: 25,
+          n: &quot;Hard&quot;,
+          v: &quot;-1.&quot;
+     }, {
+          w: 225,
+          n: &quot;Circle&quot;,
+          v: &quot;.3&quot;
+     }, {
+          w: 50,
+          n: &quot;Soft&quot;,
+          v: &quot;.03&quot;
+     }],
+     p_sp = [{
+          w: 25,
+          n: &quot;Meditative&quot;,
+          v: 1
+     }, {
+          w: 275,
+          n: &quot;Conceptual&quot;,
+          v: 20
+     }],
+     p_ns = [{
+          w: 2,
+          v: 4
+     }, {
+          w: 5,
+          v: 5
+     }, {
+          w: 5,
+          v: 6
+     }, {
+          w: 2,
+          v: 10
+     }, {
+          w: 4,
+          v: 15
+     }, {
+          w: 4,
+          v: 20
+     }, {
+          w: 2,
+          v: 25
+     }],
+     p_sk = [{
+          w: 5,
+          n: &quot;Cross&quot;,
+          v: &quot;(((uv.y&gt;-inv)&amp;&amp;(uv.y&lt;inv))||((uv.x&gt;-inv)&amp;&amp;(uv.x&lt;inv)))&quot;
+     }, {
+          w: 20,
+          n: &quot;Slice&quot;,
+          v: &quot;((uv.y&gt;-inv*2.)&amp;&amp;(uv.y&lt;inv*2.))&quot;
+     }, {
+          w: 10,
+          n: &quot;Quarter&quot;,
+          v: &quot;(((uv.y&gt;0.)&amp;&amp;(uv.x&gt;0.))||((uv.y&lt;0.) &amp;&amp; (uv.x&lt;0.)))&quot;
+     }, {
+          w: 240,
+          n: &quot;Hidden&quot;,
+          v: &quot;(uv.y&gt;1.)&quot;
+     }, {
+          w: 25,
+          n: &quot;Half&quot;,
+          v: &quot;(uv.y&lt;0.)&quot;
+     }],
+     p_rd = [{
+          w: 180,
+          n: &quot;Balanced&quot;,
+          v: &quot;-90.&quot;
+     }, {
+          w: 100,
+          n: &quot;Tilted&quot;,
+          v: &quot;45.&quot;
+     }, {
+          w: 20,
+          n: &quot;Tilted Mirror&quot;,
+          v: &quot;-45.&quot;
+     }],
+     p_d = [{
+          w: 290,
+          n: &quot;Out&quot;,
+          v: &quot;-&quot;
+     }, {
+          w: 10,
+          n: &quot;In&quot;,
+          v: &quot;+&quot;
+     }],
+     bgi = cw,
+     bgo = rndCJ(p_bg),
+     sp = rndCJ(p_sp),
+     pal = rndCJ(p_pal),
+     nstp = rndCJ(p_ns);
+nstp = &quot;Light&quot; == pal.n || &quot;Darkness&quot; == pal.n ? rndC([15, 20, 25]) : nstp.v;
+let stp = hi.map((n, e) =&gt; mvs(e)).slice(32 - nstp).sort();
+stp.push(&quot;0.&quot;, &quot;1.&quot;), stp.sort();
+let nb = nstp &lt; 5 ? 0 : parseInt(rndB(0, stp.length / 4)),
+     nw = nstp &lt; 5 ? 0 : parseInt(rndB(1, stp.length / 4)),
+     form = rndCJ(p_form),
+     sk = rndCJ(p_sk),
+     rd = rndCJ(p_rd),
+     dr = rndCJ(p_d),
+     col = pnc(pal.v, stp.length),
+     scm = &quot;1.&quot;,
+     sct = &quot;.25&quot;;
+&quot;Balanced&quot; != rd.n &amp;&amp; &quot;Circle&quot; != form.n &amp;&amp; (scm = &quot;1.325&quot;, sct = &quot;.005&quot;), &quot;Circle&quot; == form.n &amp;&amp; &quot;Hidden&quot; == sk.n &amp;&amp; (rd = gj(p_rd, &quot;Balanced&quot;));
+let pz = &quot;Meditative&quot; == sp.n ? 0 : 5;
+&quot;Light&quot; != pal.n &amp;&amp; &quot;Darkness&quot; != pal.n || (nb = 0, nw = 0, bgi = pal.v[0], sk = gj(p_sk, &quot;Hidden&quot;)), &quot;Light&quot; == pal.n &amp;&amp; (bgo = gj(p_bg, &quot;Light&quot;)), &quot;Darkness&quot; == pal.n &amp;&amp; (bgo = gj(p_bg, &quot;Darkness&quot;));
+let coli = &quot;&quot;;
+for (i = 0; i &lt; col.length; i++) coli += `uniform vec3 c${i};`;
+let mixes = &quot;&quot;,
+     mx = [];
+stp.forEach((n, e) =&gt; {
+     e &lt; stp.length - 1 ? mixes += e % 2 == 0 ? `c = mix(c, c${e}, smoothstep(${n}, ${stp[e+1]}, d));` : `c = mix(c, c${e}, step(${n}, d));` : e == stp.length - 1 &amp;&amp; (mixes += `c = mix(c, c${e}, smoothstep(${n}, 1., d));`), mx.push(`c${e},`)
+}), mx.pop(), mx.shift();
+let mx_c = [...mx],
+     mx_bw = [...mx];
+for (sh(mx_c), i = 0; i &lt; nb; i++) mixes = mixes.replace(mx_c.pop(), &quot;uBK,&quot;);
+for (i = 0; i &lt; nw; i++) mixes = mixes.replace(mx_c.pop(), &quot;uWT,&quot;);
+let mixes_bw = mixes;
+mx_bw.forEach((n, e) =&gt; {
+     bw = e % 2 == 0 ? &quot;uBK,&quot; : &quot;uWT,&quot;, mixes_bw = mixes_bw.replace(n, bw)
+});
+let sv = &quot;attribute vec3 aPosition;attribute vec2 aTexCoord;varying vec2 vTC;void main(){vTC=aTexCoord;vec4 p4=vec4(aPosition,1.);p4.xy=p4.xy*2.-1.;gl_Position=p4;}&quot;,
+     sf = `
+precision highp float;varying vec2 vTC;uniform float uT;uniform vec2 uR;uniform vec3 uWT,uBK,final_color,uBGI,uBGO;${coli}float sdf(vec2 p,vec2 b,vec4 r){r.xy=(p.x&gt;0.)?r.xy:r.zw;r.x =(p.y&gt;0.)?r.x :r.y;vec2 q=abs(p)-b+r.x;return min(max(q.x,q.y),0.)+length(max(q,0.))-r.x;}vec3 sh(float d){vec3 c=vec3(uBGO*.25);c=mix(c,vec3(uBGO),smoothstep(${sct}-.3,${sct}+.1,d));return c;}vec3 px(vec2 uv){float sc=2.5*${scm};float bx=sdf(uv,vec2(.3,.3),vec4(${form.v}));float d=mod(bx*sc ${dr.v} uT-.25,1.);if(bx*sc &gt; ${sct}){return sh(bx*sc);}vec3 c=vec3(uBGI);float inv=.02;if ${sk.v}{${mixes_bw}}else{${mixes}}return c;}mat2 rot(float a){a *= 3.14159/180.;float s=sin(a),c=cos(a);return mat2( c,-s,s,c );}void main(){float ps=1./uR.y;vec2 uv=vTC-.5;uv *= rot(${rd.v});
+const vec2 H2=vec2(.5698402909980532,.7548776662466927);const float aa=1.5, ns=8.;vec3 col=vec3(0.);for(float i=0.;i&lt;ns;i+=1.){vec2 d=fract(H2*i+.5)-.5;col += px(uv+d*ps*aa);}col/=ns;
+gl_FragColor=vec4(col,1.);} // ty @piterpasma for the anti-aliasing routine
+`;
+
+function setup() {
+     createCanvas(dim, dim, WEBGL), s = createShader(sv, sf), shader(s), console.log(tokenData.hash), col.forEach((n, e) =&gt; {
+          s.setUniform(`c${e}`, htv(n))
+     }), document.body.style.backgroundColor = bgo.v
+}
+
+function draw() {
+     frameCount % sp.v == 0 &amp;&amp; frameCount &gt; 60 * pz &amp;&amp; (mil += 2e-4), s.setUniform(&quot;uBGI&quot;, htv(bgi)), s.setUniform(&quot;uBGO&quot;, htv(bgo.v)), s.setUniform(&quot;uT&quot;, mil), s.setUniform(&quot;uR&quot;, [width, height]), s.setUniform(&quot;uWT&quot;, htv(cw)), s.setUniform(&quot;uBK&quot;, htv(cb)), rect(0, 0, width, height)
+}
+
+function keyTyped() {
+     switch (key) {
+          case &quot;s&quot;:
+               save(`${get_timestamp()}.jpg`);
+               break;
+          case &quot;1&quot;:
+               sp.v = 1;
+               break;
+          case &quot;2&quot;:
+               sp.v = 2;
+               break;
+          case &quot;3&quot;:
+               sp.v = 7.25;
+               break;
+          case &quot;4&quot;:
+               sp.v = 43;
+               break;
+          case &quot;5&quot;:
+               sp.v = 260;
+               break;
+          case &quot;6&quot;:
+               sp.v = 520;
+               break;
+          case &quot;7&quot;:
+               sp.v = 1040;
+               break;
+          case &quot;0&quot;:
+               sp.v = 0
+     }
+}
+
+function windowResized() {
+     dim = Math.min(window.innerWidth, window.innerHeight), resizeCanvas(dim, dim)
+}
+
+function hti(n) {
+     let e = [];
+     for (let n = 0; n &lt; 32; n++) e.push(tokenData.hash.slice(2 + 2 * n, 4 + 2 * n));
+     return e.map(n =&gt; parseInt(n, 16))
+}
+
+function gs(n) {
+     return parseInt(tokenData.hash.slice(0, 16), 16)
+}
+
+function mv(n) {
+     return mr(hi[n], 0, 255, 0, 1)
+}
+
+function mvs(n) {
+     return mv(n, 0, 1).toFixed(6).toString()
+}
+
+function mr(n, e, t, s, r) {
+     return (n - e) / (t - e) * (r - s) + s
+}
+
+function rnd() {
+     return sd ^= sd &lt;&lt; 13, sd ^= sd &gt;&gt; 17, sd ^= sd &lt;&lt; 5, (sd &lt; 0 ? 1 + ~sd : sd) % 1e3 / 1e3
+}
+
+function rndB(n, e) {
+     return n + (e - n) * rnd()
+}
+
+function rndC(n) {
+     return n[Math.floor(rndB(0, .99 * n.length))]
+}
+
+function rndCJ(n) {
+     return a = [], n.forEach((n, e) =&gt; {
+          for (i = 0; i &lt; n.w; i++) a.push(n)
+     }), rndC(a)
+}
+
+function sh(e) {
+     for (let n = e.length - 1; 0 &lt; n; n--) {
+          var t = Math.floor(rnd() * (n + 1));
+          [e[n], e[t]] = [e[t], e[n]]
+     }
+}
+
+function rme(n, e) {
+     for (var t = 0; t &lt; n.length;) n[t] === e ? n.splice(t, 1) : ++t;
+     return n
+}
+
+function pnc(n, e) {
+     for (aa = [], idx = 0; idx &lt; e; idx++) cc = [...n], 0 == idx || 1 == n.length || (last_elem = aa[aa.length - 1], cc = rme(cc, last_elem)), aa.push(rndC(cc));
+     return aa
+}
+
+function htv(n) {
+     return h = /^\#([A-Fa-f\d]+)$/.exec(n)[1], 3 === h.length ? [parseInt(h[0] + h[0], 16) / 255, parseInt(h[1] + h[1], 16) / 255, parseInt(h[2] + h[2], 16) / 255] : 6 === h.length ? [parseInt(h[0] + h[1], 16) / 255, parseInt(h[2] + h[3], 16) / 255, parseInt(h[4] + h[5], 16) / 255] : void 0
+}
+
+function gj(n, e, t = !1) {
+     let s = n.filter(({
+          n
+     }) =&gt; n == e);
+     return t ? (s = s.map(({
+          v: n
+     }) =&gt; n), [...s]) : s[0]
+}</pre></body></html>

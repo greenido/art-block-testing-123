@@ -1,0 +1,130 @@
+<html><body><h1>Name: PrimiDance</h1><h3>Artist: wuwa</h3><h3>Description: Dance of the primitive shapes - demonstrating my fascination and love of the basic building blocks for many types of computer generated imagery. 
+Incorporating random chance with some strict design decisions, numerous sub variations and collectable series can be generated. 
+Controls: mouse to rotate and zoom in/out; r: reset position; p: play/pause; t: trails on/off;</h3><h3>https://wuwa.org/art</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;}</p><p>Script Type: p5js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xd1a8e61252db6ed86633e536be445c6f4296d875</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 256</p><p>Maximum Invocations: 256</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 84000000,84000001,84000002,84000003,84000004,84000005,84000006,84000007,84000008,84000009,84000010,84000011,84000012,84000013,84000014,84000015,84000016,84000017,84000018,84000019,84000020,84000021,84000022,84000023,84000024,84000025,84000026,84000027,84000028,84000029,84000030,84000031,84000032,84000033,84000034,84000035,84000036,84000037,84000038,84000039,84000040,84000041,84000042,84000043,84000044,84000045,84000046,84000047,84000048,84000049,84000050,84000051,84000052,84000053,84000054,84000055,84000056,84000057,84000058,84000059,84000060,84000061,84000062,84000063,84000064,84000065,84000066,84000067,84000068,84000069,84000070,84000071,84000072,84000073,84000074,84000075,84000076,84000077,84000078,84000079,84000080,84000081,84000082,84000083,84000084,84000085,84000086,84000087,84000088,84000089,84000090,84000091,84000092,84000093,84000094,84000095,84000096,84000097,84000098,84000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seed = parseInt(tokenData.hash.slice(0, 16), 16);
+class Random {
+     constructor(e) {
+          this.seed = e
+     }
+     random_dec() {
+          return this.seed ^= this.seed &lt;&lt; 13, this.seed ^= this.seed &gt;&gt; 17, this.seed ^= this.seed &lt;&lt; 5, (this.seed &lt; 0 ? 1 + ~this.seed : this.seed) % 1e3 / 1e3
+     }
+     random_between(e, t) {
+          return e + (t - e) * this.random_dec()
+     }
+     random_int(e, t) {
+          return Math.floor(this.random_between(e, t + 1))
+     }
+     random_choice(e) {
+          return e[Math.floor(this.random_between(0, .99 * e.length))]
+     }
+}
+let R = new Random(seed),
+     colors = [
+          [&quot;#Fe514e&quot;, &quot;#FDBd21&quot;, &quot;#4461Cd&quot;],
+          [&quot;#996757&quot;, &quot;#eecb20&quot;, &quot;#4f9eb6&quot;],
+          [&quot;#f6b50f&quot;, &quot;#15a16a&quot;, &quot;#f1594b&quot;],
+          [&quot;#fff&quot;, &quot;#000&quot;, &quot;#000&quot;],
+          [&quot;#819498&quot;, &quot;#e1990e&quot;, &quot;#fcddc6&quot;],
+          [&quot;#e6ecce&quot;, &quot;#c47c2a&quot;, &quot;#586a7c&quot;],
+          [&quot;#BC99B7&quot;, &quot;#f1e8bd&quot;, &quot;#7DD094&quot;],
+          [&quot;#fab58f&quot;, &quot;#fa6556&quot;, &quot;#c8eec1&quot;],
+          [&quot;#465b61&quot;, &quot;#7b999d&quot;, &quot;#faaf3d&quot;],
+          [&quot;#F99851&quot;, &quot;#583C39&quot;, &quot;#53C4C2&quot;],
+          [&quot;#35AA84&quot;, &quot;#033551&quot;, &quot;#Fb3E21&quot;],
+          [&quot;#e29041&quot;, &quot;#116382&quot;, &quot;#DD4C2a&quot;],
+          [&quot;#e4937b&quot;, &quot;#c93f2d&quot;, &quot;#f5cca7&quot;],
+          [&quot;#7C3AD0&quot;, &quot;#39363D&quot;, &quot;#c8E8E8&quot;],
+          [&quot;#ea6c36&quot;, &quot;#614a54&quot;, &quot;#e6ac51&quot;],
+          [&quot;#6c5c6f&quot;, &quot;#4b2839&quot;, &quot;#d8574b&quot;],
+          [&quot;#c13a53&quot;, &quot;#383C39&quot;, &quot;#eed09e&quot;],
+          [&quot;#EDC070&quot;, &quot;#7B9FB0&quot;, &quot;#EEDBC0&quot;],
+          [&quot;#fee7bc&quot;, &quot;#ff7a5a&quot;, &quot;#705aa1&quot;],
+          [&quot;#eeeeee&quot;, &quot;#222&quot;, &quot;#D81D00&quot;],
+          [&quot;#DA2CA9&quot;, &quot;#1a1a1a&quot;, &quot;#1a1a1a&quot;],
+          [&quot;#1FCDCD&quot;, &quot;#1a1a1a&quot;, &quot;#1a1a1a&quot;],
+          [&quot;#1FDB1F&quot;, &quot;#1a1a1a&quot;, &quot;#1a1a1a&quot;],
+          [&quot;#DC2626&quot;, &quot;#ddd&quot;, &quot;#ddd&quot;],
+          [&quot;#2828D1&quot;, &quot;#ddd&quot;, &quot;#ddd&quot;],
+          [&quot;#87CEFB&quot;, &quot;#2F2D2C&quot;, &quot;#F2D56F&quot;],
+          [&quot;#DC2626&quot;, &quot;#2828D1&quot;, &quot;#eee&quot;],
+          [&quot;#dddddd&quot;, &quot;#ddd&quot;, &quot;#eee&quot;],
+          [&quot;#333333&quot;, &quot;#111&quot;, &quot;#222&quot;]
+     ];
+var wi, sp, segs = [al1, al2, al3, al4, al5, al6, al7],
+     cclr = R.random_choice(colors),
+     bgt = R.random_int(0, 2),
+     parts = [],
+     sizes = [],
+     tx = [],
+     ty = [],
+     tz = [],
+     tr = [],
+     tv = [],
+     orbc = 0,
+     orb = 1,
+     _frame = 0,
+     _frame2 = 0,
+     rot = 1,
+     trail = 0,
+     amount = 100,
+     dist = 1,
+     sm = Math.floor(Math.min(window.innerWidth, window.innerHeight)) - 50,
+     i1 = 120,
+     i2 = 50;
+
+function setup() {
+     createCanvas(sm, sm, WEBGL), frameRate(30), 1 == (wi = R.random_int(0, 100) &gt; 98 ? 1 : 0) ? background(cclr[0]) : background(cclr[bgt]), angleMode(DEGREES), strokeWeight(sm / 700);
+     var e = sm / 4 * 1;
+     for (amount = R.random_int(20, 60), sp = R.random_between(.01, .2), i = 0; i &lt; amount; i++) parts.push(R.random_choice(segs)), sizes.push(R.random_int(sm / 10, sm / 100)), tx.push(R.random_int(1 * -e, 1 * e)), ty.push(R.random_int(-e / 1, e / 1)), tz.push(R.random_int(-e, e)), tr.push(R.random_int(0, 360)), tv.push(R.random_int(0, 3))
+}
+
+function draw() {
+     ambientLight(230), pointLight(i1, i1, i1, sm / 3, -sm, sm / 2), pointLight(i2, i2, i2, sm / 4, -sm / 3, 0), pointLight(i2, i2, i2, -sm / 4, -sm / 6, 0), pointLight(i2, i2, i2, -sm / 10, sm, sm / 10), trail || (1 == wi ? background(cclr[0]) : background(cclr[bgt])), noStroke(), orbc &amp;&amp; orbitControl(1, 1, .05), orb &amp;&amp; _frame++, rot &amp;&amp; _frame2++;
+     for (var e = 0; e &lt; amount; e++) 1 == wi ? (stroke(lc(cclr[0], -50)), noFill()) : fill(cclr[e % 3]), push(), e % 3 == 0 ? rotateZ(_frame * sp) : rotateZ(_frame * -sp), e % 3 == 1 ? rotateY(_frame * sp / 2) : rotateY(_frame * -sp / 2), e % 3 == 2 ? rotateX(_frame * sp) : rotateX(0 * _frame), translate(tx[e], ty[e], tz[e]), rotateY(tr[e]), parts[e](e), pop();
+     1 == wi ? sphere(sm / 6 + .3 * sizes[7], 16, 6) : sphere(sm / 6 + .3 * sizes[7], 50, 50)
+}
+
+function al1(e) {
+     push(), rotateX(.1 * _frame2), rotateY(.2 * _frame2), 1 == wi ? torus(sizes[e], sizes[e] / (4 + tv[e]), 6, 3) : torus(sizes[e], sizes[e] / (4 + tv[e]), 34, 20), pop()
+}
+
+function al2(e) {
+     push(), rotateX(.5 * _frame2), box(sizes[e]), pop()
+}
+
+function al3(e) {
+     1 == wi ? sphere(sizes[e], 5 - tv[e], 5 - tv[e]) : sphere(sizes[e], 34, 34)
+}
+
+function al4(e) {
+     1 == wi ? cylinder(sizes[e] / 4, sizes[e], 3, 3) : cylinder(sizes[e] / 4, sizes[e])
+}
+
+function al5(e) {
+     push(), rotateX(.1 * _frame2), cone(sizes[e] / 1.4, sizes[e], 4), pop()
+}
+
+function al6(e) {
+     push(), rotateZ(.1 * _frame2), box(sizes[e] * (1 + tv[e]), sizes[e] / 8), pop()
+}
+
+function al7(e) {
+     push(), rotateX(.1 * _frame2), rotateY(.3 * _frame2), 1 == wi ? torus(sizes[e] / 2, sizes[e] / 8, 3 + tv[e], 2) : torus(sizes[e] / 2, sizes[e] / 8, 3 + tv[e], 10), pop()
+}
+
+function keyTyped() {
+     &quot;p&quot; === key ? orb = orb ? 0 : 1 : &quot;t&quot; === key ? trail = trail ? 0 : 1 : &quot;r&quot; === key &amp;&amp; camera()
+}
+
+function mousePressed() {
+     orbc = 1
+}
+
+function lc(e, t) {
+     var a = parseInt(e.replace(&quot;#&quot;, &quot;&quot;), 16),
+          s = Math.round(2.55 * t),
+          r = (a &gt;&gt; 16) + s,
+          i = (a &gt;&gt; 8 &amp; 255) + s,
+          o = (255 &amp; a) + s;
+     return &quot;#&quot; + (16777216 + 65536 * (r &lt; 255 ? r &lt; 1 ? 0 : r : 255) + 256 * (i &lt; 255 ? i &lt; 1 ? 0 : i : 255) + (o &lt; 255 ? o &lt; 1 ? 0 : o : 255)).toString(16).slice(1)
+}</pre></body></html>

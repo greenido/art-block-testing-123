@@ -1,0 +1,144 @@
+<html><body><h1>Name: Dreams</h1><h3>Artist: Joshua Bagley</h3><h3>Description: Dreams is an exploration of uneven subdivision. It focuses on the interaction between uniform and crooked lines, and the complex structures that can emerge from simple rules. Each iteration of Dreams is unique, with characteristics determined by the hash created at the moment of transaction. Created by Joshua Bagley</h3><h3>https://www.instagram.com/gengeomergence/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x129eb023b2f879b4c7dc4b19e7877bda35789773</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.13</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 700</p><p>Maximum Invocations: 700</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 89000000,89000001,89000002,89000003,89000004,89000005,89000006,89000007,89000008,89000009,89000010,89000011,89000012,89000013,89000014,89000015,89000016,89000017,89000018,89000019,89000020,89000021,89000022,89000023,89000024,89000025,89000026,89000027,89000028,89000029,89000030,89000031,89000032,89000033,89000034,89000035,89000036,89000037,89000038,89000039,89000040,89000041,89000042,89000043,89000044,89000045,89000046,89000047,89000048,89000049,89000050,89000051,89000052,89000053,89000054,89000055,89000056,89000057,89000058,89000059,89000060,89000061,89000062,89000063,89000064,89000065,89000066,89000067,89000068,89000069,89000070,89000071,89000072,89000073,89000074,89000075,89000076,89000077,89000078,89000079,89000080,89000081,89000082,89000083,89000084,89000085,89000086,89000087,89000088,89000089,89000090,89000091,89000092,89000093,89000094,89000095,89000096,89000097,89000098,89000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>function setup() {
+     DIM = min(window.innerWidth, window.innerHeight, 8e3), M = DIM / 1e3, createCanvas(DIM, DIM), strokeWeight(1.5), strokeJoin(ROUND), noiseDetail(5);
+     let e = displayDensity();
+     pixelDensity(e), C = [
+          [&quot;#B45062&quot;, &quot;#312E28&quot;, &quot;#4B7278&quot;, &quot;#CBC29B&quot;, &quot;#438839&quot;, &quot;#AA292D&quot;, &quot;#BA8B2C&quot;, &quot;#D97E90&quot;],
+          [&quot;#ED254E&quot;, &quot;#F9C74F&quot;, &quot;#43AA8B&quot;, &quot;#003B36&quot;, &quot;#FFDDE2&quot;, &quot;#277DA1&quot;, &quot;#4C1A57&quot;, &quot;#454851&quot;],
+          [&quot;#4F0004&quot;, &quot;#7A0100&quot;, &quot;#AD262A&quot;, &quot;#C3C6A9&quot;, &quot;#8F7787&quot;, &quot;#523851&quot;, &quot;#260910&quot;],
+          [&quot;#E9C79E&quot;, &quot;#B65538&quot;, &quot;#973E47&quot;, &quot;#9C61E1&quot;, &quot;#C487ED&quot;, &quot;#27474E&quot;, &quot;#115565&quot;],
+          [&quot;#CA2836&quot;, &quot;#F34C48&quot;, &quot;#FB7882&quot;, &quot;#FFF4D6&quot;, &quot;#000E29&quot;],
+          [&quot;#D4E28D&quot;, &quot;#9BB88C&quot;, &quot;#89AE9D&quot;, &quot;#6D8C87&quot;, &quot;#727B98&quot;, &quot;#735F7B&quot;, &quot;#6DC3AA&quot;, &quot;#3D7A95&quot;, &quot;#2A4363&quot;, &quot;#D05F61&quot;],
+          [&quot;#FFBD6A&quot;, &quot;#FE86A0&quot;, &quot;#83639A&quot;, &quot;#689A3D&quot;, &quot;#317849&quot;, &quot;#FE4465&quot;, &quot;#002C54&quot;, &quot;#135569&quot;, &quot;#EDE2C5&quot;],
+          [&quot;#7267C6&quot;, &quot;#8A86A7&quot;, &quot;#78B7DE&quot;, &quot;#B1D9F9&quot;, &quot;#FEA466&quot;, &quot;#FCD57D&quot;, &quot;#F96E66&quot;, &quot;#CC4D6A&quot;],
+          [&quot;#712357&quot;, &quot;#38213B&quot;, &quot;#309DA9&quot;, &quot;#0E837B&quot;, &quot;#509F46&quot;, &quot;#8ABA40&quot;, &quot;#FFD23F&quot;, &quot;#ED6A5A&quot;],
+          [&quot;#C02237&quot;, &quot;#7B7D32&quot;, &quot;#5B7833&quot;, &quot;#195B4D&quot;, &quot;#193E50&quot;],
+          [&quot;#F02733&quot;, &quot;#FFD605&quot;, &quot;#396BF5&quot;, &quot;#FFFFF5&quot;, &quot;#322D28&quot;],
+          [&quot;#40204B&quot;, &quot;#E09F3D&quot;, &quot;#ECB75A&quot;, &quot;#F6D8A7&quot;, &quot;#E36E77&quot;, &quot;#A2D2BA&quot;],
+          [&quot;#FFFFF5&quot;, &quot;#0A000A&quot;]
+     ], HW = .5 * DIM, H = 500;
+     let q = R() &lt; .75 ? H * H : 2 * H,
+          mi, ma;
+     if (noiseSeed(S[0]), ox = ri(-q, q), oy = ri(-q, q), ci = R() &lt; .5 ? ri(0, 12) : ri(0, 8), cs = 5 == ri(0, 150) ? 9 : ch([5, 15, 10]), B = ch([5, 30]) - 1, T = ch([10, 30]) - 1, q = ch([2]), de = 1 == q ? 15 : 11, n = 1 == T ? de : de + 1, v = ch([3, 10, 30]), 2 == v ? (mi = .05, ma = .1) : 3 == v ? (mi = .3, ma = .45) : (mi = .15, ma = .25), A = 1 == v ? 0 == T ? .001 : 0 : round(rb(mi, ma), 2), J = R() &lt; .25 ? round(rb(.001, .02), 4) : round(rb(.001, .008), 4), D = R() &lt; .5 ? ri(3, n - 1) : ri(5, n - 1), Z = 1 != v &amp;&amp; 5 == ri(0, 15), ii = [], 9 == cs) C = shp(C), c = C[0];
+     else if (1 == cs) {
+          let t = shp(C[ci]);
+          c = [t[0], t[1]]
+     } else if (2 == cs) {
+          let i1 = ri(0, 12),
+               i2 = ri(0, 12);
+          for (; i2 == i1;) i2 = ri(0, 12);
+          cc = [shp(C[i1]), shp(C[i2])], c = cc[0], ii = [i1, i2]
+     } else c = shp(C[ci]);
+     O = [];
+     for (let i = 0; i &lt; n; i++) O.push(ri(0, 2));
+     L = [];
+     let p = 0,
+          t = 0;
+     for (let i = 0; i &lt; n; i++) {
+          let u = ri(0, 1);
+          u == p ? t++ : t = 0, t &gt; 2 &amp;&amp; (u = 0 == p ? 1 : 0, t = 0), L.push(u), p = u
+     }
+     a = [], z = 0, cn = [], md = 20
+}
+
+function draw() {
+     clear(), z = 0, cn = [], md = 20, translate(HW, HW), scale(M), sd({
+          x: -H,
+          y: -H
+     }, {
+          x: H,
+          y: -H
+     }, {
+          x: H,
+          y: H
+     }, {
+          x: -H,
+          y: H
+     }, n, a);
+     for (let r of a) {
+          r.d &lt; md &amp;&amp; (md = r.d), inc(cn, r.c) || cn.push(r.c), noFill(), stroke(r.c), beginShape();
+          for (let p of r.p) vertex(p.x, p.y);
+          endShape(CLOSE)
+     }
+     for (let r of a) {
+          fill(r.c), noStroke(), beginShape();
+          for (let p of r.p) vertex(p.x, p.y);
+          endShape(CLOSE)
+     }
+     noLoop()
+}
+
+function sd(p1, p2, p3, p4, n, a, hr = !1, d = 0) {
+     let c1 = c[d % c.length],
+          c2 = c[(d + z) % c.length],
+          p01, p02, p03, p04, p11, p12, p13, p14, w1 = dv(p1, p2),
+          w2 = dv(p4, p3),
+          h1 = dv(p1, p4),
+          h2 = dv(p2, p3),
+          w0 = max(w1, w2),
+          h0 = max(h1, h2),
+          a1, a2, g, cv, t1, t2, r0, r1, r;
+     g = mp(p1, p3), 9 == cs ? (nvt = noise(.003 * (g.x + ox), .003 * (g.y + oy)) &gt; .5 ? g.x + ox : g.y + oy, cv = floor(12 * noise(.005 * nvt))) : cv = floor(12 * noise(.003 * (g.x + ox), .003 * (g.y + oy))), 0 == T &amp;&amp; (hr = w0 &gt; h0), 2 == cs &amp;&amp; (c = cv &lt; 6 ? cc[0] : cc[1]), 9 == cs &amp;&amp; (c = C[cv]), z = 3 == cs ? (z + 1) % c.length : 1, a1 = .5 + mn(p1.x, p1.y, A), a2 = .5 + mn(p4.x, p4.y, A), Z &amp;&amp; (a2 = a1), hr ? (t1 = mp(p1, p2, a1), t2 = mp(p4, p3, a2), p01 = p1, p02 = {
+          x: t1.x,
+          y: t1.y
+     }, p03 = {
+          x: t2.x,
+          y: t2.y
+     }, p04 = p4, p11 = p02, p12 = p2, p13 = p3, p14 = p03) : (t1 = mp(p2, p3, a1), t2 = mp(p1, p4, a2), p01 = p1, p02 = p2, p03 = {
+          x: t1.x,
+          y: t1.y
+     }, p04 = {
+          x: t2.x,
+          y: t2.y
+     }, p11 = p04, p12 = p03, p13 = p3, p14 = p4), d++, T &gt; 1 &amp;&amp; (hr = !hr), 1 == T &amp;&amp; (hr = 0 != L[d]), r0 = {
+          p: [p01, p02, p03, p04],
+          c: c1,
+          d: d
+     }, r1 = {
+          p: [p11, p12, p13, p14],
+          c: c2,
+          d: d
+     };
+     let q = 0 == B ? 0 : 10;
+     d &lt; n &amp;&amp; w0 &gt; q &amp;&amp; h0 &gt; q ? (r = d &lt; D ? 2 : 0 == B ? O[d] : 1 == B ? floor(5 * noise((w1 + ox) * J, (h2 + oy) * J, d)) : floor(5 * noise((p01.x + ox) * J, (p11.y + oy) * J)), (0 == r || r &gt; 1) &amp;&amp; sd(p01, p02, p03, p04, n, a, hr, d), (1 == r || r &gt; 1) &amp;&amp; sd(p11, p12, p13, p14, n, a, hr, d), 0 == r &amp;&amp; a.push(r1), 1 == r &amp;&amp; a.push(r0)) : a.push(r0, r1)
+}
+
+function shp(p) {
+     let c = [],
+          f = [];
+     arrayCopy(p, c);
+     let l = p.length;
+     for (let t = 0; t &lt; l; t++) {
+          let i = ri(0, c.length - 1);
+          f.push(c[i]), c.splice(i, 1)
+     }
+     return f
+}
+
+function inc(a, e) {
+     if (0 == a.length) return !1;
+     for (let i = 0; i &lt; a.length; i++)
+          if (a[i] == e) return !0;
+     return !1
+}
+
+function ch(a) {
+     let r = ri(0, 100),
+          o = 0,
+          i = 1;
+     for (let u of a) {
+          if (r &gt; o - 1 &amp;&amp; r &lt; u + o) return i;
+          i++, o += u
+     }
+     return i
+}
+
+function windowResized() {
+     DIM = Math.min(window.innerWidth, window.innerHeight), M = DIM / 1e3, HW = .5 * DIM, resizeCanvas(DIM, DIM)
+}
+S = Uint32Array.from([0, 1, s = t = 2, 3].map(i =&gt; parseInt(tokenData.hash.substr(8 * i + 2, 8), 16))),
+     R = _ =&gt; (t = S[3], S[3] = S[2], S[2] = S[1], S[1] = s = S[0], t ^= t &lt;&lt; 11, S[0] ^= t ^ t &gt;&gt;&gt; 8 ^ s &gt;&gt;&gt; 19, S[0] / 2 ** 32),
+     'ty @piterpasma'
+rb = (a, b) =&gt; a + (b - a) * R(), ri = (a, b) =&gt; floor(rb(a, b + 1)), rc = a =&gt; a[floor(rb(0, .99 * a.length))], dv = (i, j) =&gt; dist(i.x, i.y, j.x, j.y), mn = (i, j, o) =&gt; map(noise((i + ox) * J, (j + oy) * J), 0, 1, -o, o), mp = (i, j, a = .5) =&gt; ({
+     x: lerp(i.x, j.x, a),
+     y: lerp(i.y, j.y, a)
+});</pre></body></html>

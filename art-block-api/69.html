@@ -1,0 +1,279 @@
+<html><body><h1>Name: Abstraction</h1><h3>Artist: Hevey</h3><h3>Description: ﻿Abstraction is a complex abstract artwork created in several stages where each new element drawn takes into account the elements drawn in the previous stages.</h3><h3>https://twitter.com/HeveyArt</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.2.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;}</p><p>Script Type: p5js</p><p>Version: 1.2.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x93f7cb21d6904492b33e0df24008c8b13ce64380</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.075</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 256</p><p>Maximum Invocations: 256</p><p>License: NFT License</p><p>Token Ids: 69000000,69000001,69000002,69000003,69000004,69000005,69000006,69000007,69000008,69000009,69000010,69000011,69000012,69000013,69000014,69000015,69000016,69000017,69000018,69000019,69000020,69000021,69000022,69000023,69000024,69000025,69000026,69000027,69000028,69000029,69000030,69000031,69000032,69000033,69000034,69000035,69000036,69000037,69000038,69000039,69000040,69000041,69000042,69000043,69000044,69000045,69000046,69000047,69000048,69000049,69000050,69000051,69000052,69000053,69000054,69000055,69000056,69000057,69000058,69000059,69000060,69000061,69000062,69000063,69000064,69000065,69000066,69000067,69000068,69000069,69000070,69000071,69000072,69000073,69000074,69000075,69000076,69000077,69000078,69000079,69000080,69000081,69000082,69000083,69000084,69000085,69000086,69000087,69000088,69000089,69000090,69000091,69000092,69000093,69000094,69000095,69000096,69000097,69000098,69000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let T, ab = tokenData.hash,
+     L = Math,
+     Ba = parseInt,
+     wa = a =&gt; a.map(b =&gt; 1 * b ** .5 / L.max(...a) ** .5),
+     qa = c(9, 10),
+     ib = qa &amp;&amp; 10 &lt; c(47, 48),
+     Bb = ib ? 1 : 7 &lt; c(46, 47),
+     yb = c(45, 46, 3, 7 &gt; c(43, 44) ? 1 : 2),
+     V = 14 &lt; c(41, 42),
+     ua = c(44, 45, V ? 40 : 6, V ? 10 : 0),
+     ta = 245 &lt; c(26, 28),
+     X = ta ? c(24, 26, 4, 3) : c(24, 26, 25, 3),
+     za = 244 &lt; c(12, 14),
+     ea = !za &amp;&amp; 4 &lt; c(11, 12),
+     xb = !za &amp;&amp; !ea &amp;&amp; 8 &lt; c(10, 11),
+     kb = 244 &lt; c(16, 18),
+     sa = !ea &amp;&amp; 14 &lt; c(31, 32) || !qa &amp;&amp; 13 &lt; c(31, 32),
+     Y = 0,
+     jb = a =&gt; [
+          [
+               [1, 0],
+               [-1, 0],
+               [0, 1],
+               [0, -1],
+               [1, 1],
+               [-1, -1],
+               [-1, 1],
+               [1, -1]
+          ],
+          [
+               [1, 0],
+               [-1, 0],
+               [0, 1],
+               [0, -1]
+          ],
+          [
+               [1, 1],
+               [-1, -1],
+               [-1, 1],
+               [1, -1]
+          ],
+          [
+               [1, 0],
+               [-1, 0],
+               [0, 1],
+               [0, -1],
+               [1, 1],
+               [-1, -1],
+               [-1, 1],
+               [1, -1],
+               [2, 0],
+               [-2, 0],
+               [0, 2],
+               [0, -2],
+               [2, 2],
+               [-2, -2],
+               [-2, 2],
+               [2, -2]
+          ]
+     ][a],
+     Ka = a =&gt; a[0] === q[0] &amp;&amp; a[1] === q[1] &amp;&amp; a[2] === q[2] || a[0] === z[0] &amp;&amp; a[1] === z[1] &amp;&amp; a[2] === z[2],
+     qb = sa ? 24 : 12,
+     mb = sa ? 2.4 : 1.2,
+     l = 6e3,
+     A = L.ceil(l / 600),
+     j = l / qb,
+     Da = l / mb,
+     R = [2, 2, 2, 2, 2, 2, 1, 1, 0, 3][c(28, 30, 10)],
+     Ma = [c(37, 39, 10, 10), c(37, 39, 22, 10), c(37, 39, 26, 6), c(37, 39, 9, 6)][R],
+     La = c(35, 37, 30, 1),
+     pb = c(33, 35, 171, 30),
+     ob = c(30, 33, 961, 40),
+     da = c(22, 24, 12, Ma &lt; [15, 15, 11, 11][R] ? 10 : 5),
+     tb = ~~((c(20, 22, da, 1) * (32 - La)) ** .8) + 1,
+     sb = c(17, 20, 13 &lt; c(17, 18) ? 1e3 : 200, 60),
+     rb = c(14, 17, 60, 10 &gt; da ? 5 * (10 - da) + 30 : 30),
+     n = wa([c(60, 62), c(62, 64), c(64, 66)]),
+     p = wa([c(54, 56), c(56, 58), c(58, 60)]);
+.45 &gt; L.abs(n[0] - p[0]) + L.abs(n[1] - p[1]) + L.abs(n[2] - p[2]) &amp;&amp; (n = [n[2], n[0], n[1]]), kb &amp;&amp; (n = [.65, .65, .65], p = [.98, .98, .98]);
+let q, z, D = [n, p],
+     W = wa([c(48, 50), c(50, 52), c(52, 54)]),
+     ca = W.map(b =&gt; ~~(190 * b));
+if (za) q = [10, 10, 10], z = q;
+else {
+     if (ua || 9 &lt; c(15, 16)) {
+          let b = c(39, 41, 35, 65);
+          q = [(n[0] + p[0] + W[0]) * b, (n[1] + p[1] + W[1]) * b, (n[2] + p[2] + W[2]) * b].map(c =&gt; ~~(c + (b - c) / 4))
+     } else q = [128 * (n[0] + p[0]), 128 * (n[1] + p[1]), 128 * (n[2] + p[2])].map(b =&gt; ~~(b + (128 - b) / 4));
+     z = q.map(b =&gt; ~~(.45 * b))
+}
+xb &amp;&amp; (q = z);
+class S {
+     constructor(a, b, c) {
+          this.m = c, this.h = a, this.ia = b, this.o = 0, this.Qa = 0, this.E = 0, this.ja = 1, this.na = 1, this.Pa = 0, this.va = 0, this.Kb = 0, this.hb = 1, this.gb = Ba(a / 10), this.Jb = a - 2 * this.gb, this.t = [];
+          for (let d = 0; d &lt; this.h; d++) {
+               this.t.push([]);
+               for (let a = 0; a &lt; this.h; a++) this.t[d].push(0)
+          }
+          this.Z()
+     }
+     Z() {
+          this.i = l / this.h, this.B = this.i / 2, this.w = .4 * this.i, this.Lb = this.w / 2, this.lb = L.ceil(this.i / 30), this.ba = jb(this.E)
+     }
+     K() {
+          if (this.u = [], !this.va) {
+               let d = [];
+               for (let c = 0; c &lt; this.h; c++)
+                    for (let a = 0; a &lt; this.h; a++) this.t[c][a] || d.push([c, a]);
+               for (let b, f = 0; f &lt; this.ia &amp;&amp; (b = d.length, !(1 &gt; b)); f++) {
+                    let a = c(2 + f % 40, 5 + ~~(f / 40) + f % 40) % b,
+                         g = new G(...d[a]);
+                    this.u.push(new Za(f, g, D)), this.ya(g), d.splice(a, 1)
+               }
+          } else {
+               this.N = [], this.t.forEach(b =&gt; this.N.push(b.slice()));
+               for (let c = 0; c &lt; this.h; c++)
+                    for (let a = 0; a &lt; this.h; a++)
+                         if (!this.t[c][a]) {
+                              let b = new G(c, a);
+                              this.u.push(new Za(c, b, D)), this.ya(b)
+                         }
+          }
+     }
+     ya(a) {
+          this.t[a.g][a.f] = 1
+     }
+     wb(a) {
+          return 0 &lt;= a.g &amp;&amp; 0 &lt;= a.f &amp;&amp; a.g &lt; this.h &amp;&amp; a.f &lt; this.h
+     }
+     Q(a, b = this.t) {
+          return this.wb(a) &amp;&amp; 0 === b[a.g][a.f]
+     }
+     Ra() {
+          this.u.forEach(c =&gt; {
+               if (!c.H) {
+                    let a = 230 * this.o / c.Oa,
+                         b = D[this.o % 2],
+                         d = constrain,
+                         e = d(a * b[0], 0, 255),
+                         f = d(a * b[1], 0, 255),
+                         g = d(a * b[2], 0, 255);
+                    if (fill(e, f, g), noStroke(), !this.o) {
+                         let a = 1;
+                         this.va &amp;&amp; 2 === this.m &amp;&amp; this.Q(new G(c.e.g + 1, c.e.f + 1), this.N) &amp;&amp; this.Q(new G(c.e.g - 1, c.e.f + 1), this.N) &amp;&amp; this.Q(new G(c.e.g - 1, c.e.f - 1), this.N) &amp;&amp; this.Q(new G(c.e.g + 1, c.e.f - 1), this.N) &amp;&amp; (a = 0), a &amp;&amp; circle(c.e.g * this.i + this.B, c.e.f * this.i + this.B, this.w)
+                    } else {
+                         let b = c.e.g - c.x.g,
+                              d = c.e.f - c.x.f;
+                         for (let e = 0; e &lt;= this.i; e++) circle(c.x.g * this.i + b * e + this.B, c.x.f * this.i + d * e + this.B, this.w);
+                         if (1 &lt; this.o &amp;&amp; this.Pa) {
+                              let a = (c.x.g + c.x.f) % (X * (ta || 21 &gt; X ? 2 : 1));
+                              if (a == (this.o + c.m) % X) {
+                                   e /= 2, f /= 2, g /= 2;
+                                   let b = ta ? X : 1.2 * (a + 2);
+                                   noFill(), stroke(e, f, g), strokeWeight(2 * this.lb), circle(c.x.g * this.i + this.B, c.x.f * this.i + this.B, this.w * b)
+                              }
+                         }
+                    }
+               }
+          })
+     }
+     xa() {
+          this.u.forEach(c =&gt; {
+               if (!c.H)
+                    if (1 === this.m &amp;&amp; this.o &gt;= Ma || 2 === this.m &amp;&amp; this.o &gt;= La || 3 === this.m &amp;&amp; this.o &gt;= pb || 4 === this.m &amp;&amp; this.o &gt;= ob) c.H = 1;
+                    else {
+                         randomSeed(Ab((Ba(ab, 16) * (this.o + 1) / (c.m + 1.1)).toString())), this.ja &amp;&amp; (this.ba = Cb(this.ba));
+                         let b, d = this.ba.length;
+                         for (let e = 0; e &lt; d; e++) {
+                              let a = this.ba[(e + Y) % d],
+                                   f = new G(c.e.g + a[0], c.e.f + a[1]);
+                              void 0 === b &amp;&amp; this.Q(f) &amp;&amp; (b = f)
+                         }
+                         void 0 === b ? c.H = 1 : (c.x = c.e, c.e = b, c.ka++, this.ya(c.e))
+                    }
+          }), this.o++
+     }
+     ma() {
+          do this.Ra(), this.xa(); while (this.u.some(a =&gt; !a.H));
+          if (1 &lt; this.m &amp;&amp; this.na) {
+               this.o = 0, this.va = 1, this.K();
+               do this.Ra(), this.xa(); while (this.u.some(a =&gt; !a.H))
+          }
+     }
+     la() {
+          let a = new S(this.h, this.ia, this.m);
+          a.E = this.E, a.ja = this.ja, a.na = this.na, this.hb ? a.M() : a.Z(), a.K();
+          do a.xa(); while (a.u.some(a =&gt; !a.H));
+          for (let [c, d] of a.u.entries()) d.ka &gt; this.Qa &amp;&amp; (this.Qa = d.ka), this.u[c].Oa = d.ka;
+          this.Z()
+     }
+     M() {
+          let c = this.h / 2;
+          for (let d = 0; d &lt; this.h; d++)
+               for (let a = 0; a &lt; this.h; a++) {
+                    let b = d * this.i - this.B * (d &lt; c ? 1 : -1),
+                         e = a * this.i - this.B * (a &lt; c ? 1 : -1),
+                         f = get(0 &gt; b ? 0 : b, 0 &gt; e ? 0 : e),
+                         g = 255;
+                    this.t[d][a] = 4 == this.m ? f[0] &lt; g || f[1] &lt; g || f[2] &lt; g ? 1 : 0 : 2 == this.m ? (f[0] &lt; g || f[1] &lt; g || f[2] &lt; g) &amp;&amp; (f[0] != ca[0] || f[1] != ca[1] || f[2] != ca[2]) &amp;&amp; !Ka(f) ? 0 : 1 : (f[0] &lt; g || f[1] &lt; g || f[2] &lt; g) &amp;&amp; !Ka(f) ? 0 : 1
+               }
+          this.Z()
+     }
+}
+class Za {
+     constructor(a, b, c) {
+          this.m = a, this.e = b, this.x = b, this.ka = 0, this.Oa = 0, this.H = 0, this.D = [];
+          for (let d = 0; 2 &gt; d; d++) this.D.push(c[d].slice())
+     }
+}
+class G {
+     constructor(a, b) {
+          this.g = a, this.f = b
+     }
+}
+let d, ub = 0,
+     oa = 20;
+
+function setup() {
+     T = min(windowWidth, windowHeight), noLoop(), createCanvas(l, l), background(255), fill(0), square(j, j, Da), d = new S(oa, da, 1), d.E = R, d.Pa = 1, d.M(), d.K(), d.la(), noStroke(), background(255), qa &amp;&amp; (noFill(), stroke(...q), strokeWeight(j), square(j / 2, j / 2, l - j), ea &amp;&amp; (stroke(...z), strokeWeight(A), square(j - A / 2, j - A / 2, Da + A))), noStroke();
+     let e = ceil(d.h / 12),
+          h = ~~(d.h / 1.2);
+     for (let b = 0; b &lt; yb; b++) {
+          let a = c(4, 6 + b, ~~(d.h / 2), ~~(d.h / 5)),
+               i = a / 2,
+               k = a / 4,
+               m = c(2, 4 + b, h - i, e + k) * d.i,
+               g = c(3, 5 + b, h - i, e + k) * d.i,
+               f = a * d.i;
+          if (sa &amp;&amp; m &lt; l / 2 &amp;&amp; g &lt; l / 2 &amp;&amp; (m = l - m, g = l - g), fill(0), circle(m, g, f), 2 &lt; c(42, 43 + b, 16)) {
+               let a = c(5, 7 + b, i, i),
+                    e = a * d.i,
+                    f = e / 2,
+                    h = m + c(6, 8 + b, a, -a / 2) * d.i,
+                    k = g + c(7, 9 + b, a, -a / 2) * d.i;
+               h = h &lt; j + f ? j + f : h, h = h &gt; l - j - f ? l - j - f : h, k = k &lt; j + f ? j + f : k, k = k &gt; l - j - f ? l - j - f : k, fill(255), circle(h, k, e), ub++
+          }
+     }
+     let i = [];
+     for (let j = 0; j &lt; ua; j++) {
+          let a, g, f, k = 0,
+               b = 1;
+          do {
+               let l = c(8 + k, 10 + j + k, ~~(d.h / (V ? 7 : 3)), V ? .5 : ~~(d.h / 12) + 1),
+                    m = l / 2,
+                    n = l / 4;
+               a = c(2, 4 + j, h - m, e + n) * d.i, g = c(3, 5 + j, h - m, e + n) * d.i, f = l * d.i, b = i.some(b =&gt; {
+                    let c = sqrt(abs(a - b.g) ** 2 + abs(g - b.f) ** 2);
+                    return c / d.i &lt; m + b.r
+               }), b ? k++ : i.push({
+                    g: a,
+                    f: g,
+                    r: m
+               })
+          } while (b &amp;&amp; k &lt; 54 - ua);
+          fill(...ca), circle(a, g, f)
+     }
+}
+
+function draw() {
+     d.ma(), Y++, d = new S(80, tb, 2), d.E = R, d.M(), d.K(), d.la(), d.ma(), Y++, d = new S(320, sb, 3), d.E = R, d.M(), d.K(), d.la(), d.ma(), Y = c(59, 60, 4), d = new S(320, rb, 4), d.E = 2, d.ja = 0, d.na = 0, d.M(), d.K(), d.la(), d.ma(), qa &amp;&amp; !Bb &amp;&amp; (noFill(), stroke(...q), strokeWeight(j), square(j / 2, j / 2, l - j), ea &amp;&amp; (stroke(...z), strokeWeight(A), square(j - A / 2, j - A / 2, Da + A)));
+     let a = get();
+     resizeCanvas(T, T, 0), image(a, 0, 0, T, T)
+}
+
+function Cb(b) {
+     for (let c, d, a = b.length; a;) d = ~~(random() * a--), c = b[a], b[a] = b[d], b[d] = c;
+     return b
+}
+
+function Ab(b) {
+     let c, d, e = 0;
+     for (c = 0; c &lt; b.length; c++) d = b.charCodeAt(c), e = (e &lt;&lt; 5) - e + d, e |= 0;
+     return e
+}
+
+function c(a, b, c, d = 0) {
+     let e = Ba(ab.substring(a, b), 16);
+     return (c ? e % c : e) + d
+}</pre></body></html>

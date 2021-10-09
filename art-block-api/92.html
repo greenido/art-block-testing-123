@@ -1,0 +1,287 @@
+<html><body><h1>Name: Libertad Parametrizada</h1><h3>Artist: zJorge</h3><h3>Description: Leaving a room doesn't free you, it only shifts you to a newly constrained space. Your freedom is bound by parameters. This is Parametric Freedom. Use arrows to control wind and gravity and space bar to stop animation. Type M or L to increase or decrease density. Would you like a PNG?  Just hit S.</h3><h3>https://ledezma.art/art-blocks/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;aspectRatio&quot;:&quot;1&quot;}</p><p>Script Type: p5js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x2672125fbbbfc8b5a9e22d4146ac918732f0948c</p><p>Additional Payee: 0x9d97b62d10e9a2e512c2aa9b2d496b9acd5ad1f6</p><p>Additional Payee Percentage: 0</p><p>Price: 0.119</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 243</p><p>Maximum Invocations: 243</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 92000000,92000001,92000002,92000003,92000004,92000005,92000006,92000007,92000008,92000009,92000010,92000011,92000012,92000013,92000014,92000015,92000016,92000017,92000018,92000019,92000020,92000021,92000022,92000023,92000024,92000025,92000026,92000027,92000028,92000029,92000030,92000031,92000032,92000033,92000034,92000035,92000036,92000037,92000038,92000039,92000040,92000041,92000042,92000043,92000044,92000045,92000046,92000047,92000048,92000049,92000050,92000051,92000052,92000053,92000054,92000055,92000056,92000057,92000058,92000059,92000060,92000061,92000062,92000063,92000064,92000065,92000066,92000067,92000068,92000069,92000070,92000071,92000072,92000073,92000074,92000075,92000076,92000077,92000078,92000079,92000080,92000081,92000082,92000083,92000084,92000085,92000086,92000087,92000088,92000089,92000090,92000091,92000092,92000093,92000094,92000095,92000096,92000097,92000098,92000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>const hashPairs = [];
+for (let j = 0; j &lt; 32; j++) hashPairs.push(tokenData.hash.slice(2 + 2 * j, 4 + 2 * j));
+const dcP = hashPairs.map(x =&gt; parseInt(x, 16));
+let pts = [{
+          c: [&quot;8ecae7&quot;, &quot;219ebc&quot;, &quot;023047&quot;, &quot;ffb703&quot;, &quot;fb8503&quot;]
+     }, {
+          c: [&quot;e63945&quot;, &quot;f1faee&quot;, &quot;a8dadc&quot;, &quot;457B9D&quot;, &quot;1D3557&quot;]
+     }, {
+          c: [&quot;8ecae7&quot;, &quot;219ebc&quot;, &quot;023047&quot;, &quot;ffb703&quot;, &quot;fb8500&quot;]
+     }, {
+          c: [&quot;006d76&quot;, &quot;83c5be&quot;, &quot;edf6f9&quot;, &quot;ffddd2&quot;, &quot;e29578&quot;]
+     }, {
+          c: [&quot;003048&quot;, &quot;d62828&quot;, &quot;f77f00&quot;, &quot;fcbf49&quot;, &quot;eae2b7&quot;]
+     }, {
+          c: [&quot;f4f1dd&quot;, &quot;3d405b&quot;, &quot;81b29a&quot;, &quot;f2cc8f&quot;]
+     }, {
+          c: [&quot;ef476e&quot;, &quot;ffd166&quot;, &quot;06d6a0&quot;, &quot;118ab2&quot;, &quot;073b4c&quot;]
+     }, {
+          c: [&quot;283d3b&quot;, &quot;772e25&quot;, &quot;197278&quot;, &quot;edddd4&quot;, &quot;c44536&quot;]
+     }, {
+          c: [&quot;ffbe0b&quot;, &quot;fb5607&quot;, &quot;ff006e&quot;, &quot;8338ec&quot;, &quot;3a86ff&quot;]
+     }, {
+          c: [&quot;9b5de5&quot;, &quot;f15bb5&quot;, &quot;fee440&quot;, &quot;00bbf9&quot;, &quot;00f5d4&quot;]
+     }, {
+          c: [&quot;ffbc42&quot;, &quot;d81159&quot;, &quot;8f2d56&quot;, &quot;218380&quot;, &quot;73d2de&quot;]
+     }, {
+          c: [&quot;335c67&quot;, &quot;fff3b0&quot;, &quot;e09f3e&quot;, &quot;9e2a2b&quot;, &quot;540b0e&quot;]
+     }, {
+          c: [&quot;233d4d&quot;, &quot;fe7f2d&quot;, &quot;fcca46&quot;, &quot;619b8a&quot;]
+     }, {
+          c: [&quot;227c9d&quot;, &quot;17c3b2&quot;, &quot;ffcb77&quot;, &quot;fef9ef&quot;, &quot;fe6d73&quot;]
+     }, {
+          c: [&quot;edae49&quot;, &quot;d1495b&quot;, &quot;00798c&quot;, &quot;30638e&quot;, &quot;003d5b&quot;]
+     }, {
+          c: [&quot;ff595e&quot;, &quot;ffca3a&quot;, &quot;8ac926&quot;, &quot;1982c4&quot;, &quot;6a4c93&quot;]
+     }, {
+          c: [&quot;2A9D8F&quot;, &quot;264652&quot;, &quot;E9C46A&quot;, &quot;E76F51&quot;]
+     }, {
+          c: [&quot;2364aa&quot;, &quot;3da5d9&quot;, &quot;73bfb8&quot;, &quot;fec601&quot;, &quot;ea7317&quot;]
+     }, {
+          c: [&quot;f8ffe5&quot;, &quot;06d6a0&quot;, &quot;1b9aaa&quot;, &quot;ef476f&quot;, &quot;ffc43d&quot;]
+     }, {
+          c: [&quot;586ba4&quot;, &quot;324376&quot;, &quot;f5dd90&quot;, &quot;f68e5f&quot;, &quot;f76c5e&quot;]
+     }, {
+          c: [&quot;fbd1a2&quot;, &quot;7dcfb6&quot;, &quot;00b2ca&quot;, &quot;1d4e89&quot;]
+     }, {
+          c: [&quot;114b5f&quot;, &quot;028090&quot;, &quot;e4fde1&quot;, &quot;456990&quot;, &quot;f45b69&quot;]
+     }, {
+          c: [&quot;3a2e39&quot;, &quot;1e555c&quot;, &quot;f4d8cd&quot;, &quot;edb183&quot;, &quot;f15152&quot;]
+     }, {
+          c: [&quot;a4243b&quot;, &quot;d8c99b&quot;, &quot;d8973c&quot;, &quot;bd632f&quot;, &quot;273e47&quot;]
+     }, {
+          c: [&quot;495867&quot;, &quot;577399&quot;, &quot;bdd5ea&quot;, &quot;f7f7ff&quot;, &quot;fe5f55&quot;]
+     }, {
+          c: [&quot;d62839&quot;, &quot;ba324f&quot;, &quot;175676&quot;, &quot;4ba3c3&quot;, &quot;cce6f4&quot;]
+     }],
+     c_a = [],
+     c_b = [],
+     c_c = [],
+     xa_s = [],
+     xb_s = [],
+     xc_s = [],
+     ya_s = [],
+     yb_s = [],
+     yc_s = [];
+for (let p = 0; p &lt; 200; p++) xa_s[p] = p, xb_s[p] = p, xc_s[p] = p, ya_s[p] = p, yb_s[p] = p, yc_s[p] = p;
+let dn = Math.floor(dcP[1] / 265 * 60 + 2),
+     m = Math.cbrt(dcP[2] / 265 * 3 - 1.5);
+Math.abs(m) &lt; .5 &amp;&amp; (m *= 3);
+let bg = {
+          h: 0,
+          s: 0,
+          l: 0
+     },
+     qc = {
+          h: 0,
+          s: 0,
+          l: 0
+     },
+     lado, clrStl, qFl, stl, op = 1,
+     s = 1.1,
+     lnta = !1,
+     vg = !1,
+     y_s = 0,
+     tlin = .012,
+     tlex = .012,
+     blin = .016,
+     blex = .008,
+     r1 = .4,
+     r2 = .5,
+     plt = pts[dcP[3] % pts.length],
+     avclrs = JSON.parse(JSON.stringify(plt.c));
+for (let n = 0; n &lt; avclrs.length; n++) avclrs[n] = toHSL(avclrs[n]);
+
+function bt() {
+     for (let n = 0; n &lt; avclrs.length; n++) {
+          var tst = avclrs[n];
+          Math.abs(bg.l - qc.l) &lt; Math.abs(tst.l - qc.l) &amp;&amp; Math.abs(qc.l - bg.l) &lt; 26 &amp;&amp; (bg = {
+               h: tst.h,
+               s: tst.s,
+               l: tst.l
+          })
+     }
+     fr = {
+          h: qc.h,
+          s: qc.s,
+          l: qc.l
+     };
+     for (let n = 0; n &lt; avclrs.length; n++) {
+          let tst = avclrs[n];
+          Math.abs(fr.l - qc.l) &lt; Math.abs(tst.l - qc.l) &amp;&amp; Math.abs(qc.l - fr.l) &lt; 25 &amp;&amp; tst.l != bg.l &amp;&amp; (fr = {
+               h: tst.h,
+               s: tst.s,
+               l: tst.l
+          })
+     }
+}
+let bga = avclrs.splice([dcP[4] % avclrs.length], 1);
+bg = bga[0];
+let qca = avclrs.splice([dcP[5] % avclrs.length], 1);
+qc = qca[0], bt();
+let qh, gl = {
+          h: qc.h,
+          s: qc.s,
+          l: qc.l
+     },
+     enCapa = &quot;0&quot;;
+
+function fg() {
+     var mc = Math.abs(qc.l - bg.l),
+          sc = Math.abs(qc.l - fr.l);
+     mc &lt; 30 &amp;&amp; (50 &lt; qc.l ? bg.l = qc.l - 35 : bg.l = qc.l + 35), sc &lt; 20 &amp;&amp; (50 &lt; qc.l ? fr.l = qc.l - 25 : fr.l = qc.l + 25)
+}
+let elw = 12,
+     elh = 28 + dcP[7] / 256 * 20,
+     grav = dcP[8] / 256 * 1.2 - .6,
+     wind = dcP[9] / 256 * 1.2 - .6;
+64 &lt; dcP[10] &amp;&amp; (lnta = !0, vg = !0), 192 &lt; dcP[10] &amp;&amp; (lnta = !0, vg = !1);
+let ws, hs, pad = 10;
+dcP[11] &lt; 128 &amp;&amp; (pad = 17, 36 &lt; elh &amp;&amp; (elh = 36));
+let lbr = pad / 100 + .05,
+     rbr = 1 - lbr,
+     hoyo = dcP[6] &gt; 205 + 2 * pad;
+dcP[12] &lt; 257 &amp;&amp; 216 &lt;= dcP[12] &amp;&amp; (clrStl = &quot;Rumba&quot;, 80 &lt; bg.l &amp;&amp; (bg.l = 95)), dcP[12] &lt; 208 &amp;&amp; (clrStl = &quot;Tritone&quot;), dcP[12] &lt; 160 &amp;&amp; (clrStl = &quot;Duotone&quot;, 95 &lt; dcP[12] &amp;&amp; (fr = {
+     h: bg.h,
+     s: bg.s / 2,
+     l: bg.l
+}, 50 &lt;= fr.l &amp;&amp; fr.l &lt;= 80 ? fr.l = (100 - fr.l) / 2 + fr.l : fr.l &lt;= 50 &amp;&amp; 20 &lt; fr.l ? fr.l = fr.l / 2 : 80 &lt; fr.l ? fr.l = bg.l - 20 : fr.l &lt;= 20 &amp;&amp; (fr.l = bg.l + 20))), dcP[12] &lt; 64 &amp;&amp; 30 &lt; dcP[12] &amp;&amp; (dcP[12] &lt;= 48 &amp;&amp; 30 &lt; dcP[12] &amp;&amp; bg.l &lt; 75 ? (clrStl = &quot;Mi-Teintes Fun&quot;, qc.s = 0, dcP[13] &lt; 200 &amp;&amp; (qFl = &quot;Wireframes&quot;), 60 &lt; bg.l ? (qc.l = 0, fr.l = 100) : (qc.l = 100, fr.l = 0)) : (clrStl = &quot;Monochrome&quot;, qc.l &lt; 75 &amp;&amp; 20 &lt; qc.l ? (bg = {
+     h: qc.h,
+     s: qc.s,
+     l: qc.l
+}, fr = {
+     h: qc.h,
+     s: qc.s,
+     l: qc.l
+}) : (bg = {
+     h: fr.h,
+     s: fr.s,
+     l: fr.l
+}, qc = {
+     h: bg.h,
+     s: bg.s,
+     l: bg.l
+}), 50 &lt; qc.l ? (bg.l = qc.l - 40, fr.l = qc.l + (100 - qc.l / 2)) : (bg.l = qc.l + 40, fr.l = qc.l / 2), bg.s = 5, 70 &lt; qc.l ? fr.l = qc.l - 50 : qc.l &lt; 30 &amp;&amp; (fr.l = qc.l + 50), 80 &lt; qc.s &amp;&amp; Math.abs(bg.l - 40) &lt; 15 &amp;&amp; (bg.s = bg.s / 4, fr.s = bg.s / 2), 23 &lt; Math.abs(bg.l - 50) &amp;&amp; (bg.s = 2, fr.s = bg.s / 2))), dcP[12] &lt;= 30 &amp;&amp; (clrStl = &quot;Grayscale&quot;, bg.s = 0, qc.s = 0, fr.s = fr.s + (100 - fr.s) / 2, dcP[12] &lt; 28 &amp;&amp; (fr.s = 0), fg()), dcP[12] &lt; 28 &amp;&amp; (clrStl = &quot;B&amp;W&quot;, bg.l = 5, fr.l = 90, qc.l = 95), dcP[12] &lt; 17 &amp;&amp; (bg.l = 95, fr.l = 10, qc.l = 5), -1 &lt; dcP[13] &amp;&amp; (qFl = &quot;Wireframes&quot;, op = 1), 95 &lt; dcP[13] &amp;&amp; (qFl = &quot;Filled&quot;, op = 1), 140 &lt; dcP[13] &amp;&amp; (qFl = &quot;Translucent&quot;, op = .6, &quot;Rumba&quot; == clrStl &amp;&amp; (bg.s = 0, fr.s = 0, dn &lt; 20 &amp;&amp; (dn += 10), bg.l &lt; 20 ? fr.l = 80 : 80 &lt; bg.l ? fr.l = 30 : bg.l &lt; 50 ? bg.l = bg.l / 4 : bg.l = .75 * (100 - bg.l) + bg.l));
+const seed = parseInt(tokenData.hash.slice(0, 16), 16);
+stl = dcP[18] &lt; 112 ? &quot;sharp&quot; : &quot;rounded&quot;, 240 &lt; dcP[18] &amp;&amp; (stl = &quot;pills&quot;);
+let mg = dcP[21] &lt; 96;
+class Random {
+     constructor(seed) {
+          this.seed = seed
+     }
+     random_dec() {
+          return this.seed ^= this.seed &lt;&lt; 13, this.seed ^= this.seed &gt;&gt; 17, this.seed ^= this.seed &lt;&lt; 5, (this.seed &lt; 0 ? 1 + ~this.seed : this.seed) % 1e3 / 1e3
+     }
+     random_between(a, b) {
+          return a + (b - a) * this.random_dec()
+     }
+     random_int(a, b) {
+          return floor(this.random_between(a, b + 1))
+     }
+     random_choice(x) {
+          return x[floor(this.random_between(0, .99 * x.length))]
+     }
+}
+let R = new Random(seed);
+
+function setup() {
+     colorMode(HSL), lado = windowWidth &lt; windowHeight ? windowWidth : windowHeight, createCanvas(lado, lado), ws = lado / 100, hs = lado / 100, elw = elw * ws / 10, elh = elh * ws / 10, dn &lt; 24 &amp;&amp; 15 &lt; pad ? (elh *= 1.8, elw *= 1.8) : dn &lt; 20 &amp;&amp; pad &lt; 15 ? (elh *= 1.6, elw *= 1.6, pad = 20, lbr = pad / 100 + .05, rbr = 1 - lbr) : pad &lt; 15 &amp;&amp; dcP[12] &lt; 196 &amp;&amp; (lnta = !0), background(bg.h, bg.s, bg.l);
+     for (let p = 0; p &lt; 200; p++) {
+          var la_x = xa_s.splice(R.random_int(0, xa_s.length), 1) / 2,
+               la_y = ya_s.splice(R.random_int(0, ya_s.length), 1) / 2;
+          c_a[p] = {
+               xPos: la_x,
+               yPos: la_y
+          }
+     }
+     for (let p = 0; p &lt; 180; p++) {
+          let la_x = xb_s.splice(R.random_int(0, xb_s.length), 1) / 2,
+               la_y = yb_s.splice(R.random_int(0, yb_s.length), 1) / 2;
+          c_b[p] = {
+               xPos: la_x,
+               yPos: la_y
+          }
+     }
+     for (let p = 0; p &lt; 160; p++) {
+          let la_x = xc_s.splice(R.random_int(0, xc_s.length), 1) / 2,
+               la_y = yc_s.splice(R.random_int(0, yc_s.length), 1) / 2;
+          c_c[p] = {
+               xPos: la_x,
+               yPos: la_y
+          }
+     }
+     dn &lt;= 30 &amp;&amp; (y_s = &quot;Rumba&quot; == clrStl &amp;&amp; 1 == hoyo ? 0 : dcP[4] / 256 - .5)
+}
+
+function draw() {
+     noStroke(), background(bg.h, bg.s, bg.l), enCapa = &quot;a&quot;;
+     for (let p = 0; p &lt; 3 * dn; p++) {
+          p % 6 == 0 &amp;&amp; (noStroke(), fill(bg.h, bg.s, bg.l, .06), rect(0, 0, windowWidth, windowHeight)), ccx = c_a[p].xPos / 100, ccx = (ccx + wind * ccx * (1 - ccx)) ** (1 - .5 * wind) * (100 - 2 * pad) + pad, c_a[p].yPos = c_a[p].yPos + 3 * y_s, 100 &lt; c_a[p].yPos &amp;&amp; (c_a[p].yPos = 0), c_a[p].yPos &lt; 0 &amp;&amp; (c_a[p].yPos = 100);
+          let fd = 1;
+          c_a[p].yPos &lt; 5 &amp;&amp; 0 != y_s &amp;&amp; (fd = c_a[p].yPos / 5), 95 &lt; c_a[p].yPos &amp;&amp; 0 != y_s &amp;&amp; (fd = (100 - c_a[p].yPos) / 5), stroke(qc.h, qc.s, qc.l, fd), fill(qc.h, qc.s, qc.l, fd), ccy = c_a[p].yPos / 100, ccy = (ccy + grav * ccy * (1 - ccy)) ** (1 - .5 * grav) * (100 - 2 * pad) + pad, cPt(.64 * elw, .64 * elh, ccx, ccy, m, p)
+     }
+     enCapa = &quot;b&quot;;
+     for (let p = 0; p &lt; 2 * dn + 1; p++) {
+          p % 4 == 0 &amp;&amp; (noStroke(), fill(bg.h, bg.s, bg.l, .04), rect(0, 0, windowWidth, windowHeight)), ccx = c_b[p].xPos / 100, ccx = (ccx + wind * ccx * (1 - ccx)) ** (1 - .5 * wind) * (100 - 2 * pad) + pad, c_b[p].yPos = c_b[p].yPos + 2 * y_s, 100 &lt; c_b[p].yPos &amp;&amp; (c_b[p].yPos = 0), c_b[p].yPos &lt; 0 &amp;&amp; (c_b[p].yPos = 100);
+          let fd = 1;
+          c_b[p].yPos &lt; 5 &amp;&amp; 0 != y_s &amp;&amp; (fd = c_b[p].yPos / 5), 95 &lt; c_b[p].yPos &amp;&amp; 0 != y_s &amp;&amp; (fd = (100 - c_b[p].yPos) / 5), stroke(qc.h, qc.s, qc.l, fd), fill(qc.h, qc.s, qc.l, fd), ccy = c_b[p].yPos / 100, ccy = (ccy + grav * ccy * (1 - ccy)) ** (1 - .5 * grav) * (100 - 2 * pad) + pad, cPt(elw, elh, ccx, ccy, m, p, fd)
+     }
+     var or = pad / 100 + .05,
+          ld = 1 - 2 * or;
+     1 == vg &amp;&amp; &quot;Tritone&quot; != clrStl &amp;&amp; aPt(bg), &quot;Tritone&quot; == clrStl &amp;&amp; (aPt(fr), bg.l &lt; 90 &amp;&amp; fr.l &lt; 90 ? stroke(255) : stroke(fr.h, fr.s - 10, fr.l - 20), strokeWeight(1 + floor(lado / 200)), noFill(), hoyo ? (circle(lado / 2, lado / 2, lado * ld), r1 = ld / 2, r2 = .6 * ld) : rect(lado * or, lado * or, lado * ld, lado * ld)), 1 == lnta &amp;&amp; &quot;Tritone&quot; != clrStl &amp;&amp; (stroke(fr.h, fr.s, fr.l), strokeWeight(1 + floor(lado / 200)), noFill(), hoyo ? (circle(lado / 2, lado / 2, lado * ld), r1 = ld / 2, r2 = .6 * ld) : rect(lado * or, lado * or, lado * ld, lado * ld)), enCapa = &quot;c&quot;;
+     for (let p = 0; p &lt; dn + 2; p++) {
+          ccx = c_c[p].xPos / 100, ccx = (ccx + wind * ccx * (1 - ccx)) ** (1 - .5 * wind) * (100 - 2 * pad) + pad, c_c[p].yPos = c_c[p].yPos + y_s, 100 &lt; c_c[p].yPos &amp;&amp; (c_c[p].yPos = 0), c_c[p].yPos &lt; 0 &amp;&amp; (c_c[p].yPos = 100);
+          let fd = 1;
+          c_c[p].yPos &lt; 5 &amp;&amp; 0 != y_s &amp;&amp; (fd = c_c[p].yPos / 5), 95 &lt; c_c[p].yPos &amp;&amp; 0 != y_s &amp;&amp; (fd = (100 - c_c[p].yPos) / 5), ccy = c_c[p].yPos / 100, ccy = (ccy + grav * ccy * (1 - ccy)) ** (1 - .5 * grav) * (100 - 2 * pad) + pad;
+          var dist = sqrt(abs(ccx * ws - lado / 2) ** 2 + abs(ccy * hs - lado / 2) ** 2);
+          1 == hoyo &amp;&amp; dist &gt; lado * r1 &amp;&amp; (fd = 10 * (r2 - dist / ws / 100), dist &gt; lado * r2 &amp;&amp; (fd = 0)), stroke(qc.h, qc.s, qc.l, fd), fill(qc.h, qc.s, qc.l, fd), cPt(1.36 * elw, 1.36 * elh, ccx, ccy, m, p, fd)
+     }
+}
+
+function cPt(elw, elh, ccx, ccy, m, p, fd = 1) {
+     if (r = .5 * elw, &quot;pills&quot; == stl &amp;&amp; (r = .98 * elw), &quot;sharp&quot; == stl &amp;&amp; (r = 0 * elw), lHz = (ccx + elw / ws) / 100 - lbr, rHz = (ccx - elw / ws) / 100 - rbr, tHz = (ccy + elh / ws) / 100 - lbr, bHz = (ccy - elh / ws) / 100 - rbr, -.001 &lt; lHz &amp;&amp; lHz &lt; .008 &amp;&amp; (ccx = ccx + 2e3 * lHz + 1), -.008 &lt; rHz &amp;&amp; rHz &lt; .001 &amp;&amp; (ccx = ccx + 2e3 * rHz + 1), 0 == y_s &amp;&amp; 1 == lnta) {
+          if (tHz &gt; -1 * tlex &amp;&amp; tHz &lt; tlin) return;
+          if (bHz &gt; -1 * blin &amp;&amp; bHz &lt; blex) return
+     }
+     cx = ccx * ws, cy = ccy * ws - elw * m / 2, aix = cx - elw, aiy = cy - elh + r, a1x = cx - elw, a1y = cy - elh + r / 3, a2x = cx - elw + r / 3, a2y = cy - elh + r / 3 * (m / 2), afx = cx - elw + r, afy = cy - elh + r * m / 2, bix = cx + elw - r, biy = cy - elh + elw * m - r * m / 2, b1x = cx + elw - r / 3, b1y = cy - elh + elw * m - r / 3 * (m / 2), b2x = cx + elw, b2y = cy - elh + elw * m + r / 3, bfx = cx + elw, bfy = cy - elh + elw * m + r, cix = cx + elw, ciy = cy + elh + elw * m - r, c1x = cx + elw, c1y = cy + elh + elw * m - r / 3, c2x = cx + elw - r / 3, c2y = cy + elh + elw * m - r / 3 * (m / 2), cfx = cx + elw - r, cfy = cy + elh + elw * m - r * m / 2, dix = cx - elw + r, diy = cy + elh + r * m / 2, d1x = cx - elw + r / 3, d1y = cy + elh + r / 3 * (m / 2), d2x = cx - elw, d2y = cy + elh - m - r / 3, dfx = cx - elw, dfy = cy + elh - r, 360 &lt; p &amp;&amp; (p -= 360), h = floor((ccx + ccy) * s + bg.h + p * s), 359 &lt; h &amp;&amp; (h -= 360), &quot;Wireframes&quot; == qFl ? (strokeWeight(.5 + lado / 500), noFill()) : noStroke(), &quot;Rumba&quot; == clrStl ? (stroke(h, 85, 50, fd * op), fill(h, 85, 50, fd * op), &quot;Wireframes&quot; == qFl ? (strokeWeight(.5 + lado / 500), noFill()) : noStroke()) : &quot;Tritone&quot; != clrStl &amp;&amp; &quot;c&quot; == enCapa &amp;&amp; p == dn + 1 &amp;&amp; abs(gl.l - 45) &lt; 20 &amp;&amp; 50 &lt; gl.s &amp;&amp; 1 == mg &amp;&amp; 25 &lt; ccx &amp;&amp; ccx &lt; 75 &amp;&amp; 25 &lt; ccy &amp;&amp; ccy &lt; 75 &amp;&amp; (fill(gl.h, gl.s, gl.l), &quot;Wireframes&quot; == qFl &amp;&amp; 15 &lt; dn ? (fill(gl.h, gl.s, gl.l, fd), noStroke()) : &quot;B&amp;W&quot; == clrStl &amp;&amp; bg.h &lt; 180 &amp;&amp; strokeWeight(.5 + lado / 500), (ccy &lt; 29 || 71 &lt; ccy) &amp;&amp; (floor(5 * ccy) % 2 != 1 &amp;&amp; floor(2 * ccy) % 3 != 2 || noFill()), (ccy &lt; 27 || 73 &lt; ccy) &amp;&amp; (floor(5 * ccy) % 3 != 0 &amp;&amp; floor(2 * ccy) % 3 != 1 || noFill())), &quot;sharp&quot; != stl ? (beginShape(), vertex(aix, aiy), bezierVertex(a1x, a1y, a2x, a2y, afx, afy), vertex(bix, biy), bezierVertex(b1x, b1y, b2x, b2y, bfx, bfy), vertex(cix, ciy), bezierVertex(c1x, c1y, c2x, c2y, cfx, cfy), vertex(dix, diy), bezierVertex(d1x, d1y, d2x, d2y, dfx, dfy)) : (beginShape(), vertex(aix, aiy), vertex(bix, biy), vertex(cix, ciy), vertex(dix, diy)), endShape(CLOSE)
+}
+
+function toHSL(min) {
+     var l = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(min),
+          r = parseInt(l[1], 16),
+          g = parseInt(l[2], 16),
+          b = parseInt(l[3], 16);
+     r /= 255, g /= 255, b /= 255;
+     var h, max = Math.max(r, g, b),
+          min = Math.min(r, g, b),
+          l = (max + min) / 2;
+     if (max == min) h = s = 0;
+     else {
+          var d = max - min,
+               s = .5 &lt; l ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+               case r:
+                    h = (g - b) / d + (g &lt; b ? 6 : 0);
+                    break;
+               case g:
+                    h = (b - r) / d + 2;
+                    break;
+               case b:
+                    h = (r - g) / d + 4
+          }
+          h /= 6
+     }
+     return {
+          h: h = Math.round(360 * h),
+          s: s = Math.round(100 * s),
+          l: l = Math.round(100 * l)
+     }
+}
+
+function aPt(fr) {
+     noFill(), stroke(fr.h, fr.s, fr.l), strokeWeight(lado * lbr), rect(lado * lbr / 2, lado * lbr / 2, lado - lado * lbr, lado - lado * lbr), !0 === hoyo &amp;&amp; circle(lado / 2, lado / 2, lado - lado * lbr)
+}
+
+function keyPressed() {
+     keyCode == RIGHT_ARROW &amp;&amp; wind &lt; .8 ? wind += .04 : keyCode == LEFT_ARROW &amp;&amp; -.8 &lt; wind &amp;&amp; (wind -= .04), keyCode == DOWN_ARROW &amp;&amp; y_s &lt; 1 &amp;&amp; (y_s += .01), keyCode == UP_ARROW &amp;&amp; -1 &lt; y_s &amp;&amp; (y_s -= .01), &quot; &quot; == key &amp;&amp; (y_s = 0), &quot;m&quot; == key &amp;&amp; dn &lt; 60 &amp;&amp; (dn += 1), &quot;l&quot; == key &amp;&amp; 1 &lt; dn &amp;&amp; (dn -= 1), &quot;s&quot; === key &amp;&amp; save(tokenData.hash + &quot;png&quot;)
+}</pre></body></html>

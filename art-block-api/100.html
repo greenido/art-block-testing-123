@@ -1,0 +1,332 @@
+<html><body><h1>Name: CENTURY</h1><h3>Artist: Casey REAS</h3><h3>Description: CENTURY is my homage to paintings and drawings from the twentieth century and the countless hours I’ve spent looking at them. The references span the origins of concrete and non-objective art to color-field painting and minimalism. The strongest direct reference is a series of pictures created by Ellsworth Kelly in the 1950s where he cut his paintings into pieces and reassembled them in different orders. CENTURY creates a distinct picture for each unique transaction hash, and you can “cut” and “reassemble” it in different ways by pressing ‘1’ on your keyboard. Press ‘2’ to put the slices in the original order. These are landscapes; they look best large and in motion running as live code.</h3><h3>https://reas.com</h3><hr/><p>Script JSON: {&quot;aspectRatio&quot;:&quot;1&quot;,&quot;type&quot;:&quot;p5js&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;animationLengthInSeconds&quot;:&quot;0&quot;,&quot;instructions&quot;:&quot;'1' for chaos|'2' for cosmos&quot;,&quot;curation_status&quot;:&quot;curated&quot;,&quot;version&quot;:&quot;1.0.0&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: '1' for chaos|'2' for cosmos</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x457ee5f723c7606c12a7264b52e285906f91eea6</p><p>Additional Payee: 0xa7f65175cb6c300eef56416e2189b138c67247bb</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1000</p><p>Maximum Invocations: 1000</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 100000000,100000001,100000002,100000003,100000004,100000005,100000006,100000007,100000008,100000009,100000010,100000011,100000012,100000013,100000014,100000015,100000016,100000017,100000018,100000019,100000020,100000021,100000022,100000023,100000024,100000025,100000026,100000027,100000028,100000029,100000030,100000031,100000032,100000033,100000034,100000035,100000036,100000037,100000038,100000039,100000040,100000041,100000042,100000043,100000044,100000045,100000046,100000047,100000048,100000049,100000050,100000051,100000052,100000053,100000054,100000055,100000056,100000057,100000058,100000059,100000060,100000061,100000062,100000063,100000064,100000065,100000066,100000067,100000068,100000069,100000070,100000071,100000072,100000073,100000074,100000075,100000076,100000077,100000078,100000079,100000080,100000081,100000082,100000083,100000084,100000085,100000086,100000087,100000088,100000089,100000090,100000091,100000092,100000093,100000094,100000095,100000096,100000097,100000098,100000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var seed = parseInt(tokenData.hash.slice(0, 16), 16);
+
+let ellipses = false;
+let janky = true;
+let randomized = true;
+let moreLines = false;
+let maxSlices = 50;
+let slices = [maxSlices];
+let sliceOrder = [];
+let numSlices = 0;
+let smallestSlice, largestSlice;
+let colorsA = ['#0771a6', '#ede8dc', '#d4cfc3', '#333d47'];
+let lineColorsA = ['#ede8dc', '#d4cfc3', '#eba490', '#333d47', '#0771a6', '#f78a6b'];
+let colorsB = ['#ad3914', '#ede8dc', '#d4cfc3', '#29333d'];
+let lineColorsB = ['#ede8dc', '#d4cfc3', '#eba490', '#29333d', '#ad3914', '#f78a6b'];
+let colorsC = ['#333333', '#555555'];
+let lineColorsC = ['#ececec', '#333333', '#666666', '#999999'];
+let colorsD = ['#2f2f30', '#DB909F', '#f0ece2'];
+let lineColorsD = ['#2f2f30', '#DB909F', '#f0ece2'];
+let colors = [];
+let lineColors = [];
+let bgcolor;
+let lineColorOptions = 0;
+let numQuads;
+let ells = [2];
+let ellipseAlpha = 255;
+let quads;
+let dim = 0;
+let r;
+let gg;
+
+function setup() {
+     dim = Math.min(window.innerWidth, window.innerHeight);
+     createCanvas(dim, dim, WEBGL);
+     pixelDensity();
+     r = new RND(seed);
+     smallestSlice = dim / 50;
+     largestSlice = dim / 4;
+     gg = createGraphics(dim, dim);
+     compose();
+}
+
+function draw() {
+     background(bgcolor);
+     translate(-dim / 2, -dim / 2);
+     updateBuffer();
+     sliceBuffer();
+     disc();
+}
+
+function keyPressed() {
+     if (key == '1') {
+          defineSlices();
+          randomSequence();
+     }
+     if (key == '2') {
+          orderedSequence();
+     }
+}
+
+function disc() {
+     fill(255);
+     noStroke();
+     translate(dim / 2, dim / 2);
+     disc4();
+     rotate(HALF_PI);
+     disc4();
+     rotate(HALF_PI);
+     disc4();
+     rotate(HALF_PI);
+     disc4();
+}
+
+function disc4() {
+     beginShape();
+     vertex(-dim / 2, -dim / 2);
+     vertex(0, -dim / 2);
+     let bdim = -dim / 2 * 0.552284749831;
+     bezierVertex(bdim, -dim / 2, -dim / 2, bdim, -dim / 2, 0);
+     endShape();
+}
+
+function compose() {
+     let rc = r.rb(0, 1);
+     if (rc &gt; 0.99) {
+          colors = colorsD;
+          lineColors = lineColorsD;
+     } else if (rc &gt; 0.95) {
+          colors = colorsC;
+          lineColors = lineColorsC;
+     } else if (rc &gt; 0.63) {
+          colors = colorsB;
+          lineColors = lineColorsB;
+     } else {
+          colors = colorsA;
+          lineColors = lineColorsA;
+     }
+     lineColorOptions = int(r.rb(2, lineColors.length + 1));
+     if (r.rb(0, 1) &gt; 0.1) {
+          ellipses = true;
+     } else {
+          ellipses = false;
+     }
+     if (r.rb(0, 1) &gt; 0.5 &amp;&amp; colors != colorsB &amp;&amp; colors != colorsD) {
+          ellipseAlpha = r.rb(204, 240);
+     } else {
+          ellipseAlpha = 255;
+     }
+     if (r.rb(0, 1) &gt; 0.95) {
+          moreLines = true;
+     } else {
+          moreLines = false;
+     }
+     if (r.rb(0, 1) &gt; 0.7) {
+          janky = true;
+     } else {
+          janky = false;
+     }
+     if (colors == colorsC) {
+          bgcolor = '#000000';
+     } else {
+          bgcolor = colors[int(r.rb(0, colors.length))];
+     }
+     if (ellipses) {
+          let edia1 = r.rb(dim * 0.5, dim * 1.75);
+          let ta = colors.slice();
+          removeArrayElement(ta, bgcolor);
+          let ec1 = ta[int(r.rb(0, ta.length))];
+          let ry1 = r.rb(0, dim * 0.4);
+          if (r.rb(0, 1) &gt; 0.5) {
+               ry1 = dim - ry1;
+          }
+          ells[0] = new RE(ec1, edia1, 0.57595867, ry1);
+          let edia2 = r.rb(dim * 0.33, dim * 1.0);
+          let ec2 = colors[int(r.rb(0, colors.length))];
+          let ry2 = r.rb(0, dim * 0.4);
+          if (r.rb(0, 1) &gt; 0.5) {
+               ry2 = dim - ry2;
+          }
+          ells[1] = new RE(ec2, edia2, -0.57595867, ry2);
+     }
+     numQuads = 8 + int(pow(r.rb(1, 0), 3) * 12);
+     if (moreLines) {
+          numQuads += 32;
+     }
+     quads = [numQuads];
+     for (let i = 0; i &lt; numQuads; i++) {
+          quads[i] = new RQ();
+     }
+     defineSlices();
+     if (r.rb(0, 1) &gt; 0.02) {
+          randomSequence();
+     } else {
+          orderedSequence();
+     }
+}
+
+function defineSlices() {
+     numSlices = 0;
+     let currentSlice = 0;
+     for (let x = 0; x &lt; dim; x += slices[currentSlice - 1].w) {
+          let currentCut = smallestSlice + (pow(r.rb(0, 1), 3) * largestSlice);
+          if (x + currentCut + smallestSlice &gt; dim) {
+               currentCut = dim - x;
+          }
+          slices[currentSlice] = new RS(x, currentCut);
+          currentSlice++;
+          numSlices++;
+     }
+}
+
+function randomSequence() {
+     randomized = true;
+     sliceOrder = [];
+     for (let i = 0; i &lt; numSlices; i++) {
+          append(sliceOrder, i);
+     }
+     sliceOrder = scrambleArray(sliceOrder);
+}
+
+function orderedSequence() {
+     randomized = false;
+     sliceOrder = [];
+     for (let i = 0; i &lt; numSlices; i++) {
+          append(sliceOrder, i);
+     }
+}
+
+function updateBuffer() {
+     gg.clear();
+     if (ellipses) {
+          for (let i = 0; i &lt; ells.length; i++) {
+               ells[i].display();
+          }
+     }
+     for (let i = 0; i &lt; numQuads; i++) {
+          quads[i].move();
+          quads[i].display();
+     }
+}
+
+function sliceBuffer() {
+     let x = 0;
+     for (let i = 0; i &lt; numSlices; i++) {
+          let which = sliceOrder[i];
+          if (i == 0 || i == numSlices - 1) {
+               slices[which].display(x);
+          } else {
+               if (janky == true &amp;&amp; randomized == true) {
+                    slices[which].display(x + slices[which].xoffset);
+               } else {
+                    slices[which].display(x);
+               }
+          }
+          x += slices[which].w;
+     }
+}
+
+class RQ {
+     constructor() {
+          this.th = r.rb(0, 1);
+          this.y1 = r.rb(-dim / 8, dim + dim / 8);
+          this.quadColor = lineColors[int(r.rb(0, lineColorOptions))];
+          this.y2 = this.y1;
+          this.y1off = r.rb(0, 1);
+          this.y2off = r.rb(0, 1);
+          this.angle = r.rb(0, TWO_PI);
+          this.speed = r.rb(0.01, 0.01);
+          this.scale = r.rb(dim / 100, dim / 25);
+          this.my = 0.0;
+          if (r.rb(0, 1) &gt; 0.5) {
+               this.y2 = this.y1 + (r.rb(dim / 16, dim) * -1);
+          } else {
+               this.y2 = this.y1 + r.rb(dim / 16, dim);
+          }
+          if (this.th &gt; 0.7) {
+               this.y1off = 2 + pow(this.y1off, 4) * dim / 50;
+               this.y2off = 2 + pow(this.y2off, 4) * dim / 50;
+          } else if (this.th &gt; 0.5) {
+               this.y1off = 2 + pow(this.y1off, 3) * dim / 70;
+               this.y2off = 2 + pow(this.y2off, 3) * dim / 70;
+          } else {
+               this.y1off = 2 + pow(this.y1off, 5) * dim / 80;
+               this.y2off = 2 + pow(this.y2off, 5) * dim / 80;
+          }
+     }
+     move() {
+          this.my = cos(this.angle) * this.scale;
+          this.angle = this.angle + this.speed;
+     }
+     display() {
+          gg.noStroke();
+          gg.fill(this.quadColor);
+          gg.beginShape();
+          gg.vertex(0, this.y1 + this.my);
+          gg.vertex(dim, this.y2 - this.my / 2);
+          gg.vertex(dim, this.y2 + this.y2off - this.my / 2);
+          gg.vertex(0, this.y1 + this.y1off + this.my);
+          gg.endShape();
+     }
+}
+
+class RE {
+     constructor(cin, din, ain, yin) {
+          this.x = r.rb(0, dim);
+          this.y = yin;
+          this.edia = din;
+          this.angle = ain;
+          this.rc = cin;
+          this.ellcolor = color(red(this.rc), green(this.rc), blue(this.rc), ellipseAlpha);
+     }
+     display() {
+          gg.noStroke();
+          gg.push();
+          gg.fill(this.ellcolor);
+          gg.translate(this.x, this.y);
+          gg.rotate(this.angle);
+          gg.ellipse(0, 0, this.edia, this.edia * 0.66);
+          gg.pop();
+     }
+}
+
+class RS {
+     constructor(xin, win) {
+          this.tx = xin;
+          this.w = win;
+          this.xoffset = int(r.rb(-dim / 100, dim / 100));
+     }
+     display(x) {
+          noStroke();
+          beginShape();
+          texture(gg);
+          vertex(x, 0, this.tx, 0);
+          vertex(x + this.w, 0, this.tx + this.w, 0);
+          vertex(x + this.w, dim, this.tx + this.w, dim);
+          vertex(x, dim, this.tx, dim);
+          endShape();
+     }
+}
+
+class RND {
+     constructor(seed) {
+          this.seed = seed
+     }
+     rd() {
+          this.seed ^= this.seed &lt;&lt; 13
+          this.seed ^= this.seed &gt;&gt; 17
+          this.seed ^= this.seed &lt;&lt; 5
+          return ((this.seed &lt; 0 ? ~this.seed + 1 : this.seed) % 1000) / 1000
+     }
+     rb(a, b) {
+          return a + (b - a) * this.rd()
+     }
+}
+
+function removeArrayElement(array, elem) {
+     var index = array.indexOf(elem);
+     if (index &gt; -1) {
+          array.splice(index, 1);
+     }
+}
+
+function scrambleArray(arr) {
+     let newarr = [];
+     let length = arr.length;
+     for (let i = 0; i &lt; length; i++) {
+          let choice = floor(map(r.rb(0, 1), 0, 1, 0, arr.length));
+          newarr.push(arr[choice]);
+          arr.splice(choice, 1);
+     }
+     return (newarr);
+}</pre></body></html>

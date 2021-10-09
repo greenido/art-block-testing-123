@@ -1,0 +1,1000 @@
+<html><body><h1>Name: dino pals</h1><h3>Artist: hideo</h3><h3>Description: Adorable prehistoric pets generated in a pseudo 3d space using vector graphics.
+Explore the different species, colors and personalities.</h3><h3>https://twitter.com/hideogenart</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;zdog&quot;,&quot;version&quot;:&quot;0.1.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;instructions&quot;:&quot;Drag to rotate&quot;,&quot;animationLengthInSeconds&quot;:&quot;3&quot;,&quot;interactive&quot;:&quot;true&quot;}</p><p>Script Type: zdog</p><p>Version: 0.1.0</p><p>Script Ratio: 1</p><p>Instructions: Drag to rotate</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xe18fc96ba325ef22746ada9a82d521845a2c16f8</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.05</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 100</p><p>Maximum Invocations: 100</p><p>License: NIFTY License</p><p>Token Ids: 76000000,76000001,76000002,76000003,76000004,76000005,76000006,76000007,76000008,76000009,76000010,76000011,76000012,76000013,76000014,76000015,76000016,76000017,76000018,76000019,76000020,76000021,76000022,76000023,76000024,76000025,76000026,76000027,76000028,76000029,76000030,76000031,76000032,76000033,76000034,76000035,76000036,76000037,76000038,76000039,76000040,76000041,76000042,76000043,76000044,76000045,76000046,76000047,76000048,76000049,76000050,76000051,76000052,76000053,76000054,76000055,76000056,76000057,76000058,76000059,76000060,76000061,76000062,76000063,76000064,76000065,76000066,76000067,76000068,76000069,76000070,76000071,76000072,76000073,76000074,76000075,76000076,76000077,76000078,76000079,76000080,76000081,76000082,76000083,76000084,76000085,76000086,76000087,76000088,76000089,76000090,76000091,76000092,76000093,76000094,76000095,76000096,76000097,76000098,76000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>const seed = parseInt(tokenData.hash.slice(0, 16), 16);
+class Random {
+     constructor(e) {
+          this.seed = e
+     }
+     rdec() {
+          return this.seed ^= this.seed &lt;&lt; 13, this.seed ^= this.seed &gt;&gt; 17, this.seed ^= this.seed &lt;&lt; 5, (this.seed &lt; 0 ? 1 + ~this.seed : this.seed) % 1e3 / 1e3
+     }
+     rbet(e, s) {
+          return e + (s - e) * this.rdec()
+     }
+     rch(e) {
+          return e[Math.floor(this.rbet(0, .99 * e.length))]
+     }
+}
+const R = new Random(seed),
+     wACol = [{
+          e: &quot;#edcaa4&quot;,
+          s: [&quot;#91c3ff&quot;, &quot;#ffbe4f&quot;],
+          c: &quot;rgba(185, 214, 250, 0.6)&quot;
+     }, {
+          e: &quot;#017a74&quot;,
+          s: [&quot;#1ea8e3&quot;, &quot;#8928a1&quot;],
+          c: &quot;rgba(254, 254, 254, 0.5)&quot;
+     }, {
+          e: &quot;#97b7bd&quot;,
+          s: [&quot;#c1cff7&quot;, &quot;#565961&quot;],
+          c: &quot;rgba(255, 255, 255, 0.3)&quot;
+     }, {
+          e: &quot;#0eb7c7&quot;,
+          s: [&quot;#5daef0&quot;, &quot;#0e74c7&quot;],
+          c: &quot;rgba(222, 240, 255, 0.3)&quot;
+     }, {
+          e: &quot;#8a1506&quot;,
+          s: [&quot;#827f7d&quot;, &quot;#f5eece&quot;],
+          c: &quot;rgba(74, 73, 72, 0.5)&quot;
+     }],
+     wCol = R.rch(wACol),
+     SIZE = Math.min(window.innerWidth, window.innerHeight);
+let svg = document.querySelector(&quot;svg&quot;);
+svg || (svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;), document.body.prepend(svg));
+const zoom = 5;
+let sceneWidth = 16,
+     sceneHeight = 16,
+     viewWidth = 5 * sceneWidth,
+     viewHeight = 5 * sceneHeight;
+svg.setAttribute(&quot;width&quot;, SIZE), svg.setAttribute(&quot;height&quot;, SIZE), svg.setAttribute(&quot;viewBox&quot;, `${-viewWidth/2}  ${-viewHeight/2} ` + `${viewWidth} ${viewHeight}`), svg.style.background = `linear-gradient(${wCol.s[0]}, ${wCol.s[1]})`, svg.style.margin = &quot;auto&quot;, svg.style.position = &quot;absolute&quot;, svg.style.top = 0, svg.style.right = 0, svg.style.bottom = 0, svg.style.left = 0;
+const TAU = Zdog.TAU,
+     cos = Math.cos,
+     sin = Math.sin;
+let scene = new Zdog.Anchor;
+scene.rotate.x = -.2;
+const eyeAvailC = [&quot;#034180&quot;, &quot;#c2280a&quot;, &quot;#400610&quot;, &quot;#810791&quot;, &quot;#048c24&quot;, &quot;#0676bd&quot;],
+     eyeC = R.rch(eyeAvailC),
+     avC = [{
+          p: &quot;#ed9907&quot;,
+          d: &quot;#d68a06&quot;,
+          l: &quot;#edf7e4&quot;,
+          m: &quot;#CC2255&quot;
+     }, {
+          p: &quot;#1aad69&quot;,
+          d: &quot;#16945a&quot;,
+          l: &quot;#d1badb&quot;,
+          m: &quot;#630427&quot;
+     }, {
+          p: &quot;#6744db&quot;,
+          d: &quot;#5837c4&quot;,
+          l: &quot;#f7f7d7&quot;,
+          m: &quot;#2f1a75&quot;
+     }, {
+          p: &quot;#1461de&quot;,
+          d: &quot;#1258c9&quot;,
+          l: &quot;#f2cdf7&quot;,
+          m: &quot;#570327&quot;
+     }, {
+          p: &quot;#7d5c41&quot;,
+          d: &quot;#6e5038&quot;,
+          l: &quot;#dbe8ff&quot;,
+          m: &quot;#630427&quot;
+     }, {
+          p: &quot;#eb1207&quot;,
+          d: &quot;#c70d04&quot;,
+          l: &quot;#fce4e1&quot;,
+          m: &quot;#140301&quot;
+     }, {
+          p: &quot;#2e2f45&quot;,
+          d: &quot;#232436&quot;,
+          l: &quot;#c5c5c9&quot;,
+          m: &quot;#f70757&quot;
+     }],
+     albP = {
+          p: &quot;#f7f7ed&quot;,
+          d: &quot;#edede1&quot;,
+          l: &quot;#ffffff&quot;,
+          m: &quot;#edb2b2&quot;
+     },
+     ebrsColor = &quot;#333&quot;,
+     isAlbDice = R.rdec(),
+     isAlb = isAlbDice &lt;= .01,
+     colors = isAlb ? albP : R.rch(avC),
+     finsColor = isAlb ? albP.d : &quot;#fc6d00&quot;,
+     dinoTypes = [&quot;rex&quot;, &quot;diplo&quot;, &quot;raptor&quot;, &quot;tricera&quot;, &quot;stego&quot;],
+     DT = R.rch(dinoTypes),
+     mDice = R.rdec(),
+     mType = &quot;tricera&quot; === DT ? &quot;beak&quot; : mDice &lt; .1 ? &quot;sad&quot; : mDice &lt; .3 ? &quot;meh&quot; : mDice &lt; .5 ? &quot;beak&quot; : mDice &lt; .7 ? &quot;surprised&quot; : &quot;happy&quot;,
+     ebrDice = R.rdec(),
+     ebrType = ebrDice &lt; .2 ? &quot;angry&quot; : ebrDice &lt; .4 ? &quot;sad&quot; : ebrDice &lt; .6 ? &quot;neutral&quot; : &quot;none&quot;,
+     commonEye = {
+          s: R.rbet(2, 6),
+          a: R.rbet(-1.2, 0)
+     },
+     legsLength = R.rbet(7, 13),
+     PRE = {
+          rex: {
+               H: {
+                    s: R.rbet(12, 15),
+                    l: R.rbet(2, 4),
+                    a: R.rbet(-.15, .15)
+               },
+               E: commonEye,
+               T: {
+                    s: R.rbet(9, 11),
+                    l: R.rbet(7, 11),
+                    a: R.rbet(.14 * -TAU, .08 * -TAU),
+                    st: {
+                         x: 0,
+                         y: 2
+                    }
+               },
+               N: {
+                    s: 5.4,
+                    a: .2 * -TAU,
+                    l: 7
+               },
+               TH: {
+                    l: R.rbet(5, 7),
+                    s: 8,
+                    a: .15 * TAU
+               },
+               C: {
+                    l: R.rbet(5, 7),
+                    s: 6,
+                    a: R.rbet(.32 * TAU, .39 * TAU)
+               },
+               F: {
+                    s: 4.5,
+                    l: 5,
+                    a: .15 * TAU
+               },
+               TO: !0,
+               A: {
+                    s: 2.5,
+                    l: R.rbet(2.5, 3.5),
+                    a: R.rbet(.15 * TAU, .25 * TAU)
+               },
+               FO: {
+                    s: 2.4,
+                    l: R.rbet(2.5, 3.5),
+                    a: R.rbet(.03 * TAU, .07 * TAU)
+               },
+               TA: R.rbet(.45 * TAU, .55 * TAU),
+               TL: [{
+                    s: 9,
+                    l: R.rbet(4, 6)
+               }, {
+                    s: 6.5,
+                    l: R.rbet(6, 8)
+               }, {
+                    s: 4.5,
+                    l: R.rbet(9, 11)
+               }]
+          },
+          diplo: {
+               H: {
+                    s: R.rbet(6, 9),
+                    l: R.rbet(2.5, 3),
+                    a: R.rbet(-.1, .1)
+               },
+               E: commonEye,
+               T: {
+                    s: R.rbet(11, 13),
+                    l: R.rbet(9, 13),
+                    a: 0,
+                    st: {
+                         x: 0,
+                         y: 12
+                    }
+               },
+               N: {
+                    s: R.rbet(5, 6),
+                    a: R.rbet(.24 * -TAU, .2 * -TAU),
+                    l: R.rbet(20, 35)
+               },
+               TH: {
+                    l: .6 * legsLength,
+                    s: 7,
+                    a: .2 * TAU
+               },
+               C: {
+                    l: .4 * legsLength,
+                    s: 6,
+                    a: .28 * TAU
+               },
+               F: {
+                    s: 0,
+                    l: 0,
+                    a: .15 * TAU
+               },
+               TO: !1,
+               A: {
+                    s: 5,
+                    l: .6 * legsLength,
+                    a: .25 * TAU
+               },
+               FO: {
+                    s: 5,
+                    l: .5 * legsLength,
+                    a: .22 * TAU
+               },
+               TA: .55 * -TAU,
+               TL: [{
+                    s: 8,
+                    l: R.rbet(9, 12)
+               }, {
+                    s: 6,
+                    l: R.rbet(6, 8)
+               }, {
+                    s: 4,
+                    l: R.rbet(9, 12)
+               }]
+          },
+          raptor: {
+               H: {
+                    s: R.rbet(7.5, 8.5),
+                    l: R.rbet(4, 6),
+                    a: 0
+               },
+               E: commonEye,
+               T: {
+                    s: 9,
+                    l: R.rbet(11, 14),
+                    a: R.rbet(.05 * -TAU, .07 * TAU),
+                    st: {
+                         x: -2,
+                         y: 0
+                    }
+               },
+               N: {
+                    s: R.rbet(5, 6),
+                    a: .1 * -TAU,
+                    l: R.rbet(11, 13)
+               },
+               TH: {
+                    l: R.rbet(7, 8),
+                    s: 8,
+                    a: R.rbet(.13 * TAU, .18 * TAU)
+               },
+               C: {
+                    l: R.rbet(6, 8),
+                    s: 6,
+                    a: .37 * TAU
+               },
+               F: {
+                    s: 4.5,
+                    l: R.rbet(5, 7),
+                    a: .15 * TAU
+               },
+               TO: !0,
+               A: {
+                    s: 4,
+                    l: 5,
+                    a: .2 * TAU
+               },
+               FO: {
+                    s: 3,
+                    l: 5,
+                    a: .05 * TAU
+               },
+               TA: .55 * TAU,
+               TL: [{
+                    s: 7,
+                    l: 5
+               }, {
+                    s: 5,
+                    l: 10
+               }, {
+                    s: 4,
+                    l: 12
+               }]
+          },
+          tricera: {
+               H: {
+                    s: R.rbet(10, 14),
+                    l: R.rbet(3, 5),
+                    a: R.rbet(.2, .4)
+               },
+               E: commonEye,
+               T: {
+                    s: R.rbet(13, 15),
+                    l: R.rbet(10, 12),
+                    a: .12,
+                    st: {
+                         x: -5,
+                         y: 2
+                    }
+               },
+               N: {
+                    s: 8,
+                    a: .05 * -TAU,
+                    l: R.rbet(7, 9)
+               },
+               TH: {
+                    l: .5 * legsLength,
+                    s: 7,
+                    a: .2 * TAU
+               },
+               C: {
+                    l: .5 * legsLength,
+                    s: 6.5,
+                    a: .28 * TAU
+               },
+               F: {
+                    s: 0,
+                    l: 0,
+                    a: .15 * TAU
+               },
+               TO: !1,
+               A: {
+                    s: 5,
+                    l: .5 * legsLength,
+                    a: .25 * TAU
+               },
+               FO: {
+                    s: 4.6,
+                    l: .5 * legsLength,
+                    a: .22 * TAU
+               },
+               TA: R.rbet(.55 * -TAU, .49 * -TAU),
+               TL: [{
+                    s: 8,
+                    l: 4
+               }, {
+                    s: 7,
+                    l: 6
+               }, {
+                    s: 4,
+                    l: 8
+               }]
+          },
+          stego: {
+               H: {
+                    s: R.rbet(7, 8),
+                    l: R.rbet(3, 5),
+                    a: R.rbet(.2, .4)
+               },
+               E: commonEye,
+               T: {
+                    s: R.rbet(13, 15),
+                    l: R.rbet(10, 12),
+                    a: .12,
+                    st: {
+                         x: -5,
+                         y: -4
+                    }
+               },
+               N: {
+                    s: 5,
+                    a: .03 * -TAU,
+                    l: R.rbet(10, 12)
+               },
+               TH: {
+                    l: .5 * legsLength,
+                    s: 7,
+                    a: .2 * TAU
+               },
+               C: {
+                    l: .4 * legsLength,
+                    s: 6.5,
+                    a: .28 * TAU
+               },
+               F: {
+                    s: 0,
+                    l: 0,
+                    a: .15 * TAU
+               },
+               TO: !1,
+               A: {
+                    s: 5,
+                    l: .5 * legsLength,
+                    a: .25 * TAU
+               },
+               FO: {
+                    s: 4.6,
+                    l: .5 * legsLength,
+                    a: .22 * TAU
+               },
+               TA: R.rbet(.5 * -TAU, .6 * -TAU),
+               TL: [{
+                    s: 8,
+                    l: 8
+               }, {
+                    s: 7,
+                    l: 6
+               }, {
+                    s: 4,
+                    l: 8
+               }]
+          }
+     },
+     T = {
+          ...PRE[DT].T,
+          st: {
+               x: 0,
+               y: 0,
+               ...PRE[DT].T.st
+          }
+     };
+T.end = eC(T);
+const N = {
+     ...PRE[DT].N,
+     st: {
+          x: T.end.x + .1 * T.s,
+          y: T.end.y - .1 * T.s
+     }
+};
+N.end = eC(N);
+const H = PRE[DT].H;
+H.st = {
+     x: N.end.x + .2 * H.s,
+     y: N.end.y - .2 * H.s
+}, H.end = eC(H);
+const m = {
+          diameter: R.rbet(1, 4),
+          stroke: R.rbet(.5, .8)
+     },
+     E = PRE[DT].E;
+E.co = {
+     x: H.st.x,
+     y: H.st.y + .5 * H.s * Math.sin(E.a),
+     z: .5 * H.s * Math.cos(E.a)
+};
+const pupil = {
+     s: .5 * E.s,
+     co: {
+          ...E.co,
+          x: E.co.x + .4 * E.s
+     }
+};
+let yStartOffset = &quot;sad&quot; === ebrType ? 1 : 0,
+     yEndOffset = &quot;angry&quot; === ebrType ? 1 : 0;
+const ebr = {
+          s: .75,
+          st: {
+               x: E.co.x,
+               y: E.co.y - E.s / 1.8 - yStartOffset,
+               z: E.co.z - E.s / 3
+          },
+          end: {
+               x: E.co.x,
+               y: E.co.y - E.s / 1.8 - yEndOffset,
+               z: E.co.z + E.s / 3
+          }
+     },
+     anotherEyebrow = {
+          ...ebr,
+          st: {
+               ...ebr.end,
+               z: ebr.st.z - 2 * E.co.z
+          },
+          end: {
+               ...ebr.st,
+               z: ebr.end.z - 2 * E.co.z
+          }
+     },
+     hip = {
+          s: 10,
+          st: {
+               ...T.st,
+               z: -2
+          },
+          end: {
+               ...T.st,
+               z: 2
+          }
+     },
+     TH = {
+          ...PRE[DT].TH,
+          st: {
+               ...T.st,
+               z: hip.st.z + .65 * hip.s
+          }
+     };
+TH.end = eC(TH), TH.end.z = hip.st.z + .65 * hip.s;
+const C = {
+     ...PRE[DT].C,
+     st: {
+          x: TH.end.x + .1 * TH.s,
+          y: TH.end.y + .1 * TH.s,
+          z: TH.end.z
+     }
+};
+C.end = eC(C), C.end.z = TH.end.z;
+const F = {
+     ...PRE[DT].F,
+     st: {
+          x: C.end.x - .05 * C.s,
+          y: C.end.y + .1 * C.s,
+          z: C.end.z
+     }
+};
+F.end = eC(F), F.end.z = C.end.z;
+const toeMultiplier = R.rbet(.9, 1.2),
+     TO = PRE[DT].TO ? [{
+          s: 4 * toeMultiplier,
+          co: {
+               x: F.end.x + .5 * F.s,
+               y: F.end.y + .3 * F.s,
+               z: F.end.z
+          }
+     }, {
+          s: 3 * toeMultiplier,
+          co: {
+               x: F.end.x + .2 * F.s,
+               y: F.end.y + .3 * F.s,
+               z: F.end.z + .5 * F.s
+          }
+     }, {
+          s: 3 * toeMultiplier,
+          co: {
+               x: F.end.x + .2 * F.s,
+               y: F.end.y + .3 * F.s,
+               z: F.end.z - .5 * F.s
+          }
+     }] : [],
+     A = {
+          ...PRE[DT].A,
+          st: {
+               x: T.end.x,
+               y: T.end.y,
+               z: .5 * T.s
+          }
+     };
+A.end = eC(A), A.end.z = .5 * T.s;
+const FO = {
+     ...PRE[DT].FO,
+     st: {
+          x: A.end.x,
+          y: A.end.y,
+          z: .5 * T.s
+     }
+};
+FO.end = eC(FO), FO.end.z = .5 * T.s;
+let TL = [];
+TA = PRE[DT].TA, TL[0] = {
+     ...PRE[DT].TL[0],
+     a: TA,
+     st: {
+          x: T.st.x,
+          y: T.st.y
+     }
+}, TL[0].end = eC(TL[0]), TL[1] = {
+     ...PRE[DT].TL[1],
+     a: TA,
+     st: {
+          x: TL[0].end.x,
+          y: TL[0].end.y - .05 * TL[0].s
+     }
+}, TL[1].end = eC(TL[1]), TL[2] = {
+     ...PRE[DT].TL[2],
+     a: TA,
+     st: {
+          x: TL[1].end.x,
+          y: TL[1].end.y - .05 * TL[1].s
+     }
+}, TL[2].end = eC(TL[2]), TL[2].bezier = [{
+     x: TL[2].st.x - .2 * TL[2].s,
+     y: TL[2].st.y - .2 * TL[2].s
+}, {
+     x: TL[2].end.x + .2 * TL[2].s,
+     y: TL[2].end.y - .2 * TL[2].s
+}];
+const yRotation = R.rch([.1 * TAU, .4 * TAU]),
+     anchor = new Zdog.Anchor({
+          addTo: scene,
+          rotate: {
+               y: yRotation
+          }
+     });
+
+function buildDino() {
+     if (P(anchor, T, colors.d), TL.forEach(o =&gt; {
+               P(anchor, o, colors.d, o.extra)
+          }), P(anchor, hip, colors.d), P(anchor, N, colors.d), P(anchor, H, colors.p), ball(anchor, E, colors.l), ball(anchor, {
+               ...E,
+               co: {
+                    ...E.co,
+                    z: -E.co.z
+               }
+          }, colors.l), new Zdog.Hemisphere({
+               addTo: anchor,
+               diameter: 1.1 * E.s,
+               stroke: !1,
+               color: colors.p,
+               translate: E.co,
+               rotate: {
+                    y: .25 * TAU
+               }
+          }).copy({
+               translate: {
+                    ...E.co,
+                    z: -E.co.z
+               }
+          }), ball(anchor, pupil, eyeC), ball(anchor, {
+               ...pupil,
+               co: {
+                    ...pupil.co,
+                    z: -pupil.co.z
+               }
+          }, eyeC), &quot;none&quot; !== ebrType &amp;&amp; (P(anchor, ebr, ebrsColor), P(anchor, anotherEyebrow, ebrsColor)), &quot;beak&quot; === mType) {
+          const o = R.rbet(.8, 3),
+               e = {
+                    x: H.end.x + .2 * H.s,
+                    y: H.end.y + .27 * H.s,
+                    z: 0
+               };
+          P(anchor, {
+               s: m.stroke,
+               st: {
+                    x: H.end.x + .2 * H.s,
+                    y: H.end.y + .2 * H.s,
+                    z: -o / 2
+               },
+               end: e
+          }, colors.m), P(anchor, {
+               s: m.stroke,
+               st: {
+                    x: H.end.x + .2 * H.s,
+                    y: H.end.y + .2 * H.s,
+                    z: o / 2
+               },
+               end: e
+          }, colors.m)
+     } else if (&quot;meh&quot; === mType) {
+          const o = R.rbet(.8, 3);
+          P(anchor, {
+               st: {
+                    x: H.end.x + .2 * H.s,
+                    y: H.end.y + .2 * H.s,
+                    z: -o / 2
+               },
+               end: {
+                    x: H.end.x + .2 * H.s,
+                    y: H.end.y + .2 * H.s,
+                    z: o / 2
+               },
+               s: m.stroke
+          }, colors.m)
+     } else &quot;surprised&quot; === mType ? new Zdog.Ellipse({
+          addTo: anchor,
+          diameter: 1.2,
+          quarters: 4,
+          stroke: m.stroke,
+          color: colors.m,
+          translate: {
+               x: H.end.x + .2 * H.s,
+               y: H.end.y + H.s * (&quot;sad&quot; === mType ? .3 : .2)
+          },
+          rotate: {
+               x: &quot;sad&quot; == mType ? TAU / 2 : 0,
+               y: TAU / 4,
+               z: TAU / 4
+          }
+     }) : new Zdog.Ellipse({
+          addTo: anchor,
+          diameter: m.diameter,
+          quarters: 2,
+          stroke: m.stroke,
+          color: colors.m,
+          translate: {
+               x: H.end.x + .2 * H.s,
+               y: H.end.y + H.s * (&quot;sad&quot; === mType ? .3 : .2)
+          },
+          rotate: {
+               x: &quot;sad&quot; == mType ? TAU / 2 : 0,
+               y: TAU / 4,
+               z: TAU / 4
+          }
+     });
+     const o = new Zdog.Group({
+          addTo: anchor
+     });
+     P(o, TH, colors.p), P(o, C, colors.p), P(o, F, colors.d), TO.forEach(e =&gt; {
+          ball(o, e, colors.p)
+     }), o.copyGraph({
+          translate: {
+               z: -2 * TH.st.z
+          }
+     });
+     const e = new Zdog.Group({
+          addTo: anchor
+     });
+     P(e, A, colors.p), P(e, FO, colors.p), e.copyGraph({
+          translate: {
+               z: -T.s
+          }
+     });
+     const r = new Zdog.Anchor({
+          addTo: scene,
+          rotate: {
+               y: yRotation,
+               z: -.4
+          }
+     });
+     if (&quot;tricera&quot; === DT) {
+          new Zdog.Polygon({
+               addTo: r,
+               radius: .4 * H.s,
+               sides: 5,
+               stroke: 8,
+               color: colors.p,
+               translate: {
+                    x: H.st.x - .3 * H.s,
+                    y: H.st.y
+               },
+               rotate: {
+                    y: .25 * TAU
+               }
+          });
+          const o = horn(r, {
+               diameter: 3,
+               length: 5,
+               color: colors.l,
+               translate: {
+                    x: H.st.x,
+                    y: H.st.y - 2,
+                    z: .4 * -H.s
+               },
+               rotate: {
+                    y: .25 * -TAU
+               }
+          });
+          o.copy({
+               translate: {
+                    x: H.st.x,
+                    y: H.st.y - 2,
+                    z: .4 * H.s
+               }
+          }), o.copy({
+               translate: {
+                    x: H.st.x + .6 * H.s,
+                    y: 7
+               }
+          })
+     }
+     if (&quot;raptor&quot; === DT) {
+          const o = new Zdog.Group({
+                    addTo: anchor
+               }),
+               e = {
+                    x: FO.end.x - FO.s / 3,
+                    y: FO.end.y + FO.s / 2,
+                    z: FO.end.z
+               },
+               r = new Zdog.Ellipse({
+                    addTo: o,
+                    diameter: 4,
+                    quarters: 1,
+                    stroke: 1.2,
+                    color: colors.d,
+                    rotate: {
+                         z: .75
+                    },
+                    translate: e
+               });
+          r.copy({
+               stroke: 1,
+               translate: {
+                    ...e,
+                    z: FO.end.z + 1.2
+               }
+          }), r.copy({
+               stroke: 1,
+               translate: {
+                    ...e,
+                    z: FO.end.z - 1.2
+               }
+          }), o.copyGraph({
+               translate: {
+                    z: -2 * TH.st.z
+               }
+          })
+     }
+     if (&quot;stego&quot; === DT) {
+          const o = new Zdog.Group({
+                    addTo: anchor
+               }),
+               e = {
+                    addTo: o,
+                    radius: 1.8,
+                    sides: 5,
+                    stroke: 3,
+                    color: finsColor
+               },
+               r = new Zdog.Polygon({
+                    ...e,
+                    translate: {
+                         x: T.end.x,
+                         y: T.end.y - .6 * T.s,
+                         z: 2
+                    },
+                    rotate: {
+                         z: .05 * TAU
+                    }
+               });
+          r.copy({
+               translate: {
+                    x: T.end.x - 7,
+                    y: T.end.y - .7 * T.s,
+                    z: 2
+               },
+               rotate: {
+                    z: 0
+               },
+               stroke: 3.5,
+               radius: 2
+          }), r.copy({
+               translate: {
+                    x: T.end.x - 14,
+                    y: T.end.y - .6 * T.s,
+                    z: 2
+               },
+               rotate: {
+                    z: 2
+               }
+          }), r.copy({
+               translate: {
+                    x: T.st.x - 7,
+                    y: T.st.y - 3.2,
+                    z: 3
+               },
+               stroke: 2.3,
+               radius: 1.5,
+               rotate: {
+                    z: -2
+               }
+          }), o.copyGraph({
+               translate: {
+                    z: -4
+               }
+          }), P(anchor, {
+               st: {
+                    x: TL[2].end.x,
+                    y: TL[2].end.y - TL[2].s / 2,
+                    z: -1
+               },
+               end: {
+                    x: TL[2].end.x - .3,
+                    y: TL[2].end.y - TL[2].s / 2 - .5,
+                    z: -1
+               },
+               s: 1.5
+          }, colors.l).copy({
+               translate: {
+                    z: 2
+               }
+          })
+     }
+}
+
+function buildWorld() {
+     const o = {
+          co: {
+               y: hip.st.y + TH.l * sin(TH.a) + C.l * sin(C.a) + F.l * sin(F.a) + 100
+          },
+          s: 200
+     };
+     ball(anchor, o, wCol.e);
+     [{
+          x: -.2 + R.rbet(-.1, .1),
+          y: .1,
+          z: -.2 + R.rbet(-.1, .1)
+     }, {
+          x: .2 + R.rbet(-.1, .1),
+          y: .1,
+          z: .2 + R.rbet(-.1, .1)
+     }, {
+          x: -.2 + R.rbet(-.1, .1),
+          y: .1,
+          z: .2 + R.rbet(-.1, .1)
+     }, {
+          x: .2 + R.rbet(-.1, .1),
+          y: .1,
+          z: -.2 + R.rbet(-.1, .1)
+     }].forEach(e =&gt; {
+          cloud(anchor, e, {
+               y: o.co.y
+          }, 200 / 1.9 + 40 + R.rbet(10, 15))
+     })
+}
+
+function cloud(o, e, r, t) {
+     const s = r.y - t * cos(e.y),
+          n = ball(o, {
+               co: {
+                    x: t * sin(e.x),
+                    y: s,
+                    z: t * sin(e.z)
+               },
+               s: 10 + R.rbet(-1, 3)
+          }, wCol.c);
+     n.copy({
+          translate: {
+               x: t * sin(e.x - .04),
+               y: s,
+               z: t * sin(e.z)
+          },
+          stroke: 8 + R.rbet(-1, 2)
+     }), n.copy({
+          translate: {
+               x: t * sin(e.x),
+               y: s,
+               z: t * sin(e.z + .04)
+          },
+          stroke: 8 + R.rbet(-1, 2)
+     }), n.copy({
+          translate: {
+               x: t * sin(e.x + .04),
+               y: s,
+               z: t * sin(e.z + .04)
+          },
+          stroke: 8 + R.rbet(-1, 2)
+     })
+}
+
+function horn(o, e) {
+     return new Zdog.Cone({
+          addTo: o,
+          stroke: !1,
+          ...e
+     })
+}
+
+function ball(o, e, r) {
+     return new Zdog.Shape({
+          addTo: o,
+          stroke: e.s,
+          translate: e.co,
+          color: r
+     })
+}
+
+function P(o, e, r, t) {
+     const s = [e.st];
+     return e.bezier ? s.push({
+          bezier: [...e.bezier, e.end]
+     }) : s.push(e.end), new Zdog.Shape({
+          addTo: o,
+          stroke: e.s,
+          path: s,
+          color: r,
+          ...t
+     })
+}
+
+function eC(o) {
+     return {
+          x: o.st.x + o.l * cos(o.a),
+          y: o.st.y + o.l * sin(o.a)
+     }
+}
+buildDino(), buildWorld();
+let ticker = 0;
+const cycleCount = 150;
+
+function animate() {
+     if (ticker &lt; 150) {
+          const o = ticker / cycleCount;
+          scene.rotate.y = -Zdog.easeInOut(o % 1, 3) * TAU, ticker++
+     }
+     scene.updateGraph(), render(), requestAnimationFrame(animate)
+}
+
+function render() {
+     empty(svg), scene.renderGraphSvg(svg)
+}
+
+function empty(o) {
+     for (; o.firstChild;) o.removeChild(o.firstChild)
+}
+let dragStartRX, dragStartRY;
+animate(), new Zdog.Dragger({
+     startElement: svg,
+     onDragStart: function() {
+          dragStartRX = scene.rotate.x, dragStartRY = scene.rotate.y
+     },
+     onDragMove: function(o, e, r) {
+          rotateX = dragStartRX - r / SIZE * TAU, rotateY = dragStartRY - e / SIZE * TAU, rotateX &gt; -1 &amp;&amp; rotateX &lt; 0 &amp;&amp; (scene.rotate.x = rotateX), scene.rotate.y = rotateY
+     }
+});</pre></body></html>

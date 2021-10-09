@@ -1,0 +1,724 @@
+<html><body><h1>Name: Fidenza</h1><h3>Artist: Tyler Hobbs</h3><h3>Description: Fidenza is by far my most versatile algorithm to date. Although the program stays focused on structured curves and blocks, the varieties of scale, organization, texture, and color usage it can employ create a wide array of generative possibilities.</h3><h3>https://tylerxhobbs.com</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:0.833333,&quot;curation_status&quot;:&quot;curated&quot;,&quot;curationStatus&quot;:&quot;factory&quot;,&quot;license&quot;:&quot;CC BY-NC 4.0&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 0.833333</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x33c9371d25ce44a408f8a6473fbad86bf81e1a17</p><p>Additional Payee: 0xa7f65175cb6c300eef56416e2189b138c67247bb</p><p>Additional Payee Percentage: 0</p><p>Price: 0.17</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 999</p><p>Maximum Invocations: 999</p><p>License: Copyright Anticlassic Studios LLC, 2021</p><p>Token Ids: 78000000,78000001,78000002,78000003,78000004,78000005,78000006,78000007,78000008,78000009,78000010,78000011,78000012,78000013,78000014,78000015,78000016,78000017,78000018,78000019,78000020,78000021,78000022,78000023,78000024,78000025,78000026,78000027,78000028,78000029,78000030,78000031,78000032,78000033,78000034,78000035,78000036,78000037,78000038,78000039,78000040,78000041,78000042,78000043,78000044,78000045,78000046,78000047,78000048,78000049,78000050,78000051,78000052,78000053,78000054,78000055,78000056,78000057,78000058,78000059,78000060,78000061,78000062,78000063,78000064,78000065,78000066,78000067,78000068,78000069,78000070,78000071,78000072,78000073,78000074,78000075,78000076,78000077,78000078,78000079,78000080,78000081,78000082,78000083,78000084,78000085,78000086,78000087,78000088,78000089,78000090,78000091,78000092,78000093,78000094,78000095,78000096,78000097,78000098,78000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>const eps = Math.pow(2, -32),
+     m0 = 32557,
+     m1 = 19605,
+     m2 = 62509,
+     m3 = 22609,
+     a0 = 33103,
+     a1 = 63335,
+     a2 = 31614,
+     a3 = 5125,
+     state = new Uint16Array(4),
+     dv = new DataView(state.buffer);
+let _nG = null,
+     _hNG = !1;
+const rnd = () =&gt; {
+          const a = state[0],
+               b = state[1],
+               c = state[2],
+               e = state[3],
+               f = 0 | a0 + m0 * a,
+               g = 0 | a1 + m0 * b + (m1 * a + (f &gt;&gt;&gt; 16)),
+               h = 0 | a2 + m0 * c + m1 * b + (m2 * a + (g &gt;&gt;&gt; 16));
+          state[0] = f, state[1] = g, state[2] = h, state[3] = a3 + m0 * e + (m1 * c + m2 * b) + (m3 * a + (h &gt;&gt;&gt; 16));
+          const i = (e &lt;&lt; 21) + ((e &gt;&gt; 2 ^ c) &lt;&lt; 5) + ((c &gt;&gt; 2 ^ b) &gt;&gt; 11);
+          return eps * ((i &gt;&gt;&gt; (e &gt;&gt; 11) | i &lt;&lt; (31 &amp; -(e &gt;&gt; 11))) &gt;&gt;&gt; 0)
+     },
+     hash32 = (a, b = 0) =&gt; {
+          const c = 16,
+               e = 65535,
+               f = 255;
+          for (var g, j = 1540483477, m = a.length, n = b ^ m, o = 0; 4 &lt;= m;) g = a[o] &amp; f | (a[++o] &amp; f) &lt;&lt; 8 | (a[++o] &amp; f) &lt;&lt; 16 | (a[++o] &amp; f) &lt;&lt; 24, g = (g &amp; e) * j + (((g &gt;&gt;&gt; c) * j &amp; e) &lt;&lt; c), g ^= g &gt;&gt;&gt; 24, g = (g &amp; e) * j + (((g &gt;&gt;&gt; c) * j &amp; e) &lt;&lt; c), n = (n &amp; e) * j + (((n &gt;&gt;&gt; c) * j &amp; e) &lt;&lt; c) ^ g, m -= 4, ++o;
+          switch (m) {
+               case 3:
+                    n ^= (a[o + 2] &amp; f) &lt;&lt; c;
+               case 2:
+                    n ^= (a[o + 1] &amp; f) &lt;&lt; 8;
+               case 1:
+                    n ^= a[o] &amp; f, n = (n &amp; e) * j + (((n &gt;&gt;&gt; c) * j &amp; e) &lt;&lt; c);
+          }
+          return n ^= n &gt;&gt;&gt; 13, n = (n &amp; e) * j + (((n &gt;&gt;&gt; 16) * j &amp; e) &lt;&lt; 16), n ^= n &gt;&gt;&gt; 15, n &gt;&gt;&gt; 0
+     },
+     set_seed = a =&gt; {
+          _hNG = !1, _nG = null;
+          const b = ~~((a.length - 2) / 2),
+               c = [];
+          for (let e = 0; e &lt; b; e++) {
+               const b = 2 + 2 * e;
+               c.push(parseInt(a.slice(b, b + 2), 16))
+          }
+          const e = hash32(c, 1690382925),
+               f = hash32(c, 72970470);
+          dv.setUint32(0, e), dv.setUint32(4, f)
+     },
+     rng = (a, b) =&gt; (void 0 === b &amp;&amp; (b = a, a = 0), rnd() * (b - a) + a),
+     shffl = a =&gt; {
+          for (var b, c, e = a.length, f = [...a]; e;) b = ~~(rnd() * e--), c = f[e], f[e] = f[b], f[b] = c;
+          return f
+     },
+     gssn = (a = 0, b = 1) =&gt; {
+          if (_hNG) {
+               _hNG = !1;
+               var c = _nG;
+               return _nG = null, a + b * c
+          }
+          var e = 0,
+               f = 0,
+               g = 0;
+          do e = 2 * rnd() - 1, f = 2 * rnd() - 1, g = e * e + f * f; while (1 &lt;= g || 0 === g);
+          var h = Math.sqrt(-2 * Math.log(g) / g);
+          return _nG = f * h, _hNG = !0, a + b * (e * h)
+     },
+     nScts = 10;
+let c, ww, wh, wr, LX, RX, TY, BY, spc, z0, z1, z2, z3, z4, z5, z6, z7, sW, sH;
+const dw = 2e3,
+     dh = 2400,
+     V1 = 1,
+     V2 = 2,
+     V3 = 3,
+     V4 = 4,
+     V5 = 5,
+     V6 = 6,
+     V7 = 7;
+
+function setup() {
+     windowHeight &gt;= 1.2 * windowWidth ? (ww = windowWidth, wh = 1.2 * windowWidth) : (wh = windowHeight, ww = windowHeight / 1.2), wr = ww / dw, c = createCanvas(ww, wh), colorMode(HSB, 360, 100, 100, 100), set_seed(tokenData.hash), randomSeed(0), noiseSeed(0), LX = -500, RX = 2500, TY = -.25 * dh, BY = 1.25 * dh, spc = Math.floor(10), z0 = 2, z1 = 5, z2 = 10, z3 = 20, z4 = 40, z5 = 80, z6 = 160, z7 = 320, sW = dw / nScts, sH = dh / nScts
+}
+
+function w(a) {
+     return void 0 === a ? dw : dw * a
+}
+
+function h(a) {
+     return void 0 === a ? dh : dh * a
+}
+
+function vrtx(a, b) {
+     vertex(a * wr, b * wr)
+}
+
+function swght(a) {
+     strokeWeight(a * wr)
+}
+
+function pi(a) {
+     return Math.PI * a
+}
+
+function od(a) {
+     return rnd() &lt;= a
+}
+
+function rscl(a, b, c, e, f) {
+     return e + (a - b) * ((f - e) / (c - b))
+}
+
+function snp(a, b) {
+     let c = a % b;
+     return c &gt; .5 * b ? a + b - c : a - c
+}
+
+function adjFlw(a, b, c, e, f) {
+     for (let g = 0; g &lt; a.length; g++) {
+          const h = LX + spc * g;
+          for (let i = 0; i &lt; a[0].length; i++) {
+               const j = TY + spc * i,
+                    k = dist(b, c, h, j);
+               if (k &lt; e) {
+                    const b = rscl(k, 0, e, f, 0);
+                    a[g][i] += b
+               }
+          }
+     }
+}
+
+function adjFlw2(a, b, c, e, f) {
+     let g = w(1);
+     g = &quot;low&quot; === f ? w(.25) : (f = &quot;med&quot;) ? w(.18) : w(.12);
+     for (let h = 0; h &lt; a.length; h++) {
+          const f = LX + spc * h;
+          for (let i = 0; i &lt; a[0].length; i++) {
+               const j = TY + spc * i,
+                    k = dist(b, c, f, j),
+                    l = e ? pi(.025) : pi(-.025),
+                    m = l * sqrt(k / g);
+               a[h][i] += m
+          }
+     }
+}
+
+function flwP(a, b, c) {
+     const e = [];
+     for (let f = LX; f &lt; RX; f += spc) {
+          const b = [];
+          for (let e, g = TY; g &lt; BY; g += spc) e = a, c &amp;&amp; (e = angle(f, g, w(.5), h(.4)) - pi(.5), d = dist(f, g, w(.5), h(.5)), e += rscl(d, 0, w(1.5), 0, pi(1))), b.push(e);
+          e.push(b)
+     }
+     let f = 0,
+          g = 0;
+     &quot;none&quot; === b ? f = 0 : &quot;low&quot; === b ? (f = 15, g = pi(.1)) : &quot;med&quot; === b ? (f = 28, g = pi(.25)) : (f = 45, g = pi(.45)), c &amp;&amp; (f = 0);
+     for (let h = 0; h &lt; f; h++) {
+          const a = rng(LX, RX),
+               c = rng(TY, BY);
+          if (od(.7)) {
+               const b = gssn(0, g),
+                    f = Math.max(w(.1), Math.abs(gssn(w(.35), w(.15))));
+               adjFlw(e, a, c, f, b)
+          } else {
+               const f = od(.5);
+               adjFlw2(e, a, c, f, b)
+          }
+     }
+     return e
+}
+
+function flwL(a, b, c, e, f) {
+     const g = a.length,
+          h = a[0].length,
+          i = w(.007),
+          j = [];
+     for (let k = 0; k &lt; b.length; k++) {
+          const l = [],
+               m = Math.abs(gssn(c, .25 * c));
+          let n = b[k][0],
+               o = b[k][1];
+          for (let b = 0; b &lt; m; b++) {
+               l.push([n, o]);
+               const b = Math.floor((n - LX) / spc),
+                    c = Math.floor((o - TY) / spc);
+               let j = e;
+               0 &lt;= c &amp;&amp; c &lt; h &amp;&amp; 0 &lt;= b &amp;&amp; b &lt; g &amp;&amp; (j = a[b][c]), f &amp;&amp; (j = snp(j, pi(.2))), n += i * cos(j), o += i * sin(j)
+          }
+          j.push(l)
+     }
+     return j
+}
+
+function offset(a, b, c, e) {
+     return [a + e * cos(c), b + e * sin(c)]
+}
+
+function angle(b, c, e, f) {
+     const g = atan2(f - c, e - b);
+     return 0 &gt; g ? g + pi(2) : g
+}
+
+function pAng(a, b) {
+     return angle(a[0], a[1], b[0], b[1])
+}
+
+function fatTop(a, b) {
+     const c = [];
+     for (let e = 0; e &lt; a.length - 1; e++) {
+          let f = a[e],
+               g = a[e + 1];
+          const h = pAng(f, g),
+               i = f[0],
+               j = f[1];
+          c.push(offset(i, j, h - pi(.5), b))
+     }
+     let e = a[a.length - 2],
+          f = a[a.length - 1];
+     const g = pAng(e, f),
+          h = f[0],
+          i = f[1];
+     return c.push(offset(h, i, g - pi(.5), b)), c
+}
+
+function fatBot(a, b) {
+     const c = [];
+     for (let e = 0; e &lt; a.length - 1; e++) {
+          let f = a[e],
+               g = a[e + 1];
+          const h = pAng(f, g),
+               i = f[0],
+               j = f[1];
+          c.push(offset(i, j, h + pi(.5), b))
+     }
+     let e = a[a.length - 2],
+          f = a[a.length - 1];
+     const g = pAng(e, f),
+          h = f[0],
+          i = f[1];
+     return c.push(offset(h, i, g + pi(.5), b)), c
+}
+
+function fat(a, b) {
+     const c = fatTop(a, b),
+          e = fatBot(a, b);
+     return e.reverse(), c.concat(e)
+}
+
+function sctrs(a, b, c) {
+     const e = Math.max(0, Math.floor((a - c) / sW)),
+          f = Math.min(nScts - 1, Math.floor((a + c) / sW)),
+          g = Math.max(0, Math.floor((b - c) / sH)),
+          h = Math.min(nScts - 1, Math.floor((b + c) / sH)),
+          i = [];
+     for (let j = e; j &lt;= f; j++)
+          for (let a = g; a &lt;= h; a++) i.push([j, a]);
+     return i
+}
+
+function cllsn(a, b, c, e, f, g) {
+     if (g &amp;&amp; dist(a, b, w(.5), h(.4)) &lt;= 1.3 * c) return !0;
+     const j = sctrs(a, b, c);
+     for (let h = 0; h &lt; j.length; h++) {
+          let [g, i] = j[h];
+          const k = e[g][i];
+          for (const g of k) {
+               const [e, h, i, j] = g;
+               if (dist(a, b, e, h) &lt;= c + i &amp;&amp; f !== j) return !0
+          }
+     }
+     return !1
+}
+
+function cSegs(a, b, c, e, f, g, i, j, l, m, n) {
+     const o = [],
+          p = [];
+     for (let h = 0; h &lt; nScts; h++) {
+          const a = [];
+          for (let b = 0; b &lt; nScts; b++) a.push([]);
+          o.push(a)
+     }
+     let q = w(.03);
+     &quot;low&quot; === i &amp;&amp; (q = w(.07));
+     let r = w(.01);
+     &quot;low&quot; === i ? r = w(.02) : &quot;highAF&quot; == i &amp;&amp; (r = w(.007));
+     let s = [];
+     for (let k = 0; k &lt; b.length; k++) {
+          y = b[k];
+          for (let a = w(-.2); a &lt; w(1.2); a += r) {
+               const b = gssn(a, w(.005)),
+                    c = gssn(y, q);
+               (!j || dist(b, c, w(.5), h(.4)) &gt; w(.07)) &amp;&amp; s.push([b, c])
+          }
+     }
+     s = shffl(s);
+     const t = flwL(a, s, c, e, n);
+     for (let q = 0; q &lt; t.length; q++) {
+          const a = t[q];
+          let b = f();
+          b = m ? .65 * b : b;
+          const c = g ? b + w(.03) : w(-.1),
+               e = w() - c,
+               i = h() - (c + w(.015)),
+               r = q;
+          let n = [],
+               s = !1,
+               u = 0;
+          for (; u &lt; a.length;) {
+               const [f, g] = a[u];
+               if (f &gt;= c &amp;&amp; f &lt; e &amp;&amp; g &gt;= c &amp;&amp; g &lt; i &amp;&amp; (l || !cllsn(f, g, b, o, r, j))) {
+                    const h = 0 === n.length;
+                    if (!h) {
+                         for (const a of sctrs(f, g, b)) {
+                              const [c, e] = a;
+                              o[c][e].push([f, g, b, r])
+                         }
+                         n.push([f, g]), s = !0, u += 1
+                    } else {
+                         const f = Math.max(2, Math.floor(b / w(.001)));
+                         let g = !0;
+                         for (let h, j = 1; j &lt; f; j++) {
+                              if (h = u + j, h &gt;= a.length) {
+                                   g = !1;
+                                   break
+                              }
+                              const [f, k] = a[h];
+                              if (f &lt; c || f &gt;= e || k &lt; c || k &gt;= i || !l &amp;&amp; cllsn(f, k, b, o, r)) {
+                                   g = !1;
+                                   break
+                              }
+                         }
+                         if (g) {
+                              s = !0;
+                              for (let c = 0; c &lt; f; c++) {
+                                   const [c, e] = a[u];
+                                   for (const a of sctrs(c, e, b)) {
+                                        const [f, g] = a;
+                                        o[f][g].push([c, e, b, r])
+                                   }
+                                   n.push([c, e]), u += 1
+                              }
+                         } else u += 1, n = []
+                    }
+               } else s &amp;&amp; p.push({
+                    points: n,
+                    margin: b,
+                    id: r
+               }), s = !1, n = [], u += 1
+          }
+          2 &lt;= n.length &amp;&amp; p.push({
+               points: n,
+               margin: b,
+               id: r
+          })
+     }
+     return p
+}
+
+function lrp(a, b, c) {
+     return a * (1 - c) + b * c
+}
+
+function crvL(a) {
+     if (2 &gt; a.length) return 0;
+     let b = 0;
+     for (let c = 0; c &lt; a.length - 1; c++) {
+          const [e, f] = a[c], [g, h] = a[c + 1];
+          b += dist(e, f, g, h)
+     }
+     return b
+}
+
+function lerpCrv(a, b, c) {
+     const e = a[0],
+          f = a[a.length - 1];
+     if (0 &gt;= b) return e;
+     if (1 &lt;= b) return f;
+     if (2 === a.length) {
+          const a = lrp(e[0], f[0], b),
+               c = lrp(e[1], f[1], b);
+          return [a, c]
+     }
+     const g = c * b;
+     let h = 0;
+     for (let e = 1; e &lt; a.length; e++) {
+          const [b, c] = a[e - 1], [f, i] = a[e], j = dist(b, c, f, i), k = h + j;
+          if (k &gt; g) {
+               const a = g - h,
+                    e = a / j,
+                    k = lrp(b, f, e),
+                    l = lrp(c, i, e);
+               return [k, l]
+          }
+          h = k
+     }
+     return f
+}
+
+function wc(a) {
+     const b = rnd();
+     let c = 0;
+     for (let e = 0; e &lt; a.length - 1; e += 2) {
+          const f = a[e],
+               g = a[e + 1];
+          if (c += g, b &lt; c) return f
+     }
+     return a[a.length - 2]
+}
+
+function strokeSegment(a, b, c, e) {
+     stroke(a[0], a[1], a[2]), noFill(), swght(w(.001));
+     const f = b / w(4e-4),
+          g = rng(0, 1e4);
+     for (let h, i = 0; i &lt; f; i += 1) {
+          h = i / f, beginShape();
+          let a = .013 * (1 - c / w(1)),
+               b = gssn(2 * a, a),
+               j = gssn(1 - 2 * a, a);
+          for (let a = b; a &lt; j; a += .01) {
+               let b = noise(4 * (a * (c / w(.25))) + g, 1.5 * h),
+                    f = h + .15 * (.5 - b);
+               const [i, j] = e(a, f);
+               vrtx(i, j)
+          }
+          endShape()
+     }
+}
+
+function fSeg(a, b, c, e, f, g, h, i) {
+     fill(a[0], a[1], a[2]), b ? (stroke(0, 0, 10), swght(w(.001))) : (stroke(a[0], a[1], a[2]), swght(w(5e-4)));
+     const j = [],
+          k = [];
+     for (let l = f; l &lt; g; l += .01) j.push(l), k.unshift(l);
+     j.push(g), beginShape();
+     for (const k of j) {
+          const [a, b] = lerpCrv(c, k, h);
+          vrtx(a, b)
+     }
+     j.reverse();
+     for (const k of j) {
+          const [a, b] = lerpCrv(e, k, i);
+          vrtx(a, b)
+     }
+     endShape(CLOSE)
+}
+
+function pm1() {
+     return z1
+}
+
+function pm2() {
+     return wc([z0, .15, z1, .25, z2, .35, z3, .2, z4, .05])
+}
+
+function pm3() {
+     return wc([z1, .1, z2, .2, z3, .2, z4, .3, z5, .12, z6, .08])
+}
+
+function pm4() {
+     return wc([z1, .01, z2, .03, z3, .07, z4, .24, z5, .33, z6, .25, z7, .07])
+}
+
+function pm5() {
+     return wc([z3, .05, z4, .2, z5, .35, z6, .3, z7, .1])
+}
+
+function pm6() {
+     return wc([z5, .2, z6, .5, z7, .3])
+}
+
+function pm7() {
+     return z4
+}
+
+function pSL(a) {
+     const b = wc([w(.002), .15, w(.004), .4, w(.008), .3, w(.016), .15]);
+     return a === V1 ? .5 * b : a === V2 ? .75 * b : a === V5 ? 1.25 * b : a &gt;= V7 ? 2.5 * b : b
+}
+
+function pNStps(a, b) {
+     return b ? 16 : Math.min(1 / a, wc([0, .2, 1, .1, 2, .15, 4, .4, 8, .12, 16, .03]))
+}
+const wht = [40, 2, 98],
+     dRed = [358, 64, 86],
+     red = [358, 80, 82],
+     tan = [25, 40, 88],
+     midTan = [25, 40, 60],
+     orng = [25, 78, 90],
+     pOrng = [25, 68, 93],
+     pYllw = [43, 60, 99],
+     yllw = [43, 90, 99],
+     pnk = [11, 35, 97],
+     pPnk = [12, 18, 97],
+     xGrn = [125, 55, 55],
+     grn = [170, 75, 65],
+     pGrn = [170, 35, 80],
+     ppGrn = [160, 15, 85],
+     pppGrn = [160, 10, 90],
+     ppYllwGrn = [125, 12, 90],
+     ppBlue = [200, 15, 90],
+     pBlue = [200, 35, 75],
+     blue = [210, 65, 55],
+     dBlue = [220, 65, 35],
+     ddBlue = [225, 65, 20],
+     bgrndDBlue = [225, 60, 25],
+     paleIndigo = [220, 35, 75],
+     lavender = [260, 14, 88],
+     pBrwn = [28, 42, 39],
+     brwn = [25, 45, 33],
+     dBrwn = [25, 45, 23],
+     ddBrwn = [25, 45, 13],
+     nwsprnt = [40, 12, 88],
+     bgrndNws = [40, 8, 92],
+     blk = [0, 0, 10],
+     pbcDefault = function() {
+          return bgrndNws
+     },
+     pcLx = function() {
+          return wc([dRed, .05, red, .03, nwsprnt, .12, orng, .02, pYllw, .06, yllw, .06, pnk, .03, grn, .04, ppGrn, .18, ddBlue, .02, dBlue, .05, blue, .05, pBlue, .03, brwn, .17, dBrwn, .09, ddBrwn, .03])
+     },
+     pcLxD1 = function() {
+          return wc([dRed, .1, pYllw, .08, pnk, .13, grn, .2, ppGrn, .16, dBlue, .01, blue, .24, pBlue, .1, brwn, .02])
+     },
+     pcLxD2 = function() {
+          return wc([dRed, .12, red, .1, nwsprnt, .04, orng, .05, pYllw, .1, yllw, .14, pnk, .11, grn, .13, ppGrn, .05, dBlue, .01, blue, .12, pBlue, .05])
+     },
+     makeLxD = function() {
+          const a = [],
+               b = [.6, .12, .1, .05, .03, .01, .01, .01, .01, .01, .01, .01, .01, .01, .01];
+          for (let c, e = 0; 15 &gt; e; e++) {
+               if (c = null, 0 == e) c = pcLxD1();
+               else if (1 === e) {
+                    let a = c;
+                    for (; a === c;) a = pcLxD2();
+                    c = a
+               } else c = pcLx();
+               a.push(c), a.push(b[e])
+          }
+          return function() {
+               return wc(a)
+          }
+     },
+     pbcLx = function(a) {
+          return a &gt;= V6 ? wc([ddBlue, .19, bgrndNws, .3, ppGrn, .15, pBlue, .05, pnk, .1, blue, .1, grn, .05, dRed, .05, pYllw, .01]) : a &gt;= V4 ? wc([bgrndNws, .6, pBlue, .15, pppGrn, .1, pPnk, .1, bgrndDBlue, .05]) : wc([bgrndNws, .9, bgrndDBlue, .07, pppGrn, .03])
+     },
+     pcRad = function() {
+          return wc([wht, .6, dRed, .05, red, .02, nwsprnt, .05, orng, .05, pYllw, .05, yllw, .03, ppGrn, .01, blue, .01, pBlue, .04, brwn, .09])
+     },
+     pbcRad = function() {
+          return bgrndNws
+     },
+     pcBaked = function() {
+          return wc([wht, .2, pnk, .05, pPnk, .1, xGrn, .5, ppYllwGrn, .1, pBrwn, .05])
+     },
+     pbcBaked = function() {
+          return bgrndNws
+     },
+     pcCool = function() {
+          return wc([nwsprnt, .13, pYllw, .01, lavender, .03, grn, .1, pppGrn, .04, ppGrn, .04, ddBlue, .11, dBlue, .15, blue, .25, pBlue, .1, brwn, .01, dBrwn, .04, ddBrwn, .02])
+     },
+     pbcCool = function(a) {
+          return a &gt;= V6 ? wc([bgrndNws, .5, bgrndDBlue, .3, pnk, .15, blue, .05]) : wc([bgrndNws, .8, bgrndDBlue, .12, blue, .06, pPnk, .02])
+     },
+     pcBlack = function() {
+          return wc([bgrndNws, .15, blk, .85])
+     },
+     pbcBlack = function() {
+          return bgrndNws
+     },
+     pcPolitique = function() {
+          return wc([wht, .58, dRed, .02, pYllw, .2, pnk, .15, blue, .05])
+     },
+     pbcPolitique = function(a) {
+          return a &gt;= V6 ? wc([bgrndNws, .5, ppBlue, .5]) : wc([bgrndNws, .8, ppBlue, .2])
+     },
+     pcRetro = function() {
+          return wc([dRed, .07, red, .03, pOrng, .05, pYllw, .02, yllw, .15, brwn, .1, dBrwn, .58])
+     },
+     pbcRetro = function() {
+          return wc([nwsprnt, .7, pBlue, .2, wht, .1])
+     },
+     pcWhtMono = function() {
+          return wht
+     },
+     pbcWhtMono = function() {
+          return wc([dRed, .1, red, .1, nwsprnt, .01, orng, .1, pYllw, .04, yllw, .05, pnk, .1, grn, .1, ddBlue, .1, dBlue, .1, blue, .1, dBrwn, .02, ddBrwn, .02, blk, .09])
+     },
+     pcAM = function() {
+          return wc([
+               [260, 20, 20], .77, [240, 30, 35], .03, [300, 10, 50], .05, [180, 20, 30], .06, [130, 20, 70], .05, [5, 10, 80], .02, [5, 40, 90], .01, [40, 25, 90], .01
+          ])
+     },
+     pbcAM = function() {
+          return [260, 30, 30]
+     },
+     pcDarkLifestyle = function() {
+          return wc([
+               [0, 0, 13], .2, [0, 0, 16], .48, [0, 0, 19], .2, [0, 0, 22], .1, [0, 0, 25], .02
+          ])
+     },
+     pbcDarkLifestyle = function() {
+          return [0, 0, 10]
+     },
+     pcPartyGirl = function() {
+          return [350, gssn(65, 4), gssn(85, 4)]
+     },
+     pbcPartyGirl = function() {
+          return [225, 70, 20]
+     },
+     pcWhtOnCrm = function() {
+          return wht
+     },
+     pbcWhtOnCrm = function() {
+          return bgrndNws
+     },
+     pcGolfSocks = function() {
+          return wc([bgrndNws, .41, [210, 72, 45], .15, [210, 72, 30], .05, [0, 40, 95], .07, [6, 20, 95], .05, [130, 50, 30], .2, [32, 30, 99], .04, [32, 30, 30], .03])
+     },
+     pbcGolfSocks = function() {
+          return [130, 20, 50]
+     },
+     pcRose = function() {
+          return wc([
+               [150, 8, 40], .5, [160, 12, 25], .05, [350, 60, 90], .05, [350, 45, 80], .05, [350, 80, 70], .05, [6, 16, 100], .2, [15, 26, 97], .1
+          ])
+     },
+     pbcRose = function() {
+          return [150, 8, 30]
+     },
+     pMnCl = function(a, b, e, f) {
+          let g = a();
+          if (f || e &lt; w(.015)) return g;
+          for (; g === b;) g = a();
+          return g
+     };
+
+function draw() {
+     noLoop(), background(40, 10, 90);
+     let a = wc([V1, .03, V2, .01, V3, .04, V5, .18, V6, .5, V7, .04, V4, .2]),
+          b = wc([&quot;none&quot;, .15, &quot;low&quot;, .2, &quot;med&quot;, .45, &quot;high&quot;, .2]);
+     V7 === a &amp;&amp; (b = wc([&quot;none&quot;, .4, &quot;low&quot;, .3, &quot;med&quot;, .3]));
+     const c = wc([pi(.5), .1, pi(0), .1, pi(.25), .2, pi(.75), .2, pi(.05), .1, pi(.95), .1, pi(.45), .1, pi(.55), .1]),
+          d = wc([&quot;luxe&quot;, .55, &quot;gS&quot;, .1, &quot;rad&quot;, .09, &quot;bkd&quot;, .05, &quot;pltq&quot;, .05, &quot;wM&quot;, .04, &quot;AM&quot;, .03, &quot;rose&quot;, .02, &quot;blk&quot;, .02, &quot;cool&quot;, .01, &quot;wOC&quot;, .01, &quot;pG&quot;, .01, &quot;dL&quot;, .01, &quot;lD&quot;, .01]);
+     let e, f = null;
+     &quot;bkd&quot; === d ? (e = pcBaked, f = pbcBaked) : &quot;luxe&quot; === d ? (e = pcLx, f = pbcLx) : &quot;lD&quot; === d ? (e = makeLxD(), f = pbcLx) : &quot;cool&quot; === d ? (e = pcCool, f = pbcCool) : &quot;rad&quot; === d ? (e = pcRad, f = pbcRad) : &quot;pltq&quot; === d ? (e = pcPolitique, f = pbcPolitique) : &quot;retro&quot; === d ? (e = pcRetro, f = pbcRetro) : &quot;blk&quot; === d ? (e = pcBlack, f = pbcBlack) : &quot;wM&quot; === d ? (e = pcWhtMono, f = pbcWhtMono) : &quot;AM&quot; === d ? (e = pcAM, f = pbcAM) : &quot;dL&quot; === d ? (e = pcDarkLifestyle, f = pbcDarkLifestyle) : &quot;pG&quot; === d ? (e = pcPartyGirl, f = pbcPartyGirl) : &quot;wOC&quot; === d ? (e = pcWhtOnCrm, f = pbcWhtOnCrm) : &quot;gS&quot; === d ? (e = pcGolfSocks, f = pbcGolfSocks) : &quot;rose&quot; === d ? (e = pcRose, f = pbcRose) : (e = pcLx, f = pbcLx);
+     const g = a !== V7 &amp;&amp; od(.6);
+     let i = &quot;high&quot;;
+     i = a === V7 ? &quot;highAF&quot; : a === V6 ? &quot;high&quot; : a === V1 ? &quot;highAF&quot; : a === V2 ? wc([&quot;high&quot;, .6, &quot;med&quot;, .35, &quot;low&quot;, .05]) : wc([&quot;med&quot;, .7, &quot;high&quot;, .2, &quot;low&quot;, .1]);
+     const j = f(a);
+     background(j[0], j[1], j[2]);
+     let k = null;
+     a === V1 ? k = pm1 : a === V2 ? k = pm2 : a === V3 ? k = pm3 : a === V5 ? k = pm4 : a === V6 ? k = pm5 : a === V7 ? k = pm6 : a === V4 &amp;&amp; (k = pm7);
+     let l = 150;
+     a === V1 ? l = gssn(10, 10) : a === V2 ? l = gssn(40, 30) : a === V3 ? l = gssn(90, 50) : a === V5 ? l = gssn(150, 50) : a === V6 ? l = gssn(200, 50) : a === V7 &amp;&amp; (l = gssn(200, 50)), l = Math.max(5, l);
+     let m = [],
+          n = h(.017);
+     if (a === V1) {
+          h(.005)
+     } else if (a === V2) {
+          h(.01)
+     }
+     &quot;highAF&quot; === i ? n *= .5 : &quot;med&quot; === i ? n *= 2.5 : &quot;low&quot; === i &amp;&amp; (n *= 5);
+     for (let a = h(-.1); a &lt; h(1.101); a += n) m.push(a);
+     m = shffl(m);
+     const o = od(.04),
+          p = od(.15) &amp;&amp; a &gt; V1;
+     let q = !p &amp;&amp; od(.3);
+     const r = od(.025) &amp;&amp; &quot;wM&quot; !== d &amp;&amp; &quot;blk&quot; !== d &amp;&amp; &quot;dL&quot; !== d &amp;&amp; &quot;pG&quot; !== d &amp;&amp; &quot;wOC&quot; !== d,
+          s = !r &amp;&amp; od(.025) &amp;&amp; &quot;wM&quot; !== d &amp;&amp; &quot;blk&quot; !== d &amp;&amp; &quot;dL&quot; !== d &amp;&amp; &quot;pG&quot; !== d &amp;&amp; &quot;wOC&quot; !== d,
+          t = !p &amp;&amp; (&quot;blk&quot; === d || &quot;wOC&quot; === d || od(.2) &amp;&amp; 70 &lt; j[2] &amp;&amp; a &gt;= V5 &amp;&amp; &quot;pG&quot; !== d),
+          u = od(.04),
+          v = flwP(c, b, o),
+          x = cSegs(v, m, l, c, k, g, i, o, s, r, u);
+     for (const b of x) {
+          const d = b.margin;
+          if (2 &lt;= b.points.length) {
+               noStroke();
+               const f = pMnCl(e, j, d, t);
+               fill(f[0], f[1], f[2]), t ? (stroke(0, 0, 15), swght(w(.001))) : noStroke();
+               let c = z4;
+               d === z0 ? c = w(7e-4) : d === z1 ? c = w(.0019) : d === z2 ? c = w(.0038) : d === z3 ? c = w(.009) : d === z4 ? c = w(.0188) : d === z5 ? c = w(.0388) : d === z6 ? c = w(.078) : d === z7 &amp;&amp; (c = w(.157));
+               const g = fatTop(b.points, c),
+                    i = fatBot(b.points, c),
+                    k = fat(b.points, c),
+                    l = crvL(g),
+                    m = crvL(i);
+               if (p) strokeSegment(f, c, l, function(a, b) {
+                    const [c, d] = lerpCrv(g, a, l), [e, f] = lerpCrv(i, a, m);
+                    return [lrp(c, e, b), lrp(d, f, b)]
+               });
+               else {
+                    beginShape();
+                    for (const a of k) vrtx(a[0], a[1]);
+                    endShape(CLOSE);
+                    for (const b of [!0, !1]) {
+                         let d = pSL(a);
+                         q &amp;&amp; (d = 2 * c);
+                         let f = d / l;
+                         f = Math.floor(f * 10000) / 10000.0;
+                         const j = pNStps(f, q);
+                         if (0 &lt; j)
+                              if (b) {
+                                   for (let a = 0; a &lt; j * f + .001 - f; a += f) {
+                                        const b = a;
+                                        let c = a + f;
+                                        const d = e();
+                                        fSeg(d, t, g, i, b, c, l, m)
+                                   }
+                              } else {
+                                   for (let a = 1 - j * f; a &lt; 1 + f; a += f) {
+                                        const b = a;
+                                        let c = a + f;
+                                        .99 &lt; c &amp;&amp; 1 &gt; c &amp;&amp; (c = 1.0001);
+                                        const d = e();
+                                        fSeg(d, t, g, i, b, c, l, m)
+                                   }
+                              }
+                    }
+               }
+          }
+     }
+}</pre></body></html>

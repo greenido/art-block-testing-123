@@ -1,0 +1,98 @@
+<html><body><h1>Name: Gravity 12</h1><h3>Artist: Jimmy Herdberg</h3><h3>Description: GRAVITY 12 is an exploration of the connection between math, art and nature. A network of nodes creates a gravitational field through which energy flows.</h3><h3>https://herdberg.com</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;animationLengthInSeconds&quot;:&quot;30&quot;}</p><p>Script Type: p5js</p><p>Version: 1</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x60c38a49a6ee0b33f7ad559ca90800710da90766</p><p>Additional Payee: 0xe239d1737190cfbe55704ac8c43129c4db322b62</p><p>Additional Payee Percentage: 0</p><p>Price: 0.12</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 512</p><p>Maximum Invocations: 512</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 96000000,96000001,96000002,96000003,96000004,96000005,96000006,96000007,96000008,96000009,96000010,96000011,96000012,96000013,96000014,96000015,96000016,96000017,96000018,96000019,96000020,96000021,96000022,96000023,96000024,96000025,96000026,96000027,96000028,96000029,96000030,96000031,96000032,96000033,96000034,96000035,96000036,96000037,96000038,96000039,96000040,96000041,96000042,96000043,96000044,96000045,96000046,96000047,96000048,96000049,96000050,96000051,96000052,96000053,96000054,96000055,96000056,96000057,96000058,96000059,96000060,96000061,96000062,96000063,96000064,96000065,96000066,96000067,96000068,96000069,96000070,96000071,96000072,96000073,96000074,96000075,96000076,96000077,96000078,96000079,96000080,96000081,96000082,96000083,96000084,96000085,96000086,96000087,96000088,96000089,96000090,96000091,96000092,96000093,96000094,96000095,96000096,96000097,96000098,96000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var RNDS, _r, CMX, LOAD, CSZ, TTL, SQR, E, DIM = Math.min(window.innerWidth, window.innerHeight),
+     M = DIM / 1e3,
+     D2 = DIM / 2,
+     RSP = 1e-4,
+     _H = [];
+
+function setup() {
+     createCanvas(DIM, DIM), strokeWeight(M), noFill();
+     for (let t = 0; t &lt; 32; t++) _H.push(parseInt(tokenData.hash.slice(2 + 2 * t, 4 + 2 * t), 16) / 256);
+     _r = parseInt(tokenData.hash.slice(0, 16), 16), CMX = .05 + .2 * _H[2], LOAD = -.1 - .4 * _H[3], TTL = 40, CSZ = .25 &lt; _H[4] ? (SQR = .5 &lt; _H[9]) ? .5 &lt; _H[4] ? .75 : .98 : .61 : (SQR = 1, 1.1);
+     var e = parseInt(50 + 200 * _H[0]),
+          s = .6 - .4 * _H[0],
+          a = 1 + _H[0],
+          t = &quot;#001abf&quot;,
+          i = &quot;#008044&quot;,
+          o = &quot;#ffc800&quot;,
+          n = &quot;#d00900&quot;,
+          h = &quot;#df60b0&quot;,
+          l = &quot;#004080&quot;,
+          o = [
+               [t, i, o, n, h],
+               [t, i, o, &quot;#ff0900&quot;],
+               [t, o, n, h],
+               [n, o, h],
+               [i, h],
+               [i, o],
+               [l, h],
+               [l, i],
+               [n],
+               [h],
+               [o],
+               [&quot;#404040&quot;]
+          ],
+          d = o[parseInt(_H[5] * o.length)];
+     RNDS = _H[8] &lt; .1 ? (background(&quot;#00041f&quot;), blendMode(SCREEN), 24e3) : (background(&quot;#fff8e0&quot;), blendMode(MULTIPLY), 32e3), E = {
+          col: d[0]
+     };
+     for (let t = 0; t &lt; e; t++) Node.add(d[t % d.length], r(s), vectr(a))
+}
+
+function draw() {
+     translate(D2, D2);
+     for (var t = millis(); beginShape(), E = new Energy(E.col, TTL, vectr()), endShape(), millis() - t &lt; 30 &amp;&amp; --RNDS;);
+     RNDS || noLoop()
+}
+
+function r(t = 1, e = 0) {
+     return _R() * (t - e) + e
+}
+
+function vectr(t = 1) {
+     return createVector(1, 0).rotate(_R() * TWO_PI).mult(r(t))
+}
+
+function _R() {
+     return _r ^= _r &lt;&lt; 13, _r ^= _r &gt;&gt; 17, ((_r ^= _r &lt;&lt; 5) &lt; 0 ? 1 + ~_r : _r) % 1e3 / 1e3
+}
+Energy = class {
+     constructor(t, e, r) {
+          this.col = color(t), this.nrg = e, this.p = r, this.draw()
+     }
+     draw() {
+          var t = Node.gravity(this);
+          this.p.add(t);
+          t = 24 + 16 * (1 - Math.sqrt(1 / this.nrg));
+          this.col.setAlpha(t), stroke(this.col), (SQR &amp;&amp; Math.abs(this.p.x) &lt; CSZ &amp;&amp; Math.abs(this.p.y) &lt; CSZ || !SQR &amp;&amp; this.p.magSq() &lt; CSZ) &amp;&amp; (vertex(this.p.x * D2, this.p.y * D2), 1 &lt; --this.nrg &amp;&amp; this.draw())
+     }
+     mix(t) {
+          var e = 1 - CMX;
+          this.col = color(red(this.col) * e + red(t) * CMX, green(this.col) * e + green(t) * CMX, blue(this.col) * e + blue(t) * CMX)
+     }
+}, Node = class {
+     constructor(t, e, r) {
+          this.col = t, this.mag = e, this.pos = r, this.L = LOAD
+     }
+     static gravity(a) {
+          let i = vectr(0);
+          for (let s = 0; s &lt; Node._n.length; s++) {
+               let t = Node._n[s],
+                    e = t.pos.copy(),
+                    r = e.dist(a.p);
+               r &amp;&amp; (e.sub(a.p), e.setMag(t.getMag() / (100 * r)), i.add(e), r &lt; t.mag / 2 ? (a.mix(t.col), t.unload()) : t.reload())
+          }
+          return i
+     }
+     static add(t, e, r, s) {
+          Node._n = Node._n || [], Node._n.push(new Node(t, e, r))
+     }
+     getMag() {
+          return this.mag * this.L
+     }
+     reload() {
+          this.L &lt; 1 &amp;&amp; (this.L += RSP * RSP * this.mag)
+     }
+     unload() {
+          -1 &lt; this.L &amp;&amp; (this.L -= RSP * this.mag)
+     }
+};</pre></body></html>
