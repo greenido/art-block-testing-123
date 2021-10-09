@@ -1,0 +1,621 @@
+<html><body><h1>Name: Ignition</h1><h3>Artist: ge1doot</h3><h3>Description: Launched into crypto-space for the first time, I present my genesis project, a limited series of interactive 3D structures, rotating endlessly from their self-gravitational force. Each token minted is the result of a complex set of rules, an algorithm that processes the transaction hash and generates a unique piece of crypto-art. Purely written in JavaScript, using no external libraries or dependencies of any sort, these voyagers will forever be the testimony of hardcoded workmanship, a heritage of the old times. Deep space, do you copy?</h3><h3>https://twitter.com/ge1doot</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;js&quot;,&quot;version&quot;:&quot;N/A&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: js</p><p>Version: N/A</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x3f870d006185cb649c3261013fd86cc89b762f1e</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 512</p><p>Maximum Invocations: 512</p><p>License: NIFTY License</p><p>Token Ids: 9000000,9000001,9000002,9000003,9000004,9000005,9000006,9000007,9000008,9000009,9000010,9000011,9000012,9000013,9000014,9000015,9000016,9000017,9000018,9000019,9000020,9000021,9000022,9000023,9000024,9000025,9000026,9000027,9000028,9000029,9000030,9000031,9000032,9000033,9000034,9000035,9000036,9000037,9000038,9000039,9000040,9000041,9000042,9000043,9000044,9000045,9000046,9000047,9000048,9000049,9000050,9000051,9000052,9000053,9000054,9000055,9000056,9000057,9000058,9000059,9000060,9000061,9000062,9000063,9000064,9000065,9000066,9000067,9000068,9000069,9000070,9000071,9000072,9000073,9000074,9000075,9000076,9000077,9000078,9000079,9000080,9000081,9000082,9000083,9000084,9000085,9000086,9000087,9000088,9000089,9000090,9000091,9000092,9000093,9000094,9000095,9000096,9000097,9000098,9000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>&quot;use strict&quot;; {
+     const t = [],
+          e = [],
+          n = [],
+          s = {};
+     let o, i, r, a, c, h, l = 0,
+          f = 0,
+          u = !1,
+          v = !1,
+          m = 0,
+          d = 0,
+          p = 0,
+          g = !0,
+          y = 0,
+          x = 60,
+          b = null,
+          A = &quot;start&quot;,
+          w = 1;
+     &quot;undefined&quot; != typeof tokenData &amp;&amp; (w = parseInt(tokenData.hash.slice(0, 16), 16));
+     let z = .01,
+          C = 1e7,
+          D = 1;
+     const M = (t, e, n) =&gt; {
+               const s = e * Math.min(n, 1 - n),
+                    o = (e, o = (e + t / 30) % 12) =&gt; n - s * Math.max(Math.min(o - 3, 9 - o, 1), -1);
+               return [o(0), o(8), o(4)]
+          },
+          P = (t, e) =&gt; {
+               const n = document.querySelectorAll(t);
+               for (const t of n)
+                    for (let n in e) t.style[n] = e[n]
+          };
+     P(&quot;html,body&quot;, {
+          overflow: &quot;hidden&quot;,
+          position: &quot;absolute&quot;,
+          margin: 0,
+          padding: 0,
+          width: &quot;100%&quot;,
+          height: &quot;100%&quot;
+     }), P(&quot;canvas&quot;, {
+          position: &quot;absolute&quot;,
+          padding: 0,
+          margin: 0,
+          left: 0,
+          top: 0,
+          width: &quot;100%&quot;,
+          height: &quot;100%&quot;,
+          cursor: &quot;pointer&quot;,
+          touchAction: &quot;none&quot;,
+          userSelect: &quot;none&quot;
+     });
+     const E = {
+               x(t, e) {
+                    t[12] += t[0] * e, t[13] += t[1] * e, t[14] += t[2] * e
+               },
+               y(t, e) {
+                    t[12] += t[4] * e, t[13] += t[5] * e, t[14] += t[6] * e
+               },
+               z(t, e) {
+                    t[12] += t[8] * e, t[13] += t[9] * e, t[14] += t[10] * e
+               },
+               s(t, e) {
+                    const n = Array.isArray(e),
+                         s = n ? e[0] : e,
+                         o = n ? e[1] : s,
+                         i = n ? e[2] : s;
+                    t[0] *= s, t[1] *= s, t[2] *= s, t[3] *= s, t[4] *= o, t[5] *= o, t[6] *= o, t[7] *= o, t[8] *= i, t[9] *= i, t[10] *= i, t[11] *= i
+               },
+               rx(t, e) {
+                    const n = Math.PI * (e / 180),
+                         s = Math.sin(n),
+                         o = Math.cos(n),
+                         i = t[4],
+                         r = t[5],
+                         a = t[6],
+                         c = t[7],
+                         h = t[8],
+                         l = t[9],
+                         f = t[10],
+                         u = t[11];
+                    t[4] = i * o + h * s, t[5] = r * o + l * s, t[6] = a * o + f * s, t[7] = c * o + u * s, t[8] = i * -s + h * o, t[9] = r * -s + l * o, t[10] = a * -s + f * o, t[11] = c * -s + u * o
+               },
+               ry(t, e) {
+                    const n = Math.PI * (e / 180),
+                         s = Math.sin(n),
+                         o = Math.cos(n),
+                         i = t[0],
+                         r = t[1],
+                         a = t[2],
+                         c = t[3],
+                         h = t[8],
+                         l = t[9],
+                         f = t[10],
+                         u = t[11];
+                    t[0] = i * o + h * -s, t[1] = r * o + l * -s, t[2] = a * o + f * -s, t[3] = c * o + u * -s, t[8] = i * s + h * o, t[9] = r * s + l * o, t[10] = a * s + f * o, t[11] = c * s + u * o
+               },
+               rz(t, e) {
+                    const n = Math.PI * (e / 180),
+                         s = Math.sin(n),
+                         o = Math.cos(n),
+                         i = t[0],
+                         r = t[1],
+                         a = t[2],
+                         c = t[3],
+                         h = t[4],
+                         l = t[5],
+                         f = t[6],
+                         u = t[7];
+                    t[0] = i * o + h * s, t[1] = r * o + l * s, t[2] = a * o + f * s, t[3] = c * o + u * s, t[4] = i * -s + h * o, t[5] = r * -s + l * o, t[6] = a * -s + f * o, t[7] = c * -s + u * o
+               },
+               hue(t, e) {
+                    t[16] += e, t[16] %= 360
+               },
+               sat(t, e) {
+                    this.col(t, e, 17)
+               },
+               vhue(t, e) {
+                    t[16] = e
+               },
+               vsat(t, e) {
+                    t[17] = e
+               },
+               b(t, e) {
+                    this.col(t, e, 18)
+               },
+               col(t, e, n) {
+                    t[n] += e &gt; 0 ? e * (1 - t[n]) : e * t[n]
+               },
+               l(t, e) {
+                    t[18] = e
+               }
+          },
+          F = (e, n, s, o) =&gt; {
+               const i = _(e);
+               for (const t in n) E[t](i, n[t]);
+               i[22] = s, t.push(i), p += o
+          },
+          R = (t, e) =&gt; F(t, e, 2, 18),
+          S = (t, e) =&gt; F(t, e, 1, 36),
+          L = t =&gt; Math.min(t[0] * t[0] + t[1] * t[1] + t[2] * t[2], t[4] * t[4] + t[5] * t[5] + t[6] * t[6], t[8] * t[8] + t[9] * t[9] + t[10] * t[10]),
+          U = t =&gt; (w = 16807 * w % 2147483647, (w - 1) / 2147483646),
+          I = (t, e = 0) =&gt; (0 === e &amp;&amp; (e = t, t = 0), Math.floor(t + U() * (e - t + 1))),
+          T = (t, e) =&gt; {
+               const n = _(t);
+               n[19]++;
+               for (const t in e) E[t](n, e[t]);
+               return 0 === z || L(n) &lt; z &amp;&amp; (n[20] = -1), n
+          },
+          _ = t =&gt; [t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13], t[14], t[15], t[16], t[17], t[18], t[19], t[20], t[21], t[22]],
+          B = t =&gt; {
+               t[0] = 1, t[1] = 0, t[2] = 0, t[3] = 0, t[4] = 0, t[5] = 1, t[6] = 0, t[7] = 0, t[8] = 0, t[9] = 0, t[10] = 1, t[11] = 0, t[12] = 0, t[13] = 0, t[14] = 0, t[15] = 1
+          },
+          O = (t, e, n, s) =&gt; {
+               t[0] = 1, t[1] = 0, t[2] = 0, t[3] = 0, t[4] = 0, t[5] = 1, t[6] = 0, t[7] = 0, t[8] = 0, t[9] = 0, t[10] = 1, t[11] = 0, t[12] = e, t[13] = n, t[14] = s, t[15] = 1
+          },
+          q = (t, e, n) =&gt; {
+               const s = e[0],
+                    o = e[1],
+                    i = e[2],
+                    r = (e[3], e[4]),
+                    a = e[5],
+                    c = e[6],
+                    h = (e[7], e[8]),
+                    l = e[9],
+                    f = e[10],
+                    u = (e[11], e[12]),
+                    v = e[13],
+                    m = e[14];
+               e[15];
+               let d = n[0],
+                    p = n[1],
+                    g = n[2],
+                    y = n[3];
+               t[0] = d * s + p * r + g * h + y * u, t[1] = d * o + p * a + g * l + y * v, t[2] = d * i + p * c + g * f + y * m, d = n[4], p = n[5], g = n[6], y = n[7], t[4] = d * s + p * r + g * h + y * u, t[5] = d * o + p * a + g * l + y * v, t[6] = d * i + p * c + g * f + y * m, d = n[8], p = n[9], g = n[10], y = n[11], t[8] = d * s + p * r + g * h + y * u, t[9] = d * o + p * a + g * l + y * v, t[10] = d * i + p * c + g * f + y * m, d = n[12], p = n[13], g = n[14], y = n[15], t[12] = d * s + p * r + g * h + y * u, t[13] = d * o + p * a + g * l + y * v, t[14] = d * i + p * c + g * f + y * m
+          },
+          N = (o, i) =&gt; {
+               let r = 0,
+                    a = D;
+               do {
+                    r = 0, n.length = 0, t.length = 0, p = 0, s[o]([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0], i);
+                    do {
+                         const t = n.shift();
+                         void 0 !== t &amp;&amp; t[19] &lt;= C &amp;&amp; (e[t[21]](t), r++)
+                    } while (n.length)
+               } while (r &lt; a-- || l &lt; 2)
+          },
+          Q = t =&gt; (e, s) =&gt; {
+               -1 !== (e = T(e, s))[20] &amp;&amp; (e[21] = t, n.push(e))
+          },
+          k = (t, e, s, o) =&gt; (i, r) =&gt; {
+               if (-1 === (i = T(i, r))[20]) return;
+               let a = 0;
+               const c = U() * t;
+               for (let t = 0; t &lt; o; t++)
+                    if (a += e[t], c &lt;= a) return i[21] = s[t], void n.push(i)
+          },
+          H = document.querySelector(&quot;canvas&quot;),
+          Y = H.getContext(&quot;webgl&quot;);
+     Y.enable(Y.DEPTH_TEST), Y.enable(Y.CULL_FACE);
+     const V = () =&gt; {
+          const t = window.devicePixelRatio || 1;
+          m = H.width = H.offsetWidth * t, d = H.height = H.offsetHeight * t, Y.viewport(0, 0, m, d), ft.proj(x), g = !1, ot.set(m, d)
+     };
+     window.addEventListener(&quot;resize&quot;, () =&gt; {
+          g = !0
+     });
+     const j = {
+               init() {
+                    this.ec = [], this.prevDiff = -1, this.x = 0, this.y = 0, this.z = 0, this.xb = 0, this.yb = 0, this.isDown = !1;
+                    const t = window.addEventListener;
+                    return t(&quot;pointermove&quot;, t =&gt; this.move(t), !1), t(&quot;pointerdown&quot;, t =&gt; this.down(t), !1), t(&quot;pointerup&quot;, t =&gt; this.up(t), !1), t(&quot;pointerout&quot;, t =&gt; this.up(t), !1), t(&quot;pointerleave&quot;, t =&gt; this.up(t), !1), t(&quot;pointercancel&quot;, t =&gt; this.up(t), !1), t(&quot;wheel&quot;, t =&gt; {
+                         t.preventDefault();
+                         const e = .1 + .1 * Math.abs(this.z - 8);
+                         t.deltaY &gt; 0 &amp;&amp; this.z &lt; 8 &amp;&amp; (this.z += e), t.deltaY &lt; 0 &amp;&amp; this.z &gt; -20 &amp;&amp; (this.z -= e)
+                    }), this
+               },
+               down(t) {
+                    this.ec.push(t), this.move(t), this.xb = this.x, this.yb = this.y, this.isDown = !(this.ec.length &gt; 1), t.preventDefault()
+               },
+               up(t) {
+                    for (let e = 0; e &lt; this.ec.length; e++)
+                         if (this.ec[e].pointerId == t.pointerId) {
+                              this.ec.splice(e, 1);
+                              break
+                         } this.ec.length &lt; 2 &amp;&amp; (this.prevDiff = -1), this.isDown = !1
+               },
+               move(t) {
+                    for (let e = 0; e &lt; this.ec.length; e++)
+                         if (t.pointerId == this.ec[e].pointerId) {
+                              this.ec[e] = t;
+                              break
+                         } if (2 === this.ec.length) {
+                         const t = this.ec[0].clientX - this.ec[1].clientX,
+                              e = this.ec[0].clientY - this.ec[1].clientY,
+                              n = Math.sqrt(t * t + e * e);
+                         if (this.prevDiff &gt; 0) {
+                              const t = .25 * (.1 + .1 * Math.abs(this.z - 8));
+                              n &gt; this.prevDiff ? this.z &lt; 8 &amp;&amp; (this.z += t) : n &lt; this.prevDiff &amp;&amp; this.z &gt; -20 &amp;&amp; (this.z -= t)
+                         }
+                         this.prevDiff = n
+                    }
+                    this.x = t.clientX, this.y = t.clientY
+               }
+          },
+          K = () =&gt; {
+               g &amp;&amp; V(), Y.clearColor(b[0], b[1], b[2], 1), Y.clear(Y.COLOR_BUFFER_BIT | Y.DEPTH_BUFFER_BIT)
+          },
+          W = (t, e, n) =&gt; {
+               const s = Y.getUniformLocation(t, e);
+               return {
+                    set: {
+                         &quot;1f&quot;: t =&gt; Y.uniform1f(s, t),
+                         &quot;2f&quot;: (t, e) =&gt; Y.uniform2f(s, t, e),
+                         &quot;3f&quot;: (t, e = 0, n = 0) =&gt; {
+                              !0 === Array.isArray(t) ? Y.uniform3fv(s, t) : Y.uniform3f(s, t, e, n)
+                         },
+                         M4fv: t =&gt; Y.uniformMatrix4fv(s, !1, t)
+                    } [n]
+               }
+          },
+          X = () =&gt; {
+               const t = W($, &quot;camProj&quot;, &quot;M4fv&quot;),
+                    e = new Float32Array(16),
+                    n = new Float32Array(16),
+                    s = new Float32Array(16),
+                    a = new Float32Array(16);
+               B(n), B(s);
+               const c = W($, &quot;camView&quot;, &quot;M4fv&quot;);
+               let h = -.1,
+                    l = 0,
+                    p = 0;
+               return {
+                    move() {
+                         ut.isDown ? (!1 === v &amp;&amp; f &lt; 55 &amp;&amp; (!1 === u ? (f++, lt.set(f / 5), 55 === f &amp;&amp; (ht.set(1), rt.set(i), u = !0, v = !0, f = 54)) : (f--, lt.set(f / 5), 0 === f &amp;&amp; (ht.set(0), rt.set(r), u = !1, v = !0))), h += (ut.x - ut.xb) / (.05 * m), l += (ut.y - ut.yb) / (.05 * d), h *= .9, l *= .9) : (v = !1, f &gt; 0 &amp;&amp; !1 === u ? (f--, lt.set(f / 5)) : f &lt; 54 &amp;&amp; !0 === u &amp;&amp; (f++, lt.set(f / 5))), p += .25 * (ut.z - p), B(e), E.rx(e, l), E.ry(e, h), q(n, e, n), O(s, 0, 0, -y + p), q(s, s, n), c.set(s), it.set(o[0], o[1], o[2] - y + p), ut.xb = ut.x, ut.yb = ut.y
+                    },
+                    proj(e) {
+                         const n = .001,
+                              s = 1e3,
+                              o = n * Math.tan(e * Math.PI / 360),
+                              i = o * (m / d);
+                         a[0] = 2 * n / (i + i), a[5] = 2 * n / (o + o), a[8] = 0, a[9] = 0, a[10] = -(s + n) / (s - n), a[11] = -1, a[14] = -2 / (s - n), t.set(a)
+                    }
+               }
+          },
+          G = (t, e, n, s = Y.STATIC_DRAW) =&gt; {
+               let o = Y.createBuffer();
+               const i = Y.getAttribLocation(t, e);
+               return Y.enableVertexAttribArray(i), {
+                    load(t) {
+                         Y.bindBuffer(Y.ARRAY_BUFFER, o), Y.bufferData(Y.ARRAY_BUFFER, t, s), Y.vertexAttribPointer(i, n, Y.FLOAT, !1, 0, 0)
+                    }
+               }
+          },
+          J = (t, e) =&gt; {
+               const n = Y.createShader(e);
+               if (Y.shaderSource(n, t), Y.compileShader(n), !Y.getShaderParameter(n, Y.COMPILE_STATUS)) throw new Error(Y.getShaderInfoLog(n));
+               return n
+          },
+          Z = (t, e) =&gt; {
+               const n = J(t, Y.VERTEX_SHADER),
+                    s = J(e, Y.FRAGMENT_SHADER),
+                    o = Y.createProgram();
+               return Y.attachShader(o, n), Y.attachShader(o, s), Y.linkProgram(o), Y.useProgram(o), o
+          },
+          $ = Z(&quot;precision highp float;uniform mat4 camProj,camView;uniform float uBeam, uIgnition;attribute vec3 aP,aN,aC;varying vec4 vPos;varying vec3 vN,vC;vec3 hsv2rgb(vec3 c) {vec4 K=vec4(1.0,2.0/3.0,1.0/3.0,3.0);vec3 p=abs(fract(c.xxx+K.xyz)*6.0-K.www);return c.z*mix(K.xxx,clamp(p-K.xxx,.0,1.0),c.y);}vec3 gamma(vec3 color) {return pow(color,vec3(1.0/2.0));}void main() {float c=aC.z;vPos=camView*vec4(aP,1.0);gl_Position=(c==999.0 &amp;&amp; uBeam==0.0)?vec4(.0,.0,.0,.0):camProj*vPos;vN=c==999.0?vec3(.0,.0,.0):normalize(vec3(camView*vec4(aN,.0)));if (c&gt;=1000.0) {float b=c-1000.0;vC=(b&lt;uIgnition)?vec3(1.2,1.2,1.2):vec3(.1,.1,.1);} else vC=gamma(hsv2rgb(aC));}&quot;, &quot;precision highp float;uniform vec3 uLp,uAc,uSc,uDc;uniform float uTime;uniform vec2 uRes;varying vec4 vPos;varying vec3 vN,vC;void main() {vec3 ld=normalize(uLp-vPos.xyz);vec3 n=normalize(vN);float sw=pow(max(dot(reflect(-ld,n),normalize(-vPos.xyz)),.0),.5);float dw=max(dot(n,ld),.0);vec2 uv=gl_FragCoord.xy/uRes;float x=(9.0+uv.x)*uv.y*uTime;float grain=(mod((mod(x,13.0)+1.0)*(mod(x,53.0)+1.0),.01)-.005)*10.0;gl_FragColor=vec4(vC*(uAc+uSc*sw+uDc*dw)-grain,1.0);}&quot;),
+          tt = G($, &quot;aP&quot;, 3),
+          et = G($, &quot;aN&quot;, 3),
+          nt = G($, &quot;aC&quot;, 3),
+          st = W($, &quot;uTime&quot;, &quot;1f&quot;),
+          ot = W($, &quot;uRes&quot;, &quot;2f&quot;),
+          it = W($, &quot;uLp&quot;, &quot;3f&quot;),
+          rt = W($, &quot;uAc&quot;, &quot;3f&quot;),
+          at = W($, &quot;uSc&quot;, &quot;3f&quot;),
+          ct = W($, &quot;uDc&quot;, &quot;3f&quot;),
+          ht = W($, &quot;uBeam&quot;, &quot;1f&quot;),
+          lt = W($, &quot;uIgnition&quot;, &quot;1f&quot;),
+          ft = X(),
+          ut = j.init(),
+          vt = () =&gt; {
+               const e = new Float32Array(3 * p),
+                    n = new Float32Array(3 * p),
+                    s = new Float32Array(3 * p),
+                    o = .5,
+                    i = [
+                         [-o, -o, -o],
+                         [-o, o, -o],
+                         [o, -o, -o],
+                         [o, o, -o],
+                         [o, -o, o],
+                         [o, o, o],
+                         [-o, -o, o],
+                         [-o, o, o],
+                         [-o, -o, o],
+                         [-o, -o, -o],
+                         [o, -o, o],
+                         [o, -o, -o],
+                         [-o, o, -o],
+                         [-o, o, o],
+                         [o, o, -o],
+                         [o, o, o],
+                         [-o, -o, -o],
+                         [-o, -o, o],
+                         [-o, o, -o],
+                         [-o, o, o],
+                         [o, o, -o],
+                         [o, o, o],
+                         [o, -o, -o],
+                         [o, -o, o]
+                    ],
+                    r = [
+                         [-o, -o, -o],
+                         [0, o, 0],
+                         [o, -o, -o],
+                         [o, -o, -o],
+                         [0, o, 0],
+                         [o, -o, o],
+                         [o, -o, o],
+                         [0, o, 0],
+                         [-o, -o, o],
+                         [-o, -o, o],
+                         [0, o, 0],
+                         [-o, -o, -o],
+                         [o, -o, -o],
+                         [-o, -o, o],
+                         [-o, -o, -o],
+                         [o, -o, -o],
+                         [o, -o, o],
+                         [-o, -o, o]
+                    ],
+                    a = (t, e, n) =&gt; {
+                         const s = e[0] - t[0],
+                              o = e[1] - t[1],
+                              i = e[2] - t[2],
+                              r = n[0] - t[0],
+                              a = n[1] - t[1],
+                              c = n[2] - t[2],
+                              h = o * c - i * a,
+                              l = i * r - s * c,
+                              f = s * a - o * r,
+                              u = Math.sqrt(h * h + l * l + f * f);
+                         return [h / u, l / u, f / u]
+                    },
+                    c = function(t, e) {
+                         const n = t[0],
+                              s = t[1],
+                              o = t[2];
+                         return [n * e[0] + s * e[4] + o * e[8] + e[12], n * e[1] + s * e[5] + o * e[9] + e[13], n * e[2] + s * e[6] + o * e[10] + e[14]]
+                    };
+               let h = 0;
+               const l = (t, o, i, r, a) =&gt; {
+                    e.set([t[0], t[1], t[2], o[0], o[1], o[2], i[0], i[1], i[2]], h), n.set([a[0], a[1], a[2], a[0], a[1], a[2], a[0], a[1], a[2]], h);
+                    const c = r[16] / 360,
+                         l = r[17],
+                         f = r[18];
+                    s.set([c, l, f, c, l, f, c, l, f], h), h += 9
+               };
+               for (let e = 0; e &lt; t.length; e++) {
+                    const n = t[e];
+                    if (1 === n[22])
+                         for (let t = 0; t &lt; 24; t += 4) {
+                              const e = c(i[t + 0], n),
+                                   s = c(i[t + 1], n),
+                                   o = c(i[t + 2], n),
+                                   r = c(i[t + 3], n),
+                                   h = a(e, s, r);
+                              l(e, s, r, n, h), l(e, r, o, n, h)
+                         } else if (2 === n[22])
+                              for (let t = 0; t &lt; 18; t += 3) {
+                                   const e = c(r[t + 0], n),
+                                        s = c(r[t + 1], n),
+                                        o = c(r[t + 2], n);
+                                   l(e, s, o, n, a(e, s, o))
+                              }
+               }
+               tt.load(e), et.load(n), nt.load(s)
+          },
+          mt = t =&gt; {
+               requestAnimationFrame(mt), K(), st.set(Math.sqrt(t)), ft.move(), Y.drawArrays(Y.TRIANGLES, 0, p)
+          },
+          dt = () =&gt; {
+               Ct(), at.set(a), ct.set(c), rt.set(r), N(A, h || {}), vt(t, Ct)
+          },
+          pt = (t, n) =&gt; {
+               e.length = 0;
+               for (const t in n) {
+                    const o = n[t];
+                    if (Array.isArray(o)) {
+                         let n = 0;
+                         const i = [],
+                              r = [];
+                         for (let t = 0; t &lt; o.length; t += 2) n += o[t], e.push(o[t + 1]), i.push(o[t]), r.push(e.length - 1);
+                         s[t] = k(n, i, r, r.length)
+                    } else e.push(o), s[t] = Q(e.length - 1)
+               }
+               dt(), V(), mt()
+          };
+     U();
+     const gt = U() &gt; .05,
+          yt = {
+               d1: {
+                    bkg: .5,
+                    difCol: gt ? [1.1, 1.1, 1.1] : [1.5, 1.5, 1.5],
+                    lightPos: [0, 0, 10],
+                    specCol: [0, 0, 0],
+                    ambCol: [.3, .2, .1],
+                    ambColOff: [0, 0, 0],
+                    sat: gt ? .9 : 0
+               },
+               d2: {
+                    bkg: 0,
+                    difCol: [.3, .2, .1],
+                    lightPos: [0, 0, 1],
+                    specCol: [1, .9, .8],
+                    ambCol: [.4, .3, .1],
+                    ambColOff: [.2, .1, 0],
+                    sat: gt ? .9 : 0
+               }
+          },
+          xt = U() &gt; .05 ? 1 : 2,
+          bt = !(U() &gt; .02),
+          At = U() &gt; .05 ? .55 : .76 * xt,
+          wt = U() &gt; .5 ? &quot;d1&quot; : &quot;d2&quot;,
+          zt = U() &gt; .05 ? 30 : 0,
+          Ct = function() {
+               A = &quot;start&quot;, h = {
+                    s: .55 === At ? 2.2 : 2
+               }, x = 60, y = 8, C = 100, z = .001, D = 500, o = yt[wt].lightPos, i = yt[wt].ambCol, r = yt[wt].ambColOff, a = yt[wt].specCol, c = yt[wt].difCol
+          };
+     pt(Ct, {
+          start(t) {
+               l = 0;
+               const e = I(720);
+               &quot;d2&quot; === wt &amp;&amp; (f = 54, u = !0, ht.set(1), rt.set(i), lt.set(f / 5)), b = M((e + 180), gt ? .35 : 0, yt[wt].bkg), s.WHOLE(t, {
+                    hue: e,
+                    sat: yt[wt].sat,
+                    rx: I(40) - 20,
+                    ry: I(360)
+               })
+          },
+          WHOLE(t) {
+               s.QUAD(t, {
+                    x: -At,
+                    y: -At,
+                    z: -At
+               }), s.QUAD(t, {
+                    x: At,
+                    y: -At,
+                    z: -At
+               }), s.QUAD(t, {
+                    x: -At,
+                    y: At,
+                    z: -At
+               }), s.QUAD(t, {
+                    x: At,
+                    y: At,
+                    z: -At
+               }), s.QUAD(t, {
+                    x: -At,
+                    y: -At,
+                    z: At,
+                    rz: 90
+               }), s.QUAD(t, {
+                    x: At,
+                    y: -At,
+                    z: At,
+                    rz: 90
+               }), s.QUAD(t, {
+                    x: -At,
+                    y: At,
+                    z: At,
+                    rz: 90
+               }), s.QUAD(t, {
+                    x: At,
+                    y: At,
+                    z: At,
+                    rz: 90
+               })
+          },
+          QUAD: [.25, t =&gt; {
+               s.FRAME(t, {
+                    b: -.75,
+                    s: 1.1
+               })
+          }, .1, t =&gt; {
+               s.COOLER(t, {
+                    s: 1
+               })
+          }, .5, t =&gt; {
+               s.CUBE(t, {
+                    s: 1.1
+               })
+          }, .25, t =&gt; {
+               s.WHOLE(t, {
+                    s: .5,
+                    b: -.3,
+                    hue: zt
+               })
+          }, .5, t =&gt; {}],
+          COOLER(t) {
+               if (L(t) &gt; .055) {
+                    l++, S(t, {
+                         s: [1.3, .4, .4],
+                         sat: -1,
+                         b: -.8
+                    });
+                    for (let e = -1e3; e &lt; 1e3; e += 20) S(t, {
+                         x: e,
+                         s: [20, .25, .25],
+                         sat: -1,
+                         l: 999
+                    });
+                    let e = 0;
+                    for (let n = -.5; n &lt;= .5; n += .1) S(t, {
+                         x: n,
+                         s: [.02, 1, 1],
+                         vsat: .35,
+                         vhue: 30,
+                         l: 1e3 + e++
+                    })
+               } else s.CUBE(t)
+          },
+          CUBE(t) {
+               let e, n;
+               U() &gt; .75 ? (e = -1, n = -.6 - .3 * U()) : (e = 0, n = 0), S(t, {
+                    sat: e,
+                    b: n,
+                    s: .98
+               })
+          },
+          FRAME(t) {
+               !1 === bt ? S(t, {
+                    s: .35,
+                    b: 1,
+                    hue: 180
+               }) : (R(t, {
+                    y: .23,
+                    s: .4,
+                    b: 2,
+                    hue: 180
+               }), R(t, {
+                    rx: 180,
+                    y: .23,
+                    s: .4,
+                    b: 2,
+                    hue: 180
+               })), s.frame(t, {
+                    sat: -1,
+                    b: -.8
+               })
+          },
+          frame(t) {
+               s.sq(t, {
+                    z: -1
+               }), s.sq(t), s.mem(t, {
+                    z: -1,
+                    rx: 90,
+                    y: 1
+               }), s.mem(t, {
+                    z: -1,
+                    rx: -90,
+                    y: -1
+               })
+          },
+          sq(t) {
+               s.mem(t), s.mem(t, {
+                    rz: 90
+               })
+          },
+          mem(t) {
+               S(t, {
+                    s: [.1, 1.1, .1],
+                    x: 5,
+                    z: 5
+               }), S(t, {
+                    s: [.1, 1.1, .1],
+                    x: -5,
+                    z: 5
+               })
+          }
+     })
+}</pre></body></html>

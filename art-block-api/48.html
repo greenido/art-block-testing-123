@@ -1,0 +1,365 @@
+<html><body><h1>Name: Gen 3</h1><h3>Artist: DCA</h3><h3>Description: Gen 3, the third and final installment of the Gen-Trilogy series, uses word combinations to create unexpected phrases. The phrases play with meaning, or the idea of it,  while characterizing identities relating to blockchain and NFT culture in a fun and abstract way. Gen 3 continues an emerging trend of parsing the minted token's hash in order to produce a deterministic image or animation. For each Gen 3 minted, 40% of the proceeds are donated to a non-profit organization called EveryShelter whose mission is to repurpose waste products into useful materials designed to help people in need. More information can be found at https://everyshelter.org/</h3><h3></h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xfba00f3825dc08f9ad08a7e967f313f6e1e821cf</p><p>Additional Payee: 0xfba00f3825dc08f9ad08a7e967f313f6e1e821cf</p><p>Additional Payee Percentage: 0</p><p>Price: 0.065</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1024</p><p>Maximum Invocations: 1024</p><p>License: NIFTY</p><p>Token Ids: 48000000,48000001,48000002,48000003,48000004,48000005,48000006,48000007,48000008,48000009,48000010,48000011,48000012,48000013,48000014,48000015,48000016,48000017,48000018,48000019,48000020,48000021,48000022,48000023,48000024,48000025,48000026,48000027,48000028,48000029,48000030,48000031,48000032,48000033,48000034,48000035,48000036,48000037,48000038,48000039,48000040,48000041,48000042,48000043,48000044,48000045,48000046,48000047,48000048,48000049,48000050,48000051,48000052,48000053,48000054,48000055,48000056,48000057,48000058,48000059,48000060,48000061,48000062,48000063,48000064,48000065,48000066,48000067,48000068,48000069,48000070,48000071,48000072,48000073,48000074,48000075,48000076,48000077,48000078,48000079,48000080,48000081,48000082,48000083,48000084,48000085,48000086,48000087,48000088,48000089,48000090,48000091,48000092,48000093,48000094,48000095,48000096,48000097,48000098,48000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let ring, h, poem, hp = [],
+     hashstring = &quot;&quot;,
+     rotation_counter = 200,
+     e = [],
+     tkh = [],
+     wp1 = [&quot;pixelated&quot;, &quot;accelerating&quot;, &quot;alpha&quot;, &quot;lightspeed&quot;, &quot;falling&quot;, &quot;unconfirmed&quot;, &quot;rechargeable&quot;, &quot;easy-to-hack&quot;, &quot;mintable&quot;, &quot;corrupt&quot;, &quot;transforming&quot;, &quot;buzzing&quot;, &quot;vibrating&quot;, &quot;trending&quot;, &quot;bullish&quot;, &quot;bearish&quot;, &quot;freaky&quot;, &quot;corroded&quot;, &quot;crazy&quot;, &quot;red eyed&quot;, &quot;insane&quot;, &quot;bricked&quot;, &quot;broken&quot;, &quot;deprecated&quot;, &quot;computing&quot;, &quot;erased&quot;, &quot;faded&quot;, &quot;faulty&quot;, &quot;glitchy&quot;, &quot;humble&quot;, &quot;buggy&quot;, &quot;doomed&quot;, &quot;technological&quot;, &quot;futuristic&quot;, &quot;fortunate&quot;, &quot;abstract&quot;, &quot;sustainable&quot;, &quot;rusty&quot;, &quot;headless&quot;, &quot;oldschool&quot;, &quot;crypto&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;red&quot;, &quot;slow&quot;, &quot;overclocked&quot;, &quot;compromised&quot;, &quot;fried&quot;, &quot;opensource&quot;, &quot;productive&quot;, &quot;configurable&quot;, &quot;uploaded&quot;, &quot;feature rich&quot;, &quot;downloaded&quot;, &quot;addictive&quot;, &quot;user friendly&quot;, &quot;dropped&quot;, &quot;random&quot;, &quot;social&quot;, &quot;vaporwave&quot;, &quot;freeware&quot;, &quot;encrypted&quot;, &quot;decrypted&quot;, &quot;phishing&quot;, &quot;pirated&quot;, &quot;cracked&quot;, &quot;warez&quot;, &quot;deepweb&quot;, &quot;clickbait&quot;, &quot;infected&quot;, &quot;antivirus&quot;, &quot;viral&quot;, &quot;limited edition&quot;, &quot;indie&quot;, &quot;rarity&quot;, &quot;state-of-the-art&quot;, &quot;complex&quot;, &quot;trending&quot;, &quot;obsessive&quot;, &quot;regulated&quot;, &quot;networking&quot;, &quot;retro&quot;, &quot;registered&quot;, &quot;64-bit&quot;, &quot;8-bit&quot;, &quot;atomic&quot;, &quot;institutional&quot;, &quot;scientific&quot;, &quot;electrical&quot;, &quot;game-changing&quot;, &quot;disruptive&quot;, &quot;autonomous&quot;, &quot;underground&quot;, &quot;surveillance&quot;, &quot;intense&quot;, &quot;irrational&quot;, &quot;pricey&quot;, &quot;crappy&quot;, &quot;volatile&quot;, &quot;embedded&quot;, &quot;tracking&quot;, &quot;peripheral&quot;, &quot;loading&quot;, &quot;altered&quot;, &quot;functional&quot;, &quot;instantiated&quot;, &quot;declared&quot;, &quot;integrated&quot;, &quot;sudo&quot;, &quot;native&quot;, &quot;threshold&quot;, &quot;buffered&quot;, &quot;cached&quot;, &quot;static&quot;, &quot;stolen&quot;, &quot;critical&quot;, &quot;dynamic&quot;, &quot;read-only&quot;, &quot;programming&quot;, &quot;clickable&quot;, &quot;enhanced&quot;, &quot;upgraded&quot;, &quot;updated&quot;, &quot;out of date&quot;, &quot;installed&quot;, &quot;illegal&quot;, &quot;sql&quot;, &quot;query&quot;, &quot;hosting&quot;, &quot;json&quot;, &quot;visual&quot;, &quot;dancing&quot;, &quot;awesome&quot;, &quot;incredible&quot;, &quot;super&quot;, &quot;pwned&quot;, &quot;burned&quot;, &quot;censored&quot;, &quot;applied&quot;, &quot;deflated&quot;, &quot;inflated&quot;, &quot;private&quot;, &quot;anonymous&quot;, &quot;premining&quot;, &quot;hashing&quot;, &quot;rekt&quot;, &quot;spoofed&quot;, &quot;ripped&quot;, &quot;nonce&quot;, &quot;sidechain&quot;, &quot;fresh&quot;, &quot;chromie&quot;, &quot;cutting edge&quot;, &quot;beta&quot;, &quot;beautiful&quot;, &quot;perfect&quot;, &quot;good-looking&quot;, &quot;rendered&quot;, &quot;interactive&quot;, &quot;seamless&quot;, &quot;digital&quot;, &quot;sexy&quot;, &quot;user driven&quot;, &quot;award winning&quot;, &quot;top-tier&quot;, &quot;sponsored&quot;, &quot;esoteric&quot;, &quot;devoted&quot;, &quot;sentient&quot;, &quot;booted&quot;, &quot;banned&quot;, &quot;logged in&quot;, &quot;logged out&quot;, &quot;verified&quot;, &quot;pseudo&quot;, &quot;queued&quot;, &quot;skyrocketing&quot;, &quot;mooning&quot;, &quot;eviscerated&quot;, &quot;persnickety&quot;, &quot;cautious&quot;, &quot;pragmatic&quot;, &quot;seedy&quot;, &quot;profiting&quot;, &quot;steampunk&quot;, &quot;space-age&quot;, &quot;lucky&quot;, &quot;microscopic&quot;, &quot;open world&quot;, &quot;artificial&quot;, &quot;quantum&quot;, &quot;heroic&quot;, &quot;friendly&quot;, &quot;zesty&quot;, &quot;animated&quot;, &quot;never ending&quot;, &quot;funky&quot;, &quot;radioactive&quot;, &quot;pulsing&quot;, &quot;circuit driven&quot;, &quot;solid state&quot;, &quot;radical&quot;, &quot;inspirational&quot;, &quot;activated&quot;, &quot;hippie&quot;, &quot;glowing&quot;, &quot;stealthy&quot;, &quot;cooked&quot;, &quot;galactic&quot;, &quot;universal&quot;, &quot;astral&quot;, &quot;fractal&quot;, &quot;textbook&quot;, &quot;wiki&quot;, &quot;software&quot;, &quot;freeware&quot;, &quot;barebones&quot;, &quot;lightweight&quot;, &quot;bloatware&quot;, &quot;wild&quot;, &quot;mind-blowing&quot;, &quot;budding&quot;, &quot;rising&quot;, &quot;novice&quot;, &quot;liked&quot;, &quot;photoshopped&quot;, &quot;testosterone&quot;, &quot;estrogen&quot;, &quot;emerging&quot;, &quot;qualified&quot;, &quot;quality&quot;, &quot;covert&quot;, &quot;nanotech&quot;, &quot;up to date&quot;, &quot;connected&quot;, &quot;mad&quot;, &quot;exciting&quot;, &quot;classic&quot;, &quot;thirsty&quot;, &quot;true&quot;, &quot;fake&quot;, &quot;special&quot;, &quot;simulated&quot;, &quot;twinkling&quot;, &quot;magical&quot;, &quot;blooming&quot;, &quot;flowering&quot;, &quot;overloaded&quot;, &quot;melted&quot;, &quot;blinking&quot;, &quot;high&quot;, &quot;liquid&quot;, &quot;whirring&quot;, &quot;fuzzy&quot;, &quot;sha256&quot;, &quot;ethash&quot;],
+     wp2 = [&quot;parametric&quot;, &quot;cold-storage&quot;, &quot;fragment&quot;, &quot;avatar&quot;, &quot;password&quot;, &quot;fintech&quot;, &quot;gateway&quot;, &quot;top shot&quot;, &quot;cryptopia&quot;, &quot;nifty&quot;, &quot;decentraland&quot;, &quot;console&quot;, &quot;transaction&quot;, &quot;wannacry&quot;, &quot;memory cell&quot;, &quot;feedback&quot;, &quot;carbon credit&quot;, &quot;ip address&quot;, &quot;infura&quot;, &quot;end point&quot;, &quot;singularity&quot;, &quot;mt.gox&quot;, &quot;altcoin&quot;, &quot;litecoin&quot;, &quot;coinbase&quot;, &quot;fiber optic&quot;, &quot;etherscan&quot;, &quot;confirmation&quot;, &quot;oled&quot;, &quot;block explorer&quot;, &quot;incentive&quot;, &quot;invalid block&quot;, &quot;hash string&quot;, &quot;token hash&quot;, &quot;computer vision&quot;, &quot;lambo&quot;, &quot;market&quot;, &quot;bitcoin&quot;, &quot;ethereum&quot;, &quot;discord&quot;, &quot;deterministic&quot;, &quot;nft&quot;, &quot;cyberspace&quot;, &quot;hyperspace&quot;, &quot;defi&quot;, &quot;regex&quot;, &quot;foo bar&quot;, &quot;hello world&quot;, &quot;windows&quot;, &quot;merkle tree&quot;, &quot;&quot;, &quot;unix&quot;, &quot;multi-core&quot;, &quot;generative&quot;, &quot;metaverse&quot;, &quot;computer&quot;, &quot;laptop&quot;, &quot;bubble sort&quot;, &quot;geometry&quot;, &quot;mechanical&quot;, &quot;future&quot;, &quot;nostalgic&quot;, &quot;internet&quot;, &quot;robotic&quot;, &quot;addicted&quot;, &quot;procedural&quot;, &quot;powerful&quot;, &quot;systematic&quot;, &quot;community&quot;, &quot;touchscreen&quot;, &quot;bluetooth&quot;, &quot;ssl&quot;, &quot;mobile&quot;, &quot;addressable&quot;, &quot;programmable&quot;, &quot;custom&quot;, &quot;unique&quot;, &quot;minting&quot;, &quot;edition&quot;, &quot;disrupting&quot;, &quot;darknet&quot;, &quot;sequential&quot;, &quot;immutable&quot;, &quot;blockchain&quot;, &quot;algorithmic&quot;, &quot;cryptographic&quot;, &quot;hashed&quot;, &quot;hexadecimal&quot;, &quot;binary&quot;, &quot;satoshi&quot;, &quot;silk road&quot;, &quot;non-fungible&quot;, &quot;bandwidth&quot;, &quot;atomic swap&quot;, &quot;block reward&quot;, &quot;fungible&quot;, &quot;verified&quot;, &quot;proof-of-work&quot;, &quot;proof-of-stake&quot;, &quot;distributed&quot;, &quot;semiconductor&quot;, &quot;decentralized&quot;, &quot;p2p&quot;, &quot;erc721&quot;, &quot;hardware-wallet&quot;, &quot;mainnet&quot;, &quot;testnet&quot;, &quot;eth-wallet&quot;, &quot;root_url&quot;, &quot;localhost&quot;, &quot;web3&quot;, &quot;smartphone&quot;, &quot;smart-contract&quot;, &quot;tokenized&quot;, &quot;seed-funding&quot;, &quot;computer game&quot;, &quot;currency&quot;, &quot;byzantine fault&quot;, &quot;51 percent&quot;, &quot;forked&quot;, &quot;solar power&quot;, &quot;game theory&quot;, &quot;consensus&quot;, &quot;hashtag&quot;, &quot;private-key&quot;, &quot;public-key&quot;, &quot;fud&quot;, &quot;electronic&quot;, &quot;fomo&quot;, &quot;magnetic&quot;, &quot;functional&quot;, &quot;instance&quot;, &quot;boolean&quot;, &quot;for loop&quot;, &quot;right-click&quot;, &quot;logic&quot;, &quot;virtual&quot;, &quot;3-dimensional&quot;, &quot;logarithmic&quot;, &quot;exponential&quot;, &quot;recursive&quot;, &quot;variable&quot;, &quot;emoji&quot;, &quot;particle&quot;, &quot;quaternion&quot;, &quot;directory&quot;, &quot;alt-coin&quot;, &quot;exchange&quot;, &quot;ledger&quot;, &quot;brute-force&quot;, &quot;air-drop&quot;, &quot;arbitrage&quot;, &quot;fiat&quot;, &quot;genesis&quot;, &quot;.conf file&quot;, &quot;wallet.dat&quot;, &quot;dream&quot;, &quot;artblocks.io&quot;, &quot;buy-the-dip&quot;, &quot;provable&quot;, &quot;interface&quot;, &quot;protocol&quot;, &quot;sneakernet&quot;, &quot;white-paper&quot;, &quot;holographic&quot;, &quot;apt-get&quot;, &quot;to-the-moon&quot;, &quot;vector&quot;, &quot;scalable&quot;, &quot;masternode&quot;, &quot;javascript&quot;, &quot;html&quot;, &quot;python&quot;, &quot;node network&quot;, &quot;raspberry pi&quot;, &quot;vanilla&quot;, &quot;node.js&quot;, &quot;p5.js&quot;, &quot;metamask&quot;, &quot;heatsink&quot;, &quot;segwit&quot;, &quot;cryptopunks&quot;, &quot;cryptovoxels&quot;, &quot;opensea&quot;, &quot;cryptokitties&quot;, &quot;arduino&quot;, &quot;pen-plotter&quot;, &quot;3d printing&quot;, &quot;game of life&quot;, &quot;gan&quot;, &quot;mathematical&quot;, &quot;permutation&quot;, &quot;dogecoin&quot;, &quot;sushiswap&quot;, &quot;on-chain&quot;, &quot;fractional&quot;, &quot;github&quot;, &quot;repository&quot;, &quot;gravitational&quot;, &quot;squiggle&quot;, &quot;faceted&quot;, &quot;bittorrent&quot;, &quot;ipfs&quot;, &quot;bounty&quot;, &quot;pyramid&quot;, &quot;data driven&quot;, &quot;polygonal&quot;, &quot;mesh&quot;, &quot;silicon&quot;, &quot;gpu&quot;, &quot;mainframe&quot;, &quot;motherboard&quot;, &quot;random seed&quot;, &quot;quad-core&quot;, &quot;wifi&quot;, &quot;vpn&quot;, &quot;vps&quot;, &quot;library&quot;, &quot;neural network&quot;, &quot;numerical&quot;, &quot;iterative&quot;, &quot;automata&quot;, &quot;array&quot;, &quot;delaunay&quot;, &quot;blue screen&quot;, &quot;microchip&quot;, &quot;partition&quot;, &quot;cup of tea&quot;, &quot;voronoi&quot;, &quot;aesthetic&quot;, &quot;fibonacci&quot;, &quot;sine wave&quot;, &quot;growth model&quot;, &quot;differential&quot;, &quot;branching&quot;, &quot;geodesic&quot;, &quot;computer&quot;, &quot;convolutional&quot;, &quot;processing&quot;, &quot;hashmask&quot;, &quot;optimized&quot;, &quot;g-code&quot;, &quot;euclidian&quot;, &quot;simstim&quot;, &quot;terminal&quot;, &quot;command line&quot;, &quot;macintosh&quot;, &quot;CryptoNight&quot;, &quot;harmonic&quot;, &quot;white noise&quot;, &quot;gaussian&quot;, &quot;megabit&quot;, &quot;gigabit&quot;, &quot;terabit&quot;, &quot;byte-sized&quot;, &quot;source code&quot;],
+     wp3 = [&quot;bootloader&quot;, &quot;rarity&quot;, &quot;editor&quot;, &quot;god&quot;, &quot;sensei&quot;, &quot;gem&quot;, &quot;farmer&quot;, &quot;malfunction&quot;, &quot;downfall&quot;, &quot;fundraiser&quot;, &quot;candy&quot;, &quot;bidder&quot;, &quot;memory&quot;, &quot;lost wallet&quot;, &quot;apocalypse&quot;, &quot;cosmonaut&quot;, &quot;hopeful&quot;, &quot;block breaker&quot;, &quot;timebomb&quot;, &quot;validator&quot;, &quot;incubator&quot;, &quot;adventurer&quot;, &quot;half-human&quot;, &quot;kernel&quot;, &quot;diamond hands&quot;, &quot;brain&quot;, &quot;culture&quot;, &quot;degenerate&quot;, &quot;ecosystem&quot;, &quot;punk&quot;, &quot;supernova&quot;, &quot;cryptoverse&quot;, &quot;addict&quot;, &quot;nerd&quot;, &quot;cyborg&quot;, &quot;hodlr&quot;, &quot;robot&quot;, &quot;kitty&quot;, &quot;alien&quot;, &quot;freak&quot;, &quot;generation&quot;, &quot;machine&quot;, &quot;techie&quot;, &quot;NFT-head&quot;, &quot;programmer&quot;, &quot;coder&quot;, &quot;collector&quot;, &quot;destiny&quot;, &quot;player&quot;, &quot;mind&quot;, &quot;soul&quot;, &quot;eyes&quot;, &quot;hacker&quot;, &quot;old-timer&quot;, &quot;sapsucker&quot;, &quot;dodo&quot;, &quot;human&quot;, &quot;launderer&quot;, &quot;clicker&quot;, &quot;fad&quot;, &quot;bubble&quot;, &quot;naysayer&quot;, &quot;troll&quot;, &quot;catfish&quot;, &quot;bully&quot;, &quot;lurker&quot;, &quot;typer&quot;, &quot;whale&quot;, &quot;surfer&quot;, &quot;miner&quot;, &quot;artist&quot;, &quot;bad boy&quot;, &quot;bad girl&quot;, &quot;trojan&quot;, &quot;virus&quot;, &quot;ransomware&quot;, &quot;malware&quot;, &quot;gwei&quot;, &quot;unicorn&quot;, &quot;tweeter&quot;, &quot;shiller&quot;, &quot;trader&quot;, &quot;scammer&quot;, &quot;hustler&quot;, &quot;flipper&quot;, &quot;speculator&quot;, &quot;boomer&quot;, &quot;female&quot;, &quot;mother&quot;, &quot;cowgirl&quot;, &quot;ladies&quot;, &quot;fembot&quot;, &quot;lizard man&quot;, &quot;moonboy&quot;, &quot;simulator&quot;, &quot;guzzler&quot;, &quot;bankruptcy&quot;, &quot;renderer&quot;, &quot;trader&quot;, &quot;creator&quot;, &quot;innovator&quot;, &quot;code puncher&quot;, &quot;user&quot;, &quot;staker&quot;, &quot;lover&quot;, &quot;disrupter&quot;, &quot;queen&quot;, &quot;enthusiast&quot;, &quot;worshiper&quot;, &quot;philanthropist&quot;, &quot;favorite&quot;, &quot;pumper&quot;, &quot;node operator&quot;, &quot;dumper&quot;, &quot;bull&quot;, &quot;bear&quot;, &quot;block&quot;, &quot;bagholder&quot;, &quot;dev&quot;, &quot;superuser&quot;, &quot;hyperlink&quot;, &quot;server&quot;, &quot;minter&quot;, &quot;noob&quot;, &quot;newcomer&quot;, &quot;rookie&quot;, &quot;panic-seller&quot;, &quot;weak-hands&quot;, &quot;dao&quot;, &quot;pirate&quot;, &quot;lender&quot;, &quot;fangirl&quot;, &quot;bot&quot;, &quot;strong-hands&quot;, &quot;faucet&quot;, &quot;banger&quot;, &quot;experimenter&quot;, &quot;accountant&quot;, &quot;investor&quot;, &quot;android&quot;, &quot;agent&quot;, &quot;memer&quot;, &quot;vlogger&quot;, &quot;streamer&quot;, &quot;pepe&quot;, &quot;bitcoiner&quot;, &quot;dipper&quot;, &quot;sockpuppet&quot;, &quot;scrooge&quot;, &quot;fatalist&quot;, &quot;vandal&quot;, &quot;baby&quot;, &quot;wizard&quot;, &quot;larper&quot;, &quot;heart&quot;, &quot;resource&quot;, &quot;allstar&quot;, &quot;pioneer&quot;, &quot;boss&quot;, &quot;villain&quot;, &quot;superhero&quot;, &quot;wavemaker&quot;, &quot;millennial&quot;, &quot;dreamer&quot;, &quot;expat&quot;, &quot;broker&quot;, &quot;cry-face&quot;, &quot;dipstick&quot;, &quot;bumper&quot;, &quot;follower&quot;, &quot;hothead&quot;, &quot;hotpotato&quot;, &quot;one-percenter&quot;, &quot;bloodbath&quot;, &quot;folks&quot;, &quot;perfectionist&quot;, &quot;seeker&quot;, &quot;oracle&quot;, &quot;gen z-er&quot;, &quot;early adopter&quot;, &quot;wiseguy&quot;, &quot;greedy dude&quot;, &quot;precog&quot;, &quot;nirvana&quot;, &quot;visionary&quot;, &quot;broke joke&quot;, &quot;tripper&quot;, &quot;hype man&quot;, &quot;cosplayer&quot;, &quot;breakout&quot;, &quot;cult&quot;, &quot;zombie&quot;, &quot;parrot&quot;, &quot;vampire&quot;, &quot;team&quot;, &quot;designer&quot;, &quot;hedge fund&quot;, &quot;security&quot;, &quot;wallflower&quot;, &quot;guppy&quot;, &quot;retiree&quot;, &quot;hive-mind&quot;, &quot;amigos&quot;, &quot;friends&quot;, &quot;ninja&quot;, &quot;maker&quot;, &quot;networth&quot;, &quot;supporter&quot;, &quot;hardbody&quot;, &quot;softbody&quot;, &quot;guru&quot;, &quot;wabbit&quot;, &quot;holiday&quot;, &quot;gambler&quot;, &quot;technocrat&quot;, &quot;swarm&quot;, &quot;detective&quot;, &quot;rabbit hole&quot;, &quot;black hole&quot;, &quot;equity&quot;, &quot;time warp&quot;, &quot;uplifter&quot;, &quot;legend&quot;, &quot;egghead&quot;, &quot;know-it-all&quot;, &quot;entrepreneur&quot;, &quot;whiz kid&quot;, &quot;builder&quot;, &quot;reaction&quot;, &quot;catalyst&quot;, &quot;rainbow&quot;, &quot;admin&quot;, &quot;lemon&quot;, &quot;moderator&quot;, &quot;meltdown&quot;, &quot;forum&quot;, &quot;cameo&quot;, &quot;army&quot;, &quot;rule breaker&quot;, &quot;captain&quot;, &quot;nurturer&quot;, &quot;commander&quot;, &quot;grinch&quot;, &quot;life&quot;, &quot;epoch&quot;, &quot;death&quot;, &quot;firesale&quot;, &quot;liquidator&quot;, &quot;sensorium&quot;, &quot;partners&quot;, &quot;hallucination&quot;, &quot;neuromancer&quot;, &quot;lifeline&quot;, &quot;collider&quot;, &quot;millionaire&quot;, &quot;influencer&quot;],
+     hashring = [],
+     show_poem = !1,
+     show_colorring = !1,
+     show_hashring = !1,
+     show_electrons = !1,
+     show_hashgrid = !1,
+     show_horizon = !1,
+     show_gradient_circle = !1,
+     show_gradient_backdrop = !1;
+
+function gs(a) {
+     return min(width, height) * a
+}
+
+function setup() {
+     hashstring = tokenData.hash.substring(2);
+     for (let a = 0; a &lt; hashstring.length / 2; a++) hp[a] = unhex(hashstring.substring(a + a, a + a + 2));
+     let a = 0;
+     for (let b = 0; 16 &gt; b; b++) a += hp[b];
+     randomSeed(a), console.log(hashstring);
+     show_colorring = hp[2] &gt; 128, show_hashring = hp[3] &gt; 128, show_electrons = hp[4] &gt; 128, show_hashgrid = hp[5] &gt; 128, show_horizon = hp[6] &gt; 128, show_gradient_circle = hp[7] &gt; 128, show_gradient_backdrop = hp[8] &gt; 128, show_poem = !0, createCanvas(min(window.innerWidth, window.innerHeight), min(window.innerWidth, window.innerHeight)), background(100), ring = createGraphics(width + width / 2, height + height / 2), circle_ring(ring.width / 2, ring.height / 2, ring);
+     let b;
+     100 &lt; hp[5] &amp;&amp; (128 &lt; hp[6] ? b = color(hp[20], hp[21], hp[22]) : b = color(hp[20]));
+     let c = 0;
+     for (let a = 0; 8 &gt; a; a++) {
+          tkh[a] = [];
+          for (let d = 0; 8 &gt; d; d++) b = color(map(hp[c % 32], 0, 255, 0, 360), map(hp[2 * c % 32], 0, 255, 0, 100), map(hp[3 * c % 32], 0, 255, 0, 100)), tkh[a].push(new TokenHashGrid(hashstring.substring(d + 8 * a, d + 8 * a + 1), d, a, 16 * hashchar(d + 8 * a, 1), b)), c++
+     }
+     for (let a = 0; 10 &gt; a; a++) e.push(new Electron(map(hp[a % 32], 0, 255, 0, width), map(hp[2 * a % 32], 0, 255, 0, height), &quot;f&quot;));
+     let d = wp1[hp[0]],
+          f = wp2[hp[1]],
+          g = wp3[hp[2]];
+     console.log([d, f, g]), poem = new Poem(d, f, g);
+     for (let a = 0; a &lt; hashstring.length; a++) hashring.push(new Letter(hashstring.substring(a, a + 1), 0, 0, gs(.01), gs(.02)));
+     let h = 0;
+     for (let a = 0; 360 &gt; a; a += 360 / hashring.length) {
+          let b = width / 2 + sin(radians(a)) * gs(map(hp[9], 0, 255, .1, .4)),
+               c = height / 2 + cos(radians(a)) * gs(.25);
+          hashring[h].update_location(b, c), h++
+     }
+}
+
+function draw() {
+     if (colorMode(RGB, 255, 255, 255, 255), background(255 * floor(map(hp[7], 0, 255, 0, 2))), show_gradient_backdrop &amp;&amp; (colorMode(HSB, 255, 255, 255, 255), gradient_fill(color(hp[0], hp[1], 255), color(hp[3], hp[4], 255))), show_gradient_circle &amp;&amp; gradient_circle(gs(map(hp[13], 0, 255, .01, .4)), gs(map(hp[13], 0, 255, .01, .4))), show_horizon &amp;&amp; horizon_lines(), show_colorring &amp;&amp; (push(), translate(width / 2, height / 2), rotate(radians(rotation_counter)), image(ring, -ring.width / 2, -ring.height / 2), pop()), show_hashgrid)
+          for (let a = 0; a &lt; tkh.length; a++)
+               for (let b = 0; b &lt; tkh[a].length; b++) tkh[a][b].display();
+     if (show_electrons)
+          for (let a = 0; a &lt; e.length; a++) e[a].display();
+     if (show_hashring) {
+          let a, b, c, d = 0,
+               e = 25 &lt; hp[15];
+          e ? (a = gs(map(hp[9], 0, 255, .1, .4)), b = 1, c = 2) : (a = 2 * gs(.28), b = 16, c = 8);
+          for (let e = 0; 360 &gt; e; e += 360 / hashring.length) {
+               let f = width / 2 + sin(radians(e + rotation_counter / c)) * a,
+                    g = height / 2 + cos(radians(e) * b) * gs(.25);
+               hashring[d].update_location(f, g), d++
+          }
+          255 == 255 * floor(map(hp[7], 0, 255, 0, 2)) ? stroke(0) : stroke(255), strokeWeight(gs(.002)), noFill();
+          for (let a = 0; a &lt; hashring.length; a++) hashring[a].display()
+     }
+     colorMode(HSB, 360, 100, 100, 1), 128 &lt; hp[23] ? stroke(map(hp[7], 0, 255, 0, 360), 100 * round(hp[11] / 255), 100 * round(hp[10] / 255)) : noStroke(), fill(map(hp[7], 0, 255, 0, 360), 100, 100, map(hp[9], 0, 255, 0, .4)), strokeWeight(gs(.05)), rect(0, 0, width, height), noStroke(), show_poem &amp;&amp; poem.display(), rotation_counter += .5, 360 &lt;= rotation_counter &amp;&amp; (rotation_counter = 0)
+}
+
+function hashchar(a, b) {
+     return b ? unhex(hashstring.substring(a, a + 1)) : hashstring.substring(a, a + 1)
+}
+
+function horizon_lines() {
+     strokeWeight(gs(8e-4)), stroke(150);
+     for (let a = -gs(5); a &lt; gs(5); a += gs(.2)) line(width / 2 + a / 10, height / 2, a, height);
+     let a = height / 2 - gs(.004),
+          b = log(30) * gs(.1) + a;
+     for (let a, c = 0; 30 &gt; c; c++) a = -log(c) * gs(.1) + b, line(0, a, width, a)
+}
+
+function gradient_fill(a, b) {
+     strokeWeight(gs(.01));
+     for (let c = 0; c &lt; height; c++) stroke(lerpColor(a, b, map(c, 0, height, 0, 1))), line(0, c, width, c)
+}
+
+function gradient_circle(a, b) {
+     let c = width / 2,
+          d = height / 2,
+          e = a,
+          f = b;
+     colorMode(RGB, 255, 255, 255, 255);
+     for (let g = 180; 540 &gt; g; g += 1) stroke(127 * sin(radians(g)) + 127, 127 * sin(radians(g)) + 127, 127 * sin(radians(g)) + 127, 250), strokeWeight(gs(.01)), line(sin(radians(g)) * e + c, cos(radians(g)) * f + d, sin(radians(g)) * e + c, -cos(radians(g)) * f + d)
+}
+
+function circle_ring(a, b, c) {
+     ring.noStroke(), ring.noFill();
+     let d = 1;
+     for (let e = 0; 360 &gt; e; e += 1) ring_segment(-sin(radians(e) * d) * gs(map(hp[9], 0, 255, .01, .4)) + a, cos(radians(e) * d) * gs(map(hp[8], 0, 255, .01, .4)) + b, gs(.003 * hp[12]), gs(.003 * hp[12]), PI / 2 + radians(e), TWO_PI - PI / 2 + radians(e), e, c)
+}
+
+function ring_segment(a, b, c, d, e, f, g, h) {
+     h.strokeCap(PROJECT);
+     let j, k, l = 180,
+          m = (f - e) / 180,
+          n = 0;
+     h.colorMode(HSB, 360, 100, 100, 1);
+     for (let o = 0; o &lt; l; o += 1) {
+          j = color_picker(hp[20], o, g, l), n = color_picker(hp[21], o, g, l), k = color_picker(hp[22], o, g, l);
+          let f = floor(map(hp[23], 0, 255, 0, 9));
+          switch (f) {
+               case 0:
+                    h.stroke(j, 255, 255);
+                    break;
+               case 1:
+                    h.stroke(map(g, 0, 360, 0, 255), map(g, 0, 360, 0, 255), map(g, 0, 360, 0, 255));
+                    break;
+               case 2:
+                    h.stroke(random(360), 100, 100);
+                    break;
+               case 3:
+                    h.stroke(random(10) + hp[23], random(100), random(100));
+                    break;
+               case 4:
+                    h.stroke(map(o, 0, l, 360, 0), random(100), random(100));
+                    break;
+               case 5:
+                    h.stroke(20 * o % 360, random(100), random(50, 100));
+                    break;
+               case 6:
+                    h.stroke(20 * sin(radians(o)) + hp[23], 100 * sin(radians(o)), 100, 1);
+                    break;
+               case 7:
+                    h.stroke(sin(radians(o)) * hp[15], sin(radians(o)) * hp[14], 100, 1 * sin(40 * radians(o)));
+                    break;
+               case 8:
+                    colorMode(RGB, 360, 360, 360), h.stroke(j, k, n, o);
+                    break;
+               default:
+                    h.stroke(0, 0, 0);
+          }
+          127 &lt; hp[24] &amp;&amp; 0 == g % 10 &amp;&amp; h.stroke(n), h.strokeWeight(sin(radians(o)) * gs(.008)), h.arc(a, b, c, d, e + o * m, e + (o + 1) * m)
+     }
+}
+
+function color_picker(a, b, c, d) {
+     let e = 0,
+          f = floor(map(a, 0, 255, 0, 8));
+     return 0 === f ? e = 180 * sin(10 * radians(c)) + 180 : 1 === f ? e = c : 2 === f ? e = map(b, 0, d, 0, 360) : 3 === f ? e = 360 * noise(c / 4, b / 4) : 4 === f ? e = 180 * sin(radians(c)) + 180 : 5 === f ? e = 180 * sin(radians(b + hp[14]) / 2) + 180 : 6 === f ? e = 180 * tan(radians(b * hp[15]) / (hp[14] / 50)) + 180 : 7 === f ? e = random(360) : void 0, e
+}
+class TokenHashGrid {
+     constructor(a, b, c, d, e) {
+          this.char = a, this.cell_size = createVector(width / 8, height / 8), this.x = b * this.cell_size.x + this.cell_size.y / 2, this.y = c * this.cell_size.x + this.cell_size.y / 2, this.fade_amount = 0, this.offset = d, this.col = e, this.col.setAlpha(this.fade_amount), this.padding = gs(.01), this.letter = new Letter(this.char, this.x - this.cell_size.x / 2 + this.padding, this.y - this.cell_size.y / 2 + this.padding, this.cell_size.x - 2 * this.padding, this.cell_size.y - 2 * this.padding)
+     }
+     display() {
+          colorMode(HSB, 360, 100, 100, 1), this.update(), stroke(this.col), noFill(), strokeWeight(gs(.01)), this.letter.display(), fill(this.col), noStroke(), rect(this.x - this.cell_size.x / 2, this.y - this.cell_size.y / 2, this.cell_size.x, this.cell_size.y)
+     }
+     update() {
+          this.fade_amount++, this.col.setAlpha(sin(radians(this.fade_amount + this.offset))), 360 &lt; this.fade_amount &amp;&amp; (this.fade_amount = 0)
+     }
+}
+class Electron {
+     constructor(a, b) {
+          this.x = a, this.y = b, this.nx = a, this.ny = b, this.easing = .05
+     }
+     update() {
+          .5 &gt; abs(this.x - this.nx) &amp;&amp; .5 &gt; abs(this.y - this.ny) &amp;&amp; (this.nx = random(width), this.ny = random(height), this.easing = random(.05, .02));
+          let a = this.nx - this.x;
+          this.x += 3 * (a * this.easing);
+          let b = this.ny - this.y;
+          this.y += b * this.easing
+     }
+     display() {
+          0 == 255 * floor(map(hp[7], 0, 255, 0, 2)) ? fill(255) : fill(map(this.x, 0, width, 0, 255), map(this.y, 0, height, 0, 255), 200), noStroke(), ellipse(this.x, this.y, gs(.024), gs(.024)), this.update()
+     }
+}
+class Poem {
+     constructor(a, b, c) {
+          this.word1 = a, this.word2 = b, this.word3 = c, this.edge_padding = gs(.06), this.division1 = gs(.17), this.division2 = gs(.17), this.division3 = gs(.17), this.words = [], this.prepare()
+     }
+     prepare() {
+          this.words.push(new Word(this.word1, 2 * this.edge_padding, this.division1, this.edge_padding)), this.words.push(new Word(this.word2, height / 2 - this.division2 / 2, this.division2, this.edge_padding)), this.words.push(new Word(this.word3, height - 2 * this.edge_padding - this.division3, this.division3, this.edge_padding))
+     }
+     display() {
+          for (let a = 0; a &lt; this.words.length; a++) this.words[a].display()
+     }
+}
+class Word {
+     constructor(a, b, c, d) {
+          this.word = a.toLowerCase(), this.start_y = b, this.height = c, this.edge_padding = d, this.padding = gs(1 / (3 * this.word.length)), this.letter_width = (width - 2 * this.edge_padding) / this.word.length - this.padding, this.letters = [], this.prepare()
+     }
+     prepare() {
+          for (let a = 0; a &lt; this.word.length; a++) this.letters.push(new Letter(this.word[a], a * this.letter_width + (this.edge_padding + this.padding / 2) + this.padding * a, this.start_y, this.letter_width, this.height))
+     }
+     display() {
+          colorMode(HSB, 360, 100, 100, 1), noFill();
+          for (let a = 0; 3 &gt; a; a++) {
+               0 == a ? strokeWeight(gs(.22 / this.word.length)) : 1 === a ? strokeWeight(gs(.18 / this.word.length)) : 2 === a ? strokeWeight(gs(.09 / this.word.length)) : void 0;
+               for (let b = 0; b &lt; this.letters.length; b++) 0 == a % 2 ? stroke(this.letters[b].get_color2()) : stroke(this.letters[b].get_color()), this.letters[b].display()
+          }
+     }
+}
+class Letter {
+     constructor(a, b, c, d, e) {
+          this.letter = a, this.x = b, this.y = c, this.w = d, this.h = e, colorMode(HSB, 360, 100, 100);
+          let f = random(360),
+               g = (f + 128) % 360;
+          switch (floor(map(hp[4], 0, 255, 0, 3.999))) {
+               case 0:
+                    this.col = color(f, 80, 0), this.col2 = color(g, 80, 100);
+                    break;
+               case 1:
+                    this.col = color(f, 80, 100), this.col2 = color(g, 80, 90);
+                    break;
+               case 2:
+                    this.col = color(f, 0, 100), this.col2 = color(g, 0, 0);
+                    break;
+               case 3:
+                    this.col = color(f, 0, 0), this.col2 = color(g, 0, 100);
+          }
+     }
+     get_color() {
+          return this.col
+     }
+     get_color2() {
+          return this.col2
+     }
+     display() {
+          push(), translate(this.x, this.y), this.fetch_letter(), pop()
+     }
+     update_location(a, b) {
+          this.x = a, this.y = b
+     }
+     fetch_letter() {
+          let a = this.w,
+               b = this.h;
+          switch (this.letter) {
+               case &quot;a&quot;:
+                    line(0, b, a / 2, 0), line(a / 2, 0, a, b), line(a / 2 / 2, b / 2, (a + a / 2) / 2, b / 2);
+                    break;
+               case &quot;b&quot;:
+                    line(0, 0, 0, b), arc(a / 2, .25 * b, a, b / 2, PI + HALF_PI, HALF_PI), arc(a / 2, .75 * b, a, b / 2, PI + HALF_PI, HALF_PI), line(0, 0, a / 2, 0), line(0, b / 2, a / 2, b / 2), line(0, b, a / 2, b);
+                    break;
+               case &quot;c&quot;:
+                    arc(a / 2, b / 2, a, b, QUARTER_PI + QUARTER_PI / 2, TWO_PI - QUARTER_PI - QUARTER_PI / 2);
+                    break;
+               case &quot;d&quot;:
+                    line(0, 0, 0, b), arc(a / 2, b / 2, a, b, PI + HALF_PI, HALF_PI), line(0, 0, a / 2, 0), line(0, b, a / 2, b);
+                    break;
+               case &quot;e&quot;:
+                    line(0, 0, 0, b), line(0, 0, a, 0), line(0, b / 2, a, b / 2), line(0, b, a, b);
+                    break;
+               case &quot;f&quot;:
+                    line(0, 0, 0, b), line(0, 0, a, 0), line(0, b / 2, a, b / 2);
+                    break;
+               case &quot;g&quot;:
+                    arc(a / 2, b / 2, a, b, 0, TWO_PI - QUARTER_PI), line(a / 2, b / 2, a, b / 2);
+                    break;
+               case &quot;h&quot;:
+                    line(0, 0, 0, b), line(a, 0, a, b), line(0, b / 2, a, b / 2);
+                    break;
+               case &quot;i&quot;:
+                    line(0, 0, a, 0), line(a / 2, 0, a / 2, b), line(0, b, a, b);
+                    break;
+               case &quot;j&quot;:
+                    line(0, 0, a, 0), line(a - a / 4, 0, a - a / 4, b / 2), arc(a / 4, b / 2, a, b, 0, HALF_PI + QUARTER_PI / 3);
+                    break;
+               case &quot;k&quot;:
+                    line(a, 0, 0, b / 2), line(a, b, 0, b / 2), line(0, 0, 0, b);
+                    break;
+               case &quot;l&quot;:
+                    line(0, 0, 0, b), line(0, b, a, b);
+                    break;
+               case &quot;m&quot;:
+                    line(0, b, a / 4, 0), line(a, b, a - a / 4, 0), line(a / 2, b - b / 4, a / 4, 0), line(a / 2, b - b / 4, a - a / 4, 0);
+                    break;
+               case &quot;n&quot;:
+                    line(0, 0, 0, b), line(0, 0, a, b), line(a, 0, a, b);
+                    break;
+               case &quot;o&quot;:
+                    ellipse(a / 2, b / 2, a, b);
+                    break;
+               case &quot;p&quot;:
+                    line(0, 0, 0, b), arc(a / 2, b / 4, a, b / 2, PI + HALF_PI, HALF_PI), line(0, 0, a / 2, 0), line(0, b / 2, a / 2, b / 2);
+                    break;
+               case &quot;q&quot;:
+                    ellipse(a / 2, b / 2, a, b), line(a / 2, b / 2, a, b);
+                    break;
+               case &quot;r&quot;:
+                    line(0, 0, 0, b), arc(a / 2, b / 4, a, b / 2, PI + HALF_PI, HALF_PI), line(0, 0, a / 2, 0), line(0, b / 2, a / 2, b / 2), line(a / 2, b / 2, a, b);
+                    break;
+               case &quot;s&quot;:
+                    arc(a / 2, b / 4, a, b / 2, HALF_PI, TWO_PI - QUARTER_PI), arc(a / 2, b - b / 4, a, b / 2, PI + HALF_PI, PI);
+                    break;
+               case &quot;t&quot;:
+                    line(0, 0, a, 0), line(a / 2, 0, a / 2, b);
+                    break;
+               case &quot;u&quot;:
+                    arc(a / 2, b - b / 4, a, b / 2, 0, PI), line(0, 0, 0, b - b / 4), line(a, 0, a, b - b / 4);
+                    break;
+               case &quot;v&quot;:
+                    line(0, 0, a / 2, b), line(a, 0, a / 2, b);
+                    break;
+               case &quot;w&quot;:
+                    line(0, 0, a / 4, b), line(a, 0, a - a / 4, b), line(a / 4, b, a / 2, b / 4), line(a - a / 4, b, a / 2, b / 4);
+                    break;
+               case &quot;x&quot;:
+                    line(0, 0, a, b), line(a, 0, 0, b);
+                    break;
+               case &quot;y&quot;:
+                    line(0, 0, a / 2, b / 2), line(a, 0, a / 2, b / 2), line(a / 2, b / 2, a / 2, b);
+                    break;
+               case &quot;z&quot;:
+                    line(0, 0, a, 0), line(a, 0, 0, b), line(0, b, a, b);
+                    break;
+               case &quot;0&quot;:
+                    ellipse(a / 2, b / 2, a, b), line(a / 2 + sin(-QUARTER_PI) * a / 2, b / 2 + cos(-QUARTER_PI) * b / 2, a / 2 + sin(PI - QUARTER_PI) * a / 2, b / 2 + cos(PI - QUARTER_PI) * b / 2);
+                    break;
+               case &quot;1&quot;:
+                    line(a / 2, 0, a / 2, b), line(a / 2, 0, a / 4, b / 4), line(0, b, a, b);
+                    break;
+               case &quot;2&quot;:
+                    arc(a / 2, b / 4, a, b / 2, PI, TWO_PI), line(a / 2 + sin(HALF_PI) * a / 2, b / 4 + cos(HALF_PI) * b / 4, 0, b), line(0, b, a, b);
+                    break;
+               case &quot;3&quot;:
+                    line(0, 0, a, 0), line(a, 0, a / 2, b / 2), arc(a / 2, b - b / 4, a, b / 2, PI + HALF_PI, PI);
+                    break;
+               case &quot;4&quot;:
+                    line(a - a / 4, 0, 0, b / 2), line(a - a / 4, 0, a - a / 4, b), line(0, b / 2, a, b / 2);
+                    break;
+               case &quot;5&quot;:
+                    line(0, 0, a, 0), line(0, 0, 0, b / 2), line(0, b / 2, a / 2, b / 2), arc(a / 2, b - b / 4, a, b / 2, PI + HALF_PI, PI);
+                    break;
+               case &quot;6&quot;:
+                    arc(a / 2, b / 4, a, b / 2, PI, PI + HALF_PI + QUARTER_PI), line(0, b / 4, 0, b - b / 4), ellipse(a / 2, b - b / 4, a, b / 2);
+                    break;
+               case &quot;7&quot;:
+                    line(0, 0, a, 0), line(a / 2, b, a, 0), line(a / 4, b / 2, a - a / 4, b / 2);
+                    break;
+               case &quot;8&quot;:
+                    ellipse(a / 2, b / 4, a, b / 2), ellipse(a / 2, b - b / 4, a, b / 2);
+                    break;
+               case &quot;9&quot;:
+                    ellipse(a / 2, b / 4, a, b / 2), line(a, b / 4, a, b);
+                    break;
+               case &quot;-&quot;:
+                    line(0, b / 2, a, b / 2);
+                    break;
+               case &quot;.&quot;:
+                    point(a / 2, b);
+                    break;
+               case &quot;_&quot;:
+                    line(0, b, a, b);
+                    break;
+               case &quot;*&quot;:
+                    for (let c = 0; 360 &gt; c; c += 120) line(sin(radians(c)) * a / 4 + a / 2, cos(radians(c)) * b / 4 + b / 3, sin(radians(c + 180)) * a / 4 + a / 2, cos(radians(c + 180)) * b / 4 + b / 3), line(sin(radians(c)) * a / 4 + a / 2, cos(radians(c)) * b / 4 + b / 3, sin(radians(c + 180)) * a / 4 + a / 2, cos(radians(c + 180)) * b / 4 + b / 3), line(sin(radians(c)) * a / 4 + a / 2, cos(radians(c)) * b / 4 + b / 3, sin(radians(c + 180)) * a / 4 + a / 2, cos(radians(c + 180)) * b / 4 + b / 3);
+                    break;
+               case &quot; &quot;:
+                    break;
+               default:
+          }
+     }
+}</pre></body></html>

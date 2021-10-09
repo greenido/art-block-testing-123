@@ -1,0 +1,317 @@
+<html><body><h1>Name: Empyrean</h1><h3>Artist: Generative Artworks</h3><h3>Description: Empyrean - an exploration of form modeled after the highest heaven, domain of the fifth element. Each piece is unique and has many different attributes such as size, line style, color scheme, and some other features you'll have to discover. This piece is interactive, so mess around with your keyboard to find out what you can do.</h3><h3>https://www.instagram.com/generativeartworks/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1/1&quot;,&quot;interactive&quot;:&quot;true&quot;}</p><p>Script Type: p5js</p><p>Version: </p><p>Script Ratio: 1/1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xecc6043947fd65a7ba93e755d42594c7c7bc2cdb</p><p>Additional Payee: 0xa2bf81358783785029f78947a094036cd5208b34</p><p>Additional Payee Percentage: 0</p><p>Price: 0.06</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 500</p><p>Maximum Invocations: 500</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 33000000,33000001,33000002,33000003,33000004,33000005,33000006,33000007,33000008,33000009,33000010,33000011,33000012,33000013,33000014,33000015,33000016,33000017,33000018,33000019,33000020,33000021,33000022,33000023,33000024,33000025,33000026,33000027,33000028,33000029,33000030,33000031,33000032,33000033,33000034,33000035,33000036,33000037,33000038,33000039,33000040,33000041,33000042,33000043,33000044,33000045,33000046,33000047,33000048,33000049,33000050,33000051,33000052,33000053,33000054,33000055,33000056,33000057,33000058,33000059,33000060,33000061,33000062,33000063,33000064,33000065,33000066,33000067,33000068,33000069,33000070,33000071,33000072,33000073,33000074,33000075,33000076,33000077,33000078,33000079,33000080,33000081,33000082,33000083,33000084,33000085,33000086,33000087,33000088,33000089,33000090,33000091,33000092,33000093,33000094,33000095,33000096,33000097,33000098,33000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let nL, nP, mW, rE = !1,
+     fE, st = null;
+const sY = {
+     L: &quot;L&quot;,
+     N: &quot;N&quot;,
+     R: &quot;R&quot;
+};
+let sDB = !1,
+     uF = !1,
+     ra, fN;
+const po = [],
+     lI = [];
+let oS = [],
+     sT = [];
+const dL = [],
+     dS = [];
+let ro = 0,
+     rS = 0;
+const rI = 1e-4,
+     mRS = .08,
+     mL = 20,
+     maL = 200,
+     mB = 0,
+     maB = 25;
+let nRa = 30;
+const miSW = .8,
+     maSW = 2;
+let mH, maH, nO = 0,
+     nI = .0125,
+     nM = !1,
+     mD = !1,
+     nMa = 0,
+     nR = 0,
+     baC, bC, oBC, yO = 0,
+     xO = 0,
+     pE, sS;
+const sSs = {
+     U: &quot;U&quot;,
+     RA: &quot;RA&quot;,
+     R: &quot;R&quot;
+};
+let cS;
+const cSs = {
+     G: &quot;G&quot;,
+     M: &quot;M&quot;,
+     F: &quot;F&quot;
+};
+let cAS, cASP, fBCC, cO = 0;
+const cASs = {
+     X: &quot;X&quot;,
+     R: &quot;R&quot;,
+     RA: &quot;RA&quot;,
+     H: &quot;H&quot;
+};
+let nSR, nSP1, nSP2;
+const nSs = {
+     X: &quot;X&quot;,
+     S: &quot;S&quot;,
+     O: &quot;O&quot;,
+     T: &quot;T&quot;,
+     C: &quot;C&quot;,
+     A: &quot;*&quot;
+};
+let mNR, nRS;
+const nRSs = {
+          X: &quot;X&quot;,
+          N: &quot;N&quot;
+     },
+     hP = [];
+for (let n = 0; n &lt; 32; n++) hP.push(tokenData.hash.slice(2 + 2 * n, 4 + 2 * n));
+const dP = hP.map(n =&gt; parseInt(n, 16));
+let seed = parseInt(tokenData.hash.slice(0, 16), 16);
+
+function setup() {
+     noiseSeed(seed);
+     var n = windowWidth &lt; windowHeight ? windowWidth : windowHeight;
+     createCanvas(n, n), frameRate(30), baC = rnd(mB, maB), background(baC), translate(width / 2, height / 2), deS(), uF || noFill();
+     for (let n = 0; n &lt;= TWO_PI; n += TWO_PI / nP) {
+          var s = map(sin(n), -1, 1, -ra, ra),
+               e = map(cos(n), -1, 1, -ra, ra);
+          po.push({
+               x: s,
+               y: e
+          })
+     }
+     for (let n = 0; n &lt; nL; n++) sT.push(gRC()), gP(n);
+     bC = gRC(), oS = [...sT], oBC = bC
+}
+
+function draw() {
+     background(baC), translate(width / 2 + xO, height / 2 + yO), rotate(ro), sDB &amp;&amp; (push(), newBorderColor = gBC(), cAC(newBorderColor), circle(0, 0, 2 * ra), pop()), lI.forEach((n, s) =&gt; {
+          var e = gLC(s);
+          switch (cAC(e), st) {
+               case sY.R:
+                    var a = {
+                              x: n.p1.x + aN(n.p1.x),
+                              y: n.p1.y + aN(n.p1.y)
+                         },
+                         t = {
+                              x: n.p2.x + aN(n.p2.x),
+                              y: n.p2.y + aN(n.p2.y)
+                         };
+                    line(a.x, a.y, t.x, t.y), dNs(a, t, e);
+                    break;
+               case sY.L:
+               case sY.N:
+                    bezier(n.p1.x, n.p1.y, n.p2.x + aN(n.p2.x), n.p2.y + aN(n.p2.y), n.p3.x + aN(n.p3.x), n.p3.y + aN(n.p3.y), n.p4.x, n.p4.y), dNs(n.p1, n.p4, e)
+          }
+     }), mD || (cAS === cASs.R &amp;&amp; frameCount % fBCC == 0 &amp;&amp; (cO = 0 === sT.length ? 0 : (cO + 1) % sT.length), cAS === cASs.H &amp;&amp; (n = (mH &gt; maH ? 255 - mH + maH : maH - mH) * cASP, cO = (cO + 2 * PI / n) % (2 * PI)), nM &amp;&amp; (nO += nI, nMa &lt; 1 &amp;&amp; (nMa += 1 / 150))), keyIsDown(46) &amp;&amp; 0 &lt; lI.length &amp;&amp; (dL.push(lI.pop()), dS.push(sT.pop())), keyIsDown(32) &amp;&amp; lI.length &lt; nL &amp;&amp; (lI.push(dL.pop()), sT.push(dS.pop())), keyIsDown(RIGHT_ARROW) &amp;&amp; rS &lt; mRS &amp;&amp; (rS += rI), keyIsDown(LEFT_ARROW) &amp;&amp; rS &gt; -mRS &amp;&amp; (rS -= rI), ro += rS;
+     var n = height / 540;
+     keyIsDown(87) &amp;&amp; yO &gt; -height / 2 &amp;&amp; (yO -= n), keyIsDown(83) &amp;&amp; yO &lt; height / 2 &amp;&amp; (yO += n), keyIsDown(65) &amp;&amp; xO &gt; -width / 2 &amp;&amp; (xO -= n), keyIsDown(68) &amp;&amp; xO &lt; width / 2 &amp;&amp; (xO += n)
+}
+
+function cAC(n) {
+     if (cS !== cSs.G) return stroke(n.h, n.s, n.b), void(uF &amp;&amp; fill(n.h, n.s, n.b));
+     stroke(n), uF &amp;&amp; fill(n)
+}
+
+function gBC() {
+     switch (cAS) {
+          case cASs.RA:
+               mD || 0 === frameCount || frameCount % fBCC != 0 || (bC = gRC());
+               break;
+          case cASs.H:
+               return gSH(bC)
+     }
+     return bC
+}
+
+function gLC(n) {
+     let s = n;
+     switch (cAS) {
+          case cASs.R:
+               s = (n + cO) % sT.length;
+               break;
+          case cASs.RA:
+               mD || 0 === frameCount || frameCount % fBCC != 0 || (sT[s] = gRC());
+               break;
+          case cASs.H:
+               return gSH(sT[s])
+     }
+     return sT[s]
+}
+
+function gSH(n) {
+     var s = cS !== cSs.G ? n.h : n,
+          s = mH &lt; maH ? map(s, mH, maH, -1, 1) : map(s &lt; mH ? s + 255 : s, mH, maH + 255, -1, 1),
+          s = (map(asin(s), -PI / 2, PI / 2, 0, 2 * PI) + cO) % (2 * PI),
+          s = mH &lt; maH ? map(sin(s), -1, 1, mH, maH) : map(sin(s), -1, 1, mH, mH + maH) % 255;
+     return cS === cSs.G ? s : {
+          h: s,
+          s: n.s,
+          b: n.b
+     }
+}
+
+function dNs(n, s, e) {
+     push(), fN ? cS !== cSs.G ? fill(e.h, e.s, e.b) : fill(e) : noFill(), dN(n.x, n.y, noS(n), nSP1), dN(s.x, s.y, noS(s), nSP2), pop()
+}
+
+function dN(n, s, e, a) {
+     var t, r, c, o, S, p, i, m, h;
+     switch (push(), translate(n, s), nRS === nRSs.N &amp;&amp; rotate(nRo(n, s)), a) {
+          case nSs.O:
+               circle(0, 0, e);
+               break;
+          case nSs.S:
+               push(), rectMode(CENTER), square(0, 0, e), pop();
+               break;
+          case nSs.T:
+               m = i = 0, h = e, triangle(i - h / 2, m - h / 2, i + h / 2, m - h / 2, i, m + h / 2);
+               break;
+          case nSs.C:
+               S = o = 0, p = e, line(o - p / 2, S - p / 2, o + p / 2, S + p / 2), line(o - p / 2, S + p / 2, o + p / 2, S - p / 2);
+               break;
+          case nSs.A:
+               r = t = 0, c = e, line(t - c / 2, r - c / 2, t + c / 2, r + c / 2), line(t - c / 2, r + c / 2, t + c / 2, r - c / 2), line(t - c / 2, r, t + c / 2, r), line(t, r - c / 2, t, r + c / 2)
+     }
+     pop()
+}
+
+function keyPressed() {
+     82 === keyCode &amp;&amp; (rotate(-ro), cO = 0, ro = 0, rS = 0, yO = 0, xO = 0, nO = 0, nMa = 0, sT = [...oS], bC = oBC), 78 === keyCode &amp;&amp; (mD = !mD)
+}
+
+function deS() {
+     var n = rnd(width * (miSW / 1080), width * (maSW / 1080));
+     switch (strokeWeight(n), mW = width / rnd(st === sY.N ? 2 : 4, 8), nL = floor(mapV(0, mL, maL)), nP = floor(mapV(1, 10, 500)), floor(mapV(2, 1, 4))) {
+          case 1:
+               st = sY.L;
+               break;
+          case 2:
+               st = sY.N;
+               break;
+          default:
+               st = sY.R
+     }
+     mapV(3) &lt; .2 &amp;&amp; (rE = !0), mapV(4) &lt; .38 &amp;&amp; (sDB = !0), mapV(5) &lt; .15 &amp;&amp; (uF = !0), ra = width / mapV(6, 2.1, 3), mapV(7) &lt; .05 &amp;&amp; (nM = !0, nI = mapV(8, .0075, .015)), nRa = mapV(9, 25, 35), nR = mapV(10, 1, 10), sS = sSs.R;
+     n = mapV(11);
+     n &lt;= .2 ? sS = sSs.U : n &lt;= .4 &amp;&amp; (sS = sSs.RA), cS = cSs.G;
+     n = mapV(12);
+     maH = n &lt;= .35 ? (cS = cSs.M, mH = rnd(0, 255), (mH + 51) % 255) : n &lt;= .5 ? (cS = cSs.F, mH = 0, 255) : (mH = 50, 300), nSP1 = gNS(13), nSP2 = gNS(14), nRS = mapV(15) &lt; .3 ? nRSs.N : nRSs.X, mNR = mapV(16, PI, 4 * PI), fN = mapV(17) &lt; .5, nSR = mapV(18, 3, 25), cAS = cASs.X;
+     n = mapV(19);
+     n &lt;= .05 ? cAS = cASs.H : n &lt;= .1 ? cAS = cASs.RA : n &lt;= .15 &amp;&amp; (cAS = cASs.R), cASP = mapV(20, .8, 1.2), fBCC = floor(mapV(21, 3, 10))
+}
+
+function mapV(n, s = 0, e = 1) {
+     return map(dP[n], 0, 255, s, e)
+}
+
+function gRC() {
+     return cS !== cSs.G ? (colorMode(HSB, 255), h = mH &gt; maH ? rnd(mH, mH + maH) % 255 : rnd(mH, maH), s = rnd(150, 255), b = rnd(150, 255), {
+          h: h,
+          s: s,
+          b: b
+     }) : rnd(mH, maH)
+}
+
+function gNS(n) {
+     let s = nSs.X;
+     n = mapV(n);
+     return n &lt;= .05 ? s = nSs.O : n &lt;= .1 ? s = nSs.S : n &lt;= .15 ? s = nSs.T : n &lt;= .2 ? s = nSs.C : n &lt;= .25 &amp;&amp; (s = nSs.A), s
+}
+
+function gP(n) {
+     let s, e, a, t;
+     switch (sS) {
+          case sSs.U:
+               pE ? s = pE : (s = gRVP(), fE = s);
+               break;
+          case sSs.RA:
+               s = gRVP();
+               break;
+          default:
+               s = po[ceil(rnd(0, nP - 1))]
+     }
+     switch (st) {
+          case sY.R:
+               e = gE(n), lI.push({
+                    p1: s,
+                    p2: e
+               }), pE = e;
+               break;
+          case sY.L:
+               for (t = gE(n), e = gLP(s, t, .2, .4); !iPOC(e.x, e.y);) e = gLP(s, t, .2, .4);
+               for (a = gLP(s, t, .6, .8); !iPOC(a.x, a.y);) a = gLP(s, t, .6, .8);
+               lI.push({
+                    p1: s,
+                    p2: e,
+                    p3: a,
+                    p4: t
+               }), pE = t;
+               break;
+          case sY.N:
+               for (t = gE(n), e = gLP(s, t, .2, .4); !iPV(e);) e = gLP(s, t, .2, .4);
+               for (a = gLP(s, t, .6, .8); !iPV(a);) a = gLP(s, t, .6, .8);
+               lI.push({
+                    p1: s,
+                    p2: e,
+                    p3: a,
+                    p4: t
+               }), pE = t
+     }
+}
+
+function gE(n) {
+     return n === nL - 1 &amp;&amp; sS === sSs.U ? fE : rE ? gRVP() : po[ceil(rnd(0, nP - 1))]
+}
+
+function gLP(n, s, e, a) {
+     return {
+          x: lerp(n.x, s.x, rnd(e, a)) + rnd(-mW, mW),
+          y: lerp(n.y, s.y, rnd(e, a)) + rnd(-mW, mW)
+     }
+}
+
+function nRo(n, s) {
+     n = map(n, 0, width, 0, nR) + nO, s = map(s, 0, height, 0, nR) + nO;
+     return map(noise(n + 100, s + 100), 0, 1, -mNR, mNR)
+}
+
+function noS(n) {
+     var s = map(n.x, 0, width, 0, nR) + nO,
+          e = map(n.y, 0, height, 0, nR) + nO,
+          n = width / 2 - ra &lt; width / nSR / 2 ? 2 * (width / 2 - ra) : width / nSR;
+     return map(noise(s, e), 0, 1, -n, n)
+}
+
+function aN(n) {
+     return map(noise(map(n, 0, width, 0, nR) + nO), 0, 1, -1, 1) * (width / nRa) * nMa
+}
+
+function iPV(n) {
+     var s = n.x,
+          e = n.y;
+     return s * s + e * e &lt;= ra * ra &amp;&amp; iPOC(n.x, n.y)
+}
+
+function iPOC(n, s) {
+     return n &gt;= -width / 2 &amp;&amp; n &lt;= width / 2 &amp;&amp; s &gt;= -height / 2 &amp;&amp; s &lt;= height / 2
+}
+
+function gRVP() {
+     let n = {
+          x: rnd(-width / 2, width / 2),
+          y: rnd(-height / 2, height / 2)
+     };
+     for (; !iPV(n);) n = {
+          x: rnd(-width / 2, width / 2),
+          y: rnd(-height / 2, height / 2)
+     };
+     return n
+}
+
+function rnd(n = 0, s = 1) {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, seed ^= seed &lt;&lt; 5, map((seed &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3, 0, 1, n, s)
+}</pre></body></html>

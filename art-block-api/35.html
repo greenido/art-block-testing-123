@@ -1,0 +1,87 @@
+<html><body><h1>Name: Aerial View</h1><h3>Artist: daLenz</h3><h3>Description: My interpretation of Aerial View is a bird's Eye View over a city block with illuminated/twisted buildings and light trails. It uses an on-chain stored algorithm to represent the generative artwork based on a hash. Each Aerial comes with different distances, building elevations, rotations and colors. Welcome to my genesis project and the first step on my on-chain journey!</h3><h3>https://twitter.com/_daLenz_</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xd2cbbcc72feab581a4e85bea3f3f3e074959e190</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1000</p><p>Maximum Invocations: 1000</p><p>License: NIFTY License</p><p>Token Ids: 35000000,35000001,35000002,35000003,35000004,35000005,35000006,35000007,35000008,35000009,35000010,35000011,35000012,35000013,35000014,35000015,35000016,35000017,35000018,35000019,35000020,35000021,35000022,35000023,35000024,35000025,35000026,35000027,35000028,35000029,35000030,35000031,35000032,35000033,35000034,35000035,35000036,35000037,35000038,35000039,35000040,35000041,35000042,35000043,35000044,35000045,35000046,35000047,35000048,35000049,35000050,35000051,35000052,35000053,35000054,35000055,35000056,35000057,35000058,35000059,35000060,35000061,35000062,35000063,35000064,35000065,35000066,35000067,35000068,35000069,35000070,35000071,35000072,35000073,35000074,35000075,35000076,35000077,35000078,35000079,35000080,35000081,35000082,35000083,35000084,35000085,35000086,35000087,35000088,35000089,35000090,35000091,35000092,35000093,35000094,35000095,35000096,35000097,35000098,35000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var canvasSize = 500;
+
+function getHashCode(e) {
+     for (var t = 0, a = &quot;string&quot; == typeof e ? e.length : 0, r = 0; r &lt; a;) t = (t &lt;&lt; 5) - t + e.charCodeAt(r++);
+     return t &lt; 0 ? -1 * t + 4294967295 : t
+}
+
+function renderRectangle(e, t, a, r, o, i, l) {
+     var n = '&lt;rect transform=&quot;translate(%TRANSLATE%) rotate(%ROTATION%)&quot; width=&quot;%WIDTH%&quot; height=&quot;%HEIGHT%&quot; stroke=&quot;%COLOR%&quot; fill=&quot;black&quot;/&gt;';
+     return e += n = n.replace(&quot;%TRANSLATE%&quot;, t + &quot;,&quot; + a).replace(&quot;%ROTATION%&quot;, l).replace(&quot;%WIDTH%&quot;, r).replace(&quot;%HEIGHT%&quot;, o).replace(&quot;%COLOR%&quot;, i)
+}
+
+function renderAerialView(e) {
+     var t = getHashCode(e) % 20 + 5;
+     t % 2 == 0 &amp;&amp; (t += 1);
+     for (var a = t * t, r = canvasSize / t, o = r - 4, i = new Array(t), l = 0; l &lt;= t; ++l) i[l] = new Array(t);
+     var n = &quot;&lt;metadata&gt;&lt;artwork&gt;Aerial View&lt;/artwork&gt;&lt;artist&gt;daLenz&lt;/artist&gt;&lt;style&gt;%STYLE%&lt;/style&gt;&lt;altitude&gt;%ALTITUDE%&lt;/altitude&gt;&lt;elevation&gt;%ELEVATION%&lt;/elevation&gt;&lt;colorset&gt;%COLORSET%&lt;/colorset&gt;&lt;lighttrail&gt;%LIGHTTRAIL%&lt;/lighttrail&gt;&lt;/metadata&gt;&quot;,
+          c = [
+               [&quot;#000000&quot;, &quot;Black&quot;],
+               [&quot;#00FF00&quot;, &quot;Neon Green&quot;],
+               [&quot;#FF00FF&quot;, &quot;Neon Pink&quot;],
+               [&quot;#F2EA02&quot;, &quot;Gold&quot;]
+          ],
+          s = [
+               [&quot;#9BA1D1&quot;, &quot;#BAE2DD&quot;, &quot;#D2EACB&quot;, &quot;#F6F1C4&quot;, &quot;Sliding&quot;],
+               [&quot;#957DAD&quot;, &quot;#D291BC&quot;, &quot;#FEC8D8&quot;, &quot;#FFDFD3&quot;, &quot;Pastel&quot;],
+               [&quot;#CFD6AD&quot;, &quot;#EDE8C6&quot;, &quot;#B3C7C5&quot;, &quot;#91ADB4&quot;, &quot;Elevating&quot;],
+               [&quot;#A08A86&quot;, &quot;#97C6B0&quot;, &quot;#515C74&quot;, &quot;#F4ABA4&quot;, &quot;Think&quot;],
+               [&quot;#0B3D6F&quot;, &quot;#F25930&quot;, &quot;#FABB01&quot;, &quot;#FFEA48&quot;, &quot;Summer&quot;],
+               [&quot;#2E4770&quot;, &quot;#F25930&quot;, &quot;#CE5E82&quot;, &quot;#ECC6A2&quot;, &quot;Wave&quot;],
+               [&quot;#4FAF44&quot;, &quot;#F6EB14&quot;, &quot;#EF4423&quot;, &quot;#2A3492&quot;, &quot;Retro&quot;],
+               [&quot;#51404F&quot;, &quot;#E38B6A&quot;, &quot;#6C7244&quot;, &quot;#E7BC8A&quot;, &quot;Rustic&quot;],
+               [&quot;#CF4F38&quot;, &quot;#DDCBA1&quot;, &quot;#659F93&quot;, &quot;#DFB859&quot;, &quot;Vintage&quot;],
+               [&quot;#7700D7&quot;, &quot;#00BD75&quot;, &quot;#F5DA7C&quot;, &quot;#DD367C&quot;, &quot;60s&quot;]
+          ],
+          d = 0,
+          A = e + e,
+          C = getHashCode(A) % 100,
+          h = getHashCode(A + A + A) % 100,
+          v = getHashCode(A + A) % 100,
+          E = getHashCode(A + A + A + A) % 100,
+          g = getHashCode(e) % s.length;
+     n = n.replace(&quot;%COLORSET%&quot;, s[g][4]);
+     var F = '&lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%COLOR%&quot;/&gt;',
+          T = 0;
+     d += T = C &lt; 80 ? 0 : C &lt; 85 ? 1 : C &lt; 95 ? 2 : 3, F = F.replace(&quot;%COLOR%&quot;, c[T][0]), n = n.replace(&quot;%LIGHTTRAIL%&quot;, c[T][1]), n += F;
+     for (var D = 0, p = 0; p &lt; a; p++) {
+          var H = p % t,
+               f = Math.floor(p / t),
+               w = H * r,
+               u = f * r;
+          if (!(1 == i[H][f])) {
+               var L = 1;
+               if (h &lt; 7) B = 1;
+               else {
+                    L = h &lt; 50 ? t / 4 : h &lt; 85 ? t / 2 : h &lt; 95 ? t / 4 * 3 : t;
+                    var B = 1;
+                    1 == getHashCode(A) % 10 &amp;&amp; (B = Math.round(getHashCode(A + p) % L) + 1);
+                    for (var O = !0; O &amp;&amp; B &gt; 1;)
+                         if (t &lt; H + B || t &lt; f + B) B--;
+                         else
+                              for (var m = 0; m &lt;= B; m++)
+                                   for (var R = 0; R &lt;= B; R++) overlapped = 1 == i[H + m][f + R], overlapped ? B-- : O = !1
+               }
+               var I, S = getHashCode(A) % 10;
+               I = S &lt;= 7 ? 3 : S &gt; 9 &amp;&amp; S &lt;= 17 ? 5 : 7, 1 == v || 42 == v || 85 == v || 99 == v ? (S = 7, d = 1) : 22 == v || 33 == v || 44 == v || 55 == v || 66 == v ? (S = 1, d = 1) : S = getHashCode(A) % I;
+               for (var k = A.slice(0, 32), y = A.slice(32, 64), b = 0; b &lt; S + 1; b++) {
+                    D++, color = getHashCode(y) % 20, rotation = getHashCode(k) % 20, 0 != b &amp;&amp; E &lt; 75 ? rotation &gt; 5 &amp;&amp; rotation &lt;= 10 ? rotation = -2 : rotation &gt; 10 &amp;&amp; rotation &lt;= 15 ? rotation = -4 : rotation &gt; 15 &amp;&amp; rotation &lt;= 18 ? rotation = -8 : rotation &gt; 18 &amp;&amp; (rotation = -16) : rotation = 0, 10 == v || 11 == v || 12 == v || 13 == v || 14 == v ? (color = s[g][3], d = 1) : 95 == v || 96 == v || 97 == v || 98 == v || 99 == v ? (color = s[g][1], d = 1) : color &lt;= 8 ? color = s[g][0] : color &gt; 8 &amp;&amp; color &lt;= 13 ? color = s[g][1] : color &gt; 13 &amp;&amp; color &lt;= 17 ? color = s[g][2] : color = s[g][3];
+                    var N = 4 * (b + 1) / 2;
+                    b &gt; 0 &amp;&amp; B &gt; 1 &amp;&amp; (N += b * (B - 1) * 4 / 2);
+                    var V = o - 4 * b + 4 / B * (B - 1);
+                    (V *= B) &gt; 0 &amp;&amp; (n = renderRectangle(n, w + N, u + N, V, V, color, rotation));
+                    for (l = 0; l &lt; B; l++)
+                         for (var G = 0; G &lt; B; G++) i[H + l][f + G] = 1;
+                    k = k.slice(1) + k.slice(0, 1), y = y.slice(1) + y.slice(0, 1)
+               }
+               A = A.slice(1) + A.slice(0, 1)
+          }
+     }
+     var z = Math.ceil(100 / (7 * a + a) * D);
+     (z &lt; 20 || z &gt; 80) &amp;&amp; d++, n = (n = (n = n.replace(&quot;%STYLE%&quot;, [&quot;roadmap&quot;, &quot;satellite&quot;, &quot;hybrid&quot;, &quot;terrain&quot;, &quot;astronomical&quot;][d])).replace(&quot;%ELEVATION%&quot;, z)).replace(&quot;%ALTITUDE%&quot;, t);
+     var M = document.createElement(&quot;style&quot;);
+     M.innerText = &quot;@media (orientation: portrait) {#aerialView {width: 100vw;display: block;margin: 0 auto;}}@media (orientation: landscape) {#aerialView {height: 100vh;display: block;margin: 0 auto;}}&quot;, document.head.appendChild(M);
+     var W = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+     W.setAttribute(&quot;viewBox&quot;, &quot;0 0 &quot; + canvasSize + &quot; &quot; + canvasSize), W.setAttribute(&quot;version&quot;, &quot;1.1&quot;), W.setAttribute(&quot;style&quot;, &quot;stroke-width: 0.8; overflow:visible&quot;), W.setAttribute(&quot;id&quot;, &quot;aerialView&quot;), W.innerHTML = n, document.body.appendChild(W)
+}
+renderAerialView(tokenData.hash);</pre></body></html>

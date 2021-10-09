@@ -1,0 +1,192 @@
+<html><body><h1>Name: Dynamic Slices</h1><h3>Artist: pxlq</h3><h3>Description: An on-chain experiment with interactive abstract art.</h3><h3></h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;instructions&quot;:&quot;Move your mouse to control your artwork!&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: Move your mouse to control your artwork!</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x5f127b4323c0061768976ad34a1a2beb9db19886</p><p>Additional Payee: 0x16c04f4b6b8841731631d15d3ce57da075f4e9fc</p><p>Additional Payee Percentage: 100</p><p>Price: 0.05</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 512</p><p>Maximum Invocations: 512</p><p>License: NFT License</p><p>Token Ids: 4000000,4000001,4000002,4000003,4000004,4000005,4000006,4000007,4000008,4000009,4000010,4000011,4000012,4000013,4000014,4000015,4000016,4000017,4000018,4000019,4000020,4000021,4000022,4000023,4000024,4000025,4000026,4000027,4000028,4000029,4000030,4000031,4000032,4000033,4000034,4000035,4000036,4000037,4000038,4000039,4000040,4000041,4000042,4000043,4000044,4000045,4000046,4000047,4000048,4000049,4000050,4000051,4000052,4000053,4000054,4000055,4000056,4000057,4000058,4000059,4000060,4000061,4000062,4000063,4000064,4000065,4000066,4000067,4000068,4000069,4000070,4000071,4000072,4000073,4000074,4000075,4000076,4000077,4000078,4000079,4000080,4000081,4000082,4000083,4000084,4000085,4000086,4000087,4000088,4000089,4000090,4000091,4000092,4000093,4000094,4000095,4000096,4000097,4000098,4000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seed = parseInt(tokenData.hash.slice(0, 16), 16);
+let hashPairs = [];
+for (let j = 0; j &lt; 32; j++) {
+     hashPairs.push(tokenData.hash.slice(2 + (j * 2), 4 + (j * 2)));
+}
+let rvs = hashPairs.map(x =&gt; {
+     return parseInt(x, 16) % 20;
+});
+
+let palette_choices = [
+     [&quot;#FF0000&quot;, &quot;#00A08A&quot;, &quot;#F2AD00&quot;, &quot;#F98400&quot;, &quot;#5BBCD6&quot;],
+     [&quot;#E6A0C4&quot;, &quot;#C6CDF7&quot;, &quot;#D8A499&quot;, &quot;#7294D4&quot;],
+     [&quot;#B0305C&quot;, &quot;#EB564B&quot;, &quot;#73275C&quot;],
+     [&quot;#363636&quot;, &quot;#E8175D&quot;],
+     [&quot;#EEEEEE&quot;, &quot;#CC0E74&quot;],
+     [&quot;#FFFFEB&quot;, &quot;#C2C2D1&quot;],
+     [&quot;#5d54a4&quot;, &quot;#d789d7&quot;, &quot;#9d65c9&quot;],
+     [&quot;#000003&quot;, &quot;#FF0033&quot;]
+];
+
+var DEFAULT_SIZE = 500;
+var WIDTH = window.innerWidth;
+var HEIGHT = window.innerHeight;
+var DIM = Math.min(WIDTH, HEIGHT);
+var M = DIM / DEFAULT_SIZE;
+var PI = 3.141592653589793;
+var HPI = PI / 2;
+var QPI = PI / 4;
+
+let rv0 = rvs[0];
+let rv1 = rvs[1];
+let rv2 = rvs[2];
+let rv3 = rvs[3];
+let rv4 = rvs[4];
+let rv5 = rvs[5];
+let rv6 = rvs[6];
+
+let cp_r = rnd_outcome(rv0, [19, 18, 17, 16, 14, 12, 8], [7, 6, 5, 4, 3, 2, 1], 0);
+let bg_r = rnd_outcome(rv1, [10], [0], 1);
+let pal = palette_choices[cp_r];
+if (bg_r == 0) {
+     var bg = pal[0];
+     var fg = pal.slice(1);
+} else {
+     var bg = pal[pal.length - 1];
+     var fg = pal.slice(0, pal.length - 1);
+}
+
+var pie_count = rnd_outcome(rv2, [19, 18, 17, 16, 14, 12], [4, 5, 6, 8, 14, 12], 10);
+var C = M * 10 / pie_count
+var pie_space = 11 * C
+var stk_weight = 2 * C
+var stk_color = rnd_outcome(rv3, [10], [&quot;#EEEEEE&quot;], &quot;#000003&quot;);
+var pie_number = rnd_outcome(rv4, [10], [2], 1);
+
+if (rv5 == 19) {
+     if (rv6 == 19) {
+          bg = &quot;#303a52&quot;
+          fg = [&quot;#283149&quot;, &quot;#1b2232&quot;]
+          stk_color = &quot;#a7ff83&quot;
+     }
+}
+if (rv5 == 18) {
+     if (rv6 == 18) {
+          bg = &quot;#1eafed&quot;
+          fg = [&quot;#eef2f5&quot;, &quot;#FFFFFF&quot;]
+          stk_color = &quot;#000000&quot;
+     }
+}
+
+let spacing = DIM / pie_count;
+let size = spacing - pie_space;
+
+let objects = []
+for (let x = spacing; x + (spacing / 2) &lt; DIM; x += spacing) {
+     for (let y = spacing; y + (spacing / 2) &lt; DIM; y += spacing) {
+          let start = rnd_between(0, HPI);
+          let end_1 = rnd_between(start + QPI, start + PI);
+          let end_2 = start + QPI;
+
+          let pie_1 = {
+               color: rnd_choice(fg),
+               x: x,
+               y: y,
+               size: size,
+               start: start,
+               end: end_1
+          };
+          let pie_2 = {
+               color: rnd_choice(fg),
+               x: x,
+               y: y,
+               size: size,
+               start: start,
+               end: end_2
+          };
+          let stk_1 = {
+               color: stk_color,
+               weight: stk_weight,
+               x: x,
+               y: y,
+               size: size - 10 * C,
+               start: start,
+               end: end_1 / 2
+          };
+          let stk_2 = {
+               color: stk_color,
+               weight: stk_weight,
+               x: x,
+               y: y,
+               size: size + 5 * C,
+               start: start,
+               end: end_1 * 2
+          };
+
+          let object = {
+               pie_1: pie_1,
+               pie_2: pie_2,
+               stk_1: stk_1,
+               stk_2: stk_2
+          };
+
+          objects.push(object);
+     }
+}
+
+function setup() {
+     createCanvas(DIM, DIM);
+}
+
+function draw() {
+     background(bg);
+     let pct = (mouseX + (DIM - mouseY)) / (2 * DIM);
+     pct = pct &lt; 0 ? 0 : pct;
+     pct = pct &gt; 1 ? 1 : pct;
+
+     for (let i = 0; i &lt; objects.length; i++) {
+          let object = objects[i];
+          let p1 = object.pie_1;
+          let p2 = object.pie_2;
+          let s1 = object.stk_1;
+          let s2 = object.stk_2;
+
+          let p1_add = (p1.end - p1.start) * pct;
+          let p2_add = (p2.end - p2.start) * pct;
+          let s1_sub = (s1.end - s2.start) * pct;
+
+          pie(p1.color, p1.x, p1.y, p1.size, p1.start, p1.end + p1_add);
+          if (pie_number == 2) {
+               pie(p2.color, p2.x, p2.y, p2.size, p2.start, p2.end + p2_add);
+          }
+          stk(s1.color, s1.weight, s1.x, s1.y, s1.size, s1.start - s1_sub, s1.end);
+          stk(s2.color, s2.weight, s2.x, s2.y, s2.size, s2.start, s2.end);
+     }
+}
+
+function pie(color, x, y, size, start, end) {
+     noStroke();
+     fill(color);
+     arc(x, y, size, size, start, end);
+}
+
+function stk(color, weight, x, y, size, start, end) {
+     strokeWeight(weight);
+     stroke(color);
+     noFill();
+     arc(x, y, size, size, start, end);
+}
+
+function rnd_dec() {
+     seed ^= seed &lt;&lt; 13;
+     seed ^= seed &gt;&gt; 17;
+     seed ^= seed &lt;&lt; 5;
+     return (((seed &lt; 0) ? ~seed + 1 : seed) % 1000) / 1000;
+}
+
+function rnd_between(a, b) {
+     return a + (b - a) * rnd_dec();
+}
+
+function rnd_choice(choices) {
+     return choices[Math.floor(rnd_between(0, choices.length * 0.99))];
+}
+
+function rnd_outcome(input, values, outcome, fallback) {
+     var zip = (a, b) =&gt; a.map((x, i) =&gt; [x, b[i]]);
+     for (let [a, b] of zip(values, outcome))
+          if (input &gt;= a) {
+               return b;
+          }
+     return fallback;
+}</pre></body></html>

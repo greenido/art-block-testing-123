@@ -1,0 +1,148 @@
+<html><body><h1>Name: The Eternal Pump</h1><h3>Artist: Dmitri Cherniak</h3><h3>Description: Don't fight it. Just respect it. Made by Dmitri Cherniak with Javascript and GLSL.</h3><h3>https://twitter.com/dmitricherniak</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;threejs&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: threejs</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xe0753cfcabb86c2828b79a3ddd4faf6af0db0eb4</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 2</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 50</p><p>Maximum Invocations: 50</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 22000000,22000001,22000002,22000003,22000004,22000005,22000006,22000007,22000008,22000009,22000010,22000011,22000012,22000013,22000014,22000015,22000016,22000017,22000018,22000019,22000020,22000021,22000022,22000023,22000024,22000025,22000026,22000027,22000028,22000029,22000030,22000031,22000032,22000033,22000034,22000035,22000036,22000037,22000038,22000039,22000040,22000041,22000042,22000043,22000044,22000045,22000046,22000047,22000048,22000049</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let pc = &quot;#f2f2f2&quot;,
+     bgCols = [&quot;#f2c5d2&quot;, &quot;#e5bb57&quot;, &quot;#9c96cd&quot;, &quot;#76b995&quot;, &quot;#70a7c5&quot;, &quot;#f8e6d1&quot;, &quot;#dfbcab&quot;, &quot;#f1e7e1&quot;, pc, pc, pc, pc, pc, pc, pc, pc, pc, pc, pc, pc, pc, pc],
+     chill = [&quot;#47485f&quot;, &quot;#be3441&quot;, &quot;#f0bc67&quot;, &quot;#5a89c5&quot;, &quot;#e28d64&quot;, &quot;#d6c5d1&quot;],
+     rnb = [&quot;#fd3741&quot;, &quot;#fe4f11&quot;, &quot;#ff6800&quot;, &quot;#ffa61a&quot;, &quot;#ffc219&quot;, &quot;#ffd114&quot;, &quot;#fcd82e&quot;, &quot;#f4d730&quot;, &quot;#ced562&quot;, &quot;#8ac38f&quot;, &quot;#79b7a0&quot;, &quot;#72b5b1&quot;, &quot;#5b9bae&quot;, &quot;#6ba1b7&quot;, &quot;#49619d&quot;, &quot;#604791&quot;, &quot;#721e7f&quot;, &quot;#9b2b77&quot;, &quot;#ab2562&quot;, &quot;#ca2847&quot;],
+     shim = [&quot;#f0f0c0&quot;, &quot;#f0d8c0&quot;, &quot;#d8d8c0&quot;, &quot;#d8c090&quot;, &quot;#d8c0a8&quot;, &quot;#f0d8a8&quot;, &quot;#fff0c0&quot;, &quot;#f0f0d8&quot;, &quot;#fff0d8&quot;, &quot;#d8c078&quot;, &quot;#f0d878&quot;, &quot;#c0a878&quot;, &quot;#f0d890&quot;, &quot;#ffffd8&quot;, &quot;#c0c0a8&quot;, &quot;#c0c090&quot;, &quot;#fff0a8&quot;, &quot;#f0f0a8&quot;, &quot;#d8d8a8&quot;, &quot;#f0c090&quot;, &quot;#c09090&quot;, &quot;#786048&quot;, &quot;#c0a890&quot;, &quot;#606060&quot;, &quot;#909090&quot;, &quot;#904830&quot;, &quot;#d8d890&quot;, &quot;#f0d8d8&quot;, &quot;#787878&quot;, &quot;#fff0f0&quot;, &quot;#a87860&quot;, &quot;#c0a8a8&quot;, &quot;#c09078&quot;, &quot;#fff090&quot;, &quot;#a8a8a8&quot;, &quot;#d8a848&quot;, &quot;#f0f090&quot;, &quot;#f0c048&quot;, &quot;#d8a878&quot;, &quot;#f0c060&quot;, &quot;#ffd8c0&quot;, &quot;#f0c078&quot;, &quot;#c0a860&quot;, &quot;#907860&quot;, &quot;#a8a890&quot;, &quot;#d8a860&quot;, &quot;#907890&quot;, &quot;#a8a878&quot;, &quot;#a87800&quot;, &quot;#f0d848&quot;],
+     riso = [&quot;#000&quot;, &quot;#914e72&quot;, &quot;#0078bf&quot;, &quot;#00a95c&quot;, &quot;#3255a4&quot;, &quot;#f15060&quot;, &quot;#3d5588&quot;, &quot;#765ba7&quot;, &quot;#00838a&quot;, &quot;#bb8b41&quot;, &quot;#407060&quot;, &quot;#ff665e&quot;, &quot;#925f52&quot;, &quot;#ffe800&quot;, &quot;#d2515e&quot;, &quot;#ff6c2f&quot;, &quot;#ff48b0&quot;, &quot;#88898a&quot;, &quot;#ac936e&quot;, &quot;#e45d50&quot;, &quot;#ff7477&quot;, &quot;#62a8e5&quot;, &quot;#4982cf&quot;, &quot;#0074a2&quot;, &quot;#235ba8&quot;, &quot;#484d7a&quot;, &quot;#435060&quot;, &quot;#d5e4c0&quot;, &quot;#a5aaa8&quot;, &quot;#70747c&quot;, &quot;#5f8289&quot;, &quot;#375e77&quot;, &quot;#5e695e&quot;, &quot;#00aa93&quot;, &quot;#19975d&quot;, &quot;#397e58&quot;, &quot;#516e5a&quot;, &quot;#4a635d&quot;, &quot;#68724d&quot;, &quot;#62c2b1&quot;, &quot;#67b346&quot;, &quot;#009da5&quot;, &quot;#169b62&quot;, &quot;#237e74&quot;, &quot;#2f6165&quot;, &quot;#9d7ad2&quot;, &quot;#aa60bf&quot;, &quot;#845991&quot;, &quot;#775d7a&quot;, &quot;#6c5d80&quot;, &quot;#f65058&quot;, &quot;#d2515e&quot;, &quot;#d1517a&quot;, &quot;#9e4c6e&quot;, &quot;#d1517a&quot;, &quot;#a75154&quot;, &quot;#e3ed55&quot;, &quot;#ffb511&quot;, &quot;#ffae3b&quot;, &quot;#f6a04d&quot;, &quot;#ee7f4b&quot;, &quot;#ff6f4c&quot;, &quot;#b49f29&quot;, &quot;#ba8032&quot;, &quot;#bd6439&quot;, &quot;#8e595a&quot;, &quot;#f2cdcf&quot;, &quot;#f984ca&quot;, &quot;#e6b5c9&quot;, &quot;#bd8ca6&quot;, &quot;#914e72&quot;, &quot;#928d88&quot;, &quot;#ffffff&quot;, &quot;#5ec8e5&quot;, &quot;#82d8d5&quot;, &quot;#ffe900&quot;, &quot;#ff4c65&quot;, &quot;#44d62c&quot;],
+     flo = [&quot;#f96&quot;, &quot;#cf0&quot;, &quot;#f93&quot;, &quot;#f0c&quot;, &quot;#ee34d3&quot;, &quot;#4fb4e5&quot;, &quot;#abf1cf&quot;, &quot;#ff6037&quot;, &quot;#ff355e&quot;, &quot;#6f6&quot;, &quot;#fc3&quot;, &quot;#ff6eff&quot;, &quot;#ff6&quot;, &quot;#fd5b78&quot;],
+     gld = [&quot;#E59B12&quot;],
+     fp = &quot;#fc8eac&quot;,
+     flm = [fp, fp, fp, fp, &quot;gray&quot;, &quot;#000&quot;, &quot;#ff6&quot;],
+     rP = spr(tokenData),
+     seed = gS(tokenData),
+     rings = Math.floor(mP(rP[1], 5, 12)) - 1,
+     sRings = rings &lt;= 5,
+     p = {
+          background: pk(rP[0], bgCols),
+          zm: rP[10] &gt;= 32 ? 1 : .66,
+          rings: rings,
+          position: pk(rP[2], [
+               [1, 1],
+               [1, 0],
+               [1, -1],
+               [0, 1],
+               [0, -1],
+               [-1, 1],
+               [-1, 0],
+               [-1, -1]
+          ]),
+          speed: pk(rP[4], [.5, 1, 1, 1, .25, 1, 1, 1.5, 3]),
+          filler: sRings &amp;&amp; rP[5] &lt; 127 ? .84 : .95,
+          offset: rP[6] &gt;= 64,
+          palette: pk(rP[7], [shim, riso, chill, flm, gld, flo, rnb]),
+          sizer: pk(rP[8], sRings ? [.1, .15, .2] : [.1, .11, .12]),
+          cS: rP[9] &lt; 20 ? 3 : 50
+     },
+     getDim = () =&gt; Math.min(window.innerWidth, window.innerHeight),
+     szs = {
+          w: getDim(),
+          h: getDim()
+     },
+     genCan = () =&gt; {
+          let e = document.createElement(&quot;canvas&quot;);
+          return e.height = szs.h, e.width = szs.w, document.body.appendChild(e), e
+     },
+     confCam = e =&gt; {
+          e.position.set(.20422396235810633 * p.position[0], -.2889694322482629 * p.position[1], -.9353016841772848), e.lookAt(0, 0, 0)
+     },
+     canvas = genCan(),
+     sc = new THREE.Scene,
+     oms = [],
+     mshs = [],
+     cM = () =&gt; {
+          let e = pick(p.palette);
+          return new THREE.ShaderMaterial({
+               side: THREE.DoubleSide,
+               opacity: 1,
+               transparent: !0,
+               uniforms: {
+                    power: {
+                         value: rng(1, 1.2)
+                    },
+                    color: {
+                         value: new THREE.Color(&quot;#fff&quot;)
+                    },
+                    background: {
+                         value: new THREE.Color(e)
+                    }
+               },
+               vertexShader: &quot;varying vec2 vUv;void main () {vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position.xyz, 1.0);}&quot;,
+               fragmentShader: &quot;varying vec2 vUv;uniform vec3 color;uniform vec3 background;uniform float power;\n// Description : Array and textureless GLSL 3D simplex noise functions.\n// Author : Ian McEwan, Ashima Arts.\n// License : Copyright (C) 2011 Ashima Arts. All rights reserved. Distributed under the MIT License. https://github.com/ashima/webgl-noise\nvec3 mod289(vec3 x){return x - floor(x * (1.0 / 289.0)) * 289.0;}\nvec4 mod289(vec4 x){return x - floor(x * (1.0 / 289.0)) * 289.0;}\nvec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}\nfloat snoise(vec3 v) {const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);vec3 i  = floor(v + dot(v, C.yyy));vec3 x0 = v - i + dot(i, C.xxx);\nvec3 g = step(x0.yzx, x0.xyz);vec3 l = 1.0 - g;vec3 i1 = min( g.xyz, l.zxy );vec3 i2 = max( g.xyz, l.zxy );vec3 x1 = x0 - i1 + C.xxx;vec3 x2 = x0 - i2 + C.yyy;vec3 x3 = x0 - D.yyy;i = mod289(i);\nvec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0 ))+ i.y + vec4(0.0, i1.y, i2.y, 1.0 ))+ i.x + vec4(0.0, i1.x, i2.x, 1.0 ));float n_ = 0.142857142857;vec3  ns = n_ * D.wyz - D.xzx;vec4 j = p - 49.0 * floor(p * ns.z * ns.z); vec4 x_ = floor(j * ns.z);vec4 y_ = floor(j - 7.0 * x_);vec4 x = x_ *ns.x + ns.yyyy;vec4 y = y_ *ns.x + ns.yyyy;vec4 h = 1.0 - abs(x) - abs(y);\nvec4 b0 = vec4(x.xy, y.xy);vec4 b1 = vec4(x.zw, y.zw);vec4 s0 = floor(b0)*2.0 + 1.0;vec4 s1 = floor(b1)*2.0 + 1.0;vec4 sh = -step(h, vec4(0.0));\nvec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;vec3 p0 = vec3(a0.xy,h.x);vec3 p1 = vec3(a0.zw,h.y);vec3 p2 = vec3(a1.xy,h.z);vec3 p3 = vec3(a1.zw,h.w);\nvec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));p0 *= norm.x;p1 *= norm.y;p2 *= norm.z;p3 *= norm.w;vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);m = m * m;return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),dot(p2,x2), dot(p3,x3)));}\nvoid main () {float d = pow(abs(vUv.y), power);gl_FragColor = vec4(mix(background, color, d-(snoise(gl_FragCoord.xyz/(d*d)) * d/1.5)), 0.4275);}&quot;
+          })
+     };
+const T = 2 * Math.PI;
+let ors = new THREE.Shape;
+ors.moveTo(0, 0), ors.absarc(0, 0, 1, 0, T);
+let irs = new THREE.Path;
+irs.moveTo(0, 0), irs.absarc(0, 0, p.filler, 0, T), ors.holes.push(irs);
+let rGeo = new THREE.ExtrudeBufferGeometry(ors, {
+     curveSegments: p.cS,
+     depth: 6,
+     bevelEnabled: 0
+});
+for (let e = 1; e &lt; p.rings + 1; e++) {
+     let c = new THREE.Mesh(rGeo, cM()),
+          a = 1 - e / p.rings;
+     c.scale.x *= a, c.scale.y *= a, c.position.z = pick([1, -1]) * rng(.1, 5.1) / 100, oms.push(1 - e / p.rings), mshs.push(c), sc.add(c)
+}
+let zm = p.zm;
+window.addEventListener(&quot;resize&quot;, e =&gt; {
+     szs.w = getDim(), szs.h = getDim();
+     const c = szs.w / szs.h;
+     cam.left = -zm * c, cam.right = zm * c, cam.top = zm, cam.bottom = -zm, cam.near = -1, cam.far = 20, confCam(cam), cam.updateProjectionMatrix(), rndr.setSize(szs.w, szs.h), rndr.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+});
+const asp = szs.w / szs.h,
+     cam = new THREE.OrthographicCamera(-zm * asp, zm * asp, zm, -zm, -1, 20);
+confCam(cam), sc.add(cam);
+let rndr = new THREE.WebGLRenderer({
+     canvas: canvas,
+     antialias: !0
+});
+rndr.setPixelRatio(Math.min(window.devicePixelRatio, 2)), rndr.setSize(szs.w, szs.h), rndr.setClearColor(p.background);
+const cl = new THREE.Clock,
+     tk = () =&gt; {
+          let e = cl.getElapsedTime();
+          mshs.forEach((c, a) =&gt; {
+               let r = (p.sizer * Math.sin(p.speed * e + (p.offset ? a / 2 : a / 6)) + 1) * oms[a];
+               c.scale.x = r, c.scale.y = r, c.rotation.z += .001
+          }), rndr.render(sc, cam), window.requestAnimationFrame(tk)
+     };
+
+function spr(e) {
+     let c = [];
+     for (let a = 0; a &lt; 32; a++) c.push(e.hash.slice(2 + 2 * a, 4 + 2 * a));
+     return c.map(e =&gt; parseInt(e, 16))
+}
+
+function gS(e) {
+     return parseInt(e.hash.slice(0, 16), 16)
+}
+
+function rnd() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, ((seed ^= seed &lt;&lt; 5) &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3
+}
+
+function pk(e, c) {
+     return c[Math.max(0, Math.floor(e / 255 * c.length - 1e-6))]
+}
+
+function rng(e, c) {
+     return rnd() * (c - e) + e
+}
+
+function rngFlr(e, c) {
+     return Math.floor(rng(e, c))
+}
+
+function pick(e) {
+     return e[rngFlr(0, e.length)]
+}
+
+function map(e, c, a, r, n) {
+     return (e - c) / (a - c) * (n - r) + r
+}
+
+function mP(e, c, a) {
+     return map(e, 0, 255, c, a)
+}
+tk();</pre></body></html>

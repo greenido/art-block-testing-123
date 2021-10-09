@@ -1,0 +1,676 @@
+<html><body><h1>Name: Aurora IV</h1><h3>Artist: ge1doot</h3><h3>Description: So many worlds to wander through until we find one we can call our home.</h3><h3>https://twitter.com/ge1doot</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x3f870d006185cb649c3261013fd86cc89b762f1e</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 128</p><p>Maximum Invocations: 128</p><p>License: NIFTY License</p><p>Token Ids: 56000000,56000001,56000002,56000003,56000004,56000005,56000006,56000007,56000008,56000009,56000010,56000011,56000012,56000013,56000014,56000015,56000016,56000017,56000018,56000019,56000020,56000021,56000022,56000023,56000024,56000025,56000026,56000027,56000028,56000029,56000030,56000031,56000032,56000033,56000034,56000035,56000036,56000037,56000038,56000039,56000040,56000041,56000042,56000043,56000044,56000045,56000046,56000047,56000048,56000049,56000050,56000051,56000052,56000053,56000054,56000055,56000056,56000057,56000058,56000059,56000060,56000061,56000062,56000063,56000064,56000065,56000066,56000067,56000068,56000069,56000070,56000071,56000072,56000073,56000074,56000075,56000076,56000077,56000078,56000079,56000080,56000081,56000082,56000083,56000084,56000085,56000086,56000087,56000088,56000089,56000090,56000091,56000092,56000093,56000094,56000095,56000096,56000097,56000098,56000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>&quot;use strict&quot;; {
+     console.clear();
+     const t = t =&gt; new Float32Array(t),
+          e = function(t) {
+               let e = t;
+               return function() {
+                    return e ^= e &lt;&lt; 13, e ^= e &gt;&gt; 17, e ^= e &lt;&lt; 5, (e &lt; 0 ? 1 + ~e : e) % 1e3 / 1e3
+               }
+          }(parseInt(tokenData.hash.slice(0, 16), 16)),
+          o = t =&gt; t[Math.floor(e() * t.length)];
+     e(), e();
+     const s = 4,
+          n = 60,
+          r = [],
+          i = [],
+          c = [],
+          l = {};
+     let a = 0,
+          h = 0,
+          f = 0,
+          u = 0,
+          x = !0,
+          v = 0;
+     const y = e() &gt; .15 ? 1 : 0,
+          d = y ? 1 : 0,
+          g = y ? [.8, .9, 1] : [.2, .25, .3],
+          p = y ? &quot;.1,.1,.1&quot; : &quot;0.,.05,.1&quot;,
+          m = y ? &quot;.5,.5,.5&quot; : &quot;.4,.5,.6&quot;,
+          z = y ? &quot;1,.6,.3&quot; : &quot;2.*.6,2.*.35,.15&quot;,
+          R = o([1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4]),
+          w = e() &gt; .5 ? 1 : .75;
+     let b = o([0, 15, 15, 15, 15, 15, 15, 100, 200, 220, 250, 300]);
+     const A = e() &gt;= .98 ? .02 : 0,
+          P = e() &gt; .95 ? .05 : -.05,
+          C = y &amp;&amp; e() &gt; .98 ? 1 : 0,
+          D = y &amp;&amp; e() &gt; .98 ? 1 : 0,
+          E = C ? &quot;brightness(0.9) contrast(1.35) grayscale(100%)&quot; : D ? &quot;brightness(0.9) contrast(1.3) sepia(100%)&quot; : &quot;&quot;;
+     console.log(&quot;mode:&quot; + [&quot;night&quot;, &quot;day&quot;][y]), console.log(&quot;model: &quot; + [&quot;megalopolis&quot;, &quot;city&quot;, &quot;station&quot;, &quot;outpost&quot;][R - 1]), console.log(&quot;hue:&quot; + b), console.log(&quot;black and white: &quot; + (C ? &quot;true&quot; : &quot;false&quot;)), console.log(&quot;sepia: &quot; + (D ? &quot;true&quot; : &quot;false&quot;)), console.log(&quot;multicolor:&quot; + (A &gt; 0 ? &quot;true&quot; : &quot;false&quot;)), console.log(&quot;rotation: &quot; + (P &gt; 0 ? &quot;counter-clockwise&quot; : &quot;clockwise&quot;));
+     const M = (t, e) =&gt; {
+          const o = document.querySelectorAll(t);
+          for (const t of o)
+               for (let o in e) t.style[o] = e[o]
+     };
+     M(&quot;html,body&quot;, {
+          overflow: &quot;hidden&quot;,
+          position: &quot;absolute&quot;,
+          margin: 0,
+          padding: 0,
+          width: &quot;100%&quot;,
+          height: &quot;100%&quot;
+     });
+     const k = {
+          position: &quot;absolute&quot;,
+          padding: 0,
+          margin: 0,
+          left: 0,
+          top: 0,
+          width: &quot;100%&quot;,
+          height: &quot;100%&quot;,
+          cursor: &quot;pointer&quot;,
+          touchAction: &quot;none&quot;,
+          userSelect: &quot;none&quot;
+     };
+     (C || D) &amp;&amp; (k.filter = E), M(&quot;canvas&quot;, k);
+     const _ = {
+               x(t, e) {
+                    t[12] += t[0] * e, t[13] += t[1] * e, t[14] += t[2] * e
+               },
+               y(t, e) {
+                    t[12] += t[4] * e, t[13] += t[5] * e, t[14] += t[6] * e
+               },
+               z(t, e) {
+                    t[12] += t[8] * e, t[13] += t[9] * e, t[14] += t[10] * e
+               },
+               s(t, e) {
+                    const o = Array.isArray(e),
+                         s = o ? e[0] : e,
+                         n = o ? e[1] : s,
+                         r = o ? e[2] : s;
+                    t[0] *= s, t[1] *= s, t[2] *= s, t[3] *= s, t[4] *= n, t[5] *= n, t[6] *= n, t[7] *= n, t[8] *= r, t[9] *= r, t[10] *= r, t[11] *= r
+               },
+               rx(t, e) {
+                    const o = Math.PI * (e / 180),
+                         s = Math.sin(o),
+                         n = Math.cos(o),
+                         r = t[4],
+                         i = t[5],
+                         c = t[6],
+                         l = t[7],
+                         a = t[8],
+                         h = t[9],
+                         f = t[10],
+                         u = t[11];
+                    t[4] = r * n + a * s, t[5] = i * n + h * s, t[6] = c * n + f * s, t[7] = l * n + u * s, t[8] = r * -s + a * n, t[9] = i * -s + h * n, t[10] = c * -s + f * n, t[11] = l * -s + u * n
+               },
+               ry(t, e) {
+                    const o = Math.PI * (e / 180),
+                         s = Math.sin(o),
+                         n = Math.cos(o),
+                         r = t[0],
+                         i = t[1],
+                         c = t[2],
+                         l = t[3],
+                         a = t[8],
+                         h = t[9],
+                         f = t[10],
+                         u = t[11];
+                    t[0] = r * n + a * -s, t[1] = i * n + h * -s, t[2] = c * n + f * -s, t[3] = l * n + u * -s, t[8] = r * s + a * n, t[9] = i * s + h * n, t[10] = c * s + f * n, t[11] = l * s + u * n
+               },
+               rz(t, e) {
+                    const o = Math.PI * (e / 180),
+                         s = Math.sin(o),
+                         n = Math.cos(o),
+                         r = t[0],
+                         i = t[1],
+                         c = t[2],
+                         l = t[3],
+                         a = t[4],
+                         h = t[5],
+                         f = t[6],
+                         u = t[7];
+                    t[0] = r * n + a * s, t[1] = i * n + h * s, t[2] = c * n + f * s, t[3] = l * n + u * s, t[4] = r * -s + a * n, t[5] = i * -s + h * n, t[6] = c * -s + f * n, t[7] = l * -s + u * n
+               },
+               hue(t, e) {
+                    t[16] += e, t[16] %= 360
+               },
+               sat(t, e) {
+                    this.col(t, e, 17)
+               },
+               vhue(t, e) {
+                    t[16] = e
+               },
+               vsat(t, e) {
+                    t[17] = e
+               },
+               b(t, e) {
+                    this.col(t, e, 18)
+               },
+               col(t, e, o) {
+                    t[o] += e &gt; 0 ? e * (1 - t[o]) : e * t[o]
+               },
+               l(t, e) {
+                    t[18] = e
+               }
+          },
+          F = (t, e, o, s) =&gt; {
+               const n = N(t);
+               for (const t in e) _[t](n, e[t]);
+               n[22] = o, r.push(n), f += s
+          },
+          S = (t, e) =&gt; F(t, e, 2, 18),
+          T = (t, e) =&gt; F(t, e, 1, 36),
+          I = t =&gt; t[19],
+          L = t =&gt; (t[0] * t[0] + t[1] * t[1] + t[2] * t[2]) / (t[8] * t[8] + t[9] * t[9] + t[10] * t[10]),
+          B = (t, e) =&gt; {
+               const o = N(t);
+               o[19]++;
+               for (const t in e) _[t](o, e[t]);
+               return o
+          },
+          N = t =&gt; [t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13], t[14], t[15], t[16], t[17], t[18], t[19], t[20], t[21], t[22]],
+          W = (t, e, o, s) =&gt; {
+               t[0] = 1, t[1] = 0, t[2] = 0, t[3] = 0, t[4] = 0, t[5] = 1, t[6] = 0, t[7] = 0, t[8] = 0, t[9] = 0, t[10] = 1, t[11] = 0, t[12] = e, t[13] = o, t[14] = s, t[15] = 1
+          },
+          H = (t, e) =&gt; {
+               c.length = 0, r.length = 0, f = 0, l[t]([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0], e);
+               do {
+                    const t = c.shift();
+                    void 0 !== t &amp;&amp; i[t[21]](t)
+               } while (c.length)
+          },
+          U = t =&gt; (e, o) =&gt; {
+               (e = B(e, o))[21] = t, c.push(e)
+          },
+          Y = (t, o, s, n) =&gt; (r, i) =&gt; {
+               r = B(r, i);
+               let l = 0;
+               const a = e() * t;
+               for (let t = 0; t &lt; n; t++)
+                    if (l += o[t], a &lt;= l) return r[21] = s[t], void c.push(r)
+          },
+          $ = document.querySelector(&quot;canvas&quot;),
+          K = $.getContext(&quot;webgl&quot;);
+     K.enable(K.DEPTH_TEST), K.enable(K.CULL_FACE);
+     const O = () =&gt; {
+          a = $.width = $.offsetWidth, h = $.height = $.offsetHeight, K.viewport(0, 0, K.drawingBufferWidth, K.drawingBufferHeight), st.proj(n), x = !1, Z.set(K.drawingBufferWidth, K.drawingBufferHeight)
+     };
+     window.addEventListener(&quot;resize&quot;, (() =&gt; {
+          x = !0
+     }));
+     const V = {
+               init() {
+                    this.ec = [], this.prevDiff = -1, this.x = 0, this.y = 0, this.z = 0, this.dx = 360 * e(), this.dy = 2 === R ? 10 : 20 * e() - 5, this.xb = 0, this.yb = 0, this.sx = P, this.isDown = !1;
+                    const t = window.addEventListener;
+                    return t(&quot;pointermove&quot;, (t =&gt; this.move(t)), !1), t(&quot;pointerdown&quot;, (t =&gt; this.down(t)), !1), t(&quot;pointerup&quot;, (t =&gt; this.up(t)), !1), t(&quot;pointerout&quot;, (t =&gt; this.up(t)), !1), t(&quot;pointerleave&quot;, (t =&gt; this.up(t)), !1), t(&quot;pointercancel&quot;, (t =&gt; this.up(t)), !1), t(&quot;wheel&quot;, (t =&gt; {
+                         if (t.ctrlKey) return !1;
+                         t.deltaY &lt; 0 &amp;&amp; this.z &lt; .025 &amp;&amp; (this.z += .005), t.deltaY &gt; 0 &amp;&amp; this.z &gt; -.035 &amp;&amp; (this.z -= .005)
+                    })), this
+               },
+               down(t) {
+                    this.sx = 0, this.ec.push(t), this.move(t), this.xb = this.x, this.yb = this.y, this.isDown = !(this.ec.length &gt; 1), t.preventDefault()
+               },
+               up(t) {
+                    for (let e = 0; e &lt; this.ec.length; e++)
+                         if (this.ec[e].pointerId == t.pointerId) {
+                              this.ec.splice(e, 1);
+                              break
+                         } this.ec.length &lt; 2 &amp;&amp; (this.prevDiff = -1), this.isDown = !1
+               },
+               move(t) {
+                    for (let e = 0; e &lt; this.ec.length; e++)
+                         if (t.pointerId == this.ec[e].pointerId) {
+                              this.ec[e] = t;
+                              break
+                         } if (2 === this.ec.length) {
+                         const t = this.ec[0].clientX - this.ec[1].clientX,
+                              e = this.ec[0].clientY - this.ec[1].clientY,
+                              o = Math.sqrt(t * t + e * e);
+                         return this.prevDiff &gt; 0 &amp;&amp; (o &gt; this.prevDiff ? this.z &lt; .025 &amp;&amp; (this.z += 5e-4) : o &lt; this.prevDiff &amp;&amp; this.z &gt; -.035 &amp;&amp; (this.z -= 5e-4)), void(this.prevDiff = o)
+                    }
+                    this.x = t.clientX, this.y = t.clientY, this.isDown &amp;&amp; (this.dx += this.x - this.xb, this.dy += this.y - this.yb), t.preventDefault()
+               }
+          },
+          j = (t, e, o) =&gt; {
+               const s = K.getUniformLocation(t, e);
+               return {
+                    set: {
+                         &quot;1f&quot;: t =&gt; K.uniform1f(s, t),
+                         &quot;2f&quot;: (t, e) =&gt; K.uniform2f(s, t, e),
+                         &quot;3f&quot;: (t, e = 0, o = 0) =&gt; {
+                              !0 === Array.isArray(t) ? K.uniform3fv(s, t) : K.uniform3f(s, t, e, o)
+                         },
+                         M4fv: t =&gt; K.uniformMatrix4fv(s, !1, t)
+                    } [o]
+               }
+          },
+          q = () =&gt; {
+               const e = j(Q, &quot;camProj&quot;, &quot;M4fv&quot;),
+                    o = j(Q, &quot;camView&quot;, &quot;M4fv&quot;),
+                    n = t(16),
+                    r = t(16);
+               let i = ot.dx,
+                    c = ot.dy,
+                    l = 0;
+               const f = (t, e, o) =&gt; t += (e - t) * o;
+               return {
+                    move() {
+                         l += .1 * (ot.z - l), ot.dy &gt; 45 ? ot.dy = 45 : ot.dy &lt; -45 &amp;&amp; (ot.dy = -45), i = f(i, ot.dx, .02), c = f(c, ot.dy, .06), W(n, 0, 0, 120 * l - s), _.rx(n, c), _.ry(n, i), o.set(n), ot.xb = ot.x, ot.yb = ot.y, et.set(0, d, 60 * l - 1.5)
+                    },
+                    proj(t) {
+                         const o = .01,
+                              s = 1e4,
+                              n = o * Math.tan(t * Math.PI / 360),
+                              i = n * (a / h);
+                         r[0] = 2 * o / (i + i), r[5] = 2 * o / (n + n), r[8] = 0, r[9] = 0, r[10] = -(s + o) / (s - o), r[11] = -1, r[14] = -200 / (s - o), e.set(r)
+                    }
+               }
+          },
+          X = (t, e, o, s, n, r) =&gt; {
+               if (null !== o) {
+                    const t = K.createBuffer();
+                    K.bindBuffer(K.ARRAY_BUFFER, t), K.bufferData(K.ARRAY_BUFFER, o, K.STATIC_DRAW)
+               }
+               const i = K.getAttribLocation(t, e);
+               K.enableVertexAttribArray(i), K.vertexAttribPointer(i, s, K.FLOAT, !1, n, r)
+          },
+          G = (t, e) =&gt; {
+               const o = K.createShader(e);
+               if (K.shaderSource(o, t), K.compileShader(o), !K.getShaderParameter(o, K.COMPILE_STATUS)) throw new Error(K.getShaderInfoLog(o));
+               return o
+          },
+          J = (t, e) =&gt; {
+               const o = G(t, K.VERTEX_SHADER),
+                    s = G(e, K.FRAGMENT_SHADER),
+                    n = K.createProgram();
+               return K.attachShader(n, o), K.attachShader(n, s), K.linkProgram(n), K.useProgram(n), n
+          },
+          Q = J(&quot;precision highp float;uniform mat4 camProj,camView;attribute vec3 aPosition,aNormal,aColor;varying vec4 vPosition;varying vec3 vNormal,vColor;vec3 hsv2rgb(vec3 c) {vec4 K=vec4(1.,2./3.,1./3.,3.);vec3 p=abs(fract(c.xxx+K.xyz)*6.0-K.www);return c.z*mix(K.xxx,clamp(p-K.xxx,.0,1.),c.y);}void main() {vPosition=camView*vec4(aPosition,1.);gl_Position=camProj*vPosition;vNormal=normalize(vec3(camView*vec4(aNormal,.0)));vColor=hsv2rgb(aColor);}\t&quot;, `precision highp float;uniform float uTime;uniform vec2 uRes;uniform vec3 ulightPos;varying vec4 vPosition;varying vec3 vNormal,vColor;const vec3 uspecCol=vec3(${z});const vec3 udifCol=vec3(${m});const vec3 uambCol=vec3(${p});const float density=${y?.002:.01};float hash12(vec2 p) {vec3 p3=fract(vec3(p.xyx)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}void main() {vec3 lightDirection=normalize(ulightPos-vPosition.xyz);vec3 normal=normalize(vNormal);float spec=max(dot(reflect(-lightDirection,normal),normalize(-vPosition.xyz)),0.00001);float difW=max(dot(normal,lightDirection),0.0);vec3 lightW=.75*uspecCol*pow(spec,.25)+udifCol*difW+uspecCol*pow(spec,12.2);vec3 color=vColor*lightW*(1.25-hash12(gl_FragCoord.xy*.304+uTime*.1)*.25);gl_FragColor=mix(vec4(${g[0]},${g[1]},${g[2]},1.0),vec4(color,1.),exp2(-density*pow(gl_FragCoord.z/gl_FragCoord.w,3.)));}\t`),
+          Z = j(Q, &quot;uRes&quot;, &quot;2f&quot;),
+          tt = j(Q, &quot;uTime&quot;, &quot;1f&quot;),
+          et = j(Q, &quot;ulightPos&quot;, &quot;3f&quot;),
+          ot = V.init(),
+          st = q(),
+          nt = () =&gt; {
+               u = f;
+               const e = t(9 * f),
+                    o = .5,
+                    s = -o,
+                    n = [
+                         [s, s, s],
+                         [s, o, s],
+                         [o, s, s],
+                         [o, o, s],
+                         [o, s, o],
+                         [o, o, o],
+                         [s, s, o],
+                         [s, o, o],
+                         [s, s, o],
+                         [s, s, s],
+                         [o, s, o],
+                         [o, s, s],
+                         [s, o, s],
+                         [s, o, o],
+                         [o, o, s],
+                         [o, o, o],
+                         [s, s, s],
+                         [s, s, o],
+                         [s, o, s],
+                         [s, o, o],
+                         [o, o, s],
+                         [o, o, o],
+                         [o, s, s],
+                         [o, s, o]
+                    ],
+                    i = [
+                         [s, s, s],
+                         [0, o, 0],
+                         [o, s, s],
+                         [o, s, s],
+                         [0, o, 0],
+                         [o, s, o],
+                         [o, s, o],
+                         [0, o, 0],
+                         [s, s, o],
+                         [s, s, o],
+                         [0, o, 0],
+                         [s, s, s],
+                         [o, s, s],
+                         [s, s, o],
+                         [s, s, s],
+                         [o, s, s],
+                         [o, s, o],
+                         [s, s, o]
+                    ],
+                    c = (t, e, o) =&gt; {
+                         const s = e[0] - t[0],
+                              n = e[1] - t[1],
+                              r = e[2] - t[2],
+                              i = o[0] - t[0],
+                              c = o[1] - t[1],
+                              l = o[2] - t[2],
+                              a = n * l - r * c,
+                              h = r * i - s * l,
+                              f = s * c - n * i,
+                              u = Math.sqrt(a * a + h * h + f * f);
+                         return [a / u, h / u, f / u]
+                    },
+                    l = function(t, e) {
+                         const o = t[0],
+                              s = t[1],
+                              n = t[2];
+                         return [o * e[0] + s * e[4] + n * e[8] + e[12], o * e[1] + s * e[5] + n * e[9] + e[13], o * e[2] + s * e[6] + n * e[10] + e[14]]
+                    };
+               let a = 0;
+               const h = (t, o, s, n, r) =&gt; {
+                         const i = n[16] / 360,
+                              c = n[17],
+                              l = n[18];
+                         e.set([t[0], t[1], t[2], r[0], r[1], r[2], i, c, l, o[0], o[1], o[2], r[0], r[1], r[2], i, c, l, s[0], s[1], s[2], r[0], r[1], r[2], i, c, l], a), a += 27
+                    },
+                    x = (t, e, o) =&gt; {
+                         const s = l(t[e + 0], o),
+                              n = l(t[e + 1], o),
+                              r = l(t[e + 2], o),
+                              i = l(t[e + 3], o);
+                         return [s, n, r, i, c(s, n, i)]
+                    };
+               for (let t = 0; t &lt; r.length; t++) {
+                    const e = r[t];
+                    if (1 === e[22])
+                         for (let t = 0; t &lt; 24; t += 4) {
+                              const [o, s, r, i, c] = x(n, t, e);
+                              h(o, s, i, e, c), h(o, i, r, e, c)
+                         } else if (2 === e[22])
+                              for (let t = 0; t &lt; 18; t += 3) {
+                                   const o = l(i[t + 0], e),
+                                        s = l(i[t + 1], e),
+                                        n = l(i[t + 2], e);
+                                   h(o, s, n, e, c(o, s, n))
+                              }
+               }
+               X(Q, &quot;aPosition&quot;, e, 3, 36, 0), X(Q, &quot;aNormal&quot;, null, 3, 36, 12), X(Q, &quot;aColor&quot;, null, 3, 36, 24)
+          },
+          rt = () =&gt; {
+               x &amp;&amp; O(), K.clearColor(g[0], g[1], g[2], 1), K.clear(K.COLOR_BUFFER_BIT | K.DEPTH_BUFFER_BIT), st.move(), tt.set(v++), u &lt; f &amp;&amp; (u += 18), K.drawArrays(K.TRIANGLES, 0, u), K.drawArrays(K.LINE_LOOP, 0, u)
+          },
+          it = () =&gt; {
+               requestAnimationFrame(it), ot.dx += ot.sx, rt()
+          },
+          ct = () =&gt; {
+               H(&quot;start&quot;, {
+                    s: 1
+               }), nt(r)
+          },
+          lt = t =&gt; {
+               i.length = 0;
+               for (const e in t) {
+                    const o = t[e];
+                    if (Array.isArray(o)) {
+                         let t = 0;
+                         const s = [],
+                              n = [];
+                         for (let e = 0; e &lt; o.length; e += 2) t += o[e], i.push(o[e + 1]), s.push(o[e]), n.push(i.length - 1);
+                         l[e] = Y(t, s, n, n.length)
+                    } else i.push(o), l[e] = U(i.length - 1)
+               }
+               ct(), O();
+               for (let t = 0; t &lt; 10; t++) rt();
+               it()
+          };
+     lt({
+          start(t) {
+               T(t, {
+                    y: -105,
+                    s: 200,
+                    l: 0
+               }), 1 === R ? (l.R1(t, {
+                    rx: 90,
+                    z: -.8,
+                    s: 6
+               }), l.R1(t, {
+                    rx: -90,
+                    rz: 180,
+                    z: -.8,
+                    s: 6
+               })) : l.R1(t, {
+                    rx: 90,
+                    s: 6
+               }), T(t, {
+                    y: -105
+               })
+          },
+          R1: [1, t =&gt; {
+               if (1 === R) {
+                    if (I(t) &gt; 7) return;
+                    l.R1(t, {
+                         x: -.25 * w,
+                         y: .25 * w,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: -.25,
+                         s: .5
+                    }), l.R1(t, {
+                         x: -.25,
+                         y: -.25,
+                         s: [.5, .5, 1.2],
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: .25,
+                         s: [.5, .5, 1.2],
+                         rz: 90
+                    }), l.block(t)
+               } else if (2 === R) {
+                    if (I(t) &gt; 7) return;
+                    l.R1(t, {
+                         x: -.25 * w,
+                         y: .25 * w,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: -.25,
+                         s: .5
+                    }), l.R1(t, {
+                         x: -.25,
+                         y: -.25,
+                         s: [.5, .5, 1.1],
+                         rz: -90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: .25,
+                         s: [.5, .5, 1.2]
+                    }), l.block(t)
+               } else if (3 === R) {
+                    if (I(t) &gt; 5) return;
+                    l.R1(t, {
+                         x: -.25,
+                         y: .15,
+                         s: .5,
+                         rz: 180
+                    }), l.R1(t, {
+                         x: .25 * w,
+                         y: -.15 * w,
+                         s: .5
+                    }), l.R1(t, {
+                         x: -.25,
+                         y: -.15,
+                         s: [.5, .5, 1.2],
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .15,
+                         y: .15,
+                         s: [.5, .5, 1.6],
+                         rz: 90
+                    }), l.block(t, {})
+               } else if (4 === R) {
+                    if (I(t) &gt; 4) return;
+                    l.R1(t, {
+                         x: -.1,
+                         y: .1,
+                         s: .5,
+                         rz: 180
+                    }), l.R1(t, {
+                         x: .1 * w,
+                         y: -.1 * w,
+                         s: .5
+                    }), l.R1(t, {
+                         x: -.1,
+                         y: -.1,
+                         s: [.5, .5, 1.2],
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .1,
+                         y: .1,
+                         s: [.5, .5, 1.6],
+                         rz: 90
+                    }), l.block(t, {})
+               }
+          }, 1, t =&gt; {
+               if (1 === R) {
+                    if (I(t) &gt; 7) return;
+                    l.R1(t, {
+                         x: -.25,
+                         y: .25,
+                         z: .1,
+                         s: [.5, .5, 1.1]
+                    }), l.R1(t, {
+                         x: .25,
+                         y: -.25,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: -.25,
+                         y: -.25,
+                         s: [.5, .5, 1.3],
+                         rz: 0
+                    }), l.block(t)
+               } else if (2 === R) {
+                    if (I(t) &gt; 7) return;
+                    l.R1(t, {
+                         x: -.25,
+                         y: .25,
+                         s: [.5, .5, 1.2],
+                         rz: -90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: -.25,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: .25,
+                         y: .25,
+                         z: -.1,
+                         s: [.5, .5, 1.4]
+                    }), l.block(t)
+               } else if (3 === R) {
+                    if (I(t) &gt; 8) return;
+                    l.R1(t, {
+                         x: -.1,
+                         z: .1,
+                         s: [.5, .5, 1.1]
+                    }), l.R1(t, {
+                         x: .1,
+                         z: -.1,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: -.1,
+                         z: -.1,
+                         s: [.5, .5, 1.3],
+                         rz: 180
+                    }), l.block(t)
+               } else if (4 === R) {
+                    if (I(t) &gt; 5) return;
+                    l.R1(t, {
+                         x: -.1,
+                         z: .1,
+                         s: [.5, .5, 1.1]
+                    }), l.R1(t, {
+                         x: .1,
+                         z: -.1,
+                         s: .5,
+                         rz: 90
+                    }), l.R1(t, {
+                         x: -.1,
+                         z: -.1,
+                         s: [.5, .5, 1.3],
+                         rz: 180
+                    }), l.block(t)
+               }
+          }],
+          block: [1, t =&gt; {
+               T(t, {
+                    x: -.25,
+                    y: -.25,
+                    s: [.48, .48, .1]
+               })
+          }, 1, t =&gt; {
+               const e = L(t);
+               S(t, {
+                    x: -.25,
+                    y: -.25,
+                    z: .7 * -e,
+                    rx: -90,
+                    s: [.48, e, .48],
+                    sat: .8,
+                    hue: 30
+               })
+          }, .5, t =&gt; {
+               for (let e = -.24; e &lt;= .24; e += .048)
+                    for (let o = -.24; o &lt;= .24; o += .048) T(t, {
+                         x: e - .5,
+                         y: o - .5,
+                         s: [.0337, .0337, .0543],
+                         hue: b += A,
+                         sat: 1
+                    })
+          }, 1, t =&gt; {
+               if (L(t) &gt; .1) T(t, {
+                    x: -.25,
+                    y: -.25,
+                    s: [.48, .48, .1]
+               });
+               else {
+                    const e = t[13] &gt; 0 ? -1 : 1;
+                    for (let o = 0; o &lt;= .05; o += .008) {
+                         const s = e &lt; 1 ? 30 * o + 1 : .5 - (30 * (.05 - o) + 1);
+                         S(t, {
+                              x: -.25,
+                              y: -.25,
+                              z: o,
+                              rx: 90 * e,
+                              s: [.51 * s, .01, .51 * s],
+                              sat: .8,
+                              hue: b + 180
+                         })
+                    }
+               }
+          }, 1, t =&gt; {
+               l.frame(t, {
+                    x: -.25,
+                    y: -.25,
+                    s: [.48, .48, .1]
+               })
+          }],
+          frame(t) {
+               const e = t[13] &gt; 0 ? .5 : 1;
+               T(t, {
+                    x: -.5,
+                    z: -.5,
+                    s: [.05, .95, .05],
+                    l: e
+               }), T(t, {
+                    y: -.5,
+                    z: -.5,
+                    s: [1.05, .05, .05],
+                    l: e
+               }), T(t, {
+                    x: .5,
+                    z: -.5,
+                    s: [.05, .95, .05],
+                    l: e
+               }), T(t, {
+                    y: .5,
+                    z: -.5,
+                    s: [1.05, .05, .05],
+                    l: e
+               })
+          }
+     }), document.addEventListener(&quot;keydown&quot;, (function(t) {
+          &quot; &quot; === t.key &amp;&amp; (t.preventDefault(), u = 0)
+     }), !1)
+}</pre></body></html>

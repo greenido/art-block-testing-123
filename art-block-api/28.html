@@ -1,0 +1,91 @@
+<html><body><h1>Name: Apparitions</h1><h3>Artist: Aaron Penne</h3><h3>Description: “Apparitions” is an exploration of the space between algorithmic and organic. Each “Apparition” is unique to the transaction that originated it. Created by Aaron Penne</h3><h3>https://twitter.com/aaronpenne</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x92fb249865ae0d26120031868ba07434674a1600</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1500</p><p>Maximum Invocations: 1500</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 28000000,28000001,28000002,28000003,28000004,28000005,28000006,28000007,28000008,28000009,28000010,28000011,28000012,28000013,28000014,28000015,28000016,28000017,28000018,28000019,28000020,28000021,28000022,28000023,28000024,28000025,28000026,28000027,28000028,28000029,28000030,28000031,28000032,28000033,28000034,28000035,28000036,28000037,28000038,28000039,28000040,28000041,28000042,28000043,28000044,28000045,28000046,28000047,28000048,28000049,28000050,28000051,28000052,28000053,28000054,28000055,28000056,28000057,28000058,28000059,28000060,28000061,28000062,28000063,28000064,28000065,28000066,28000067,28000068,28000069,28000070,28000071,28000072,28000073,28000074,28000075,28000076,28000077,28000078,28000079,28000080,28000081,28000082,28000083,28000084,28000085,28000086,28000087,28000088,28000089,28000090,28000091,28000092,28000093,28000094,28000095,28000096,28000097,28000098,28000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>// CC BY-NC 4.0  https://github.com/aaronpenne/
+let rv = hti(tokenData.hash),
+     sd = gs(tokenData.hash),
+     dim = Math.min(window.innerWidth, window.innerHeight);
+var v;
+let cw = &quot;#F6F6F5&quot;,
+     cb = &quot;#171718&quot;;
+
+function setup() {
+     dim = Math.min(window.innerWidth, window.innerHeight), createCanvas(dim, dim, P2D), colorMode(RGB, 100, 100, 100, 100), rectMode(CORNERS), ellipseMode(CORNERS), strokeCap(SQUARE), ew = [&quot;#222&quot;, &quot;#336&quot;, &quot;#358&quot;, &quot;#333&quot;, &quot;#365&quot;, &quot;#45A&quot;, &quot;#4C3F5D&quot;, &quot;#4E6E61&quot;, &quot;#544&quot;, &quot;#576&quot;, &quot;#5493B6&quot;, &quot;#6E4E37&quot;, &quot;#7AC&quot;, &quot;#78876E&quot;, &quot;#89292D&quot;, &quot;#87A&quot;, &quot;#8F3935&quot;, &quot;#A33&quot;, &quot;#B8513B&quot;, &quot;#B78&quot;, &quot;#B73&quot;, &quot;#CCC&quot;, &quot;#C54&quot;, &quot;#C95&quot;, &quot;#D57C30&quot;, &quot;#D94&quot;, &quot;#DA9&quot;, &quot;#C99&quot;, &quot;#DEC254&quot;, &quot;#E8E2D6&quot;, &quot;#F2F3EE&quot;]
+}
+
+function draw() {
+     sd = gs(tokenData.hash), noiseSeed(sd), randomSeed(sd), v = {
+          sd: sd,
+          xp: .18,
+          yp: .18,
+          xd: mv(2, 100, 300),
+          yd: mv(3, 600, 700),
+          xo: mv(4, .002, .005),
+          yo: mv(5, .005, .03),
+          xa: mv(6, .1 * width, .3 * width),
+          ya: mv(7, .1 * height, .3 * width),
+          bd: int(mv(8, 10, 200)),
+          sw: !0,
+          dk: !1,
+          tk: .01 * height,
+          bk: mv(9) &lt; .5 ? &quot;r&quot; : &quot;e&quot;,
+          sd: mv(10) &lt; .3,
+          bks: mv(11) &lt; .5,
+          bkc: mv(12) &lt; .8 ? cb : cw,
+          xdn: mv(13) &lt; .5 ? -1 : 1,
+          xf: mv(14) &lt; .1 ? 1 : 0,
+          cs: mv(18) &lt; .15
+     }, mv(16) &lt; .6 ? (v.sxn = !1, v.syn = !1) : mv(16) &lt; .7 ? (v.sxn = !0, v.syn = !0) : mv(16) &lt; .8 ? (v.sxn = !1, v.syn = !0) : mv(16) &lt;= 1 &amp;&amp; (v.sxn = !0, v.syn = !1), v.xa *= v.xdn, 1 === v.xf &amp;&amp; (v.xa = 0), mv(0) &lt; .15 ? (v.xp = -.14, v.xd *= 1.5, v.yo *= 2) : mv(0) &lt; .3 &amp;&amp; (v.yp = -.14, v.yd *= 1.5, v.xo *= 2), mv(1) &lt; .005 ? (v.p = [cw], v.sw = !0, v.cs = !1) : mv(1) &lt; .01 ? (v.p = [cb], v.sw = !0, v.cs = !1, v.dk = !0) : mv(1) &lt; .02 ? (v.p = [&quot;#823d65&quot;, cw, cb], v.cs = !1, v.sd = !1, colorMode(HSB, 360, 100, 100)) : mv(1) &lt; .1 ? (v.p = [cw, cb], v.sw = !0, v.cs = !1) : mv(1) &lt; .3 ? v.p = [rc(ew), cb, cw] : mv(1) &lt; .48 ? v.p = [rc(ew), rc(ew), rc(ew), cb, cw] : mv(1) &lt; .52 ? v.p = [&quot;#8F3935&quot;, cw, &quot;#D94&quot;] : mv(1) &lt; .57 ? v.p = [&quot;#BA7182&quot;, &quot;#C99&quot;, &quot;#DA9&quot;, &quot;#D94&quot;, cw] : mv(1) &lt; .61 ? v.p = [&quot;#89292D&quot;, &quot;#8F3935&quot;, &quot;#A33&quot;, cw] : mv(1) &lt; .62 ? v.p = [&quot;#253122&quot;, &quot;#f9c1ce&quot;, &quot;#fdd4bd&quot;, &quot;#78cdd0&quot;, cw] : mv(1) &lt; .64 ? v.p = [&quot;#bce4e5&quot;, &quot;#cab356&quot;, &quot;#f15a30&quot;, &quot;#00b49b&quot;] : mv(1) &lt; .66 ? v.p = [&quot;#9bc&quot;, &quot;#cc9&quot;, &quot;#cee&quot;, &quot;#099&quot;, &quot;#78cdd0&quot;, cw] : mv(1) &lt; .69 ? v.p = [&quot;#6d4145&quot;, &quot;#ca92a8&quot;, &quot;#713b4c&quot;, &quot;#f9c1ce&quot;, cw, cb] : mv(1) &lt; .7 ? v.p = [&quot;#064f6e&quot;, &quot;#ae5224&quot;, &quot;#ebd3a2&quot;, &quot;#635a3a&quot;, cw] : mv(1) &lt; .72 ? v.p = [&quot;#4f4086&quot;, &quot;#1e0e3f&quot;, &quot;#9a72aa&quot;, &quot;#c53c69&quot;, cw] : mv(1) &lt; .75 ? v.p = [&quot;#f5ecc2&quot;, &quot;#eeb480&quot;, &quot;#837e31&quot;, &quot;#253122&quot;, cw] : mv(1) &lt; .77 ? v.p = [&quot;#064f6e&quot;, &quot;#f68c50&quot;, &quot;#40456a&quot;, &quot;#f3a257&quot;, cw, cb] : mv(1) &lt; .79 ? v.p = [&quot;#a36aa5&quot;, &quot;#ebd3a2&quot;, &quot;#8fa071&quot;, &quot;#e31f26&quot;, cw] : mv(1) &lt; .8 ? v.p = [&quot;#34454c&quot;, &quot;#d8a37b&quot;, &quot;#71502f&quot;, &quot;#f5ecc2&quot;, cw] : mv(1) &lt; .81 ? v.p = [&quot;#547076&quot;, &quot;#c5a56e&quot;, &quot;#f5ecc2&quot;, &quot;#dd4027&quot;, cw, cb] : mv(1) &lt; .82 ? v.p = [&quot;#a36aa5&quot;, &quot;#fcb315&quot;, &quot;#006eb8&quot;, &quot;#e31f26&quot;, cw] : mv(1) &lt; .86 ? v.p = [&quot;#34454c&quot;, &quot;#ae5224&quot;, &quot;#eeb480&quot;, &quot;#b5decc&quot;, cw] : mv(1) &lt; .87 ? v.p = [&quot;#006eb8&quot;, &quot;#00978d&quot;, &quot;#fdbf68&quot;, &quot;#f99d1b&quot;, cw, cb] : mv(1) &lt; .88 ? v.p = [&quot;#97acc8&quot;, &quot;#b5decc&quot;, &quot;#ffefae&quot;, &quot;#f37420&quot;, cw] : mv(1) &lt; .9 ? v.p = [&quot;#7d133a&quot;, &quot;#a36752&quot;, &quot;#b6bfc1&quot;, &quot;#f9c1ce&quot;, cw, cb] : mv(1) &lt; .92 ? v.p = [&quot;#7a4456&quot;, &quot;#c2ae93&quot;, &quot;#c27544&quot;, &quot;#762c19&quot;, cw, cb] : mv(1) &lt; .94 ? v.p = [&quot;#12354e&quot;, &quot;#c2ae93&quot;, &quot;#bb7125&quot;, &quot;#eea78c&quot;, cw] : mv(1) &lt; .95 ? v.p = [&quot;#D0DBD7&quot;, &quot;#739C8E&quot;, &quot;#CEB0CA&quot;, &quot;#ca92a8&quot;, &quot;#713b4c&quot;, cw, cb] : v.p = ew.concat([cw, cw, cw, cw]), strokeWeight(v.tk), bc = v.bkc === cw ? cb : cw, v.cs &amp;&amp; (v.bkc = v.p[0]), background(bc), da(), noLoop()
+}
+
+function gg(e = 10, v = 10, c = .2, t = .2) {
+     var a;
+     gd = [], e = round(e), v = round(v);
+     for (var n = width * c, d = width * (1 - c), i = height * t, o = height * (1 - t), r = 0; r &lt;= v; r++) {
+          for (row = [], a = 0; a &lt;= e; a++) j_ = n + (d - n) * a / e, i_ = i + (o - i) * r / v, row.push([j_, i_]);
+          gd.push(row)
+     }
+     return gd
+}
+
+function windowResized() {
+     dim = Math.min(window.innerWidth, window.innerHeight), resizeCanvas(dim, dim)
+}
+
+function get_timestamp() {
+     return (new Date).toISOString().replace(/[^T0-9]/g, &quot;&quot;).replace(&quot;T&quot;, &quot;_&quot;)
+}
+
+function dal(e, c, t = 0) {
+     for (beginShape(), j = 0; j &lt; e[c].length; j++) x = e[c][j][0], y = e[c][j][1], x_ = v.sxn ? x + v.xdn * t - map(noise(c * v.xo), 0, 1, -v.xa, v.xa) : x + v.xdn * t - map(noise(c * v.xo, j * v.yo), 0, 1, -v.xa, v.xa), y_ = v.syn ? y - t / 2 + map(noise(j * v.yo), 0, 1, -v.ya, v.ya) : y - t / 2 + map(noise(c * v.xo, j * v.yo), 0, 1, -v.ya, v.ya), curveVertex(x_, y_);
+     endShape()
+}
+
+function da() {
+     push(), v.bks ? (strokeWeight(.5 * v.tk), stroke(v.bkc), noFill()) : (noStroke(), fill(v.bkc));
+     var e = .1 * dim;
+     for (&quot;r&quot; === v.bk ? rect(e, e, width - e, height - e) : &quot;e&quot; === v.bk &amp;&amp; ellipse(e, e, width - e, height - e), pop(), v.sd &amp;&amp; (v.yd *= .5), strokeWeight(v.tk), gd = gg(v.xd, v.yd, v.xp, v.yp), tic = color(rc(v.p)), tac = color(rc(v.p)), i = 0; i &lt; gd.length &amp;&amp; (v.sw &amp;&amp; (push(), noFill(), stroke(&quot;#1111&quot;), v.dk &amp;&amp; stroke(&quot;#EEE1&quot;), dal(gd, i, .004 * height), pop()), i % v.bd == 0 &amp;&amp; (tic = color(rc(v.p)), tac = color(rc(v.p))), push(), noFill(), v.sd ? stroke(rc(v.p)) : stroke(lerpColor(tic, tac, i % v.bd / v.bd)), dal(gd, i), pop(), i !== gd.length - 2); i++);
+}
+
+function hti(e) {
+     let v = [];
+     for (let e = 0; e &lt; 32; e++) v.push(tokenData.hash.slice(2 + 2 * e, 4 + 2 * e));
+     return v.map(e =&gt; parseInt(e, 16))
+}
+
+function gs(e) {
+     return parseInt(tokenData.hash.slice(0, 16), 16)
+}
+
+function mv(e, v = 0, c = 1) {
+     return map(rv[e], 0, 255, v, c)
+}
+
+function rand_dec() {
+     return sd ^= sd &lt;&lt; 13, sd ^= sd &gt;&gt; 17, sd ^= sd &lt;&lt; 5, (sd &lt; 0 ? 1 + ~sd : sd) % 1e3 / 1e3
+}
+
+function rand_between(e, v) {
+     return e + (v - e) * rand_dec()
+}
+
+function rc(e) {
+     return e[Math.floor(rand_between(0, .99 * e.length))]
+}</pre></body></html>

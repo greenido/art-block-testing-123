@@ -1,0 +1,283 @@
+<html><body><h1>Name: EnergySculpture</h1><h3>Artist: Beervangeer</h3><h3>Description: To become an Energy Sculptor, you first have to find your way into MU. Once arrived, an extensive period of trials will test your capabilities for earning the right to be an Energy Sculptor.
+
+This project is part of The Realm of MU saga.</h3><h3>http://www.therealmofmu.space</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x35f64560c51c8772f75186a8931929589b7c8d80</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.369</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 369</p><p>Maximum Invocations: 369</p><p>License: NFT License</p><p>Token Ids: 26000000,26000001,26000002,26000003,26000004,26000005,26000006,26000007,26000008,26000009,26000010,26000011,26000012,26000013,26000014,26000015,26000016,26000017,26000018,26000019,26000020,26000021,26000022,26000023,26000024,26000025,26000026,26000027,26000028,26000029,26000030,26000031,26000032,26000033,26000034,26000035,26000036,26000037,26000038,26000039,26000040,26000041,26000042,26000043,26000044,26000045,26000046,26000047,26000048,26000049,26000050,26000051,26000052,26000053,26000054,26000055,26000056,26000057,26000058,26000059,26000060,26000061,26000062,26000063,26000064,26000065,26000066,26000067,26000068,26000069,26000070,26000071,26000072,26000073,26000074,26000075,26000076,26000077,26000078,26000079,26000080,26000081,26000082,26000083,26000084,26000085,26000086,26000087,26000088,26000089,26000090,26000091,26000092,26000093,26000094,26000095,26000096,26000097,26000098,26000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let hashPairs = [];
+
+for (let j = 0; j &lt; 32; j++) {
+     hashPairs.push(tokenData.hash.slice(2 + (j * 2), 4 + (j * 2)));
+}
+
+let decPairs = hashPairs.map(x =&gt; {
+     return parseInt(x, 16);
+});
+
+let mainShader;
+let timer = 0;
+
+let morph;
+let delayAmount;
+let speed;
+let hueC;
+let dimLayerOne;
+let dimLayerTwo;
+let bounceSpeed; //range1-6
+let morphSpeeds;
+let plotTime; //1-6
+let phase = 0;
+
+function preload() {
+
+     randomFromHash();
+     mainShader = getShader(this._renderer);
+}
+
+
+function setup() {
+
+     createCanvas(windowWidth, windowHeight, WEBGL);
+     shader(mainShader);
+
+     mainShader.setUniform(&quot;speed&quot;, speed);
+     mainShader.setUniform(&quot;delayAmount&quot;, delayAmount);
+     mainShader.setUniform(&quot;hueC&quot;, hueC);
+     mainShader.setUniform(&quot;dimLayerOne&quot;, dimLayerOne);
+     mainShader.setUniform(&quot;dimLayerTwo&quot;, dimLayerTwo);
+     mainShader.setUniform(&quot;bounceSpeed&quot;, bounceSpeed);
+     mainShader.setUniform(&quot;morphSpeeds&quot;, morphSpeeds);
+     mainShader.setUniform(&quot;plotTime&quot;, plotTime);
+
+}
+
+function draw() {
+
+     mainShader.setUniform(&quot;time&quot;, phase + millis() / 1000.0);
+     rect(0, 0, width, height);
+
+}
+
+function randomFromHash() {
+
+     phase = map(decPairs[0], 0, 255, 0, 100);
+     //phase =  map(random(0,255), 0, 255, 0, 100);
+     let ranDelay = round(map(decPairs[0], 0, 255, 1, 3));
+     //let ranDelay = round(map(random(0,255), 0, 255, 1, 3));
+     if (ranDelay == 1) {
+          delayAmount = 0.02;
+     }
+     if (ranDelay == 2) {
+          delayAmount = 0.08;
+     }
+     if (ranDelay == 3) {
+          delayAmount = 0.12;
+     }
+
+     let ranSpeed = round(map(decPairs[1], 0, 255, 1, 3));
+     //let ranSpeed = round(map(random(0,255), 0, 255, 1, 3));
+     if (ranSpeed == 1) {
+          speed = 0.1;
+     }
+     if (ranSpeed == 2) {
+          speed = 0.3;
+     }
+     if (ranSpeed == 3) {
+          speed = 0.6;
+     }
+
+     //print(speed);
+     let ranColor = map(decPairs[2], 0, 255, 0, 1);
+     //let ranColor = map(random(0,255), 0, 255, 0, 1);
+
+     hueC = ranColor;
+
+     let ranDim = round(map(decPairs[3], 0, 255, 0, 1));
+     //let ranDim = round(map(random(0,255), 0, 255, 0, 1));
+
+     if (ranDim == 0) {
+          // let dimOne = round(map(random(0,255), 0, 255, 0, 9));
+          let dimOne = round(map(decPairs[0], 0, 255, 0, 9));
+          //let dimTwo = round(map(random(0,255), 0, 255, 0, 9));
+          let dimTwo = round(map(decPairs[1], 0, 255, 0, 9));
+          dimLayerOne = [dimOne, dimOne, dimOne];
+          dimLayerTwo = [dimTwo, dimTwo, dimTwo];
+     }
+     if (ranDim == 1) {
+
+          dimLayerOne = [round(map(decPairs[0], 0, 255, 0, 9)), round(map(decPairs[1], 0, 255, 0, 9)), round(map(decPairs[2], 0, 255, 0, 9))];
+          dimLayerTwo = [round(map(decPairs[3], 0, 255, 0, 9)), round(map(decPairs[4], 0, 255, 0, 9)), round(map(decPairs[5], 0, 255, 0, 9))];
+
+     }
+
+     let ranBounce = round(map(decPairs[4], 0, 255, 1, 6));
+     //let ranBounce = round(map(random(0,255), 0, 255, 1, 6));
+
+     bounceSpeed = ranBounce; //range1-6
+     morphSpeeds = [round(map(decPairs[0], 0, 255, 1, 6)), round(map(decPairs[1], 0, 255, 1, 6)), round(map(decPairs[2], 0, 255, 1, 6))];
+     let ranPlot = round(map(decPairs[5], 0, 255, 1, 6))
+     plotTime = ranPlot; //1-6
+
+}
+
+function getShader(_renderer) {
+     const vert = `
+        attribute vec3 aPosition;
+        attribute vec2 aTexCoord;
+
+        varying vec2 vTexCoord;
+
+        void main() {
+            vTexCoord = aTexCoord;
+
+            vec4 positionVec4 = vec4(aPosition, 1.0);
+            positionVec4.xy = positionVec4.xy * 2.0 - 1.0;
+
+            gl_Position = positionVec4;
+        }
+    `;
+
+     const frag = `
+        precision highp float;
+
+        varying vec2 vTexCoord;
+
+        const float WIDTH = ${windowWidth}.0;
+        const float HEIGHT = ${windowHeight}.0;
+        
+        #define PI 3.14159265359
+        #define TWO_PI 6.28318530718
+        uniform float time;
+        
+        #define size 0.55
+        #define lineSize 0.175
+        #define blur 0.2
+        #define grid 2.3
+        #define grid2 3.3
+        #define morph 3.3
+        
+        uniform float delayAmount; 
+        uniform float speed;
+        uniform float hueC;
+        uniform vec3 dimLayerOne;
+        uniform vec3 dimLayerTwo;
+        uniform float bounceSpeed;
+        uniform vec3 morphSpeeds;
+        uniform float plotTime;
+
+        float impulse( float k, float x )
+        {
+    float h = k*x;
+    return h*exp(1.0-h);
+        }
+
+        float plot(float dis){
+    float pct = smoothstep(dis,dis+blur,0.5)-smoothstep(lineSize+dis,lineSize+dis+blur,0.5);     
+    return   pct ;
+        }
+
+        vec3 wooper(vec2 st, float timeCheck){
+    
+    vec3 color = vec3(0.0);
+    vec2 pos = vec2(0.5)-abs(st);
+
+    float r = length(pos)*2.0;
+    float a = atan(pos.y,pos.x);
+    
+    float gridSine = 5.+ (grid2*sin(timeCheck/bounceSpeed * PI));
+
+    r = fract(impulse(r,gridSine)*grid);
+    
+    float morphSine = 0.2 + ( 1.+sin(timeCheck/morphSpeeds.x * PI) /2.)*morph;
+    float morphSine2 = 0.2 + ( 1.+sin(timeCheck/morphSpeeds.y * PI) /2.)*morph;
+    float morphSine3 = 0.2 + ( 1.+sin(timeCheck/morphSpeeds.z * PI) /2.)*morph;
+    
+    float f = ( size*cos(a*dimLayerOne.x + timeCheck/plotTime) + size*cos(a*dimLayerTwo.x + timeCheck*plotTime))/2.;
+    float p = plot(1.-smoothstep(f,f+0.9,r*morphSine));
+    
+    float f2 = ( size*cos(a*dimLayerOne.y + timeCheck/plotTime) + size*cos(a*dimLayerTwo.y + timeCheck*plotTime))/2.;
+    float p2 = plot(1.-smoothstep(f2,f2+0.9,r*morphSine2));
+    
+    float f3 = ( size*cos(a*dimLayerOne.z + timeCheck/plotTime) + size*cos(a*dimLayerTwo.z + timeCheck*plotTime))/2.;
+    float p3 = plot(1.-smoothstep(f3,f3+0.9,r*morphSine3));
+    
+    color.r = p;
+    color.g = p2 *st.x;
+    color.b = p3;
+ 
+    return(color);
+        }
+
+        vec3 powerParticle(vec2 st){
+  
+    st.y += ((st.x*0.05)*sin(time/10.*PI)+(st.x*0.1)*sin(time/12.*PI))/2.;
+    st.x += ((st.y*0.05)*sin(time/10.*PI) + (st.y*0.1)*sin(time/12.*PI))/2.;
+    
+    vec2 pos = vec2(0.25+0.25*sin(time))-abs(st);
+
+    float r = length(pos);
+    float d = distance(st,vec2(0.5))* (sin(time/8.));
+    d = distance(vec2(.5),st);
+    vec3 colorNew = vec3(0);
+   
+    float delay = delayAmount;
+    float timerChecker = time * speed ;
+    for(int i=0;i&lt;10;i++) {
+     
+      vec3 colorCheck = wooper(st, timerChecker+ float(i)*delay)* (1.-(float(i)/10.0));
+      colorNew+= colorCheck ;
+    }
+    
+    return(colorNew);
+        }
+
+        vec3 rgb2hsb( in vec3 c ){
+                vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+                vec4 p = mix(vec4(c.bg, K.wz),
+                                         vec4(c.gb, K.xy),
+                                         step(c.b, c.g));
+                vec4 q = mix(vec4(p.xyw, c.r),
+                                         vec4(c.r, p.yzx),
+                                         step(p.x, c.r));
+                float d = q.x - min(q.w, q.y);
+                float e = 1.0e-10;
+                return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)),
+                                        d / (q.x + e),
+                                        q.x);
+        }
+
+        //  Function from Iñigo Quiles
+        //  https://www.shadertoy.com/view/MsS3Wc
+        vec3 hsb2rgb( in vec3 c ){
+                vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
+                                                                 6.0)-3.0)-1.0,
+                                                 0.0,
+                                                 1.0 );
+                rgb = rgb*rgb*(3.0-2.0*rgb);
+                return c.z * mix(vec3(1.0), rgb, c.y);
+        }
+        
+        void main() {
+            
+                        float rel = WIDTH/HEIGHT;
+            vec2 st = vTexCoord.xy ;
+                        st.x -= 0.5;
+            st.x *=rel;
+                        st.x += 0.5;
+            vec3 powerColor = powerParticle(st);
+
+            vec3 hue = rgb2hsb(powerColor);
+            hue.x = hueC;
+            hue.y = 0.3;
+            float d = 1.-distance(vec2(.5),st);//*2.;
+
+            float d1 = smoothstep(-0.2,1.,d);
+
+            d = smoothstep(0.5,1.0,d);
+
+            vec3 back = vec3(d1,0.,0.);
+            vec3 backHue = rgb2hsb(back);
+            backHue.x = hueC;
+                        
+                        gl_FragColor  = vec4(hsb2rgb(backHue)*0.5 +(hsb2rgb(hue)*d) +(powerColor*d*0.4),1.0);
+        }
+    `;
+
+     return new p5.Shader(_renderer, vert, frag);
+}</pre></body></html>

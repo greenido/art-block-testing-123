@@ -1,0 +1,117 @@
+<html><body><h1>Name: Hieroglyphs</h1><h3>Artist: pxlq</h3><h3>Description: Simple rules - complex patterns. An exploration of abstract variation through generative symbols.</h3><h3></h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x5f127b4323c0061768976ad34a1a2beb9db19886</p><p>Additional Payee: 0x16c04f4b6b8841731631d15d3ce57da075f4e9fc</p><p>Additional Payee Percentage: 100</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1000</p><p>Maximum Invocations: 1000</p><p>License: NFT License</p><p>Token Ids: 30000000,30000001,30000002,30000003,30000004,30000005,30000006,30000007,30000008,30000009,30000010,30000011,30000012,30000013,30000014,30000015,30000016,30000017,30000018,30000019,30000020,30000021,30000022,30000023,30000024,30000025,30000026,30000027,30000028,30000029,30000030,30000031,30000032,30000033,30000034,30000035,30000036,30000037,30000038,30000039,30000040,30000041,30000042,30000043,30000044,30000045,30000046,30000047,30000048,30000049,30000050,30000051,30000052,30000053,30000054,30000055,30000056,30000057,30000058,30000059,30000060,30000061,30000062,30000063,30000064,30000065,30000066,30000067,30000068,30000069,30000070,30000071,30000072,30000073,30000074,30000075,30000076,30000077,30000078,30000079,30000080,30000081,30000082,30000083,30000084,30000085,30000086,30000087,30000088,30000089,30000090,30000091,30000092,30000093,30000094,30000095,30000096,30000097,30000098,30000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var seed = parseInt(tokenData.hash.slice(0, 16), 16);
+class XY {
+     constructor(n, e) {
+          this.x = n, this.y = e, this.points = []
+     }
+}
+class Grid {
+     constructor(n) {
+          this.x = n, this.y = n, this.g = []
+     }
+     get_xy(n, e) {
+          return this.g[e][n]
+     }
+}
+var PALS = [
+          [&quot;#000020&quot;, &quot;#EEEEEE&quot;, &quot;#FFFFFF00&quot;],
+          [&quot;#E2EBFB&quot;, &quot;#0F1318&quot;, &quot;#000003&quot;],
+          [&quot;#E8175D&quot;, &quot;#D8A499&quot;, &quot;#000020&quot;],
+          [&quot;#D1ADEF&quot;, &quot;#80D9FF&quot;, &quot;#000030&quot;],
+          [&quot;#FFAF00&quot;, &quot;#FBF0D2&quot;, &quot;#614200&quot;],
+          [&quot;#F2D39F&quot;, &quot;#2A1F30&quot;, &quot;#000003&quot;],
+          [&quot;#E6DDCE&quot;, &quot;#70C7DB&quot;, &quot;#C0A95B&quot;],
+          [&quot;#C2AFCF&quot;, &quot;#1E1028&quot;, &quot;#000003&quot;],
+          [&quot;#95CB99&quot;, &quot;#D8D9DE&quot;, &quot;#000020&quot;],
+          [&quot;#FECB00&quot;, &quot;#007CBC&quot;, &quot;#000003&quot;],
+          [&quot;#F4F9F9&quot;, &quot;#7289DA&quot;, &quot;#000030&quot;],
+          [&quot;#949EBB&quot;, &quot;#D7DDEA&quot;, &quot;#000003&quot;],
+          [&quot;#D8FF14&quot;, &quot;#FF1FDA&quot;, &quot;#090036&quot;],
+          [&quot;#D9A881&quot;, &quot;#1F0F08&quot;, &quot;#000003&quot;],
+          [&quot;#B32744&quot;, &quot;#ED7672&quot;, &quot;#000003&quot;],
+          [&quot;#3AC9CE&quot;, &quot;#413BCF&quot;, &quot;#000000&quot;],
+          [&quot;#44CCFF&quot;, &quot;#FFF1D0&quot;, &quot;#343432&quot;]
+     ],
+     C = rnd_arr(PALS),
+     DIM_CNV = Math.min(window.innerWidth, window.innerHeight),
+     ROT = rnd_num() &gt; .6,
+     DIM_M = ROT ? rnd_num(1.5, 3) : 1,
+     DIM = DIM_CNV * DIM_M,
+     COUNT = rnd_int(3, 20),
+     M = DIM / 1e3,
+     MC = M / (COUNT / 5),
+     BRD = rnd_int(25, 100) * M,
+     SPC = rnd_num() &gt; .5 ? rnd_int(40, 100) * MC : 0,
+     SIZ = (DIM - 2 * BRD - SPC * (COUNT - 1)) / COUNT,
+     SHADOW = rnd_num() &gt; .25,
+     PARTY_1 = rnd_num() &gt; .6,
+     PARTY_2 = rnd_num() &gt; .6,
+     BLND = rnd_num() &gt; .8 &amp; COUNT &lt; 10,
+     SHFT_X = rnd_num(2, 4),
+     SHFT_Y = rnd_num(2, 4),
+     G = new Grid(COUNT);
+for (let n = BRD, e = 0; n &lt;= DIM - BRD - SIZ + 1; n += SIZ + SPC, e++) {
+     let t = [];
+     for (let r = BRD, _ = 0; r &lt;= DIM - BRD - SIZ + 1; r += SIZ + SPC, _++) {
+          let d = new XY(_, e);
+          d.x1 = r, d.y1 = n, d.x2 = r + SIZ, d.y2 = n + SIZ, t.push(d)
+     }
+     G.g.push(t)
+}
+var p1 = get_p(),
+     p2 = get_p();
+
+function setup() {
+     createCanvas(DIM_CNV, DIM_CNV), background(C[1]), BLND &amp;&amp; blendMode(HARD_LIGHT);
+     for (let n of G.g) {
+          PARTY_1 &amp;&amp; (p1 = get_p(), p2 = get_p());
+          for (let e of n) PARTY_2 &amp;&amp; (p1 = get_p(), p2 = get_p()), e.p1 = p1, e.p2 = p2
+     }
+     ROT &amp;&amp; (push(), translate(DIM / SHFT_X, -DIM / SHFT_Y), rotate(PI / 4)), SHADOW &amp;&amp; drw_itr(drw_s), drw_itr(drw_f), ROT &amp;&amp; pop()
+}
+
+function get_p() {
+     let n = [];
+     for (let e = 0; e &lt; rnd_int(1, 10); e++) n.push([rnd_int(), rnd_int()]);
+     return n
+}
+
+function drw_itr(n) {
+     for (let e of G.g)
+          for (let t of e) n(t.p1, t.x1, t.y1, t.x2, t.y2), n(t.p2, t.x1, t.y1, t.x2, t.y2)
+}
+
+function drw_f(n, e, t, r, _) {
+     strokeJoin(ROUND), stroke(C[0]), strokeWeight(10 * MC), fill(C[0]), beginShape();
+     for (let d of n) {
+          let n = [e, r][d[0]],
+               D = [t, _][d[1]];
+          vertex(n, D), endShape(CLOSE)
+     }
+}
+
+function drw_s(n, e, t, r, _) {
+     strokeJoin(ROUND), stroke(C[2]), strokeWeight(8 * MC), fill(C[2]), beginShape();
+     let d = r - e,
+          D = _ - t;
+     for (let o of n) {
+          let n = [e, r][o[0]] + .05 * d,
+               i = [t, _][o[1]] + .05 * D;
+          vertex(n, i), endShape(CLOSE)
+     }
+}
+
+function rnd_dec() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, ((seed ^= seed &lt;&lt; 5) &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3
+}
+
+function rnd_num(n = 0, e = 1) {
+     return n + (e - n) * rnd_dec()
+}
+
+function rnd_int(n = 0, e = 1) {
+     return Math.floor(rnd_num(n, e + 1))
+}
+
+function rnd_arr(n) {
+     return n[Math.floor(rnd_num(0, .99 * n.length))]
+}</pre></body></html>

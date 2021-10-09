@@ -1,0 +1,100 @@
+<html><body><h1>Name: Asterisms</h1><h3>Artist: Falko</h3><h3>Description: An asterism is a pattern created by a collection of stars and the lines that mentally connect between them. Unlike constellations, they are a more general concept that can refer to any identified pattern of stars. The viewer is the one who draws in the sky and gives meaning to his creation. Asterisms in an interactive generative project that invites you to draw, name and save forever your own asterism. Through a generative algorithm, the script gives you the sky as a canvas where you can unfold your imagination as many times as you want based on the Token ID hash from the minting process. To be a user is to be a creator. LEFT CLICK to create stars │ Use the MOUSE WHEEL to zoom in and out │ TYPE to write a title │ BACKSPACE to delete │ DELETE to delete all the text │ ENTER to save the file.</h3><h3>https://twitter.com/__falko</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1/1&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;factory&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1/1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x67a1be86d7eb66389b489d4c77c082ce470c6e35</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 100</p><p>Maximum Invocations: 100</p><p>License: NFT License</p><p>Token Ids: 47000000,47000001,47000002,47000003,47000004,47000005,47000006,47000007,47000008,47000009,47000010,47000011,47000012,47000013,47000014,47000015,47000016,47000017,47000018,47000019,47000020,47000021,47000022,47000023,47000024,47000025,47000026,47000027,47000028,47000029,47000030,47000031,47000032,47000033,47000034,47000035,47000036,47000037,47000038,47000039,47000040,47000041,47000042,47000043,47000044,47000045,47000046,47000047,47000048,47000049,47000050,47000051,47000052,47000053,47000054,47000055,47000056,47000057,47000058,47000059,47000060,47000061,47000062,47000063,47000064,47000065,47000066,47000067,47000068,47000069,47000070,47000071,47000072,47000073,47000074,47000075,47000076,47000077,47000078,47000079,47000080,47000081,47000082,47000083,47000084,47000085,47000086,47000087,47000088,47000089,47000090,47000091,47000092,47000093,47000094,47000095,47000096,47000097,47000098,47000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var cometProb, minSpeed, maxSpeed, minSize, maxSize, linkForce, starMax, colorLink, colorR, colorG, colorB, mx, aldebaranRadius, aldebaranX, aldebaranY, marsRadius, marsX, marsY, moonRadius, moonX, moonY, sirioRadius, sirioX, sirioY, hash = tokenData.hash,
+     tokenID = hash,
+     stars = [],
+     numStars = 4,
+     minStarSize = 1,
+     maxStarSize = 1,
+     sourceText = &quot;&quot;,
+     textY = 20,
+     textX = 15,
+     iniStars = [],
+     starCount = 0,
+     starPos = new Array(starCount),
+     starMaxV = new Array(starCount),
+     starVel = new Array(starCount),
+     starSize = new Array(starCount),
+     starR = new Array(starCount),
+     starG = new Array(starCount),
+     starB = new Array(starCount),
+     sf = 1,
+     my = 0;
+
+function setup() {
+     min_dim = min(windowWidth, windowHeight), createCanvas(min_dim, min_dim), size = min_dim / 811, randomSeed(parseInt(tokenData.hash.slice(0, 16), 16)), frameRate(20), colorMode(RGB, 255, 255, 255, 100), ellipseMode(RADIUS), iniStars = parseInt(random(120, 200)), starMax = 450, minSize = random(.1 * size, 1 * size), maxSize = random(2 * size, 6 * size), minSpeed = random(.05 * size, .08 * size), maxSpeed = random(.15 * size, .3 * size), linkForce = random(55 * size, 70 * size), colorLink = random(12, 240), lineWeight = random(.25 * size, 1.2 * size), colorR = random(50, 255), colorG = random(50, 255), colorB = random(50, 255), alphaL = random(200, 255), backgroundR = random(0, 20), backgroundB = random(0, 20), backgroundG = random(0, 20), fullTrait = random(10), fullTrait &lt; .1 ? (aldebaranRandom = 9, marsRandom = 9, moonRandom = 9, sirioRandom = 9, cometProb = .1) : (aldebaranRandom = random(10), marsRandom = random(10), moonRandom = random(10), sirioRandom = random(10), cometProb = random(10)), aldebaranX = random(40 * size, width), aldebaranY = random(40 * size, height), moonX = random(40 * size, width), moonY = random(40 * size, height), marsX = random(40 * size, width), marsY = random(40 * size, height), sirioX = random(40 * size, width), sirioY = random(40 * size, height), aldebaranRadius = random(2 * size, 6 * size), marsRadius = random(2 * size, 4 * size), moonRadius = random(7 * size, 9 * size), sirioRadius = random(1 * size, 2.5 * size), sourceText = &quot;Asterism ID &quot; + tokenID;
+     for (var o = 0; o &lt; iniStars; o++) newStar();
+     if (cometProb &lt; .5)
+          for (o = 0; o &lt; numStars; o++) x = random(width), y = random(height), r = floor(random(size * minStarSize, size * maxStarSize)), stars.push(new Star(x, y, r));
+     else x = 1, y = 1, r = 0
+}
+
+function draw() {
+     blendMode(BLEND), background(backgroundR, backgroundG, backgroundB, 255), blendMode(SCREEN), min_dim &gt;= 1500 ? (drawingContext.shadowBlur = 16, drawingContext.shadowColor = color(255)) : min_dim &gt;= 1e3 &amp;&amp; min_dim &lt; 1500 ? (drawingContext.shadowBlur = 8, drawingContext.shadowColor = color(255)) : min_dim &gt; 0 &amp;&amp; min_dim &lt; 1e3 &amp;&amp; (drawingContext.shadowBlur = 6, drawingContext.shadowColor = color(255)), textSize(13 * size), noStroke(), fill(255), textFont(&quot;Montserrat&quot;), text(sourceText, size * textX, size * textY, 490 * size, 100 * size), textWidth &gt; 490 * size &amp;&amp; (textY = 100 * size), mouseX &lt;= width &amp;&amp; mouseX &gt;= 0 &amp;&amp; mouseY &lt;= height &amp;&amp; mouseY &gt;= 0 &amp;&amp; (mx = mouseX, my = mouseY), translate(mx, my), scale(sf), translate(-mx, -my), mouseIsPressed &amp;&amp; starCount &lt;= starMax &amp;&amp; newStar();
+     for (var o = 0; o &lt; starCount; o++) {
+          noStroke();
+          map(dist(width / 2, height / 2, starPos[o].x, starPos[o].y), 0, width / 2, width / 2, 0);
+          fill(colorR + 75, colorG + 75, colorB + 75, 250), ellipse(starPos[o].x, starPos[o].y, starSize[o], starSize[o])
+     }
+     for (o = 0; o &lt; starCount; o++) {
+          map(dist(width / 2, height / 2, starPos[o].x, starPos[o].y), 0, width / 2, width / 2, 0);
+          for (var a = o + 1; a &lt; starCount; a++)
+               if (dist(starPos[o].x, starPos[o].y, starPos[a].x, starPos[a].y) &lt; linkForce &amp;&amp; dist(width / 2, height / 2, starPos[a].x, starPos[a].y) &lt; width / 2) {
+                    var s = .6;
+                    s = map(s, 1, -1, 0, alphaL), line(starPos[o].x, starPos[o].y, starPos[a].x, starPos[a].y), stroke(colorR, colorG, colorB, 150), strokeWeight(lineWeight)
+               }
+     }
+     for (o = 0; o &lt; starCount; o++) {
+          var e = starPos[o].x + starVel[o].x,
+               t = starPos[o].y + starVel[o].y;
+          starPos[o].x = e, starPos[o].y = t, (e &lt; 0 * size || e &gt; min_dim) &amp;&amp; (starVel[o].x *= -1, e = starPos[o].x + starVel[o].x), (t &lt; 0 * size || t &gt; min_dim) &amp;&amp; (starVel[o].y *= -1, t = starPos[o].y + starVel[o].y)
+     }
+     if (min_dim &gt;= 1500 ? (drawingContext.shadowBlur = 27, drawingContext.shadowColor = color(255)) : min_dim &gt;= 1e3 &amp;&amp; min_dim &lt; 1500 ? (drawingContext.shadowBlur = 14, drawingContext.shadowColor = color(255)) : min_dim &gt; 0 &amp;&amp; min_dim &lt; 1e3 &amp;&amp; (drawingContext.shadowBlur = 10, drawingContext.shadowColor = color(255)), aldebaranRandom &gt; 4) {
+          aldebaranRadius = aldebaranRadius, fill(197, 186, 0, 80), noStroke();
+          circle(aldebaranX, aldebaranY, aldebaranRadius)
+     } else aldebaranRadius = 0;
+     if (marsRandom &gt; 6) {
+          marsRadius = marsRadius, fill(150, 0, 0, 80), noStroke();
+          circle(marsX, marsY, marsRadius)
+     } else marsRadius = 0;
+     if (moonRandom &gt; 2) {
+          moonRadius = moonRadius, fill(50, 50, 50, 255), noStroke();
+          circle(moonX, moonY, moonRadius)
+     } else moonRadius = 0;
+     if (sirioRandom &gt; 8) {
+          sirioRadius = sirioRadius, fill(12, 183, 242, random(50, 255)), noStroke();
+          circle(sirioX, sirioY, sirioRadius)
+     } else sirioRadius = 0;
+     for (o = stars.length - 1; o &gt;= 0; o--) !1 === stars[o].render() &amp;&amp; (stars.splice(o, 1), x = random(width), y = random(height), r = floor(random(size * minStarSize, size * maxStarSize)), stars.push(new Star(x, y, r)));
+     cometProb &lt; .5 &amp;&amp; frameCount % 60 == 0 &amp;&amp; (star = random(stars), star.shoot())
+}
+
+function newStar() {
+     if (starCount &lt; iniStars) {
+          starPos.push(createVector(random(0, min_dim), random(0, min_dim)));
+          var r = random(minSpeed, maxSpeed);
+          starMaxV.push(r), starVel.push(createVector(random(-r, r), random(-r, r))), starSize.push(random(minSize, maxSize)), starR.push(round(random(0, 255))), starG.push(round(random(0, 255))), starB.push(round(random(0, 255))), starCount++
+     } else {
+          starPos.push(createVector(mouseX, mouseY));
+          r = random(minSpeed, maxSpeed);
+          starMaxV.push(r), starVel.push(createVector(random(-r, r), random(-r, r))), starSize.push(random(minSize, maxSize)), starR.push(round(random(0, 255))), starG.push(round(random(0, 255))), starB.push(round(random(0, 255))), starCount++
+     }
+}
+
+function Star(r, o, a) {
+     this.x = r, this.y = o, this.r = a, this.alpha = 255, this.xoff = 0, this.yoff = 0, this.shooting = !1, this.render = function() {
+          if (this.shooting &amp;&amp; (this.x += this.xoff, this.y += this.yoff, this.alpha -= 5), colorR = 175, colorG = 175, colorB = 175, noStroke(), fill(colorR, colorG, colorB, this.alpha), ellipse(this.x, this.y, this.r), this.x &gt; width || this.x &lt; -width || o &gt; height || o &lt; -height) return !1
+     }, this.shoot = function() {
+          this.shooting = !0, this.xoff = random(-50, 50), this.yoff = random(-50, 50)
+     }
+}
+
+function keyTyped() {
+     &quot;Enter&quot; === key ? sourceText = sourceText : sourceText == &quot;Asterism ID &quot; + tokenID ? sourceText = key : &quot; &quot; == key ? sourceText = sourceText.substring(0, sourceText.length + 1 - 1) : sourceText += key
+}
+
+function keyPressed() {
+     32 === keyCode ? sourceText += &quot; &quot; : 8 === keyCode ? sourceText = sourceText.substring(0, sourceText.length - 1) : 46 === keyCode ? sourceText = &quot;&quot; : 13 === keyCode &amp;&amp; saveCanvas(sourceText + &quot; asterism&quot;, &quot;png&quot;)
+}
+
+function mouseWheel(r) {
+     return sf &gt; 1 &amp;&amp; r.delta &gt; 0 ? sf *= .95 : sf &lt; .99 ? sf = .99 : sf &gt; 5 &amp;&amp; r.delta &lt; 0 ? sf *= 1 : r.delta &lt; 0 &amp;&amp; (sf *= 1.05), !1
+}</pre></body></html>

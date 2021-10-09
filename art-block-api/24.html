@@ -1,0 +1,72 @@
+<html><body><h1>Name: Pixel Glass</h1><h3>Artist: kai</h3><h3>Description: Subtle and beautiful pixellated glass.</h3><h3>https://linktr.ee/kaigani</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: js</p><p>Version: </p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xc5e38233cc0d7cff9340e6139367aba498ec9b18</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.25</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 256</p><p>Maximum Invocations: 256</p><p>License: NIFTY License</p><p>Token Ids: 24000000,24000001,24000002,24000003,24000004,24000005,24000006,24000007,24000008,24000009,24000010,24000011,24000012,24000013,24000014,24000015,24000016,24000017,24000018,24000019,24000020,24000021,24000022,24000023,24000024,24000025,24000026,24000027,24000028,24000029,24000030,24000031,24000032,24000033,24000034,24000035,24000036,24000037,24000038,24000039,24000040,24000041,24000042,24000043,24000044,24000045,24000046,24000047,24000048,24000049,24000050,24000051,24000052,24000053,24000054,24000055,24000056,24000057,24000058,24000059,24000060,24000061,24000062,24000063,24000064,24000065,24000066,24000067,24000068,24000069,24000070,24000071,24000072,24000073,24000074,24000075,24000076,24000077,24000078,24000079,24000080,24000081,24000082,24000083,24000084,24000085,24000086,24000087,24000088,24000089,24000090,24000091,24000092,24000093,24000094,24000095,24000096,24000097,24000098,24000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>function init() {
+     const e = document.getElementsByTagName(&quot;canvas&quot;)[0];
+     e.width = document.body.clientWidth, e.height = document.body.clientHeight, drawToken(e, tokenData.hasOwnProperty(&quot;hash&quot;) ? tokenData.hash : tokenData), getMetadata(tokenData.hasOwnProperty(&quot;hash&quot;) ? tokenData.hash : tokenData)
+}
+
+function drawToken(e, a) {
+     const t = e.getContext(&quot;2d&quot;);
+     t.webkitImageSmoothingEnabled = !1;
+     let l = Math.min(e.width, e.height),
+          n = l / 64,
+          i = !(parseInt(a.substr(-1, 1), 16) &gt; 0),
+          s = i ? 360 : 60,
+          o = parseInt(a.substr(-3, 2), 16) / 256,
+          u = parseInt(a.substr(-5, 2), 16) / 256;
+     t.fillStyle = i ? &quot;hsl(42,100%,95%)&quot; : &quot;hsl(192,100%,90%)&quot;, t.fillRect(0, 0, l, l);
+     let h = {
+          hue: 204 + parseInt(o * s - s / 2),
+          sat: 100,
+          baseLum: parseInt(20 * u + 80),
+          lum: 0,
+          baseAlpha: i ? .3 : .2,
+          alpha: 0,
+          index: 5,
+          direction: !0,
+          remaining: 0,
+          value: 0
+     };
+     h.lum = h.baseLum, h.alpha = h.baseAlpha, h.update = (() =&gt; {
+          if (h.remaining &gt; 0) h.remaining--;
+          else {
+               h.index++;
+               let e = parseInt(a.substr(-1 * h.index, 1), 16) - 8;
+               h.direction = e &gt; 0, h.remaining = Math.abs(e)
+          }
+          if (h.value = h.direction ? h.value + 1 : h.value - 1, h.direction = h.value &gt; 24 || h.value &lt; -12 ? !h.direction : h.direction, h.lum = 4 * h.value + h.baseLum, h.value &gt; 12) {
+               let e = Math.abs(h.value) - 12;
+               h.alpha = .1 * e + h.baseAlpha
+          } else h.alpha = h.baseAlpha;
+          h.lum = h.lum &gt; 50 ? h.lum : 50, h.lum = h.lum &lt; 100 ? h.lum : 100, h.alpha = h.alpha &gt; .2 ? h.alpha : .2, h.alpha = h.alpha &lt; 1 ? h.alpha : 1
+     });
+     for (let e = 0; e &lt; 64; e++) {
+          h.update();
+          let a = `hsla(${h.hue},${h.sat}%,${h.lum}%,${h.alpha})`;
+          for (let t = 0; t &lt;= e; t++) r(e - t, t, a)
+     }
+     for (let e = 1; e &lt; 64; e++) {
+          h.update();
+          let a = `hsla(${h.hue},${h.sat}%,${h.lum}%,${h.alpha})`,
+               t = e,
+               l = 63;
+          for (let n = 0; n &lt; 64 - e; n++) r(t, l, a), t++, l--
+     }
+
+     function r(e, a, l) {
+          t.fillStyle = l, t.fillRect(e * n, a * n, n, n)
+     }
+}
+
+function getMetadata(e) {
+     let a = !(parseInt(e.substr(-1, 1), 16) &gt; 0),
+          t = a ? 360 : 60,
+          l = parseInt(e.substr(-3, 2), 16) / 256,
+          n = 204 + parseInt(l * t - t / 2),
+          i = n &lt; 36 ? &quot;Fire&quot; : &quot;&quot;;
+     i = n &gt;= 36 &amp;&amp; n &lt;= 63 ? &quot;Goldenrod&quot; : i, i = n &gt;= 64 &amp;&amp; n &lt;= 133 ? &quot;Electric&quot; : i, i = 73 === n ? &quot;Emerald Dragon&quot; : i, i = n &gt;= 134 &amp;&amp; n &lt;= 171 ? &quot;Froggy&quot; : i, i = n &gt;= 172 &amp;&amp; n &lt;= 181 ? &quot;Turquoise&quot; : i, i = n &gt;= 182 &amp;&amp; n &lt;= 191 ? &quot;Sky&quot; : i, i = n &gt;= 192 &amp;&amp; n &lt;= 211 ? &quot;Cobalt&quot; : i, i = n &gt;= 212 &amp;&amp; n &lt;= 255 ? &quot;Royal&quot; : i, i = n &gt;= 256 &amp;&amp; n &lt;= 281 ? &quot;Regal&quot; : i, i = n &gt;= 282 &amp;&amp; n &lt;= 323 ? &quot;Neon&quot; : i, i = n &gt;= 324 &amp;&amp; n &lt;= 333 ? &quot;Sexbomb&quot; : i;
+     let s = {
+          infused: a ? &quot;Yes&quot; : &quot;No&quot;,
+          tint: i = n &gt; 333 ? &quot;Lipstick&quot; : i
+     };
+     return console.table(s), s
+}
+window.addEventListener(&quot;load&quot;, init, !1);</pre></body></html>

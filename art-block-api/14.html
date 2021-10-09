@@ -1,0 +1,179 @@
+<html><body><h1>Name: Cyber Cities</h1><h3>Artist: pxlq</h3><h3>Description: Futuristic space vibes.</h3><h3></h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;animationLengthInSeconds&quot;:&quot;30&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x5f127b4323c0061768976ad34a1a2beb9db19886</p><p>Additional Payee: 0x16c04f4b6b8841731631d15d3ce57da075f4e9fc</p><p>Additional Payee Percentage: 100</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 256</p><p>Maximum Invocations: 256</p><p>License: NFT License</p><p>Token Ids: 14000000,14000001,14000002,14000003,14000004,14000005,14000006,14000007,14000008,14000009,14000010,14000011,14000012,14000013,14000014,14000015,14000016,14000017,14000018,14000019,14000020,14000021,14000022,14000023,14000024,14000025,14000026,14000027,14000028,14000029,14000030,14000031,14000032,14000033,14000034,14000035,14000036,14000037,14000038,14000039,14000040,14000041,14000042,14000043,14000044,14000045,14000046,14000047,14000048,14000049,14000050,14000051,14000052,14000053,14000054,14000055,14000056,14000057,14000058,14000059,14000060,14000061,14000062,14000063,14000064,14000065,14000066,14000067,14000068,14000069,14000070,14000071,14000072,14000073,14000074,14000075,14000076,14000077,14000078,14000079,14000080,14000081,14000082,14000083,14000084,14000085,14000086,14000087,14000088,14000089,14000090,14000091,14000092,14000093,14000094,14000095,14000096,14000097,14000098,14000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seed = parseInt(tokenData.hash.slice(0, 16), 16);
+
+class Palette {
+     constructor(colors, repeat = 3) {
+          this.c = colors;
+          this.repeat = repeat;
+          this.i = 0;
+          this.u = 0;
+     }
+     increment() {
+          if (this.i === this.c.length - 1) {
+               this.i = 0;
+          } else {
+               this.i += 1;
+          }
+     }
+     usage() {
+          if (this.u % this.repeat === 0) {
+               this.increment();
+          }
+          this.u += 1;
+     }
+     color() {
+          this.usage();
+          return this.c[this.i];
+     }
+}
+
+class Ship {
+     constructor() {
+          this.objects = [];
+          this.dyn = false;
+          this.push = 0;
+          this.speed = 0;
+     }
+     draw() {
+          for (let o of this.objects) {
+               if (this.dyn) {
+                    this.push = this.push + this.speed;
+                    push();
+                    translate(this.push, 0);
+               }
+               fill(o.c);
+               stroke(&quot;#000003&quot;);
+               strokeWeight(o.sw);
+               rect(o.x, o.y, o.xs, o.ys);
+               if (this.dyn) {
+                    pop();
+                    if (this.push &gt; DIM) {
+                         this.push = -1 * DIM * 2;
+                    }
+               }
+          }
+     }
+}
+
+var DEFAULT_SIZE = 1000;
+var WIDTH = window.innerWidth;
+var HEIGHT = window.innerHeight;
+var DIM = Math.min(WIDTH, HEIGHT);
+var M = DIM / DEFAULT_SIZE;
+
+var PALS = [
+     [&quot;#F72585&quot;, &quot;#B5179E&quot;, &quot;#7209B7&quot;, &quot;#4361EE&quot;, &quot;#4361EE&quot;, &quot;#4895EF&quot;, &quot;#4CC9F0&quot;],
+     [&quot;#FF184C&quot;, &quot;#FF184C&quot;, &quot;#0A9CF5&quot;],
+     [&quot;#E92EFB&quot;, &quot;#FF2079&quot;, &quot;#440BD4&quot;, &quot;#04005E&quot;],
+     [&quot;#08F7FE&quot;, &quot;#09FBD3&quot;, &quot;#FE53BB&quot;, &quot;#F5D300&quot;],
+     [&quot;#D9EB4B&quot;, &quot;#00A9FE&quot;, &quot;#FD6BB6&quot;, &quot;#EF0888&quot;],
+     [&quot;#3B27BA&quot;, &quot;#E847AE&quot;, &quot;#13CA91&quot;, &quot;#FF9472&quot;],
+     [&quot;#E96D5E&quot;, &quot;#EEEEEE&quot;, &quot;#FFE69D&quot;, &quot;#6A7E6A&quot;, &quot;#393F5F&quot;],
+     [&quot;#63345E&quot;, &quot;#FD8090&quot;, &quot;#B7C1DE&quot;, &quot;#06569C&quot;, &quot;#092047&quot;]
+];
+
+var PAL_C = rnd_choice([0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7]);
+var PAL = PALS[PAL_C];
+var REP = rnd_choice([2, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 50, 100]);
+var P1 = new Palette(PAL, REP);
+var max_h = rnd_between(10, 50) * M;
+var max_w = rnd_between(10, 50) * M;
+var dyn_true = rnd_between(0, 1) &gt; 0.5;
+var dyn_thresh = rnd_between(0.5, 1);
+var Ships = [];
+
+function setup() {
+     createCanvas(DIM, DIM);
+     background(&quot;#000003&quot;);
+     frameRate(30);
+     rr(0, 0, DIM, DIM);
+     for (let ship of Ships) {
+          ship.draw();
+     }
+}
+
+function draw() {
+     background(&quot;#000003&quot;);
+     for (let ship of Ships) {
+          ship.draw();
+     }
+}
+
+function rr(x, y, w, h) {
+     if (rnd_between(0, 0.55) &gt; 0.5) {
+          rect_partition(x, y, x + w, y + h);
+     }
+     let sw = rnd_between(0, 0.7) &gt; 0.5;
+     let sl = rnd_between(0.1, 0.8);
+     if (sw &amp;&amp; w &gt; max_w) {
+          rr(x, y, w * sl, h);
+          rr(x + (w * sl), y, w * (1 - sl), h);
+     } else if (h &gt; max_h) {
+          rr(x, y, w, h * sl);
+          rr(x, y + (h * sl), w, h * (1 - sl));
+     }
+}
+
+function rescale(e, t, r, i, a) {
+     return ((e - t) / (r - t)) * (a - i) + i;
+}
+
+function range(start, stop, step) {
+     var a = [start],
+          b = start;
+     while (b &lt; stop) {
+          a.push(b += step || 1);
+     }
+     return (b &gt; stop) ? a.slice(0, -1) : a;
+}
+
+function rect_partition(x1, y1, x2, y2) {
+     let ship = new Ship();
+     let sw = rnd_between(1, 15) * M;
+     let dyn = rnd_choice([false, true, true]);
+     let step = 15 * M;
+     let breaks = range(x1, x2, step).slice(rnd_between(1, 5));
+     ship.objects.push({
+          x: x1,
+          y: y1,
+          xs: (x2 - x1),
+          ys: (y2 - y1),
+          c: P1.color(),
+          sw: sw,
+          dyn: dyn,
+          tl: 0
+     });
+     let height = y2 - y1;
+     for (let xm of breaks) {
+          ship.objects.push({
+               x: x1,
+               y: y1,
+               xs: (xm - x1),
+               ys: (y2 - y1),
+               c: P1.color(),
+               sw: sw,
+               dyn: dyn,
+               tl: 0
+          });
+          x1 = xm;
+     }
+     if (height &lt; 25 * M &amp;&amp; sw &lt; 5 * M &amp;&amp; dyn_true &amp;&amp; rnd_between(0, 1) &lt; dyn_thresh) {
+          ship.dyn = true;
+          ship.speed = (1 - rescale(height, 0, 25 * M, 0.7, 0.9)) * M;
+     }
+     Ships.push(ship);
+}
+
+function rnd_dec() {
+     seed ^= seed &lt;&lt; 13
+     seed ^= seed &gt;&gt; 17
+     seed ^= seed &lt;&lt; 5
+     return ((seed &lt; 0 ? ~seed + 1 : seed) % 1000) / 1000
+}
+
+function rnd_between(a, b) {
+     return a + (b - a) * rnd_dec()
+}
+
+function rnd_choice(choices) {
+     return choices[Math.floor(rnd_between(0, choices.length * 0.99))]
+}</pre></body></html>

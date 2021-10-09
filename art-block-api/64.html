@@ -1,0 +1,543 @@
+<html><body><h1>Name: AlgoRhythms</h1><h3>Artist: Han x Nicolas Daniel</h3><h3>Description: AlgoRhythms is a collection of generative audio-visual data sculptures. Each unique hash drives the combination of colors, patterns and musical scales into a music box.</h3><h3>https://twitter.com/algorhythms_io</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;tonejs&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;instructions&quot;:&quot;click for ♫\npress 's' for 📸&quot;,&quot;animationLengthInSeconds&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;curation_status&quot;:&quot;curated&quot;,&quot;version&quot;:&quot;14.8.15&quot;}</p><p>Script Type: tonejs</p><p>Version: 14.8.15</p><p>Script Ratio: 1</p><p>Instructions: click for ♫
+press 's' for 📸</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x67ba5775a60b13254bf65ea67295dd47543bc5e1</p><p>Additional Payee: 0x89cbb15c7ab08a39328b0e3ddf8cffa8d7c50899</p><p>Additional Payee Percentage: 50</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1000</p><p>Maximum Invocations: 1000</p><p>License: NIFTY License</p><p>Token Ids: 64000000,64000001,64000002,64000003,64000004,64000005,64000006,64000007,64000008,64000009,64000010,64000011,64000012,64000013,64000014,64000015,64000016,64000017,64000018,64000019,64000020,64000021,64000022,64000023,64000024,64000025,64000026,64000027,64000028,64000029,64000030,64000031,64000032,64000033,64000034,64000035,64000036,64000037,64000038,64000039,64000040,64000041,64000042,64000043,64000044,64000045,64000046,64000047,64000048,64000049,64000050,64000051,64000052,64000053,64000054,64000055,64000056,64000057,64000058,64000059,64000060,64000061,64000062,64000063,64000064,64000065,64000066,64000067,64000068,64000069,64000070,64000071,64000072,64000073,64000074,64000075,64000076,64000077,64000078,64000079,64000080,64000081,64000082,64000083,64000084,64000085,64000086,64000087,64000088,64000089,64000090,64000091,64000092,64000093,64000094,64000095,64000096,64000097,64000098,64000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>(() =&gt; {
+     &quot;use strict&quot;;
+     const e = (e, t, n) =&gt; ((e, t, n, s, i) =&gt; (e - 0) / 255 * (i - s) + s)(e, 0, 0, t, n),
+          t = e =&gt; {
+               let t = 0,
+                    n = 0,
+                    s = 0;
+               4 == e.length ? (t = &quot;0x&quot; + e[1] + e[1], n = &quot;0x&quot; + e[2] + e[2], s = &quot;0x&quot; + e[3] + e[3]) : 7 == e.length &amp;&amp; (t = &quot;0x&quot; + e[1] + e[2], n = &quot;0x&quot; + e[3] + e[4], s = &quot;0x&quot; + e[5] + e[6]), t /= 255, n /= 255, s /= 255;
+               let i = Math.min(t, n, s),
+                    a = Math.max(t, n, s),
+                    o = a - i,
+                    l = 0,
+                    h = 0,
+                    c = 0;
+               return l = 0 == o ? 0 : a == t ? (n - s) / o % 6 : a == n ? (s - t) / o + 2 : (t - n) / o + 4, l = Math.round(60 * l), l &lt; 0 &amp;&amp; (l += 360), c = (a + i) / 2, h = 0 == o ? 0 : o / (1 - Math.abs(2 * c - 1)), h = +(100 * h).toFixed(1), c = +(100 * c).toFixed(1), {
+                    h: l,
+                    s: h,
+                    l: c
+               }
+          },
+          n = (e, t) =&gt; {
+               let n = 0;
+               return t.find((t =&gt; (n += t.chance, n &gt;= e))) || t[t.length - 1]
+          },
+          s = (e, t, n) =&gt; Math.max(t, Math.min(n, e)),
+          i = [&quot;#C51F33&quot;, &quot;#F38316&quot;, &quot;#F9B807&quot;, &quot;#FBD46A&quot;, &quot;#2D5638&quot;, &quot;#418052&quot;, &quot;#58B271&quot;, &quot;#9ED78E&quot;, &quot;#1B325F&quot;, &quot;#2A4DA8&quot;, &quot;#2B94E1&quot;, &quot;#92C7D3&quot;, &quot;#E84A62&quot;, &quot;#ED7889&quot;, &quot;#F3A5B0&quot;, &quot;#0E0F0D&quot;, &quot;#E5E5E5&quot;];
+     class a {
+          constructor(e = 0, t = 0, n = 0) {
+               return this.x = e, this.y = t, this.z = n, this
+          }
+          clone() {
+               return new a(this.x, this.y, this.z)
+          }
+          add(e) {
+               return this.x += e.x, this.y += e.y, this.z += e.z, this
+          }
+          addVectors(e, t) {
+               return this.x = e.x + t.x, this.y = e.y + t.y, this.z = e.z + t.z, this
+          }
+          subVectors(e, t) {
+               return this.x = e.x - t.x, this.y = e.y - t.y, this.z = e.z - t.z, this
+          }
+          multiplyScalar(e) {
+               return isFinite(e) ? (this.x *= e, this.y *= e, this.z *= e) : (this.x = 0, this.y = 0, this.z = 0), this
+          }
+          length() {
+               return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z)
+          }
+     }
+     const o = a;
+     let l = (e =&gt; {
+               let t = [];
+               for (let n = 0; n &lt; 32; n++) t.push(e.hash.slice(2 + 2 * n, 4 + 2 * n));
+               return t.map((e =&gt; parseInt(e, 16)))
+          })(tokenData),
+          h = (c = tokenData, parseInt(c.hash.slice(0, 8), 16));
+     var c;
+     let r = new class {
+          constructor(e) {
+               this.seed = e
+          }
+          random() {
+               return this.seed ^= this.seed &lt;&lt; 13, this.seed ^= this.seed &gt;&gt; 17, this.seed ^= this.seed &lt;&lt; 5, (this.seed &lt; 0 ? 1 + ~this.seed : this.seed) % 1e3 / 1e3
+          }
+     }(h);
+     const d = &quot;AlgoRhythms#&quot; + ~~tokenData.tokenId.substr(tokenData.tokenId.length - 4);
+     let u, y, m, x, w, v, g, p, b, C, k, f;
+     const z = 2 * Math.PI / 3,
+          T = .5 * Math.PI / 3,
+          M = .015,
+          F = 1200;
+     let S, P, A, D = .1,
+          E = 0,
+          I = 0,
+          G = 0,
+          B = 0,
+          $ = 0,
+          N = 0,
+          O = 0,
+          L = {
+               startTime: -1,
+               value: 0
+          },
+          R = !1,
+          W = 0,
+          H = [],
+          j = [],
+          q = r.random() &lt; .5;
+     const V = [{
+               name: &quot;Procedural&quot;,
+               chance: .97,
+               value: 0
+          }, {
+               name: &quot;Full&quot;,
+               chance: .002,
+               value: 1
+          }, {
+               name: &quot;Line&quot;,
+               chance: .01,
+               value: 2
+          }, {
+               name: &quot;Diagonal&quot;,
+               chance: .008,
+               value: 3
+          }, {
+               name: &quot;X&quot;,
+               chance: .004,
+               value: 4
+          }, {
+               name: &quot;Plus&quot;,
+               chance: .006,
+               value: 5
+          }],
+          J = [{
+               name: &quot;Full&quot;,
+               chance: .1,
+               value: 0
+          }, {
+               name: &quot;Tall&quot;,
+               chance: .35,
+               value: 1
+          }, {
+               name: &quot;Medium&quot;,
+               chance: .35,
+               value: 2
+          }, {
+               name: &quot;Short&quot;,
+               chance: .2,
+               value: 3
+          }],
+          Q = [{
+               name: &quot;None&quot;,
+               chance: .4,
+               value: 0
+          }, {
+               name: &quot;Small&quot;,
+               chance: .3,
+               value: .0075
+          }, {
+               name: &quot;Big&quot;,
+               chance: .3,
+               value: .02
+          }],
+          U = [{
+               name: &quot;Solid&quot;,
+               chance: .3,
+               value: 0
+          }, {
+               name: &quot;Tube&quot;,
+               chance: .3,
+               value: 1
+          }, {
+               name: &quot;Mix&quot;,
+               chance: .4,
+               value: 2
+          }],
+          X = [{
+               name: &quot;Color&quot;,
+               chance: .6,
+               value: 0
+          }, {
+               name: &quot;Wireframe&quot;,
+               chance: .05,
+               value: 1
+          }, {
+               name: &quot;Black Outline&quot;,
+               chance: .25,
+               value: 2
+          }, {
+               name: &quot;White Outline&quot;,
+               chance: .1,
+               value: 3
+          }],
+          Y = [{
+               name: &quot;Sine&quot;,
+               chance: .4,
+               value: &quot;sine&quot;,
+               index: 0
+          }, {
+               name: &quot;Square&quot;,
+               chance: .2,
+               value: &quot;square&quot;,
+               index: 1
+          }, {
+               name: &quot;Sawtooth&quot;,
+               chance: .3,
+               value: &quot;sawtooth&quot;,
+               index: 2
+          }, {
+               name: &quot;Triangle&quot;,
+               chance: .1,
+               value: &quot;triangle&quot;,
+               index: 3
+          }],
+          K = [{
+               name: &quot;Adagio (60bpm)&quot;,
+               chance: .25,
+               value: 60
+          }, {
+               name: &quot;Moderato (90bpm)&quot;,
+               chance: .6,
+               value: 90
+          }, {
+               name: &quot;Allegro (120bpm)&quot;,
+               chance: .15,
+               value: 120
+          }],
+          Z = [{
+               name: &quot;Procedural&quot;,
+               chance: .98,
+               value: 0
+          }, {
+               name: &quot;Lined&quot;,
+               chance: .01,
+               value: 1
+          }, {
+               name: &quot;Diagonal&quot;,
+               chance: .006,
+               value: 2
+          }, {
+               name: &quot;Circled&quot;,
+               chance: .004,
+               value: 3
+          }],
+          _ = n(e(l[5], 0, 1), [{
+               chance: .02,
+               scales: {
+                    A: [&quot;A&quot;],
+                    B: [&quot;B&quot;],
+                    C: [&quot;C&quot;],
+                    D: [&quot;D&quot;],
+                    E: [&quot;E&quot;],
+                    F: [&quot;F&quot;],
+                    G: [&quot;G&quot;]
+               }
+          }, {
+               chance: .03,
+               scales: {
+                    &quot;Third &amp; Sixth&quot;: [&quot;A&quot;, &quot;F&quot;]
+               }
+          }, {
+               chance: .05,
+               scales: {
+                    Quartal: [&quot;G&quot;, &quot;C&quot;, &quot;F&quot;],
+                    Minor9: [&quot;D&quot;, &quot;D#&quot;, &quot;A#&quot;]
+               }
+          }, {
+               chance: .1,
+               scales: {
+                    &quot;Ritsu (Japanese)&quot;: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;E&quot;],
+                    &quot;Balinese (Indonesian)&quot;: [&quot;B&quot;, &quot;C&quot;, &quot;F#&quot;, &quot;G&quot;],
+                    &quot;Major Pentatonic-4&quot;: [&quot;F#&quot;, &quot;G#&quot;, &quot;A#&quot;, &quot;C#&quot;]
+               }
+          }, {
+               chance: .15,
+               scales: {
+                    &quot;Major Pentatonic&quot;: [&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;G&quot;, &quot;A&quot;],
+                    &quot;Minor Pentatonic&quot;: [&quot;A&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;G&quot;],
+                    &quot;Han Iwato&quot;: [&quot;G&quot;, &quot;G#&quot;, &quot;C&quot;, &quot;D&quot;, &quot;F&quot;],
+                    &quot;Yamatebala Wofe (Ethiopia)&quot;: [&quot;F#&quot;, &quot;G#&quot;, &quot;B&quot;, &quot;C#&quot;, &quot;E&quot;]
+               }
+          }, {
+               chance: .25,
+               scales: {
+                    &quot;Major Blues from C&quot;: [&quot;C&quot;, &quot;D&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;G&quot;, &quot;A&quot;],
+                    Satie: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;F#&quot;],
+                    &quot;C# Aeolian&quot;: [&quot;C#&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;, &quot;A&quot;],
+                    &quot;Minor Pentatonic+A&quot;: [&quot;G&quot;, &quot;A&quot;, &quot;A#&quot;, &quot;C&quot;, &quot;D&quot;, &quot;F&quot;],
+                    &quot;Whole Tone&quot;: [&quot;C#&quot;, &quot;D#&quot;, &quot;F&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;]
+               }
+          }, {
+               chance: .4,
+               scales: {
+                    &quot;Harmonic Minor&quot;: [&quot;C#&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;F#&quot;, &quot;G#&quot;, &quot;A&quot;, &quot;C&quot;],
+                    &quot;Hungarian Minor&quot;: [&quot;A#&quot;, &quot;C&quot;, &quot;C#&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;G#&quot;],
+                    &quot;Spanish minor&quot;: [&quot;G&quot;, &quot;G#&quot;, &quot;A#&quot;, &quot;C&quot;, &quot;C#&quot;, &quot;E&quot;, &quot;F&quot;],
+                    &quot;E Aeolian&quot;: [&quot;E&quot;, &quot;F#&quot;, &quot;G&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D#&quot;],
+                    &quot;Todi That (Indian)&quot;: [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;F&quot;, &quot;F#&quot;, &quot;G&quot;, &quot;A#&quot;],
+                    &quot;Hijazkar (Middle Eastern)&quot;: [&quot;A&quot;, &quot;A#&quot;, &quot;C#&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G#&quot;]
+               }
+          }]),
+          ee = Object.keys(_.scales)[~~e(l[6], 0, Object.keys(_.scales).length - .01)],
+          te = ~~e(l[10], 1, 4.99),
+          ne = ~~e(l[11], 1, 4 - Math.max(0, te - 2) + .99),
+          se = [],
+          ie = t(i.splice(~~(r.random() * i.length), 1)[0]);
+     for (let e = 0; e &lt; _.scales[ee].length; e++) {
+          const e = t(i.splice(~~(r.random() * i.length), 1)[0]);
+          se.push(e)
+     }
+
+     function ae() {
+          x = window.innerWidth, w = window.innerHeight, p = window.devicePixelRatio, g = Math.min(x, w), v = .36 * g, b = 2 * g / F, C = 1 * g / F, k = .5 * g / F, f = 80 * g / F, u.width = ~~(x * p), u.height = ~~(w * p), u.style.width = `${x}px`, u.style.height = `${w}px`
+     }
+
+     function oe(e) {
+          if (&quot;s&quot; == e.key) {
+               var t = u.toDataURL(&quot;image/png&quot;);
+               const e = document.createElement(&quot;a&quot;);
+               e.download = `${d}.png`, e.href = t, e.click()
+          }
+     }
+
+     function le() {
+          if (!R) {
+               R = !0;
+               for (let e = 0; e &lt; H.length; e++) H[e].block.highlight.value = 0;
+               L.startTime = E, &quot;running&quot; !== Tone.context.state &amp;&amp; Tone.context.resume(), Tone.start(), Tone.Transport.start()
+          }
+     }
+     class he {
+          constructor(e, t, n, s) {
+               this.coords = e, this.coords2d = ce(this.coords), this.screenCoords = t, this.level = s, this.capacity = n, this.points = [], this.divided = !1, this.baseCenter = this.getCenter(), this.center = this.baseCenter.clone(), this.on = 1 != m.musicRests || r.random() &gt; .2, this.holey = 2 == ~~m.blocksType ? r.random() &gt; .5 : ~~m.blocksType, this.stroke = !this.on, this.noteIndex = 0, this.octaveIndex = 0, this.height = 0, this.playing = !1, this.startTime = 0, this.highlight = {
+                    value: 0
+               }
+          }
+          setNotes() {
+               if (this.divided) this.nw.setNotes(), this.ne.setNotes(), this.sw.setNotes(), this.se.setNotes();
+               else {
+                    const e = ~~(16 * (this.center.x + .5)),
+                         t = ~~(16 * (this.center.z + .5));
+                    if (0 == W) this.noteIndex = 0;
+                    else if (0 == m.musicPattern) this.noteIndex = ~~(r.random() * m.musicScale.length);
+                    else if (1 == m.musicPattern) this.noteIndex = q ? e % m.musicScale.length : t % m.musicScale.length;
+                    else if (2 == m.musicPattern) this.noteIndex = q ? (e + t) % m.musicScale.length : Math.abs(e - t) % m.musicScale.length;
+                    else {
+                         const n = new o(e - 8, t - 8, 0);
+                         this.noteIndex = ~~n.length() % m.musicScale.length
+                    }
+                    this.octaveIndex = ~~(r.random() * m.musicOctaveCount), this.height = 1 - this.octaveIndex / m.musicOctaveCount, this.center = this.getCenter(), this.updateColor(), W++
+               }
+          }
+          updateLastNote() {
+               this.divided ? this.se.updateLastNote() : (this.noteIndex = 0, this.octaveIndex = 0, this.updateColor())
+          }
+          updateColor() {
+               const e = m.palette.colors[this.noteIndex % m.palette.colors.length];
+               this.color = `hsl(${e.h}, ${e.s}%, ${e.l+6}%)`, this.lightColor = `hsl(${e.h}, ${e.s}%, ${e.l+12}%)`, this.darkColor = `hsl(${e.h}, ${e.s}%, ${e.l}%)`
+          }
+          addNote() {
+               if (this.divided) this.nw.addNote(), this.ne.addNote(), this.sw.addNote(), this.se.addNote();
+               else {
+                    let e = &quot;2n + 2n&quot;;
+                    this.level &gt;= 1 &amp;&amp; (e = `${Math.pow(2,this.level)}n`), O = Tone.Time(e).toSeconds();
+                    const t = `${m.musicScale[this.noteIndex]}${m.musicStartingOctave+this.octaveIndex}`;
+                    this.on ? (H.push({
+                         time: N,
+                         note: t,
+                         duration: e,
+                         block: this
+                    }), j.push({
+                         note: m.musicScale[this.noteIndex],
+                         octave: m.musicStartingOctave + this.octaveIndex,
+                         level: this.level,
+                         duration: e
+                    })) : j.push({
+                         note: &quot;rest&quot;,
+                         duration: e
+                    }), N += O
+               }
+          }
+          getCenter() {
+               const e = (new o).subVectors(this.coords[6], this.coords[0]).multiplyScalar(.5),
+                    t = (new o).addVectors(this.coords[0], e);
+               return t.x = Math.min(this.coords[6].x - 0, Math.max(this.coords[0].x + 0, t.x)), t.y = Math.max(this.coords[6].y + 0, Math.min(this.coords[0].y - 0, t.y)), t.z = Math.max(this.coords[6].z + 0, Math.min(this.coords[0].z - 0, t.z)), t
+          }
+          insert(e) {
+               if (!(e.x &gt;= this.screenCoords.x * x &amp;&amp; e.x &lt; (this.screenCoords.x + this.screenCoords.w) * x &amp;&amp; e.y &gt;= this.screenCoords.y * w &amp;&amp; e.y &lt; (this.screenCoords.y + this.screenCoords.h) * w)) return !1;
+               if (this.level + 1 &lt;= 4)
+                    if (this.divided) {
+                         if (this.nw.insert(e)) return !0;
+                         if (this.ne.insert(e)) return !0;
+                         if (this.sw.insert(e)) return !0;
+                         if (this.se.insert(e)) return !0
+                    } else this.subdivide()
+          }
+          subdivide() {
+               const e = this.level + 1;
+               e &gt; $ &amp;&amp; ($ = e);
+               const {
+                    ne: t,
+                    nw: n,
+                    se: s,
+                    sw: i
+               } = function(e, t) {
+                    const n = v * (m.blocksMargin / v),
+                         s = [new o(e[0].x, e[0].y, t.z - n), new o(t.x - n, e[1].y, t.z - n), new o(t.x - n, e[2].y, e[3].z), new o(e[3].x, e[3].y, e[3].z), new o(e[4].x, e[4].y, t.z - n), new o(t.x - n, e[5].y, t.z - n), new o(t.x - n, e[6].y, e[6].z), new o(e[7].x, e[7].y, e[7].z)],
+                         i = [new o(t.x + n, e[0].y, t.z - n), new o(e[1].x, e[1].y, t.z - n), new o(e[2].x, e[2].y, e[2].z), new o(t.x + n, e[3].y, e[3].z), new o(t.x + n, e[4].y, t.z - n), new o(e[5].x, e[5].y, t.z - n), new o(e[6].x, e[6].y, e[6].z), new o(t.x + n, e[7].y, e[7].z)],
+                         a = [new o(e[0].x, e[0].y, e[0].z), new o(t.x - n, e[1].y, e[1].z), new o(t.x - n, e[2].y, t.z + n), new o(e[3].x, e[3].y, t.z + n), new o(e[4].x, e[4].y, e[4].z), new o(t.x - n, e[5].y, e[5].z), new o(t.x - n, e[6].y, t.z + n), new o(e[7].x, e[7].y, t.z + n)];
+                    return {
+                         nw: s,
+                         ne: i,
+                         se: [new o(t.x + n, e[0].y, e[0].z), new o(e[1].x, e[1].y, e[1].z), new o(e[2].x, e[2].y, t.z + n), new o(t.x + n, e[3].y, t.z + n), new o(t.x + n, e[4].y, e[4].z), new o(e[5].x, e[5].y, e[5].z), new o(e[6].x, e[6].y, t.z + n), new o(t.x + n, e[7].y, t.z + n)],
+                         sw: a
+                    }
+               }(this.coords, this.center), a = function(e) {
+                    const t = .5 * e.w,
+                         n = .5 * e.h;
+                    return {
+                         nw: {
+                              x: e.x,
+                              y: e.y,
+                              w: t,
+                              h: n
+                         },
+                         ne: {
+                              x: e.x + t,
+                              y: e.y,
+                              w: t,
+                              h: n
+                         },
+                         se: {
+                              x: e.x + t,
+                              y: e.y + n,
+                              w: t,
+                              h: n
+                         },
+                         sw: {
+                              x: e.x,
+                              y: e.y + n,
+                              w: t,
+                              h: n
+                         }
+                    }
+               }(this.screenCoords);
+               this.ne = new he(t, a.ne, this.capacity, e), this.nw = new he(n, a.nw, this.capacity, e), this.se = new he(s, a.se, this.capacity, e), this.sw = new he(i, a.sw, this.capacity, e), this.divided = !0
+          }
+          update() {
+               var e;
+               if (this.playing)
+                    if (this.divided) this.ne.update(), this.nw.update(), this.sw.update(), this.se.update();
+                    else {
+                         let t = s(E - this.startTime, 0, .5) / .5,
+                              n = (e = t, 1 + 4 * Math.pow(e - 1, 3) + 3 * Math.pow(e - 1, 2));
+                         this.highlight.value = n, t &gt;= 1 &amp;&amp; (this.playing = !1)
+                    }
+          }
+          draw(e) {
+               this.divided ? (this.nw.draw(e), this.ne.draw(e), this.sw.draw(e), this.se.draw(e)) : (e.strokeStyle = 1 == m.blocksStyle ? this.darkColor : m.palette.stroke, this.on &amp;&amp; this.drawCube(e, m.blocksStyle &gt;= 1, 1 == m.blocksStyle))
+          }
+          drawCube(e, t = !1, n = !1) {
+               const s = ce(this.coords, this.highlight.value, this.height);
+               if (e.fillStyle = n ? m.palette.background : this.darkColor, e.beginPath(), e.moveTo(s[1].x - 1, s[2].y), e.lineTo(s[2].x, s[2].y), e.lineTo(s[6].x, s[6].y), e.lineTo(s[5].x, s[5].y), e.lineTo(s[5].x - 1, s[5].y - 1), e.closePath(), e.fill(), t &amp;&amp; e.stroke(), e.fillStyle = n ? m.palette.background : this.color, e.beginPath(), e.lineTo(s[1].x, s[0].y), e.lineTo(s[0].x, s[0].y), e.lineTo(s[4].x, s[4].y), e.lineTo(s[5].x, s[5].y), e.closePath(), e.fill(), t &amp;&amp; e.stroke(), e.fillStyle = n ? m.palette.background : this.lightColor, e.beginPath(), e.moveTo(s[0].x, s[0].y), e.lineTo(s[1].x, s[1].y), e.lineTo(s[2].x, s[2].y), e.lineTo(s[3].x, s[3].y), e.closePath(), e.fill(), t &amp;&amp; e.stroke(), e.beginPath(), e.moveTo(s[0].x, s[0].y), e.lineTo(s[3].x, s[3].y), e.lineTo(s[2].x, s[2].y), e.lineTo(s[6].x, s[6].y), e.lineTo(s[5].x, s[5].y), e.lineTo(s[4].x, s[4].y), e.closePath(), t &amp;&amp; (e.lineWidth = b, e.stroke(), e.lineWidth = C), this.holey) {
+                    const s = [];
+                    s[0] = this.coords[0].clone().add(new o(M, 0, -.015)), s[1] = this.coords[1].clone().add(new o(-.015, 0, -.015)), s[2] = this.coords[2].clone().add(new o(-.015, 0, M)), s[3] = this.coords[3].clone().add(new o(M, 0, M));
+                    const i = ce(s, this.highlight.value, this.height);
+                    e.lineWidth = k, e.fillStyle = n ? m.palette.background : this.color, e.beginPath(), e.lineTo(i[1].x, i[1].y), e.lineTo(i[2].x, i[2].y), e.lineTo(i[3].x, i[3].y), e.fill(), t &amp;&amp; e.stroke(), e.fillStyle = n ? m.palette.background : this.darkColor, e.beginPath(), e.moveTo(i[0].x, i[0].y), e.lineTo(i[1].x, i[1].y), e.lineTo(i[3].x, i[3].y), e.closePath(), e.fill(), t &amp;&amp; e.stroke(), e.lineWidth = C
+               }
+          }
+     }
+
+     function ce(e, t = 0, n = 0) {
+          const s = [];
+          for (let a = 0; a &lt; e.length; a++) s[a] = (i = e[a].clone().multiplyScalar(v), new o(i.x * Math.cos(T) + i.z * Math.cos(T + z) + i.y * Math.cos(T - z), i.x * Math.sin(T) + i.z * Math.sin(T + z) + i.y * Math.sin(T - z), 0)), s[a].y -= t * f, s[a].y += L.value * f, a &gt;= 4 ? s[a].y -= n * (m.blocksHeight * (v / 4)) * .5 : s[a].y += m.blocksHeight * (v / 4) * .5;
+          var i;
+          return s
+     }
+
+     function re() {
+          I = Date.now(), G = I - B, B = I, E += G / 1e3, requestAnimationFrame(re),
+               function() {
+                    if (R) {
+                         let e = s(E - L.startTime, 0, D) / D;
+                         if (L.value = e, L.value &gt;= 1) {
+                              let e = !0;
+                              for (let t = 0; t &lt; H.length; t++) H[t].block.playing &amp;&amp; (e = !1);
+                              e &amp;&amp; (Tone.Transport.stop(), R = !1)
+                         }
+                    }
+                    y.save(), y.scale(p, p), y.clearRect(0, 0, x, w), y.globalCompositeOperation = &quot;source-over&quot;, y.save(), y.translate(.5 * x, .5 * w);
+                    for (let e = 0; e &lt; H.length; e++) H[e].block.update();
+                    S.draw(y), y.restore(), y.globalCompositeOperation = &quot;destination-over&quot;, y.fillStyle = m.palette.background, y.fillRect(0, 0, x, w), y.restore()
+               }()
+     }
+     window.onload = function() {
+          document.title = d,
+               function() {
+                    u = document.createElement(&quot;canvas&quot;), y = u.getContext(&quot;2d&quot;), document.body.appendChild(u), ae(), m = {
+                         subdivisionsCount: ~~e(l[0], 0, 100),
+                         subdivisionsPattern: n(e(l[12], 0, 1), V).value,
+                         blocksHeight: n(e(l[1], 0, 1), J).value,
+                         blocksMargin: n(e(l[2], 0, 1), Q).value,
+                         blocksType: n(e(l[3], 0, 1), U).value,
+                         blocksStyle: n(e(l[4], 0, 1), X).value,
+                         musicScale: _.scales[ee],
+                         musicOscillator: n(e(l[7], 0, 1), Y).value,
+                         musicBpm: n(e(l[8], 0, 1), K).value,
+                         musicRests: e(l[9], 0, 1) &lt; .25,
+                         musicStartingOctave: te,
+                         musicOctaveCount: ne,
+                         musicPattern: n(e(l[13], 0, 1), Z).value,
+                         palette: {
+                              background: `hsl(${ie.h}, ${ie.s}%, ${ie.l}%)`,
+                              stroke: &quot;#0E0F0D&quot;,
+                              colors: se
+                         }
+                    }, 3 == m.blocksStyle &amp;&amp; (m.palette.stroke = &quot;#FFFFFF&quot;);
+                    const t = [new o(-.5, .5, .5), new o(.5, .5, .5), new o(.5, .5, -.5), new o(-.5, .5, -.5), new o(-.5, -.5, .5), new o(.5, -.5, .5), new o(.5, -.5, -.5), new o(-.5, -.5, -.5)];
+                    S = new he(t, {
+                         x: 0,
+                         y: 0,
+                         w: 1,
+                         h: 1
+                    }, 1, 0);
+                    let s = m.subdivisionsCount;
+                    0 != m.subdivisionsPattern ? s = 1e3 : 0 != m.musicPattern &amp;&amp; (s = 100);
+                    for (let e = 0; e &lt; s; e++) {
+                         let e, t;
+                         if (m.subdivisionsPattern &lt;= 1) e = r.random() * x, t = r.random() * w;
+                         else if (2 == m.subdivisionsPattern || 5 == m.subdivisionsPattern)(5 == m.subdivisionsPattern ? r.random() &lt; .5 : q) ? (e = .1 * r.random() - .05 + .5 * x, t = r.random() * w) : (e = r.random() * x, t = .1 * r.random() - .05 + .5 * w);
+                         else {
+                              let n = 4 == m.subdivisionsPattern ? r.random() &lt; .5 : q,
+                                   s = r.random();
+                              n ? (e = s * x, t = s * w) : (e = s * x, t = w - s * w)
+                         }
+                         S.insert(new o(e, t, 0))
+                    }
+                    S.setNotes(), S.updateLastNote(), P = new Tone.PolySynth(Tone.MonoSynth, {
+                         volume: -8,
+                         oscillator: {
+                              type: `${m.musicOscillator}8`,
+                              modulationFrequency: .2
+                         },
+                         envelope: {
+                              attack: .01,
+                              decay: .3,
+                              sustain: .2,
+                              release: .4
+                         },
+                         filterEnvelope: {
+                              attack: .001,
+                              decay: .7,
+                              sustain: .1,
+                              release: .8,
+                              baseFrequency: 300
+                         }
+                    }).toDestination(), Tone.Transport.bpm.value = m.musicBpm, S.addNote(), A = new Tone.Part(((e, t) =&gt; {
+                         P.triggerAttackRelease(t.note, t.duration, e), t.block.startTime = E, t.block.playing = !0
+                    }), H).start(0), D = N, document.addEventListener(&quot;click&quot;, le), document.addEventListener(&quot;touchstart&quot;, le), document.addEventListener(&quot;keydown&quot;, oe), window.addEventListener(&quot;resize&quot;, ae)
+               }(), re()
+     }
+})();</pre></body></html>

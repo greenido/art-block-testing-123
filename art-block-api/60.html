@@ -1,0 +1,65 @@
+<html><body><h1>Name: Event Horizon Sunset (Series C)</h1><h3>Artist: Jake Brukhman</h3><h3>Description: Event Horizon Sunsets are a class of art works generated through an algorithm which uses Perlin noise to modulate the color, shape, and convexity of a continuous surface. The sunsets are generated instantly in a practical infinity of combinations, and it is possible to write a machine learning classifier that selects the most beautiful ones. Event Horizon Sunset (Series C) follows two previous series of Sunsets, with 5 and 9 works respectively. Series C is special because some of the randomly generated Sunsets have a &quot;close proximity&quot;.</h3><h3>https://firstedition.xyz/jbrukh</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;}</p><p>Script Type: p5js</p><p>Version: 0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x68f9d801c96ac6ccf562f3600cef77c4504449b6</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.04</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 500</p><p>Maximum Invocations: 500</p><p>License: https://www.niftylicense.org/</p><p>Token Ids: 60000000,60000001,60000002,60000003,60000004,60000005,60000006,60000007,60000008,60000009,60000010,60000011,60000012,60000013,60000014,60000015,60000016,60000017,60000018,60000019,60000020,60000021,60000022,60000023,60000024,60000025,60000026,60000027,60000028,60000029,60000030,60000031,60000032,60000033,60000034,60000035,60000036,60000037,60000038,60000039,60000040,60000041,60000042,60000043,60000044,60000045,60000046,60000047,60000048,60000049,60000050,60000051,60000052,60000053,60000054,60000055,60000056,60000057,60000058,60000059,60000060,60000061,60000062,60000063,60000064,60000065,60000066,60000067,60000068,60000069,60000070,60000071,60000072,60000073,60000074,60000075,60000076,60000077,60000078,60000079,60000080,60000081,60000082,60000083,60000084,60000085,60000086,60000087,60000088,60000089,60000090,60000091,60000092,60000093,60000094,60000095,60000096,60000097,60000098,60000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var t = 0;
+let spins = 100;
+let delta = 0.001;
+let noiseDelta = 10;
+let seed;
+let hash;
+
+let WIDTH = window.innerWidth;
+let HEIGHT = window.innerHeight;
+let DIM = Math.min(WIDTH, HEIGHT);
+let BASEDIM = 2000;
+
+function setup() {
+
+     // canvas setup
+     createCanvas(DIM, DIM);
+     stroke(0, 120);
+     noFill();
+     background(0);
+     noLoop();
+
+     // entropy
+     hash = tokenData.hash; // random_hash();
+     seed = parseInt(hash.slice(0, 16), 16);
+     noiseSeed(seed);
+     noiseDelta = 100 * drand(seed);
+}
+
+// deterministic random function
+function drand(seed) {
+     seed ^= seed &lt;&lt; 13;
+     seed ^= seed &gt;&gt; 17;
+     seed ^= seed &lt;&lt; 5;
+     return ((seed &lt; 0 ? ~seed + 1 : seed) % 1000) / 1000
+}
+
+function plan1(offsetPx) {
+     return [(DIM + offsetPx) * noise(t + noiseDelta * 11) - offsetPx / 2,
+          DIM * noise(t + noiseDelta * 13),
+          DIM * noise(t + noiseDelta * 17),
+          (DIM + offsetPx) * noise(t + noiseDelta * 19) - offsetPx / 2,
+          (DIM + offsetPx) * noise(t + noiseDelta) - offsetPx / 2,
+          DIM * noise(t + noiseDelta * 2),
+          DIM * noise(t + noiseDelta * 3),
+          (DIM + offsetPx) * noise(t + noiseDelta * 4) - offsetPx / 2
+     ];
+}
+
+function draw() {
+     spins = 750 + 2750 * drand(seed);
+     let offsetPx = DIM / BASEDIM * 300;
+     if (drand(seed) &gt; .95) {
+          offsetPx = 3000 * DIM / BASEDIM;
+     }
+     for (let i = 0; i &lt; spins; i++) {
+          plan = plan1(offsetPx);
+          var r = 255 * noise(t + 10);
+          var g = 255 * noise(t + 20);
+          var b = 255 * noise(t + 102);
+          stroke(r, g, b, 20);
+          strokeWeight(2 * DIM / BASEDIM);
+          bezier(plan[0], plan[4], plan[1], plan[5], plan[2], plan[6], plan[3], plan[7]);
+          t += delta;
+     }
+}</pre></body></html>

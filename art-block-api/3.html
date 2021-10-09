@@ -1,0 +1,292 @@
+<html><body><h1>Name: Cryptoblots</h1><h3>Artist: Daïm Aggott-Hönsch</h3><h3>Description: A cryptoart collectible series to indulge the irrepressible human compulsion for pareidolia. This algorithmic homage to Hermann Rorschach's inkblot perception test will help you externalize your inner world onto the sometimes elegant, sometimes inchoate curves of a unique, one-of-a-kind, ownable cryptoblot on the Ethereum blockchain. What will YOUR cryptoblot reveal about you?</h3><h3>http://www.Cryptoblots.com/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x0f13316b80872eda120d7844ed1c1e90fc001dc1</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 62</p><p>Currency: DAI</p><p>Currency Address: 0x6b175474e89094c44da98b954eedeac495271d0f</p><p>Invocations: 1921</p><p>Maximum Invocations: 1921</p><p>License: NFT License</p><p>Token Ids: 3000000,3000001,3000002,3000003,3000004,3000005,3000006,3000007,3000008,3000009,3000010,3000011,3000012,3000013,3000014,3000015,3000016,3000017,3000018,3000019,3000020,3000021,3000022,3000023,3000024,3000025,3000026,3000027,3000028,3000029,3000030,3000031,3000032,3000033,3000034,3000035,3000036,3000037,3000038,3000039,3000040,3000041,3000042,3000043,3000044,3000045,3000046,3000047,3000048,3000049,3000050,3000051,3000052,3000053,3000054,3000055,3000056,3000057,3000058,3000059,3000060,3000061,3000062,3000063,3000064,3000065,3000066,3000067,3000068,3000069,3000070,3000071,3000072,3000073,3000074,3000075,3000076,3000077,3000078,3000079,3000080,3000081,3000082,3000083,3000084,3000085,3000086,3000087,3000088,3000089,3000090,3000091,3000092,3000093,3000094,3000095,3000096,3000097,3000098,3000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seedA = parseInt(tokenData.hash.slice(0, 16), 16);
+
+let outputsize;
+let size;
+let halfsize;
+let freedom;
+
+let blotnumblots;
+let blotcolorname = [];
+let blotdescription;
+
+let greys = [
+     [255, 255, 255],
+     [192, 192, 192],
+     [152, 152, 152],
+     [42, 52, 57],
+     [146, 142, 133],
+     [76, 88, 102]
+];
+
+let blues = [
+     [108, 180, 238],
+     [75, 97, 209],
+     [16, 52, 166],
+     [49, 140, 231],
+     [31, 48, 94],
+     [70, 143, 234]
+];
+
+let greens = [
+     [86, 130, 3],
+     [34, 139, 34],
+     [116, 195, 101],
+     [0, 158, 96],
+     [208, 240, 192],
+     [80, 200, 120]
+];
+
+let reds = [
+     [196, 30, 58],
+     [150, 0, 24],
+     [220, 20, 60],
+     [250, 128, 114],
+     [230, 32, 32],
+     [230, 0, 38]
+];
+
+let purples = [
+     [102, 2, 60],
+     [120, 81, 169],
+     [218, 112, 214],
+     [136, 0, 133],
+     [114, 36, 108],
+     [216, 191, 216]
+];
+
+let yellows = [
+     [255, 255, 204],
+     [238, 237, 9],
+     [255, 255, 153],
+     [255, 215, 0],
+     [231, 172, 65],
+     [255, 239, 0]
+];
+
+let browns = [
+     [159, 129, 112],
+     [245, 245, 220],
+     [149, 69, 53],
+     [123, 63, 0],
+     [36, 25, 20],
+     [195, 176, 145]
+];
+
+let colors = greys.concat(blues.concat(greens.concat(reds.concat(purples.concat(yellows.concat(browns))))));
+
+let thecolors = [];
+
+let colfreqs = [40, 80, 100, 10, 3, 100, 100, 80, 3, 40, 10, 100, 40, 10, 100, 80, 3, 100, 100, 10, 3, 40, 100, 80, 100, 10, 80, 40, 100, 3, 40, 3, 100, 100, 80, 10, 28, 3, 80, 100, 100, 40];
+let colnames = [&quot;White&quot;, &quot;Silver Gray&quot;, &quot;Spanish Gray&quot;, &quot;Gunmetal Gray&quot;, &quot;Stone Gray&quot;, &quot;Marengo Gray&quot;, &quot;Argentinian Blue&quot;, &quot;Savoy Blue&quot;, &quot;Egyptian Blue&quot;, &quot;Bleu de France&quot;, &quot;Delft Blue&quot;, &quot;Moroccan Blue&quot;, &quot;Avocado Green&quot;, &quot;Forest Green&quot;, &quot;Mantis Green&quot;, &quot;Shamrock Green&quot;, &quot;Tea Green&quot;, &quot;Emerald Green&quot;, &quot;Cardinal Red&quot;, &quot;Carmine Red&quot;, &quot;Crimson Red&quot;, &quot;Salmon Red&quot;, &quot;Lust Red&quot;, &quot;Spanish Red&quot;, &quot;Tyrian Purple&quot;, &quot;Royal Purple&quot;, &quot;Orchid Purple&quot;, &quot;Mardis Gras Purple&quot;, &quot;Palatinate Purple&quot;, &quot;Thistle Purple&quot;, &quot;Cream Yellow&quot;, &quot;Xanthic Yellow&quot;, &quot;Canary Yellow&quot;, &quot;Golden Yellow&quot;, &quot;Hunyadi Yellow&quot;, &quot;Process Yellow&quot;, &quot;Beaver Brown&quot;, &quot;Beige Brown&quot;, &quot;Chestnut Brown&quot;, &quot;Chocolate Brown&quot;, &quot;Dark Brown&quot;, &quot;Khaki Brown&quot;];
+
+let coordsX = [];
+let coordsY = [];
+
+let canvas;
+
+function setup() {
+
+     let numblobs = 1;
+     randnum = int(map(rnd(), 0, 1, 0, 1000));
+     if (randnum &lt; 300) {
+          numblobs = 2;
+          if (randnum &lt; 50) {
+               numblobs = 3;
+          }
+     }
+
+     append(thecolors, getFillColor());
+     append(thecolors, getFillColor());
+     append(thecolors, getFillColor());
+
+     outputsize = windowWidth &gt;= windowHeight ? windowHeight : windowWidth;
+     createCanvas(outputsize, outputsize);
+
+     setsize();
+     canvas = createGraphics(size, size);
+     canvas.background(0);
+
+     points = int(map(rnd(), 0, 1, 20, 100));
+
+     for (let i = 0; i &lt; numblobs; i++) {
+          let fillcol = thecolors[i];
+          let strokecol = fillcol;
+          if ((fillcol[0] &gt;= 170 || fillcol[1] &gt;= 170 || fillcol[2] &gt;= 170)) {
+               strokecol = [fillcol[0] / 10 * 7, fillcol[1] / 10 * 7, fillcol[2] / 10 * 7];
+          } else {
+               strokecol = [min([fillcol[0] * 2.75, 255]), min([fillcol[1] * 2.75, 255]), min([fillcol[2] * 2.75, 255])];
+          }
+
+          genCoords();
+          fixCoords();
+
+          let boundarywidth = int(size / 180);
+          let coldelta = [(fillcol[0] - strokecol[0]) / boundarywidth, (fillcol[1] - strokecol[1]) / boundarywidth, (fillcol[2] - strokecol[2]) / boundarywidth];
+          canvas.fill(fillcol);
+          for (let strokeweight = boundarywidth; strokeweight &gt;= 1; strokeweight--) {
+               if (strokeweight &lt; boundarywidth) {
+                    canvas.noFill();
+               }
+               strokecol = [strokecol[0] + coldelta[0], strokecol[1] + coldelta[1], strokecol[2] + coldelta[2]];
+               canvas.stroke(strokecol);
+               canvas.strokeWeight(strokeweight);
+               genBlot();
+          }
+
+          points = points / 2;
+     }
+
+     canvas.filter(BLUR, 0.5);
+
+     blotdescription = GetBlotTypeFromNumblots(numblobs) + &quot; :&quot;;
+     for (let i = 0; i &lt; blotcolorname.length; i++) {
+          blotdescription = blotdescription + &quot; &quot; + blotcolorname[i];
+          if (i != blotcolorname.length - 1) {
+               blotdescription = blotdescription + &quot;,&quot;;
+          }
+     }
+
+     console.log(blotdescription);
+
+     image(canvas, 0, 0, outputsize, outputsize);
+}
+
+function setsize() {
+     if (outputsize &lt; 1800) {
+          size = 1800;
+     } else {
+          size = outputsize;
+     }
+     halfsize = size / 2;
+     freedom = size / 10;
+}
+
+function genBlot() {
+     canvas.beginShape();
+     for (let i = 0; i &lt; coordsX.length; i++) {
+          canvas.curveVertex(coordsX[i] + (size / 2), coordsY[i]);
+     }
+
+     for (let i = coordsX.length - 1; i &gt;= 0; i--) {
+          canvas.curveVertex(-1 * coordsX[i] + (size / 2), coordsY[i]);
+     }
+     canvas.endShape();
+}
+
+function GetBlotTypeFromNumblots(numblots) {
+     if (numblots == 3) {
+          return &quot;Ternary Cryptoblot&quot;;
+     }
+     if (numblots == 2) {
+          return &quot;Binary Cryptoblot&quot;;
+     }
+     if (numblots == 1) {
+          return &quot;Unary Cryptoblot&quot;;
+     }
+}
+
+function genCoords() {
+     coordsX = [0, 0];
+     let starty = int(map(rnd(), 0, 1, (size / 10), size - (size / 10)));
+     coordsY = [starty, starty];
+
+     for (let i = 0; i &lt; points; i++) {
+          append(coordsX, nextX());
+          append(coordsY, nextY());
+     }
+
+     append(coordsX, 0);
+     append(coordsY, nextY());
+
+     append(coordsX, 0);
+     append(coordsY, nextY());
+}
+
+function nextX() {
+     let tmpX = coordsX[coordsX.length - 1] + map(rnd(), 0, 1, 0 - freedom, freedom);
+     while ((tmpX + (size / 2) &lt; size / 10) || (tmpX + (size / 2) &gt; size - (size / 10))) {
+          tmpX = coordsX[coordsX.length - 1] + map(rnd(), 0, 1, 0 - (freedom * 2), freedom * 2);
+     }
+     return int(tmpX);
+}
+
+function nextY() {
+     let tmpY = coordsY[coordsY.length - 1] + map(rnd(), 0, 1, 0 - freedom, freedom);
+     while ((tmpY &lt; size / 10) || (tmpY &gt; size - (size / 10))) {
+          tmpY = coordsY[coordsY.length - 1] + map(rnd(), 0, 1, 0 - (freedom * 2), freedom * 2);
+     }
+     return int(tmpY);
+}
+
+function getFillColor() {
+
+     let which = int(map(rnd(), 0, 1, 0, colors.length));
+     let threshold = map(rnd(), 0, 1, 0, 100);
+
+     while (threshold &gt; colfreqs[which]) {
+          which = int(map(rnd(), 0, 1, 0, colors.length));
+     }
+
+     append(blotcolorname, colnames[which]);
+
+     return colors[which];
+}
+
+function isSameCol(cola, colb) {
+     for (let i = 0; i &lt; colb.length; i++) {
+          if (cola[i] != colb[i]) {
+               return false;
+          }
+     }
+     return true;
+}
+
+function fixCoords() {
+     for (let i = 0; i &lt; coordsX.length; i++) {
+          coordsY[i] = coordsY[i] - halfsize;
+     }
+
+     let minx = size;
+     let maxx = 0 - size;
+     let miny = size;
+     let maxy = 0 - size;
+     for (let i = 0; i &lt; coordsX.length; i++) {
+          if (coordsX[i] &lt; minx) {
+               minx = coordsX[i];
+          }
+          if (coordsY[i] &lt; miny) {
+               miny = coordsY[i];
+          }
+
+          if (coordsX[i] &gt; maxx) {
+               maxx = coordsX[i];
+          }
+          if (coordsY[i] &gt; maxy) {
+               maxy = coordsY[i];
+          }
+     }
+
+     let enlargeby = 450 / (maxx - minx);
+     if ((450 / ((maxy * enlargeby) - (miny * enlargeby)) &lt; 1) || enlargeby &lt; 1.00) {
+          enlargeby = 1.00;
+     }
+
+     let shiftby = (((maxy * enlargeby) - (miny * enlargeby)) / 2) - maxy;
+
+     for (let i = 0; i &lt; coordsX.length; i++) {
+          coordsX[i] = coordsX[i] * enlargeby;
+          coordsY[i] = (coordsY[i] * enlargeby) + shiftby;
+     }
+
+     for (let i = 0; i &lt; coordsX.length; i++) {
+          coordsY[i] = coordsY[i] + halfsize;
+     }
+}
+
+function rnd() {
+     seedA ^= seedA &lt;&lt; 13;
+     seedA ^= seedA &gt;&gt; 17;
+     seedA ^= seedA &lt;&lt; 5;
+
+     return (((seedA &lt; 0) ? ~seedA + 1 : seedA) % 1000) / 1000;
+}</pre></body></html>

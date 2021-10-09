@@ -1,0 +1,204 @@
+<html><body><h1>Name: Ode to Roy</h1><h3>Artist: artplusbrad</h3><h3>Description: An ode to Roy Lichtenstein, incorporating his iconic version of Ben-Day dots, halftone dots, angled stripes, and solid color patches. Inspired by Roy's sea and landscape paintings, each artwork generates a unique combination of patterns, shapes, and colors.</h3><h3>https://artplusbrad.com/roy</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1&quot;,&quot;aspectRatio&quot;:&quot;1&quot;}</p><p>Script Type: p5js</p><p>Version: 1</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xd7e1bc51cd3f30e21b17bab33d77078e3fb7cc26</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.05</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 906</p><p>Maximum Invocations: 906</p><p>License: NFT License</p><p>Token Ids: 63000000,63000001,63000002,63000003,63000004,63000005,63000006,63000007,63000008,63000009,63000010,63000011,63000012,63000013,63000014,63000015,63000016,63000017,63000018,63000019,63000020,63000021,63000022,63000023,63000024,63000025,63000026,63000027,63000028,63000029,63000030,63000031,63000032,63000033,63000034,63000035,63000036,63000037,63000038,63000039,63000040,63000041,63000042,63000043,63000044,63000045,63000046,63000047,63000048,63000049,63000050,63000051,63000052,63000053,63000054,63000055,63000056,63000057,63000058,63000059,63000060,63000061,63000062,63000063,63000064,63000065,63000066,63000067,63000068,63000069,63000070,63000071,63000072,63000073,63000074,63000075,63000076,63000077,63000078,63000079,63000080,63000081,63000082,63000083,63000084,63000085,63000086,63000087,63000088,63000089,63000090,63000091,63000092,63000093,63000094,63000095,63000096,63000097,63000098,63000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let ov, ma, im, cP, nC, bag, oC, hPa = [],
+     hDa = [],
+     s = parseInt(tokenData.hash.slice(0, 16), 16),
+     cn = 0,
+     dim = 0,
+     cl = [
+          []
+     ],
+     dC = 0,
+     iR = !1,
+     iL = !1,
+     iVB = !1,
+     pI = 0,
+     pH = 0,
+     cPI = 0,
+     aL = [],
+     li = -1,
+     oCt = 0;
+
+function setup() {
+     dim = Math.floor(Math.min(window.innerWidth, window.innerHeight)), createCanvas(dim, dim), noLoop();
+     for (let c = 0; c &lt; 32; c++) hPa.push(tokenData.hash.slice(2 + 2 * c, 4 + 2 * c));
+     hDa = hPa.map(c =&gt; parseInt(c, 16)), cn = dim / 2, ov = createGraphics(dim, dim), ma = createGraphics(dim, dim), im = createImage(dim, dim), pH = rnd() &lt; .2 ? .9 : .4, dC = hDa[0] &lt; 21 ? 11 : hDa[0] &lt; 41 ? 121 : hDa[0] &lt; 72 ? 31 : hDa[0] &lt; 122 ? 61 : 91, cl[0][0] = c(150), cl[0][1] = c(125), cl[0][2] = c(100), cl[0][3] = c(65), cl[0][4] = c(30), cl.push([]), cl[1][0] = c(&quot;#164849&quot;), cl[1][1] = c(&quot;#02aca3&quot;), cl[1][2] = c(&quot;#2a2833&quot;), cl[1][3] = c(&quot;#970126&quot;), cl[1][4] = c(&quot;#cbd5ee&quot;), cl[1][5] = c(&quot;#eb8b01&quot;), cl[1][6] = c(&quot;#eee00b&quot;), cl[1][7] = c(&quot;#012c9f&quot;), cl.push([]), cl[2][0] = c(&quot;#899194&quot;), cl[2][1] = c(&quot;#e5d503&quot;), cl[2][2] = c(&quot;#2b7260&quot;), cl[2][3] = c(&quot;#0c1885&quot;), cl[2][4] = c(&quot;#5d71b3&quot;), cl[2][5] = c(&quot;#141717&quot;), cl[2][6] = c(&quot;#9f2317&quot;), cl.push([]), cl[3][0] = c(&quot;#efe5a7&quot;), cl[3][1] = c(&quot;#002972&quot;), cl[3][2] = c(&quot;#f7e038&quot;), cl[3][3] = c(&quot;#852129&quot;), cl[3][4] = c(&quot;#2e2721&quot;), cl.push([]), cl[4][0] = c(&quot;#f2d83d&quot;), cl[4][1] = c(&quot;#e52d21&quot;), cl[4][2] = c(&quot;#3f3083&quot;), cl.push([]), cl[5][0] = c(&quot;#d75b66&quot;), cl[5][1] = c(&quot;#23345c&quot;), cl[5][2] = c(&quot;#fc1&quot;), cl[5][3] = c(&quot;#a36142&quot;), cl[5][4] = c(&quot;#54493f&quot;), cl.push([]), cl[6][0] = c(&quot;#1f3330&quot;), cl[6][1] = c(&quot;#212027&quot;), cl[6][2] = c(&quot;#f22f08&quot;), cl[6][3] = c(&quot;#ff6f3f&quot;), cl[6][4] = c(&quot;#b23136&quot;), cl.push([]), cl[7][0] = c(&quot;#2e7daf&quot;), cl[7][1] = c(&quot;#ffd507&quot;), cl[7][2] = c(&quot;#2897ff&quot;), cl[7][3] = c(&quot;#ff665b&quot;), cl[7][4] = c(&quot;#66395d&quot;), cl.push([]), cl[8][0] = c(&quot;#0444bf&quot;), cl[8][1] = c(&quot;#0584f2&quot;), cl[8][2] = c(&quot;#0aaff1&quot;), cl[8][3] = c(&quot;#e3ef3b&quot;), cl[8][4] = c(&quot;#ae5cb2&quot;), cl.push([]), cl[9][0] = c(&quot;#6465a5&quot;), cl[9][1] = c(&quot;#6975a6&quot;), cl[9][2] = c(&quot;#f2e44b&quot;), cl[9][3] = c(&quot;#ff4d35&quot;), cl[9][4] = c(&quot;#f05837&quot;), cl.push([]), cl[10][0] = c(&quot;#f4ed71&quot;), cl[10][1] = c(&quot;#9e2504&quot;), cl[10][2] = c(&quot;#767287&quot;), cl[10][3] = c(&quot;#04030c&quot;), cl[10][4] = c(&quot;#383140&quot;), cl.push([]), cl[11][0] = c(&quot;#192e5b&quot;), cl[11][1] = c(&quot;#2c42a5&quot;), cl[11][2] = c(&quot;#4d52bc&quot;), cl[11][3] = c(&quot;#00743f&quot;), cl[11][4] = c(&quot;#efb700&quot;), cl.push([]), cl[12][0] = c(&quot;#6F706F&quot;), cl[12][1] = c(&quot;#65A547&quot;), cl[12][2] = c(&quot;#f4ba18&quot;), cl[12][3] = c(&quot;#f4650c&quot;), cl[12][4] = c(&quot;#8b281f&quot;), cl.push([]), cl[13][0] = c(&quot;#a3586d&quot;), cl[13][1] = c(&quot;#5c4a72&quot;), cl[13][2] = c(&quot;#f2be46&quot;), cl[13][3] = c(&quot;#ef4e26&quot;), cl[13][4] = c(&quot;#f25252&quot;), cl.push([]), cl[14][0] = c(&quot;#2b87d8&quot;), cl[14][1] = c(&quot;#0abda0&quot;), cl[14][2] = c(&quot;#2ef487&quot;), cl[14][3] = c(&quot;#d4e83c&quot;), cl[14][4] = c(&quot;#c64837&quot;), cl.push([]), cl[15][0] = c(&quot;#040627&quot;), cl[15][1] = c(&quot;#03353e&quot;), cl[15][2] = c(&quot;#0294a5&quot;), cl[15][3] = c(&quot;#374351&quot;), cl[15][4] = c(&quot;#c1403d&quot;), cl.push([]), cl[16][0] = c(&quot;#55d9c0&quot;), cl[16][1] = c(&quot;#ff60d2&quot;), cl[16][2] = c(&quot;#107050&quot;), cl[16][3] = c(&quot;#02231c&quot;), cl[16][4] = c(&quot;#4dd8ad&quot;), cl.push([]), cl[17][0] = c(&quot;#f55&quot;), cl[17][1] = c(&quot;#29e&quot;), cl[17][2] = c(&quot;#f24&quot;), cl[17][3] = c(&quot;#70f&quot;), cl[17][4] = c(&quot;#99d&quot;), cl[17][5] = c(&quot;#3ac&quot;), cl.push([]), cl[18][0] = c(&quot;#f01&quot;), cl[18][1] = c(&quot;#16f&quot;), cl[18][2] = c(&quot;#f11&quot;), cl[18][3] = c(&quot;#75f&quot;), cl[18][4] = c(&quot;#f67&quot;), cl[18][5] = c(&quot;#fd1&quot;), cPI = hDa[1] &lt; 7 ? 0 : int(map(hDa[1], 7, 256, 1, cl.length)), cP = cl[cPI], bag = hDa[2] &lt; 64 ? c(0) : c(255), iVB = hDa[2] &gt; 128, pI = hDa[3] &lt; 24 ? .7 : hDa[3] &lt; 152 ? .15 : .4;
+     let l = tokenData.hash.toLowerCase();
+     iR = l.indexOf(&quot;52&quot;) &gt;= 0 &amp;&amp; l.indexOf(&quot;4f&quot;) &gt;= 0 &amp;&amp; l.indexOf(&quot;59&quot;) &gt;= 0, aL.push({
+          id: 76,
+          ltr: &quot;L&quot;
+     }), aL.push({
+          id: 149,
+          ltr: &quot;I&quot;
+     }), aL.push({
+          id: 216,
+          ltr: &quot;C&quot;
+     }), aL.push({
+          id: 288,
+          ltr: &quot;H&quot;
+     }), aL.push({
+          id: 372,
+          ltr: &quot;T&quot;
+     }), aL.push({
+          id: 441,
+          ltr: &quot;E&quot;
+     }), aL.push({
+          id: 519,
+          ltr: &quot;N&quot;
+     }), aL.push({
+          id: 602,
+          ltr: &quot;S&quot;
+     }), aL.push({
+          id: 686,
+          ltr: &quot;T&quot;
+     }), aL.push({
+          id: 755,
+          ltr: &quot;E&quot;
+     }), aL.push({
+          id: 828,
+          ltr: &quot;I&quot;
+     }), aL.push({
+          id: 906,
+          ltr: &quot;N&quot;
+     });
+     let e = tokenData.tokenId % 1e6;
+     for (let c = 0; c &lt; aL.length; c++) aL[c].id - 1 === e &amp;&amp; (iL = !0, li = c)
+}
+
+function draw() {
+     background(255), push(), translate(cn, cn), pS(), pop(), ov.remove(), ma.remove()
+}
+
+function pS() {
+     sL(), iL ? sLi() : iR &amp;&amp; sR()
+}
+
+function vB() {
+     iVB &amp;&amp; (bag = rnd() &lt; .5 ? c(0) : c(255))
+}
+
+function nCl() {
+     return cP[int(map(rnd(), 0, 1, 0, cP.length))]
+}
+
+function oP() {
+     (im = ov.get()).mask(ma), image(im, -cn, -cn)
+}
+
+function sR() {
+     oC = 9;
+     for (let c = 0; c &lt; oC; c++) {
+          nC = nCl(), vB();
+          let l = pPN();
+          ov = pP(l, nC, bag, !1, !0, !0), ma = mR(ma, c), oP()
+     }
+}
+
+function sLi() {
+     nC = nCl(), vB();
+     let c = pPN();
+     ov = pP(c, nC, bag, !1, !0, !0), ma = mLi(ma), oP()
+}
+
+function sL() {
+     let c, l;
+     oC = hDa[4] &lt; 11 ? 2 : int(map(hDa[4], 11, 256, 3, 13));
+     let e = dim / 1e3,
+          t = 0,
+          a = 0,
+          n = [],
+          i = new Array(oC + 1);
+     i[0] = new Array(1e3);
+     let o = 0;
+     iR || iL || (hDa[5] &lt; 75 ? (rotate(PI / 2), o = 1) : hDa[5] &lt; 150 ? (rotate(3 * PI / 2), o = 3) : hDa[5] &lt; 205 &amp;&amp; (rotate(PI), o = 2));
+     for (let c = 0; c &lt;= dim; c += e) i[0][t] = 0, t++;
+     noiseSeed(map(rnd(), 0, 1, 0, 1e3));
+     let r = hDa[6] &lt; 11 ? .008 : hDa[6] &lt; 26 ? .005 : .002;
+     for (let d = 0; d &lt; oC; d++) {
+          let f = map(rnd(), 0, 1, 0, 1e3);
+          n.push({
+               h: a
+          });
+          let h = map(rnd(), 0, 1, .1 * (dim - a), (dim - a) / map(oC, 2, 16, 1.2, 2.5));
+          t = 0, i[d + 1] = new Array(1e3);
+          for (let c = 0; c &lt;= dim; c += e) d === oC - 1 ? i[d + 1][t] = dim : (i[d + 1][t] = n[d].h + map(noise(f), 0, 1, 0, h), f += r), i[d + 1][t] &gt; a &amp;&amp; (a = i[d + 1][t]), t++;
+          nC = nCl(), vB();
+          let s = pPN();
+          nC === c &amp;&amp; s === l &amp;&amp; (nC = lerpColor(nC, bag, .4)), c = nC, l = s, ov = pP(s, nC, bag, o, !iR &amp;&amp; !iL, !1), ma = mPC(ma, i[d], i[d + 1], e), oP()
+     }
+}
+
+function pPN() {
+     return hDa[6 + ++oCt] &lt; 66 ? 0 : hDa[6 + oCt] &lt; 140 ? 1 : hDa[6 + oCt] &lt; 176 ? 2 : 3
+}
+
+function pP(c, l, e, t, a, n) {
+     if (0 === c) ov = pSo(ov, l);
+     else {
+          if (a &amp;&amp; (rnd() &lt; pI || n)) {
+               let c = l;
+               l = e, e = c
+          }
+          1 === c ? ov = pSt(ov, l, e, t) : 2 === c ? ov = pDo(ov, l, e, dC, !0) : 3 === c &amp;&amp; (ov = pDo(ov, l, e, dC, !1))
+     }
+     return ov
+}
+
+function pDo(c, l, e, t, a) {
+     t % 2 == 0 &amp;&amp; (t += 1);
+     let n = dim / (1.25 * t),
+          i = t + 1,
+          o = dim / t,
+          r = o / 2,
+          d = -r - cn,
+          f = -r - cn,
+          h = 0,
+          s = n / t * pH,
+          p = n;
+     c.clear(), c.background(e), c.noStroke(), c.fill(l), c.push(), c.translate(cn, cn);
+     let m = rnd() &lt; .5;
+     a &amp;&amp; m &amp;&amp; c.rotate(PI);
+     for (let l = 1; l &lt;= i; l++)
+          for (let e = 1; e &lt;= t; e++) h = e % 2 == 0 ? r : 0, a &amp;&amp; (p = n - (l - 1) * s), c.ellipse(l * o + d - h, e * o + f, p, p);
+     return c.pop(), c
+}
+
+function pSo(c, l) {
+     return c.clear(), c.background(l), c.noStroke(), c.fill(l), c
+}
+
+function pSt(c, l, e, t) {
+     let a = 100,
+          n = dim / a;
+     a *= 3, c.clear(), c.background(l), c.noFill(), c.stroke(e), c.strokeWeight(n), c.push(), c.translate(cn, cn), c.rotate(PI / 6), 1 === t ? c.rotate(-PI / 2) : 2 === t ? c.rotate(-PI) : 3 === t &amp;&amp; c.rotate(-3 * PI / 2);
+     for (let l = 0; l &lt;= a; l++) l % 2 == 0 &amp;&amp; c.line(l * n - 3 * cn - 0, 3 * -cn, l * n - 3 * cn - 0, 3 * cn);
+     return c.pop(), c
+}
+
+function mPC(c, l, e, t) {
+     c.clear(), c.fill(0, 255), c.stroke(0, 255), c.strokeWeight(.01 * dim), c.beginShape();
+     let a = 0;
+     for (let e = 0; e &lt;= dim; e += t) c.vertex(e, l[a]), a++;
+     c.vertex(dim, e[e.length - 1]), a = e.length - 1;
+     for (let l = dim; l &gt;= 0; l -= t) c.vertex(l, e[a]), a--;
+     return c.vertex(0, l[0]), c.endShape(), c
+}
+
+function mR(c, l) {
+     c.clear(), c.fill(0, 255), c.stroke(0, 255), c.strokeWeight(.05 * dim);
+     let e = dim / 3 * (l % 3) + dim / 3 / 2,
+          t = dim / 3 * int(l / 3) + dim / 3 / 2 + dim / 37;
+     c.textFont(&quot;sans-serif&quot;, .33 * dim), c.textAlign(CENTER, CENTER);
+     let a = 0 == l || 8 == l ? &quot;R&quot; : 2 == l || 6 == l ? &quot;Y&quot; : 4 == l ? &quot;&quot; : &quot;O&quot;;
+     return c.text(a, e, t), c
+}
+
+function mLi(c) {
+     return c.clear(), c.fill(0, 255), c.stroke(0, 255), c.strokeWeight(.05 * dim), c.textFont(&quot;sans-serif&quot;, dim), c.textAlign(CENTER, CENTER), c.text(aL[li].ltr, dim / 2, dim / 2 + dim / 13), c
+}
+
+function c(c) {
+     return color(c)
+}
+
+function rnd() {
+     return s ^= s &lt;&lt; 13, s ^= s &gt;&gt; 17, ((s ^= s &lt;&lt; 5) &lt; 0 ? 1 + ~s : s) % 1e3 / 1e3
+}</pre></body></html>

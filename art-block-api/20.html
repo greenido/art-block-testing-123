@@ -1,0 +1,220 @@
+<html><body><h1>Name: Sentience</h1><h3>Artist: pxlq</h3><h3>Description: What does self-aware art look like?</h3><h3></h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x5f127b4323c0061768976ad34a1a2beb9db19886</p><p>Additional Payee: 0x16c04f4b6b8841731631d15d3ce57da075f4e9fc</p><p>Additional Payee Percentage: 100</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 144</p><p>Maximum Invocations: 144</p><p>License: NFT License</p><p>Token Ids: 20000000,20000001,20000002,20000003,20000004,20000005,20000006,20000007,20000008,20000009,20000010,20000011,20000012,20000013,20000014,20000015,20000016,20000017,20000018,20000019,20000020,20000021,20000022,20000023,20000024,20000025,20000026,20000027,20000028,20000029,20000030,20000031,20000032,20000033,20000034,20000035,20000036,20000037,20000038,20000039,20000040,20000041,20000042,20000043,20000044,20000045,20000046,20000047,20000048,20000049,20000050,20000051,20000052,20000053,20000054,20000055,20000056,20000057,20000058,20000059,20000060,20000061,20000062,20000063,20000064,20000065,20000066,20000067,20000068,20000069,20000070,20000071,20000072,20000073,20000074,20000075,20000076,20000077,20000078,20000079,20000080,20000081,20000082,20000083,20000084,20000085,20000086,20000087,20000088,20000089,20000090,20000091,20000092,20000093,20000094,20000095,20000096,20000097,20000098,20000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seed = parseInt(tokenData.hash.slice(0, 16), 16);
+class Cell {
+     constructor(t, e, s = &quot;black&quot;, l = 0, r = {}) {
+          this.x = t, this.y = e, this.color = s, this.state = l, this.p = r
+     }
+     is_alive() {
+          return 1 == this.state
+     }
+     init_state(t) {
+          this.state = t, this.state_i = t
+     }
+     init_color(t) {
+          this.color = t, this.color_i = t
+     }
+     reset() {
+          this.state = this.state_i, this.color = this.color_i, this.p.x = this.p_i.x, this.p.y = this.p_i.y, this.p.xs = this.p_i.xs, this.p.ys = this.p_i.ys
+     }
+     copy(t) {
+          this.x = t.x, this.y = t.y, this.p.x = t.p.x, this.p.y = t.p.y, this.p.xs = t.p.xs, this.p.ys = t.p.ys
+     }
+}
+class Grid {
+     constructor(t, e) {
+          this.x = t, this.y = e, this.cells = [];
+          for (let t = 0; t &lt; this.y; t++) {
+               let e = [];
+               for (let s = 0; s &lt; this.x; s++) {
+                    let l = new Cell(s, t);
+                    e.push(l)
+               }
+               this.cells.push(e)
+          }
+     }
+     get_cell(t, e) {
+          return this.cells[e][t]
+     }
+     on_border(t, e) {
+          return 0 == t | 0 == e | t == this.x - 1 | e == this.y - 1
+     }
+     on_corner(t, e) {
+          return 0 == t &amp; 0 == e | t == this.x - 1 &amp; e == this.y - 1 | 0 == t &amp; e == this.y - 1 | t == this.x - 1 &amp; 0 == e
+     }
+     get_neighbor_cells(t, e, s = &quot;a&quot;) {
+          let l = [];
+          return 0 != e &amp; (&quot;a&quot; == s | &quot;v&quot; == s) &amp;&amp; l.push(this.get_cell(t, e - 1)), t != this.x - 1 &amp; (&quot;a&quot; == s | &quot;h&quot; == s) &amp;&amp; l.push(this.get_cell(t + 1, e)), e != this.y - 1 &amp; (&quot;a&quot; == s | &quot;v&quot; == s) &amp;&amp; l.push(this.get_cell(t, e + 1)), 0 != t &amp; (&quot;a&quot; == s | &quot;h&quot; == s) &amp;&amp; l.push(this.get_cell(t - 1, e)), l
+     }
+     get_neighbor_properties(t, e, s, l) {
+          return {
+               t: 0 == e ? l : this.get_cell(t, e - 1)[s],
+               r: t == this.x - 1 ? l : this.get_cell(t + 1, e)[s],
+               b: e == this.y - 1 ? l : this.get_cell(t, e + 1)[s],
+               l: 0 == t ? l : this.get_cell(t - 1, e)[s]
+          }
+     }
+     get_population(t, e, s) {
+          let l = this.get_neighbor_properties(t, e, &quot;state&quot;, s = s);
+          return l.l + l.t + l.r + l.b
+     }
+     reset() {
+          for (let t = 0; t &lt; this.y; t++)
+               for (let e = 0; e &lt; this.x; e++) this.get_cell(e, t).reset()
+     }
+}
+var DEF_SIZE = 500,
+     DEF_COUNT = 20,
+     WIDTH = window.innerWidth,
+     HEIGHT = window.innerHeight,
+     DIM = Math.min(WIDTH, HEIGHT),
+     COUNT = 25,
+     M = DIM / DEF_SIZE,
+     C = DEF_COUNT / COUNT,
+     FILLING = 6 * M * C,
+     CRVLG = 50 * M * C,
+     CRVSM = 5 * M * C,
+     BORDER = 5 * M * C,
+     SIZE = (DIM - (COUNT + 1) * BORDER) / COUNT,
+     JOIN = !0,
+     WANDER = !1,
+     NM = rnd_bet(.1, .9),
+     NSEED = Math.floor(rnd_bet(1, 9999999999)),
+     BGL = &quot;#EEEEEE&quot;,
+     BGD = &quot;#08090A&quot;,
+     PALS = [
+          [&quot;#1B064C&quot;, &quot;#F72585&quot;, &quot;#B5179E&quot;, &quot;#7209B7&quot;, &quot;#4361EE&quot;, &quot;#4361EE&quot;, &quot;#4895EF&quot;, &quot;#4CC9F0&quot;],
+          [BGL, &quot;#FF0000&quot;, &quot;#00A08A&quot;, &quot;#F2AD00&quot;, &quot;#F98400&quot;, &quot;#5BBCD6&quot;],
+          [BGL, &quot;#85D4E3&quot;, &quot;#F4B5BD&quot;, &quot;#CDC08C&quot;, &quot;#FAD77B&quot;],
+          [BGL, &quot;#E6A0C4&quot;, &quot;#C6CDF7&quot;, &quot;#D8A499&quot;, &quot;#7294D4&quot;],
+          [BGL, &quot;#E92EFB&quot;, &quot;#FF2079&quot;, &quot;#440BD4&quot;, &quot;#04005E&quot;],
+          [BGL, &quot;#B0305C&quot;, &quot;#EB564B&quot;, &quot;#73275C&quot;],
+          [BGL, &quot;#FF2E63&quot;, &quot;#FF9D9D&quot;, &quot;#FFC2C2&quot;],
+          [BGL, &quot;#363636&quot;, &quot;#E8175D&quot;],
+          [BGL, &quot;#132743&quot;, &quot;#EDC988&quot;],
+          [BGD, &quot;#08F7FE&quot;, &quot;#09FBD3&quot;, &quot;#FE53BB&quot;, &quot;#F5D300&quot;],
+          [BGD, &quot;#FF184C&quot;, &quot;#FF184C&quot;, &quot;#0A9CF5&quot;],
+          [BGD, &quot;#FFFFEB&quot;, &quot;#C2C2D1&quot;],
+          [BGD, &quot;#283149&quot;, &quot;#A7FF83&quot;],
+          [BGD, &quot;#544F63&quot;, &quot;#F2D2EC&quot;]
+     ],
+     PN = rnd_cho([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
+     P = PALS[PN],
+     BG = P[0],
+     PAL = P.slice(1),
+     MC = rnd_cho(PAL),
+     CURSOR = rnd_cho([&quot;a&quot;, &quot;h&quot;, &quot;v&quot;]),
+     WC = new Cell(0, 0, color = rnd_cho(PAL)),
+     G = new Grid(COUNT, COUNT);
+
+function setup() {
+     createCanvas(DIM, DIM), noStroke(), noiseSeed(NSEED), background(BG);
+     for (let t = BORDER, e = 0; e &lt; COUNT; t += SIZE + BORDER, e++)
+          for (let s = BORDER, l = 0; l &lt; COUNT; s += SIZE + BORDER, l++) {
+               let r = G.get_cell(l, e),
+                    o = 255 * noise(l * NM, e * NM) &gt; 130 ? 1 : 0;
+               r.init_state(o), r.p = {
+                    x: s,
+                    y: t,
+                    xs: SIZE,
+                    ys: SIZE
+               }, r.p_i = {
+                    x: s,
+                    y: t,
+                    xs: SIZE,
+                    ys: SIZE
+               }
+          }
+     for (let t = 0; t &lt; G.x; t++)
+          for (let e = 0; e &lt; G.y; e++) {
+               let s = G.get_cell(t, e),
+                    l = G.get_population(t, e, b = 1);
+               0 == l &amp;&amp; s.init_state(0), 1 == l &amp; G.on_border(t, e) &amp;&amp; s.init_state(0), 2 == l &amp; G.on_corner(t, e) &amp;&amp; s.init_state(0)
+          }
+     for (let t = 0; t &lt; G.x; t++)
+          for (let e = 0; e &lt; G.y; e++) {
+               let s = G.get_cell(t, e);
+               s.is_alive() ? (&quot;black&quot; == s.color ? s.init_color(rnd_cho(PAL)) : s.color_i = &quot;black&quot;, search_party(s)) : s.init_color(&quot;black&quot;)
+          }
+}
+
+function draw() {
+     if (background(BG), vMouse(mouseX, mouseY)) {
+          let s = mouseX,
+               l = mouseY;
+          t: for (let r = 0; r &lt; G.x; r++)
+               for (let o = 0; o &lt; G.y; o++) {
+                    var t = G.get_cell(r, o);
+                    if (s &gt;= t.p.x - BORDER &amp; s &lt;= t.p.x + t.p.xs + BORDER &amp;&amp; l &gt;= t.p.y - BORDER &amp; l &lt;= t.p.y + t.p.ys + BORDER) {
+                         var e = G.get_neighbor_cells(t.x, t.y, CURSOR);
+                         if (mouseIsPressed &amp; mouseButton === LEFT) {
+                              t.init_state(1), t.init_color(MC);
+                              for (let t = 0; t &lt; e.length; t++) e[t].init_state(1), e[t].init_color(MC)
+                         } else {
+                              t.state = 1;
+                              for (let t = 0; t &lt; e.length; t++) e[t].state = 1
+                         }
+                         break t
+                    }
+               }
+     }
+     for (let t = 0; t &lt; G.x; t++)
+          for (let e = 0; e &lt; G.y; e++) {
+               let s = G.get_cell(t, e),
+                    l = G.get_neighbor_properties(t, e, w = &quot;state&quot;, bd = 1);
+               l.l, l.t, l.r, l.b;
+               s.p.tl = 0 == l.t &amp; 0 == l.l ? CRVLG : CRVSM, s.p.tr = 0 == l.t &amp; 0 == l.r ? CRVLG : CRVSM, s.p.bl = 0 == l.b &amp; 0 == l.l ? CRVLG : CRVSM, s.p.br = 0 == l.b &amp; 0 == l.r ? CRVLG : CRVSM, s.p.l = 1 == l.l &amp; 0 != t, s.p.t = 1 == l.t &amp; 0 != e, s.p.b = 1 == l.b &amp; e != G.y - 1, s.p.r = 1 == l.r &amp; t != G.x - 1, JOIN &amp;&amp; (s.p.t &amp;&amp; (s.p.y = s.p_i.y - FILLING, s.p.ys = s.p_i.ys + FILLING, s.p.tl = 0, s.p.tr = 0), s.p.b &amp;&amp; (s.p.bl = 0, s.p.br = 0))
+          }
+     for (let t = 0; t &lt; G.x; t++)
+          for (let e = 0; e &lt; G.y; e++) {
+               let s = G.get_cell(t, e);
+               s.is_alive() &amp;&amp; (&quot;black&quot; == s.color &amp;&amp; (s.color = rnd_cho(PAL)), search_party(s))
+          }
+     WANDER &amp;&amp; sbox(WC.color, WC.p.x, WC.p.y, WC.p.xs, WC.p.ys, CRVLG, CRVLG, CRVLG, CRVLG);
+     for (let t = 0; t &lt; G.x; t++)
+          for (let e = 0; e &lt; G.y; e++) {
+               let s = G.get_cell(t, e);
+               s.is_alive() &amp;&amp; sbox(s.color, s.p.x, s.p.y, s.p.xs, s.p.ys, s.p.tl, s.p.tr, s.p.br, s.p.bl)
+          }
+     if (G.reset(), void 0 === t || (t.color = MC, search_party(t)), WANDER &amp;&amp; frameCount % 30 == 0) {
+          let t = G.get_neighbor_cells(WC.x, WC.y),
+               e = [];
+          for (let s = 0; s &lt; t.length; s++) t[s].is_alive() || e.push(t[s]), e.length &gt; 0 &amp;&amp; WC.copy(random(e))
+     }
+}
+
+function search_party(t) {
+     let e = G.get_neighbor_cells(t.x, t.y);
+     for (let s = 0; s &lt; e.length; s++) {
+          let l = e[s];
+          l.is_alive() &amp;&amp; &quot;black&quot; == l.color | t.color == MC &amp; l.color != MC &amp;&amp; (l.color = t.color, search_party(l))
+     }
+}
+
+function vMouse(t, e) {
+     return t &gt; 0 &amp; t &lt; DIM &amp; e &gt; 0 &amp; e &lt; DIM
+}
+
+function keyPressed() {
+     if (37 === keyCode &amp;&amp; (BG = BGL), 39 === keyCode &amp;&amp; (BG = BGD), 66 === keyCode &amp;&amp; (BG = P[0]), 38 === keyCode &amp;&amp; (JOIN = !0), 40 === keyCode &amp;&amp; (JOIN = !1), 32 == keyCode) {
+          WANDER = !0;
+          let t = [];
+          for (let e = 0; e &lt; G.x; e++)
+               for (let s = 0; s &lt; G.y; s++) G.get_cell(e, s).is_alive() || t.push(G.get_cell(e, s));
+          t.length &gt; 0 &amp;&amp; WC.copy(random(t))
+     }
+}
+
+function sbox(t, e, s, l, r, o, i, h, n) {
+     fill(t), rect(e, s, l, r, o, i, h, n)
+}
+
+function rnd_dec() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, ((seed ^= seed &lt;&lt; 5) &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3
+}
+
+function rnd_bet(t, e) {
+     return t + (e - t) * rnd_dec()
+}
+
+function rnd_cho(t) {
+     return t[Math.floor(rnd_bet(0, .99 * t.length))]
+}</pre></body></html>

@@ -1,0 +1,513 @@
+<html><body><h1>Name: Unigrids</h1><h3>Artist: Zeblocks</h3><h3>Description: Unigrids are collectible digital art pieces 100% stored on the Ethereum blockchain. Each Unigrid consists of 421 individual Pure Javascript generated SVG grids, ensuring each Unigrid is entirely unique. Not only are Unigrids visually unique, but they also hide an ingenious animation and a generated beat to enhance your experience. Unigrids are an experiential piece of art, with a static image for printing, an animation, and companion beat - all generated and stored on the blockchain. You truly need to play around with Unigrids to understand the essence of them. Be sure to hold onto your favorite piece as we will be adding interactive easter eggs for art owners, giveaways, and other engagement with the community.</h3><h3>https://zeblocks.com/</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;svg&quot;,&quot;version&quot;:&quot;N/A&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;curated&quot;}</p><p>Script Type: svg</p><p>Version: N/A</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xb033daedca113b0386eb3e8f4c72c79fc50ae32e</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 421</p><p>Maximum Invocations: 421</p><p>License: NFT License</p><p>Token Ids: 12000000,12000001,12000002,12000003,12000004,12000005,12000006,12000007,12000008,12000009,12000010,12000011,12000012,12000013,12000014,12000015,12000016,12000017,12000018,12000019,12000020,12000021,12000022,12000023,12000024,12000025,12000026,12000027,12000028,12000029,12000030,12000031,12000032,12000033,12000034,12000035,12000036,12000037,12000038,12000039,12000040,12000041,12000042,12000043,12000044,12000045,12000046,12000047,12000048,12000049,12000050,12000051,12000052,12000053,12000054,12000055,12000056,12000057,12000058,12000059,12000060,12000061,12000062,12000063,12000064,12000065,12000066,12000067,12000068,12000069,12000070,12000071,12000072,12000073,12000074,12000075,12000076,12000077,12000078,12000079,12000080,12000081,12000082,12000083,12000084,12000085,12000086,12000087,12000088,12000089,12000090,12000091,12000092,12000093,12000094,12000095,12000096,12000097,12000098,12000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>let seed = parseInt(tokenData.hash.slice(0, 16));
+
+function rnd() {
+     seed ^= seed &lt;&lt; 13;
+     seed ^= seed &gt;&gt; 17;
+     seed ^= seed &lt;&lt; 5;
+     return (seed &lt; 0 ? ~seed + 1 : seed) % 1e3 / 1e3
+}
+var stylesheet = document.createElement(&quot;style&quot;);
+stylesheet.innerText = &quot;@media (orientation: portrait) {#unigrids {width: 100vw;display: block;margin: 0 auto;}}@media (orientation: landscape) {#unigrids {height: 100vh;display: block;margin: 0 auto;}}&quot;;
+document.head.appendChild(stylesheet);
+let colors = [
+     [&quot;#0c0f0a&quot;, &quot;#ff206e&quot;, &quot;#fbff12&quot;, &quot;#41ead4&quot;, &quot;#ffffff&quot;],
+     [&quot;#000000&quot;, &quot;#111111&quot;, &quot;#232323&quot;, &quot;#575757&quot;, &quot;#7a7a7a&quot;],
+     [&quot;#ffffff&quot;, &quot;#e3e3e3&quot;, &quot;#aaaaaa&quot;, &quot;#dbdbdb&quot;, &quot;#e5e5e5&quot;],
+     [&quot;#114b5f&quot;, &quot;#1a936f&quot;, &quot;#88d498&quot;, &quot;#c6dabf&quot;, &quot;#f3e9d2&quot;],
+     [&quot;#2b2d42&quot;, &quot;#8d99ae&quot;, &quot;#edf2f4&quot;, &quot;#ef233c&quot;, &quot;#d90429&quot;],
+     [&quot;#e63946&quot;, &quot;#f1faee&quot;, &quot;#a8dadc&quot;, &quot;#457b9d&quot;, &quot;#1d3557&quot;],
+     [&quot;#f72585&quot;, &quot;#7209b7&quot;, &quot;#3a0ca3&quot;, &quot;#4361ee&quot;, &quot;#4cc9f0&quot;],
+     [&quot;#003049&quot;, &quot;#d62828&quot;, &quot;#f77f00&quot;, &quot;#fcbf49&quot;, &quot;#eae2b7&quot;],
+     [&quot;#0b132b&quot;, &quot;#1c2541&quot;, &quot;#3a506b&quot;, &quot;#5bc0be&quot;, &quot;#6fffe9&quot;],
+     [&quot;#00296b&quot;, &quot;#003f88&quot;, &quot;#00509d&quot;, &quot;#fdc500&quot;, &quot;#ffd500&quot;],
+     [&quot;#000000&quot;, &quot;#14213d&quot;, &quot;#fca311&quot;, &quot;#e5e5e5&quot;, &quot;#ffffff&quot;],
+     [&quot;#8dd635&quot;, &quot;#8cff00&quot;, &quot;#052233&quot;, &quot;#093954&quot;, &quot;#054f77&quot;],
+     [&quot;#562c2c&quot;, &quot;#f2542d&quot;, &quot;#f5dfbb&quot;, &quot;#0e9594&quot;, &quot;#127475&quot;],
+     [&quot;#011627&quot;, &quot;#fdfffc&quot;, &quot;#2ec4b6&quot;, &quot;#e71d36&quot;, &quot;#ff9f1c&quot;]
+];
+
+function shuffle(array) {
+     var currentIndex = array.length,
+          temporaryValue, randomIndex;
+     while (0 !== currentIndex) {
+          randomIndex = Math.floor(rnd() * currentIndex);
+          currentIndex -= 1;
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue
+     }
+     return array
+}
+colors.forEach(function(c, i) {
+     colors[i] = shuffle(c)
+});
+const rCol = rnd();
+let colorPointer;
+if (rCol &lt; .03) {
+     colorPointer = 0
+} else if (rCol &gt;= .03 &amp;&amp; rCol &lt; .08) {
+     colorPointer = 1
+} else if (rCol &gt;= .08 &amp;&amp; rCol &lt; .13) {
+     colorPointer = 2
+} else if (rCol &gt;= .13 &amp;&amp; rCol &lt; .19875) {
+     colorPointer = 3
+} else if (rCol &gt;= .19875 &amp;&amp; rCol &lt; .2675) {
+     colorPointer = 4
+} else if (rCol &gt;= .2675 &amp;&amp; rCol &lt; .33625) {
+     colorPointer = 5
+} else if (rCol &gt;= .33625 &amp;&amp; rCol &lt; .405) {
+     colorPointer = 6
+} else if (rCol &gt;= .405 &amp;&amp; rCol &lt; .49) {
+     colorPointer = 7
+} else if (rCol &gt;= .49 &amp;&amp; rCol &lt; .575) {
+     colorPointer = 8
+} else if (rCol &gt;= .575 &amp;&amp; rCol &lt; .66) {
+     colorPointer = 9
+} else if (rCol &gt;= .66 &amp;&amp; rCol &lt; .745) {
+     colorPointer = 10
+} else if (rCol &gt;= .745 &amp;&amp; rCol &lt; .83) {
+     colorPointer = 11
+} else if (rCol &gt;= .83 &amp;&amp; rCol &lt; .915) {
+     colorPointer = 12
+} else {
+     colorPointer = 13
+}
+const numColRnd = rnd();
+let numColors;
+if (numColRnd &lt; .1) {
+     numColors = 2
+} else if (numColRnd &gt;= .1 &amp;&amp; numColRnd &lt; .3) {
+     numColors = 3
+} else if (numColRnd &gt;= .3 &amp;&amp; numColRnd &lt; .5) {
+     numColors = 4
+} else {
+     numColors = 5
+}
+
+function genColor() {
+     let col = &quot;&quot;;
+     col = colors[colorPointer][parseInt((rnd() * (numColors - 1)).toFixed(0))];
+     return col
+}
+
+function genArc(row, col, indexLetter) {
+     const col1 = genColor();
+     let svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+     svg.setAttribute(&quot;viewBox&quot;, &quot;0 0 20 20&quot;);
+     svg.setAttribute(&quot;width&quot;, 1);
+     svg.setAttribute(&quot;height&quot;, 1);
+     svg.setAttribute(&quot;x&quot;, col - 1);
+     svg.setAttribute(&quot;y&quot;, row - 1);
+     svg.setAttribute(&quot;shape-rendering&quot;, &quot;geometricPrecision&quot;);
+     svg.setAttribute(&quot;stroke-width&quot;, &quot;0&quot;);
+     if (indexLetter) {
+          svg.setAttribute(&quot;id&quot;, &quot;letterHider&quot; + indexLetter)
+     }
+     let path = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;path&quot;);
+     const rotArc = genArc ? rnd() : 0;
+     path.setAttribute(&quot;d&quot;, rotArc &gt;= .5 ? &quot;M0,20 Q1,1 20,0 Z M 0,20 L 20,20 L 20,0 Z&quot; : &quot;M0,20 Q19,19 20,0 Z M 0,0 L 0,20 L 20,0 Z&quot;);
+     path.setAttribute(&quot;fill&quot;, col1);
+     svg.appendChild(path);
+     container.appendChild(svg)
+}
+
+function revealLetter(index) {
+     var letterHider = document.querySelector(&quot;#letterHider&quot; + index);
+     letterHider.setAttribute(&quot;visibility&quot;, &quot;hidden&quot;)
+}
+
+function genTri(row, col, indexLetter) {
+     const col1 = genColor();
+     let svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+     svg.setAttribute(&quot;viewBox&quot;, &quot;0 0 2 2&quot;);
+     svg.setAttribute(&quot;width&quot;, 1);
+     svg.setAttribute(&quot;height&quot;, 1);
+     svg.setAttribute(&quot;x&quot;, col - 1);
+     svg.setAttribute(&quot;y&quot;, row - 1);
+     if (indexLetter) {
+          svg.setAttribute(&quot;id&quot;, &quot;letterHider&quot; + indexLetter)
+     }
+     let tri = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;);
+     tri.setAttribute(&quot;fill&quot;, col1);
+     var tri2 = null;
+     if (indexLetter) {
+          tri2 = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;polygon&quot;);
+          tri2.setAttribute(&quot;fill&quot;, letbg)
+     }
+     const rot = rnd();
+     if (rot &gt;= .5) {
+          tri.setAttribute(&quot;points&quot;, &quot;0,0 0,2 2,2&quot;);
+          tri2 ? tri2.setAttribute(&quot;points&quot;, &quot;0,0 2,0 2,2&quot;) : null
+     } else {
+          tri.setAttribute(&quot;points&quot;, &quot;0,2 2,0 2,2&quot;);
+          tri2 ? tri2.setAttribute(&quot;points&quot;, &quot;0,0 0,2 2,0&quot;) : null
+     }
+     svg.appendChild(tri);
+     tri2 ? svg.appendChild(tri2) : null;
+     container.appendChild(svg)
+}
+var letcolor = null;
+
+function genLetter(row, col, colbg) {
+     letcolor = letcolor ? letcolor : genColor();
+     while (colbg == letcolor) {
+          letcolor = genColor()
+     }
+     let svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+     svg.setAttribute(&quot;viewBox&quot;, &quot;0 0 2 2&quot;);
+     svg.setAttribute(&quot;width&quot;, &quot;1&quot;);
+     svg.setAttribute(&quot;height&quot;, &quot;1&quot;);
+     svg.setAttribute(&quot;x&quot;, col - 1);
+     svg.setAttribute(&quot;y&quot;, row - 1);
+     let letter = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;text&quot;);
+     letter.innerHTML = String.fromCharCode(rnd() * 25 + 65);
+     letter.setAttribute(&quot;x&quot;, &quot;1&quot;);
+     letter.setAttribute(&quot;y&quot;, &quot;1&quot;);
+     letter.setAttribute(&quot;font-size&quot;, &quot;1&quot;);
+     letter.setAttribute(&quot;fill&quot;, letcolor);
+     letter.setAttribute(&quot;text-anchor&quot;, &quot;middle&quot;);
+     letter.setAttribute(&quot;dominant-baseline&quot;, &quot;central&quot;);
+     svg.appendChild(letter);
+     container.appendChild(svg)
+}
+var numColsAndRows;
+var rs = rnd();
+if (rs &gt;= 0 &amp;&amp; rs &lt; .3) {
+     numColsAndRows = 5
+} else if (rs &gt;= .3 &amp;&amp; rs &lt; .55) {
+     numColsAndRows = 10
+} else if (rs &gt;= .55 &amp;&amp; rs &lt; .8) {
+     numColsAndRows = 15
+} else {
+     numColsAndRows = 20
+}
+let container = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+container.setAttribute(&quot;viewBox&quot;, &quot;0 0 &quot; + numColsAndRows + &quot; &quot; + numColsAndRows);
+container.setAttribute(&quot;version&quot;, &quot;1.1&quot;);
+container.setAttribute(&quot;id&quot;, &quot;unigrids&quot;);
+container.setAttribute(&quot;shape-rendering&quot;, &quot;crispEdges&quot;);
+container.setAttribute(&quot;xmlns&quot;, &quot;http://www.w3.org/2000/svg&quot;);
+container.setAttribute(&quot;stroke-width&quot;, &quot;0&quot;);
+const letbg = genColor();
+const shape = rnd();
+for (let i = 1; i &lt;= Math.pow(numColsAndRows, 2); i++) {
+     var row = Math.ceil(i / numColsAndRows);
+     var col = i - (row - 1) * numColsAndRows;
+     let square = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+     let bgcol = genColor();
+     square.setAttribute(&quot;x&quot;, col - 1);
+     square.setAttribute(&quot;y&quot;, row - 1);
+     square.setAttribute(&quot;width&quot;, &quot;1&quot;);
+     square.setAttribute(&quot;height&quot;, &quot;1&quot;);
+     square.setAttribute(&quot;stroke-width&quot;, &quot;0&quot;);
+     square.setAttribute(&quot;fill&quot;, i &gt; Math.pow(numColsAndRows, 2) - 3 ? letbg : bgcol);
+     container.appendChild(square);
+     if (i &gt; Math.pow(numColsAndRows, 2) - 3) {
+          genLetter(row, col, letbg)
+     }
+     var r = rnd();
+     if (shape &lt; .075) {
+          genArc(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+     } else if (shape &gt;= .075 &amp;&amp; shape &lt; .15) {
+          genTri(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+     } else if (shape &gt;= .15 &amp;&amp; shape &lt; .65) {
+          if (r &gt;= .5) {
+               genArc(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          } else {
+               genTri(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          }
+     } else if (shape &gt;= .65 &amp;&amp; shape &lt; .825) {
+          if (r &gt;= .25) {
+               genArc(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          } else {
+               genTri(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          }
+     } else {
+          if (r &gt;= .25) {
+               genTri(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          } else {
+               genArc(row, col, i &gt; Math.pow(numColsAndRows, 2) - 3 ? i - (Math.pow(numColsAndRows, 2) - 3) : null)
+          }
+     }
+}
+document.body.appendChild(container);
+let startedA = false;
+let startedS = false;
+
+function toggleAnimation() {
+     if (!startedA) {
+          startedA = true;
+          const shapes = document.querySelectorAll(&quot;rect, path, polygon&quot;);
+          shapes.forEach(function(s) {
+               (function r() {
+                    const t = rnd() * 2;
+                    let col = genColor();
+                    while (s.getAttribute(&quot;fill&quot;) == col) {
+                         col = genColor()
+                    }
+                    let style = &quot;transition: all &quot; + t + &quot;s; fill: &quot; + col + &quot;;&quot;;
+                    s.style = style;
+                    s.setAttribute(&quot;fill&quot;, col);
+                    if (startedA) setTimeout(function() {
+                         if (startedA) r()
+                    }, parseInt((t * 1e3).toFixed(0)))
+               })()
+          })
+     } else {
+          startedA = false
+     }
+}
+
+function toggleSound() {
+     if (!startedS) {
+          startedS = true;
+          setTimeout(function() {
+               draw2()
+          }, 100)
+     } else {
+          startedS = false;
+          Timers.forEach(function(t) {
+               clearInterval(t)
+          })
+     }
+}
+container.addEventListener(&quot;click&quot;, function() {
+     toggleAnimation()
+});
+if (window.screen.width &lt; 1024) {
+     container.addEventListener(&quot;click&quot;, function() {
+          toggleSound()
+     })
+} else {
+     document.body.addEventListener(&quot;keyup&quot;, function(e) {
+          if (e.keyCode === 32) {
+               toggleSound()
+          }
+     })
+}
+document.querySelector(&quot;#letterHider1&quot;).addEventListener(&quot;click&quot;, function(e) {
+     revealLetter(1);
+     e.stopPropagation()
+});
+document.querySelector(&quot;#letterHider2&quot;).addEventListener(&quot;click&quot;, function(e) {
+     revealLetter(2);
+     e.stopPropagation()
+});
+document.querySelector(&quot;#letterHider3&quot;).addEventListener(&quot;click&quot;, function(e) {
+     revealLetter(3);
+     e.stopPropagation()
+});
+
+function createAudioContext(desiredSampleRate) {
+     var AudioCtor = window.AudioContext || window.webkitAudioContext;
+     desiredSampleRate = typeof desiredSampleRate === &quot;number&quot; ? desiredSampleRate : 48e3;
+     var context = new AudioCtor;
+     if (/(iPhone|iPad)/i.test(navigator.userAgent) &amp;&amp; context.sampleRate !== desiredSampleRate) {
+          var buffer = context.createBuffer(1, 1, desiredSampleRate);
+          var dummy = context.createBufferSource();
+          dummy.buffer = buffer;
+          dummy.connect(context.destination);
+          dummy.start(0);
+          dummy.disconnect();
+          context.close();
+          context = new AudioCtor
+     }
+     return context
+}
+var audioContext = new createAudioContext;
+var mixGain = audioContext.createGain();
+var filterGain = audioContext.createGain();
+const volume = .5;
+
+function kick() {
+     var osc2 = audioContext.createOscillator();
+     var gainOsc2 = audioContext.createGain();
+     osc2.type = &quot;sine&quot;;
+     gainOsc2.gain.setValueAtTime(volume, audioContext.currentTime);
+     gainOsc2.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + .5);
+     gainOsc2.connect(audioContext.destination);
+     osc2.frequency.setValueAtTime(50, audioContext.currentTime);
+     osc2.connect(gainOsc2);
+     osc2.start(audioContext.currentTime);
+     osc2.stop(audioContext.currentTime + .5)
+}
+
+function snare() {
+     mixGain.gain.value = volume;
+     var osc3 = audioContext.createOscillator();
+     var gainOsc3 = audioContext.createGain();
+     filterGain.gain.setValueAtTime(.21, audioContext.currentTime);
+     filterGain.gain.exponentialRampToValueAtTime(.01, audioContext.currentTime + .2);
+     osc3.type = &quot;triangle&quot;;
+     osc3.frequency.value = 100;
+     gainOsc3.gain.setValueAtTime(0, audioContext.currentTime);
+     osc3.connect(gainOsc3);
+     gainOsc3.connect(mixGain);
+     osc3.start(audioContext.currentTime);
+     osc3.stop(audioContext.currentTime + .2);
+     var node = audioContext.createBufferSource(),
+          buffer = audioContext.createBuffer(1, 4096, audioContext.sampleRate),
+          data = buffer.getChannelData(0);
+     var filter = audioContext.createBiquadFilter();
+     filter.type = &quot;peaking&quot;;
+     filter.frequency.setValueAtTime(1e3, audioContext.currentTime);
+     filter.frequency.linearRampToValueAtTime(100, audioContext.currentTime + .05);
+     for (var i = 0; i &lt; 4096; i++) {
+          data[i] = Math.random()
+     }
+     node.buffer = buffer;
+     node.loop = true;
+     node.connect(filter);
+     filter.connect(filterGain);
+     filterGain.connect(mixGain);
+     node.start(audioContext.currentTime);
+     node.stop(audioContext.currentTime + .2)
+}
+const rhmusic = rnd();
+let rh;
+if (rhmusic &gt;= 0 &amp;&amp; rhmusic &lt; .333333) {
+     rh = 1 / 4
+} else if (rhmusic &gt;= .333333 &amp;&amp; rhmusic &lt; .666666) {
+     rh = 1 / 5
+} else {
+     rh = 1 / 6
+}
+var context = new createAudioContext;
+
+function arso(init) {
+     var melody = cmusic.melody;
+     var noteLength = rh;
+     var attack = 1 / 64;
+
+     function scheduleNote(note, time) {
+          var oscillator = context.createOscillator();
+          var gain = context.createGain();
+          oscillator.frequency.value = mtof(note);
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+          gain.gain.setValueAtTime(0, time);
+          gain.gain.linearRampToValueAtTime(init ? 0 : volume, time + attack);
+          gain.gain.linearRampToValueAtTime(0, time + noteLength);
+          oscillator.start(time);
+          oscillator.stop(time + noteLength)
+     }
+     for (var i = 0; i &lt; melody.length; i++) {
+          scheduleNote(melody[i], context.currentTime + 1 / 8 * i)
+     }
+}
+var context2 = new createAudioContext;
+
+function arso2(init) {
+     var melody = cmusic.melody2;
+     var noteLength = rh;
+     var attack = 1 / 64;
+
+     function scheduleNote(note, time) {
+          var oscillator = context2.createOscillator();
+          var gain = context2.createGain();
+          oscillator.frequency.value = mtof2(note);
+          oscillator.connect(gain);
+          gain.connect(context2.destination);
+          gain.gain.setValueAtTime(0, time);
+          gain.gain.linearRampToValueAtTime(init ? 0 : volume, time + attack);
+          gain.gain.linearRampToValueAtTime(0, time + noteLength);
+          oscillator.start(time);
+          oscillator.stop(time + noteLength)
+     }
+     for (var i = 0; i &lt; melody.length; i++) {
+          scheduleNote(melody[i], context2.currentTime + 1 / 8 * i)
+     }
+}
+
+function mtof(note) {
+     return Math.pow(2, (note - 69) / 12) * cmusic.freq
+}
+
+function mtof2(note) {
+     return Math.pow(2, (note - 69) / 12) * cmusic.freq2
+}
+mixGain.connect(audioContext.destination);
+filterGain.gain.value = 0;
+var Timers = [];
+const music = [{
+     melody: [67, 68, 59, 52, 73],
+     melody2: [0, 54, 0, 0, 47],
+     freq: 194,
+     freq2: 238
+}, {
+     melody: [73, 52, 59, 68, 67],
+     melody2: [47, 0, 0, 54, 0],
+     freq: 199,
+     freq2: 233
+}, {
+     melody: [22, 81, 70, 59, 68, 77, 66, 75],
+     melody2: [38, 0, 69, 0, 0, 57],
+     freq: 102,
+     freq2: 172
+}, {
+     melody: [75, 66, 77, 68, 59, 70, 81, 22],
+     melody2: [57, 0, 0, 69, 0, 38],
+     freq: 97,
+     freq2: 177
+}, {
+     melody: [73, 68, 0, 62, 73, 68, 0, 62],
+     melody2: [55, 0, 51, 56, 61, 64, 57],
+     freq: 165,
+     freq2: 148
+}, {
+     melody: [62, 0, 68, 73, 62, 0, 68, 73],
+     melody2: [57, 64, 61, 56, 51, 0, 55],
+     freq: 159,
+     freq2: 143
+}, {
+     melody: [71, 59, 59, 62, 62],
+     melody2: [54, 42, 58, 40, 40, 57],
+     freq: 175,
+     freq2: 238
+}, {
+     melody: [62, 62, 59, 59, 71],
+     melody2: [57, 40, 40, 58, 42, 54],
+     freq: 170,
+     freq2: 233
+}];
+const rmusic = rnd();
+let cmusic;
+if (rmusic &gt;= 0 &amp;&amp; rmusic &lt; .125) {
+     cmusic = music[0]
+} else if (rmusic &gt;= .125 &amp;&amp; rmusic &lt; .25) {
+     cmusic = music[1]
+} else if (rmusic &gt;= .25 &amp;&amp; rmusic &lt; .375) {
+     cmusic = music[2]
+} else if (rmusic &gt;= .375 &amp;&amp; rmusic &lt; .5) {
+     cmusic = music[3]
+} else if (rmusic &gt;= .5 &amp;&amp; rmusic &lt; .625) {
+     cmusic = music[4]
+} else if (rmusic &gt;= .625 &amp;&amp; rmusic &lt; .75) {
+     cmusic = music[5]
+} else if (rmusic &gt;= .75 &amp;&amp; rmusic &lt; .875) {
+     cmusic = music[6]
+} else {
+     cmusic = music[7]
+}
+var frq = rnd() * 1.25;
+while (frq &lt; .75) {
+     frq = rnd() * 1.25
+}
+
+function draw2() {
+     Timers.push(setInterval(function() {
+          snare()
+     }, 1e3 / 1 * frq));
+     Timers.push(setInterval(function() {
+          kick()
+     }, 1e3 / 2 * frq));
+     arso(true);
+     Timers.push(setInterval(function() {
+          arso()
+     }, 1e3 / .5 * frq));
+     context2 = new createAudioContext;
+     arso2(true);
+     Timers.push(setInterval(function() {
+          arso2()
+     }, 1e3 / 1 * frq))
+}</pre></body></html>

@@ -1,0 +1,112 @@
+<html><body><h1>Name: Petri</h1><h3>Artist: Fabin Rasheed</h3><h3>Description: Petri is a home, a place of initiation for the long journey. The evolving organisms form a zen movement unique to each version. The movement is an unending, non-repeating flow in the petri. Watch and be mesmerised as the organism evolves uniquely and infinitely.</h3><h3>https://www.nurecas.com/petri</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;animationLengthInSeconds&quot;:&quot;0&quot;}</p><p>Script Type: p5js</p><p>Version: 1</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xf2a841f4025159e5a845de3172384a7bca00ddde</p><p>Additional Payee: 0xf2a841f4025159e5a845de3172384a7bca00ddde</p><p>Additional Payee Percentage: 100</p><p>Price: 0.3</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 200</p><p>Maximum Invocations: 200</p><p>License: GNU LGPL</p><p>Token Ids: 67000000,67000001,67000002,67000003,67000004,67000005,67000006,67000007,67000008,67000009,67000010,67000011,67000012,67000013,67000014,67000015,67000016,67000017,67000018,67000019,67000020,67000021,67000022,67000023,67000024,67000025,67000026,67000027,67000028,67000029,67000030,67000031,67000032,67000033,67000034,67000035,67000036,67000037,67000038,67000039,67000040,67000041,67000042,67000043,67000044,67000045,67000046,67000047,67000048,67000049,67000050,67000051,67000052,67000053,67000054,67000055,67000056,67000057,67000058,67000059,67000060,67000061,67000062,67000063,67000064,67000065,67000066,67000067,67000068,67000069,67000070,67000071,67000072,67000073,67000074,67000075,67000076,67000077,67000078,67000079,67000080,67000081,67000082,67000083,67000084,67000085,67000086,67000087,67000088,67000089,67000090,67000091,67000092,67000093,67000094,67000095,67000096,67000097,67000098,67000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var xoff = 0,
+     yoff = 0,
+     seed = 1,
+     noiseScale = 0.0007,
+     pNV = 0,
+     pNV2 = 0,
+     c = 0,
+     b = 0,
+     startH = 0,
+     range = 55,
+     endH = 0,
+     count = 0,
+     dir = 1,
+     M = 1;
+
+function setup() {
+     var cnv;
+     if (windowWidth &gt;= windowHeight)
+          cnv = createCanvas(windowHeight, windowHeight);
+     else
+          cnv = createCanvas(windowWidth, windowWidth);
+     cnv.style('display', 'block');
+     smooth();
+     var DEFAULT_SIZE = 1000;
+     var WIDTH = window.innerWidth;
+     var HEIGHT = window.innerHeight;
+     var DIM = Math.min(WIDTH, HEIGHT);
+     var M = DIM / DEFAULT_SIZE;
+     seed = parseInt(tokenData.hash.slice(0, 16), 16);
+     let R = new Random(seed);
+     seed = R.random_between(0, 200);
+     console.log(seed);
+     pNV = width / 2;
+     pNV2 = height / 2;
+     startH = seed;
+     noiseSeed(seed);
+     colorMode(HSB, 255);
+     background(20);
+     c = color(255, 255, 255);
+     b = color(255, 255, 255);
+     noiseScale = 0.0005 / M;
+     endH = startH + range;
+     count = startH;
+}
+
+function windowResized() {
+     if (windowWidth &gt;= windowHeight)
+          resizeCanvas(windowHeight, windowHeight);
+     else
+          resizeCanvas(windowWidth, windowWidth);
+     background(20);
+}
+
+function draw() {
+     background(20, 0.3);
+     if (count &lt; startH)
+          dir = +1;
+     if (count &gt; endH)
+          dir = -1;
+     count += dir * 0.2;
+     c = color(seed, (1 - pNV) * 255 + 100, 255);
+     b = color(255 - count, (pNV) * 255 + 100, 255);
+     xoff += 0.01;
+     for (var x = 0; x &lt; width; x += 5) {
+          yoff += 0.01;
+          var noiseVal = noise((xoff + x) * noiseScale, yoff * noiseScale);
+          var noiseVal2 = noise(yoff * noiseScale, (xoff + x) * noiseScale);
+          if (x &gt; 0) {
+               strokeWeight(2 * M);
+               stroke(b);
+               line(width * noiseVal2, height * noiseVal, width * pNV2, height * pNV);
+               line(width - width * noiseVal2, height - height * noiseVal, width - width * pNV2, height - height * pNV);
+               line(width - width * noiseVal2, height * noiseVal, width - width * pNV2, height * pNV);
+               line(width * noiseVal2, height - height * noiseVal, width * pNV2, height - height * pNV);
+               fill(c)
+               noStroke();
+               ellipse(width / 2, height / 2, width / 40, width / 40);
+          }
+          pNV = noiseVal;
+          pNV2 = noiseVal2;
+     }
+     noFill();
+     stroke(c);
+     strokeWeight(2);
+     ellipse(width / 2, height / 2, width - 10, width - 10);
+     stroke(0);
+     strokeWeight(200);
+     ellipse(width / 2, height / 2, width + 192, width + 192);
+}
+class Random {
+     constructor(seed) {
+          this.seed = seed
+     }
+     random_dec() {
+          this.seed ^= this.seed &lt;&lt; 13
+          this.seed ^= this.seed &gt;&gt; 17
+          this.seed ^= this.seed &lt;&lt; 5
+          return ((this.seed &lt; 0 ? ~this.seed + 1 : this.seed) % 1000) / 1000
+     }
+     random_between(a, b) {
+          return a + (b - a) * this.random_dec()
+     }
+     random_int(a, b) {
+          return Math.floor(this.random_between(a, b + 1))
+     }
+     random_choice(x) {
+          return x[Math.floor(this.random_between(0, x.length * 0.99))]
+     }
+}
+window.onload = function() {
+     document.body.style.background = &quot;#000&quot;;
+}</pre></body></html>

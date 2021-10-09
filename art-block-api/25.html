@@ -1,0 +1,194 @@
+<html><body><h1>Name: Pathfinders</h1><h3>Artist: luxpris</h3><h3>Description: Pathfinders is an interactive generative drawing project. The script sets color palettes, brush textures, a unique avatar, and assorted start screen layouts from token data. When viewing Pathfinders, left-click the starting image to erase your canvas and watch the deterministically chosen brush trail across the screen. When you are satisfied with the output, left-click again to pause, right-click and save your image, then share your results with others.</h3><h3>https://twitter.com/luxpris</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;instructions&quot;:&quot;Left-click Pathfinders to start animation | Left-click again to pause animation | Left-click at pause to erase output and draw again | Right-click and \&quot;save image as...\&quot; at any point to save output | Refresh your window to return to the start screen&quot;,&quot;interactive&quot;:&quot;true&quot;,&quot;curation_status&quot;:&quot;playground&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: Left-click Pathfinders to start animation | Left-click again to pause animation | Left-click at pause to erase output and draw again | Right-click and &quot;save image as...&quot; at any point to save output | Refresh your window to return to the start screen</p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0xbd3527f0c0f6bd513f0a1560fc0108a291c82806</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.1</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1000</p><p>Maximum Invocations: 1000</p><p>License: CC BY-NC 4.0</p><p>Token Ids: 25000000,25000001,25000002,25000003,25000004,25000005,25000006,25000007,25000008,25000009,25000010,25000011,25000012,25000013,25000014,25000015,25000016,25000017,25000018,25000019,25000020,25000021,25000022,25000023,25000024,25000025,25000026,25000027,25000028,25000029,25000030,25000031,25000032,25000033,25000034,25000035,25000036,25000037,25000038,25000039,25000040,25000041,25000042,25000043,25000044,25000045,25000046,25000047,25000048,25000049,25000050,25000051,25000052,25000053,25000054,25000055,25000056,25000057,25000058,25000059,25000060,25000061,25000062,25000063,25000064,25000065,25000066,25000067,25000068,25000069,25000070,25000071,25000072,25000073,25000074,25000075,25000076,25000077,25000078,25000079,25000080,25000081,25000082,25000083,25000084,25000085,25000086,25000087,25000088,25000089,25000090,25000091,25000092,25000093,25000094,25000095,25000096,25000097,25000098,25000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>function setup() {
+     const e = Math.min(windowWidth, windowHeight);
+     cnv = createCanvas(e, e), cnv.mouseClicked(controls), multiplier = width / 2400, frameRate(60), background(primary), rectMode(CENTER), drawCircuitGrid(), noLoop()
+}
+
+function controls() {
+     &quot;off&quot; == state ? (background(primary), loop(), state = &quot;on&quot;) : &quot;on&quot; == state ? (noLoop(), state = &quot;paused&quot;) : &quot;paused&quot; == state &amp;&amp; (background(primary), loop(), state = &quot;on&quot;, setShadowContext())
+}
+
+function setGridSize() {
+     let e, i, t, l = map(decPairs[0], 0, 255, 0, 100);
+     return l &lt;= 33 ? (gridArea = 60, i = 40, strokeWeight(3 * multiplier), t = 40, e = &quot;Start Screen Grid Size: Small&quot;) : l &gt; 33 &amp;&amp; l &lt;= 69 ? (gridArea = 240, strokeWeight(3 * multiplier), i = 10, t = 10, e = &quot;Start Screen Grid Size: Medium&quot;) : l &lt; 69 &amp;&amp; l &lt;= 84 ? (gridArea = 600, strokeWeight(3 * multiplier), i = 4, t = 4, e = &quot;Start Screen Grid Size: Large&quot;) : (gridArea = 1200, strokeWeight(3 * multiplier), i = 2, t = 2, e = &quot;Start Screen Grid Size: Large&quot;), features.push(e), featuresReduced.push(e), [gridArea, i, t, e]
+}
+
+function getGridOutputs() {
+     let e = setGridSize();
+     gridArea = e[0], rMax = e[1], cMax = e[2]
+}
+
+function drawCircuitGrid() {
+     getGridOutputs(), stroke(secondary), fill(primary);
+     for (let e = 0; e &lt; rMax; e++)
+          for (let i = 0; i &lt; cMax; i++) {
+               let t, l, r, a, u, m, p, o = map(rnd(), 0, 1, 0, 100);
+               o &lt; 33 ? (t = 0 + i * gridArea * multiplier, l = 0 + e * gridArea * multiplier, r = gridArea * multiplier + i * gridArea * multiplier, a = gridArea * multiplier + e * gridArea * multiplier, line(t, l, r, a)) : o &gt; 66 ? (t = gridArea * multiplier + i * gridArea * multiplier, l = gridArea * multiplier + e * gridArea * multiplier, r = gridArea * multiplier + i * gridArea * multiplier, a = 0 * multiplier + e * gridArea * multiplier, line(t, l, r, a)) : (u = gridArea / 2 * multiplier + i * gridArea * multiplier, m = gridArea / 2 * multiplier + e * gridArea * multiplier, p = gridArea / 4 * multiplier, circle(u, m, p))
+          }
+}
+
+function setPalette() {
+     let e, i, t, l, r, a = mapRange(decPairs[1], 0, 255, 1, 100);
+     a &lt;= 8 ? (e = &quot;#eeeeee&quot;, i = &quot;#111111&quot;, t = &quot;#111111&quot;, l = &quot;#eeeeee&quot;, r = &quot;Light Palette&quot;) : a &gt; 8 &amp;&amp; a &lt;= 16 ? (e = &quot;#111111&quot;, i = &quot;#eeeeee&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Dark Palette&quot;) : a &gt; 16 &amp;&amp; a &lt;= 20 ? (e = &quot;#127475&quot;, i = &quot;#F5DFBB&quot;, t = &quot;#111111&quot;, l = &quot;#127457&quot;, r = &quot;Emerald Palette&quot;) : a &gt; 20 &amp;&amp; a &lt;= 25 ? (e = &quot;#6f3ddb&quot;, i = &quot;#c4c0ba&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Cream Palette&quot;) : a &gt; 25 &amp;&amp; a &lt;= 30 ? (e = &quot;#eeeeee&quot;, i = &quot;#3786ad&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Sky Palette&quot;) : a &gt; 30 &amp;&amp; a &lt;= 35 ? (e = &quot;#eeeeee&quot;, i = &quot;#b27077&quot;, t = &quot;#eeeeee&quot;, l = &quot;#eeeeee&quot;, r = &quot;Rose Palette&quot;) : a &gt; 35 &amp;&amp; a &lt;= 40 ? (e = &quot;#B8C7C4&quot;, i = &quot;#435060&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Overcast Palette&quot;) : a &gt; 40 &amp;&amp; a &lt;= 45 ? (e = &quot;#435060&quot;, i = &quot;#CDD1C4&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Steel Palette&quot;) : a &gt; 45 &amp;&amp; a &lt;= 50 ? (e = &quot;#001427&quot;, i = &quot;#F4D58D&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Jasmine Palette&quot;) : a &gt; 50 &amp;&amp; a &lt;= 52 ? (e = &quot;#41FF00&quot;, i = &quot;#111111&quot;, t = &quot;#41FF00&quot;, l = &quot;#41FF00&quot;, r = &quot;Terminal Palette&quot;) : a &gt; 52 &amp;&amp; a &lt;= 57 ? (e = &quot;#ED8B8A&quot;, i = &quot;#0A2044&quot;, t = &quot;white&quot;, l = &quot;white&quot;, r = &quot;Bubblegum Palette&quot;) : a &gt; 57 &amp;&amp; a &lt;= 62 ? (e = &quot;#BE00FF&quot;, i = &quot;#FFFFFF&quot;, t = &quot;#BE00FF&quot;, l = &quot;#BE00FF&quot;, r = &quot;Neon Palette&quot;) : a &gt; 62 &amp;&amp; a &lt;= 67 ? (e = &quot;#111111&quot;, i = &quot;#4D8F88&quot;, t = &quot;#111111&quot;, l = &quot;#111111&quot;, r = &quot;Ice Palette&quot;) : a &gt; 67 &amp;&amp; a &lt;= 72 ? (e = &quot;#ffebd8&quot;, i = &quot;#516E5A&quot;, t = &quot;#eeeeee&quot;, l = &quot;#eeeeee&quot;, r = &quot;Forest Palette&quot;) : a &gt; 72 &amp;&amp; a &lt;= 76 ? (e = &quot;#47383B&quot;, i = &quot;#BCAF9F&quot;, t = &quot;#BCAF9F&quot;, l = &quot;#BCAF9F&quot;, r = &quot;Adobe Palette&quot;) : a &gt; 76 &amp;&amp; a &lt;= 82 ? (e = &quot;#BCAF9F&quot;, i = &quot;#322E3B&quot;, t = &quot;#322E3B&quot;, l = &quot;#eeeeee&quot;, r = &quot;Muted Violet Palette&quot;) : a &gt; 82 &amp;&amp; a &lt;= 85 ? (e = &quot;#ffebd8&quot;, i = &quot;#0b2a72&quot;, t = &quot;#41FF00&quot;, l = &quot;#41FF00&quot;, r = &quot;Terminal Blue Palette&quot;) : a &gt; 85 &amp;&amp; a &lt;= 90 ? (e = &quot;#111111&quot;, i = &quot;#F2B7C6&quot;, t = &quot;#41FF00&quot;, l = &quot;#41FF00&quot;, r = &quot;Unicorn Palette&quot;) : a &gt; 90 &amp;&amp; a &lt;= 95 ? (e = &quot;#FFB697&quot;, i = &quot;#404040&quot;, t = &quot;#eeeeee&quot;, l = &quot;#eeeeee&quot;, r = &quot;Dusted Orange Palette&quot;) : (e = &quot;#111111&quot;, i = &quot;#FCEA08&quot;, t = &quot;#111111&quot;, l = &quot;#FCEA08&quot;, r = &quot;Bumblebee Palette&quot;), features.push(&quot;Color: &quot; + r), featuresReduced.push(&quot;Color: &quot; + r);
+     let u = [e, i, t, l];
+     return u
+}
+
+function drawAvatar() {
+     function e() {
+          let e = map(decPairs[2], 0, 255, 1, 16);
+          for (let i = 0; i &lt; e; i++) {
+               blendMode(DIFFERENCE), rectMode(CENTER), strokeWeight(random(1, 12) * multiplier), stroke(avatarStroke), fill(avatarFill), t = map(decPairs[4 * i] || 0, 0, 255, 1920 * multiplier, 2225 * multiplier), l = map(decPairs[5 * i] || 0, 0, 255, height - 300 * multiplier, height - 480 * multiplier), r = map(decPairs[6 * i] || 0, 0, 255, 25 * multiplier, 75 * multiplier), a = map(decPairs[7 * i] || 0, 0, 255, 25 * multiplier, 75 * multiplier);
+               let e = map(decPairs[8], 0, 255, 0 * multiplier, 25 * multiplier);
+               rect(t, l, r, a, e), rect(4080 * multiplier - t, l, r, a, e)
+          }
+     }
+
+     function i() {
+          for (let e = 0; e &lt; map(decPairs[8], 0, 255, 1, 10); e++) {
+               strokeWeight(map(decPairs[9], 0, 255, 1 * multiplier, 3 * multiplier));
+               let i = map(decPairs[10 + e], 0, 255, 1820 * multiplier, 2040 * multiplier),
+                    t = map(decPairs[11 + e], 0, 255, 1880 * multiplier, 2040 * multiplier),
+                    l = i,
+                    r = 2040 * multiplier;
+               line(i, t, l, r), line(4080 * multiplier - i, t, 4080 * multiplier - l, r), line(i, 4080 * multiplier - t, l, r), line(4080 * multiplier - i, 4080 * multiplier - t, 4080 * multiplier - l, r), i = map(decPairs[12 + e], 0, 255, 1840 * multiplier, 2040 * multiplier), t = map(decPairs[13 + e], 0, 255, 1840 * multiplier, 2040 * multiplier), l = 2040 * multiplier, r = t, line(i, t, l, r), line(4080 * multiplier - i, t, 4080 * multiplier - l, r), line(i, 4080 * multiplier - t, l, 4080 * multiplier - r), line(4080 * multiplier - i, 4080 * multiplier - t, 4080 * multiplier - l, 4080 * multiplier - r)
+          }
+     }
+     let t, l, r, a;
+     e(), blendMode(BLEND), n = map(decPairs[14], 0, 255, 0, 99), n &lt; 40 ? stroke(secondary) : stroke(primary), i()
+}
+
+function mapRange(e, i, t, l, r) {
+     return e = (e - i) / (t - i), l + e * (r - l)
+}
+
+function drawImage() {
+     function e() {
+          let e = color(secondary);
+          e.setAlpha(10), stroke(e), strokeWeight(1 * multiplier)
+     }
+
+     function i() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 200 * multiplier, W = Math.cos(.001 * millis()), G = 500 * multiplier, z = 1.1 * e * multiplier, circle(g, B, D + W * G + z)
+     }
+
+     function l() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 200 * multiplier, W = Math.cos(.001 * millis()), G = 500 * multiplier, z = 1.1 * e * multiplier, circle(g, B, D + W * G + z), D = 100 * multiplier, W = Math.cos(.001 * millis()), G = 250 * multiplier, z = 1.1 * e * multiplier, square(g, B, D + W * G + z)
+     }
+
+     function r() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 100 * multiplier, W = Math.tan(.01 * millis()), G = 0 * multiplier, z = 2 * e * multiplier, circle(g, B, D + W * G + z), circle(P, C, D + W * G + z), circle(F, y, D + W * G + z), D = 0 * multiplier, W = Math.cos(.005 * millis()), G = 40 * multiplier, z = 1 * e * multiplier, triangle(g, B, P, C, F, y + D + W * G + z)
+     }
+
+     function a() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 0 * multiplier, W = Math.cos(.001 * millis()), G = 100 * multiplier, z = 1 * e * multiplier, circle(g, B, D + W * G + z), circle(P, C, D + W * G + z), circle(F, y, D + W * G + z), D = 0 * multiplier, W = Math.cos(.005 * millis()), G = 40 * multiplier, z = 2 * e * multiplier, triangle(g, B, P, C, F, y + D + W * G + z)
+     }
+
+     function u() {
+          e();
+          for (let e = 0; e &lt; 20; e++) D = 0 * multiplier, W = Math.tan(1e-4 * millis()), G = 10 * multiplier, z = 4 * e * multiplier, line(g, B, P, C, F, y + D + W * G + z), D = 0 * multiplier, W = Math.cos(.001 * millis()), G = 20 * multiplier, z = 1 * e * multiplier, circle(g, B, w + D + W * G + z)
+     }
+
+     function m() {
+          e();
+          for (let e = 0; e &lt; 20; e++) D = 0 * multiplier, W = Math.sin(1e-4 * millis()), G = 10 * multiplier, z = 4 * e * multiplier, line(g, B, P, C + D + W * G + z), D = 0 * multiplier, W = Math.cos(.001 * millis()), G = 2 * multiplier, z = 8 * e * multiplier, line(w, E, F, y)
+     }
+
+     function p() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 0 * multiplier, W = Math.tan(.01 * millis()), G = 50 * multiplier, z = 2 * e * multiplier, circle(g, B, D + W * G + z), circle(P, C, D + W * G + z), circle(F, y, D + W * G + z), D = 0 * multiplier, W = Math.cos(.005 * millis()), G = 40 * multiplier, z = 1 * e * multiplier, triangle(g, B, P, C, F, y + D + W * G + z)
+     }
+
+     function o() {
+          e();
+          for (let e = 0; e &lt; 20; e++) D = 0 * multiplier, W = Math.tan(3e-4 * millis()), G = 500 * multiplier, z = 2 * e * multiplier, circle(g, B, D + W * G + z)
+     }
+
+     function n() {
+          e();
+          for (let e = 0; e &lt; 20; e++) D = 0 * multiplier, W = Math.sin(.001 * millis()), G = 20 * multiplier, z = 1.1 * e * multiplier, line(g, B, P, C + D + W * G + z), line(g, B, F, y + D + W * G + z), line(g, B, w, E + D + W * G + z)
+     }
+
+     function s() {
+          e();
+          for (let e = 0; e &lt; 10; e++) D = 100 * multiplier, W = Math.tan(.01 * millis()), G = 10 * multiplier, z = 1 * e * multiplier, circle(g, B, D + W * G + z), circle(P, C, D + W * G + z), circle(F, y, D + W * G + z), D = 0 * multiplier, W = Math.cos(.005 * millis()), G = 40 * multiplier, z = 1 * e * multiplier, triangle(g, B, P, C, F, y + D + W * G + z)
+     }
+
+     function c() {
+          e();
+          for (let e = 0; e &lt; 10; e++) D = 0 * multiplier, W = Math.tan(.01 * millis()), G = 10 * multiplier, z = 2 * e * multiplier, circle(S, v, D + W * G + z), circle(A, b, D + W * G + z), circle(k, x, D + W * G + z), circle(M, R, D + W * G + z)
+     }
+
+     function d() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 0 * multiplier, W = Math.cos(.01 * millis()), G = 20 * multiplier, z = 1 * e * multiplier, ellipse(S, v, D + W * G + z), ellipse(A, b, D + W * G + z), ellipse(k, x, D + W * G + z), ellipse(M, R, D + W * G + z)
+     }
+
+     function h() {
+          e();
+          for (let e = 0; e &lt; 15; e++) D = 200 * multiplier, W = Math.cos(5e-4 * millis()), G = 1e3 * multiplier, z = 100 * e * multiplier, circle(g, B, D + W * G - z)
+     }
+
+     function f() {
+          return &quot;none&quot;
+     }
+     var g = width * noise(t + 100 * multiplier),
+          P = width * noise(t + 200 * multiplier),
+          F = width * noise(t + 300 * multiplier),
+          w = width * noise(t + 400 * multiplier),
+          S = width * noise(t + 500 * multiplier),
+          A = width * noise(t + 600 * multiplier),
+          k = width * noise(t + 700 * multiplier),
+          M = width * noise(t + 800 * multiplier),
+          B = height * noise(t + 900 * multiplier),
+          C = height * noise(t + 1e3 * multiplier),
+          y = height * noise(t + 1100 * multiplier),
+          E = height * noise(t + 1200 * multiplier),
+          v = height * noise(t + 130 * multiplier),
+          b = height * noise(t + 1400 * multiplier),
+          x = height * noise(t + 1500 * multiplier),
+          R = height * noise(t + 1600 * multiplier);
+     let D, W, G, z, I = featurePrimaryBrushStroke,
+          L = featureSecondaryBrushStroke,
+          O = [i, l, r, a, u, m, p, o, n, s],
+          N = [c, d, h, f];
+     t += map(decPairs[17], 0, 255, .001, .005), stroke(secondary), noFill(), O[I](), N[L]()
+}
+
+function draw() {
+     frameCount &lt;= 2 &amp;&amp; setShadowContext(), noFill(), resetMatrix(), frameCount &gt; 1 &amp;&amp; drawImage(), stroke(secondary), strokeWeight(360 * multiplier), rect(width / 2, height / 2, width, height), stroke(secondary), strokeWeight(40 * multiplier), strokeWeight(10 * multiplier), fill(secondary), stroke(primary), circle(width - 360 * multiplier, height - 360 * multiplier, width / 4), revertShadowContext(), randomSeed(avatarSeed), drawAvatar()
+}
+
+function setShadowContext() {
+     drawingContext.shadowBlur = 40 * multiplier, drawingContext.shadowColor = secondary
+}
+
+function revertShadowContext() {
+     drawingContext.shadowOffsetX = 0, drawingContext.shadowOffsetY = 0, drawingContext.shadowBlur = 0
+}
+
+function rnd() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, seed ^= seed &lt;&lt; 5, (seed &lt; 0 ? 1 + ~seed : seed) % 1e6 / 1e6
+}
+let hashPairs = [];
+for (let e = 0; e &lt; 32; e++) hashPairs.push(tokenData.hash.slice(2 + 2 * e, 4 + 2 * e));
+let seed = parseInt(tokenData.hash.slice(48, 64), 16),
+     decPairs = hashPairs.map(e =&gt; parseInt(e, 16));
+var multiplier, cnv, gridArea = 60,
+     primary = &quot;#111111&quot;,
+     secondary = &quot;#eeeeee&quot;,
+     features = [],
+     featuresReduced = [];
+let palette = setPalette();
+primary = palette[0], secondary = palette[1];
+let t, avatarStroke = palette[2],
+     avatarFill = palette[3],
+     state = &quot;off&quot;;
+t = 0;
+let featurePrimaryBrushStroke = Math.floor(mapRange(decPairs[15], 0, 255, 0, 9)),
+     featureSecondaryBrushStroke = Math.floor(mapRange(decPairs[16], 0, 255, 0, 3));
+features.push(&quot;Primary Brush Variant: &quot; + featurePrimaryBrushStroke), featuresReduced.push(&quot;Primary Brush Variant: &quot; + featurePrimaryBrushStroke), features.push(&quot;Secondary Brush Variant: &quot; + featureSecondaryBrushStroke), featuresReduced.push(&quot;Secondary Brush Variant: &quot; + featureSecondaryBrushStroke);
+let avatarSeed = Math.floor(decPairs[18], 0, 255, 1, 1e4);</pre></body></html>

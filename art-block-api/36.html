@@ -1,0 +1,339 @@
+<html><body><h1>Name: Gazettes</h1><h3>Artist: Redlioneye Gazette</h3><h3>Description: Gazettes is a generative art project by the Redlioneye Gazette team and Pxlq. The project pays tribute to print media and highlights classic formatting such as paragraph layouts, headings, variously styled texts, and images. We have mixed together our publication concept with classical journalism and generative art to deliver exciting, surprising, unique, and visually stunning
+random creations on chain and forever.</h3><h3>https://redlion.news/gazettes-generative-art</h3><hr/><p>Script JSON: {&quot;type&quot;:&quot;p5js&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;aspectRatio&quot;:&quot;1&quot;,&quot;curation_status&quot;:&quot;factory&quot;}</p><p>Script Type: p5js</p><p>Version: 1.0.0</p><p>Script Ratio: 1</p><p>Instructions: </p><p>Hashes Generated per Token: true</p><p>Dynamic Asset? true</p><hr/><p>Artist Ethereum Address: 0x0a690b298f84d12414f5c8db7de1ece5a4605877</p><p>Additional Payee: 0x0000000000000000000000000000000000000000</p><p>Additional Payee Percentage: 0</p><p>Price: 0.15</p><p>Currency: ETH</p><p>Currency Address: N/A</p><p>Invocations: 1024</p><p>Maximum Invocations: 1024</p><p>License: NIFTY License</p><p>Token Ids: 36000000,36000001,36000002,36000003,36000004,36000005,36000006,36000007,36000008,36000009,36000010,36000011,36000012,36000013,36000014,36000015,36000016,36000017,36000018,36000019,36000020,36000021,36000022,36000023,36000024,36000025,36000026,36000027,36000028,36000029,36000030,36000031,36000032,36000033,36000034,36000035,36000036,36000037,36000038,36000039,36000040,36000041,36000042,36000043,36000044,36000045,36000046,36000047,36000048,36000049,36000050,36000051,36000052,36000053,36000054,36000055,36000056,36000057,36000058,36000059,36000060,36000061,36000062,36000063,36000064,36000065,36000066,36000067,36000068,36000069,36000070,36000071,36000072,36000073,36000074,36000075,36000076,36000077,36000078,36000079,36000080,36000081,36000082,36000083,36000084,36000085,36000086,36000087,36000088,36000089,36000090,36000091,36000092,36000093,36000094,36000095,36000096,36000097,36000098,36000099</p><p>Active? true</p><p>Paused? false</p><hr/><p><strong>Script:</strong></p><pre>var seed = parseInt(tokenData.hash.slice(0, 16), 16);
+
+function rnd_dec() {
+     return seed ^= seed &lt;&lt; 13, seed ^= seed &gt;&gt; 17, ((seed ^= seed &lt;&lt; 5) &lt; 0 ? 1 + ~seed : seed) % 1e3 / 1e3
+}
+
+function rnd_num(e = 0, n = 1) {
+     return e + (n - e) * rnd_dec()
+}
+
+function rnd_int(e = 0, n = 1) {
+     return Math.floor(rnd_num(e, n + 1))
+}
+
+function rnd_arr(e) {
+     return e[Math.floor(rnd_num(0, .99 * e.length))]
+}
+var seed_p = parseInt(tokenData.hash.slice(0, 16), 16);
+
+function rnd_dec_p() {
+     return seed_p ^= seed_p &lt;&lt; 13, seed_p ^= seed_p &gt;&gt; 17, ((seed_p ^= seed_p &lt;&lt; 5) &lt; 0 ? 1 + ~seed_p : seed_p) % 1e3 / 1e3
+}
+
+function rnd_num_p(e = 0, n = 1) {
+     return e + (n - e) * rnd_dec_p()
+}
+class XY {
+     constructor(e, n) {
+          this.x = e, this.y = n
+     }
+}
+class Grid {
+     constructor(e, n) {
+          this.x = e, this.y = n, this.g = []
+     }
+}
+var NUMS = [
+          [3, 5, 25, 23, 3],
+          [8, 4, 24, 25, 23],
+          [8, 3, 5, 15, 14, 18, 23, 25],
+          [3, 5, 15, 13, 15, 25, 23],
+          [25, 5, 13, 15],
+          [5, 3, 13, 15, 25, 23],
+          [4, 8, 23, 25, 15, 14, 13],
+          [8, 3, 5, 24],
+          [15, 13, 3, 5, 25, 23, 13],
+          [15, 13, 3, 5, 25]
+     ],
+     SHP_CARDS = [
+          [22, 24, 18, 17, 11, 3, 15, 19, 18],
+          [11, 3, 15, 23],
+          [22, 24, 18, 17, 11, 6, 7, 3, 9, 10, 15, 19, 18],
+          [11, 7, 13, 9, 15, 23]
+     ],
+     SHP_CHESS = [
+          [1, 12, 3, 14, 5, 25, 21],
+          [6, 12, 2, 13, 4, 14, 10, 24, 22],
+          [1, 7, 3, 9, 5, 10, 14, 24, 22, 12, 6],
+          [11, 3, 4, 10, 25, 22, 14, 13, 17],
+          [21, 17, 18, 12, 7, 3, 9, 14, 18, 19, 25],
+          [21, 17, 12, 8, 14, 19, 25]
+     ],
+     SHP_ANIMALS = [
+          [16, 12, 13, 19, 14, 8, 3, 9, 5, 10, 14, 20, 24, 22],
+          [1, 12, 13, 7, 3, 9, 8, 13, 14, 5, 15, 19, 18, 24, 22, 18, 17, 11],
+          [1, 7, 8, 3, 4, 9, 5, 15, 19, 24, 25, 19, 23, 22, 18, 13, 21, 16, 12, 6],
+          [13, 1, 6, 10, 5, 13, 11, 22, 12, 23, 14, 24, 15, 13]
+     ],
+     SHP_SYMBOLS = [
+          [3, 25, 6, 10, 21],
+          [6, 2, 8, 4, 10, 14, 20, 24, 18, 22, 16, 12],
+          [6, 7, 2, 8, 4, 9, 10, 14, 20, 19, 24, 18, 22, 17, 16, 12],
+          [11, 7, 13, 9, 15, 10, 4, 2, 6, 11, 17, 22, 24, 19, 15],
+          [11, 7, 8, 12, 18, 14, 8, 9, 15, 19, 17],
+          [1, 20, 16, 5, 23, 1]
+     ],
+     SHP_LETTERS = [
+          [12, 11, 21, 22, 17, 18, 24, 25, 19, 15, 10, 4, 1, 11, 12, 7, 9, 14],
+          [1, 5, 9, 7, 13, 17, 19, 25, 21],
+          [7, 17, 18, 14, 8, 3, 4, 10, 20, 24, 21, 1, 3, 8],
+          [1, 2, 17, 20, 25, 21, 1],
+          [1, 5, 10, 9, 19, 20, 25, 21, 16, 17, 7, 6],
+          [7, 17, 19, 9, 4, 10, 20, 24, 22, 16, 6, 2, 4, 9, 7],
+          [1, 2, 14, 4, 5, 25, 24, 12, 22, 21],
+          [1, 2, 8, 4, 5, 10, 22, 21, 16, 12, 6],
+          [19, 13, 14, 20, 24, 22, 16, 6, 2, 4, 10, 7, 17],
+          [21, 6, 2, 4, 10, 25, 24, 14, 8, 12, 14, 19, 17, 22],
+          [1, 5, 10, 17, 19, 25, 21, 16, 9, 7],
+          [1, 5, 10, 9, 24, 22, 7, 6]
+     ],
+     PALS = [
+          [&quot;&quot;, &quot;#F2F2F2&quot;, &quot;#BF1534&quot;, &quot;#87091F&quot;, &quot;#590A1F&quot;, &quot;#000000&quot;],
+          [&quot;&quot;, &quot;#BFBFBF&quot;, &quot;#A6143B&quot;, &quot;#590E1C&quot;, &quot;#151A40&quot;, &quot;#030511&quot;],
+          [&quot;&quot;, &quot;#F2CAA7&quot;, &quot;#F27507&quot;, &quot;#8C4303&quot;, &quot;#401E01&quot;, &quot;#000000&quot;],
+          [&quot;&quot;, &quot;#FFE09C&quot;, &quot;#FF91C4&quot;, &quot;#00EFC7&quot;, &quot;#02445A&quot;, &quot;#01061A&quot;],
+          [&quot;&quot;, &quot;#F2BD1D&quot;, &quot;#F26716&quot;, &quot;#D90D0D&quot;, &quot;#BF1542&quot;, &quot;#081A40&quot;],
+          [&quot;&quot;, &quot;#F6E7C7&quot;, &quot;#D0D900&quot;, &quot;#F66A60&quot;, &quot;#BA2039&quot;, &quot;#2B1308&quot;],
+          [&quot;&quot;, &quot;#F1DFB9&quot;, &quot;#F2BB13&quot;, &quot;#BF871F&quot;, &quot;#CB5B1B&quot;, &quot;#5C2D05&quot;],
+          [&quot;&quot;, &quot;#F2C0A2&quot;, &quot;#846CD9&quot;, &quot;#3D278C&quot;, &quot;#351C59&quot;, &quot;#260F11&quot;],
+          [&quot;&quot;, &quot;#D9D0A3&quot;, &quot;#EE3988&quot;, &quot;#851C5B&quot;, &quot;#43234C&quot;, &quot;#0F001F&quot;],
+          [&quot;&quot;, &quot;#F2DFCE&quot;, &quot;#F2C49B&quot;, &quot;#FF6354&quot;, &quot;#EB3847&quot;, &quot;#4A1F2A&quot;],
+          [&quot;&quot;, &quot;#E2C0B1&quot;, &quot;#C28C77&quot;, &quot;#A63344&quot;, &quot;#573440&quot;, &quot;#001633&quot;],
+          [&quot;&quot;, &quot;#FFC800&quot;, &quot;#00BF4D&quot;, &quot;#0071B2&quot;, &quot;#960012&quot;, &quot;#260000&quot;],
+          [&quot;&quot;, &quot;#FFFED6&quot;, &quot;#F8D838&quot;, &quot;#E74A39&quot;, &quot;#264773&quot;, &quot;#062126&quot;],
+          [&quot;&quot;, &quot;#EFEAE7&quot;, &quot;#C7B2A2&quot;, &quot;#8F7A6A&quot;, &quot;#473C32&quot;, &quot;#1F1A16&quot;],
+          [&quot;&quot;, &quot;#30D9D9&quot;, &quot;#1EB7D9&quot;, &quot;#D92344&quot;, &quot;#0064A1&quot;, &quot;#061940&quot;],
+          [&quot;&quot;, &quot;#F9F182&quot;, &quot;#E9A746&quot;, &quot;#CE2B1B&quot;, &quot;#A41916&quot;, &quot;#3A0809&quot;]
+     ],
+     DIM = Math.min(window.innerWidth, window.innerHeight),
+     M = DIM / 1e3,
+     IG = 20 * M,
+     MV_Y = 35 * M,
+     SZ_X = 295 * M,
+     MV_X = 30 * M,
+     STRK_CAP = rnd_int(),
+     HEADR_CRV = rnd_num(0, 20),
+     NUM1 = rnd_int(0, 9),
+     NUM2 = rnd_num() &gt; .05 ? rnd_int(1, 9) : 0,
+     C_R = rnd_int(0, 15),
+     C = PALS[C_R],
+     SHAPES_R = rnd_int(0, 4),
+     SHAPES_C = [SHP_CARDS, SHP_CHESS, SHP_ANIMALS, SHP_SYMBOLS, SHP_LETTERS][SHAPES_R],
+     MULTI_COL = rnd_num() &gt; .5,
+     HEAD_R = rnd_num() &gt; .5,
+     MNMX = [
+          [3, 3],
+          [1, 2],
+          [2, 2],
+          [1, 3],
+          [1, 3],
+          [1, 3],
+          [1, 3],
+          [1, 1]
+     ],
+     MNMX_R = rnd_arr(MNMX),
+     ALGN_R = rnd_int(0, 3),
+     ALGN = [p_pl, p_la, p_ca, p_ra][ALGN_R],
+     G = new Grid(3, 4);
+for (let e = IG, n = 0; n &lt; 4; n++) {
+     let t = [170, 150, 200, 320][n] * M,
+          r = [];
+     for (let _ = IG, l = 0; l &lt; 3; l++) {
+          let o = new XY(l, n);
+          o.x1 = _, o.y1 = e, o.x2 = _ + SZ_X, o.y2 = e + t, r.push(o), _ += SZ_X + MV_X
+     }
+     G.g.push(r), e += t + MV_Y
+}
+var ys, PATHS = [];
+
+function pull_g(e, n = 1, t = 1) {
+     for (; ys.length &gt; 0;) {
+          let r = Math.min(ys.length, rnd_int(n, t)),
+               _ = ys.slice(0, r),
+               l = [];
+          for (let n of _) {
+               let t = ys.indexOf(n);
+               t &gt; -1 &amp;&amp; ys.splice(t, 1);
+               let r = MULTI_COL ? [n, e + 1] : [e, n];
+               l.push(r)
+          }
+          PATHS.push(l)
+     }
+}
+HEAD_R ? (PATHS.push([
+     [0, 0],
+     [1, 0]
+]), PATHS.push([
+     [2, 0]
+])) : (PATHS.push([
+     [0, 0]
+]), PATHS.push([
+     [1, 0],
+     [2, 0]
+]));
+for (let e = 0; e &lt; 3; e++) ys = MULTI_COL ? [0, 1, 2] : [1, 2, 3], pull_g(e, mn = MNMX_R[0], mx = MNMX_R[1]);
+let Gs = [];
+for (let e of PATHS) {
+     let n = [];
+     for (let t of e) n.push(G.g[t[1]][t[0]]);
+     Gs.push(n)
+}
+
+function line_style(e, n, t) {
+     strokeJoin(ROUND), strokeCap([ROUND, PROJECT][t]), strokeWeight(e), stroke(C[n])
+}
+
+function get_lines(e, n, t, r) {
+     let _ = [];
+     for (let l = n + 35 * M, o = 0; l &lt; r - 20 * M; l += 20 * M, o++) _.push({
+          x1: e + 15 * M,
+          x2: t - 15 * M,
+          y: l,
+          i: o
+     });
+     return _
+}
+
+function drw_shp(e, n, t = !0) {
+     beginShape();
+     for (let t of e) {
+          let e = n[t - 1];
+          vertex(e[0], e[1])
+     }
+     t ? endShape(CLOSE) : endShape()
+}
+
+function get_boxp(e, n, t, r, _ = !0) {
+     let l = [],
+          o = (t - e) / 4,
+          i = (r - n) / 4;
+     for (let t = 0; t &lt; 5; t++) {
+          let r = [];
+          for (let _ = 0; _ &lt; 5; _++) r.push([e + _ * o, n + t * i]);
+          l = _ ? l.concat(r.reverse()) : l.concat(r)
+     }
+     return l
+}
+
+function par_box_la(e) {
+     for (let n of e) {
+          let e = n.i &lt; 6 ? n.x1 + 140 * M : n.x1;
+          line(e, n.y, n.x2, n.y)
+     }
+}
+
+function par_box_ra(e) {
+     for (let n of e) {
+          let e = n.i &lt; 6 ? n.x2 - 140 * M : n.x2;
+          line(n.x1, n.y, e, n.y)
+     }
+}
+
+function shadow_box(e, n, t, r, _) {
+     let l = e + 15 * M,
+          o = n + 15 * M,
+          i = t + 15 * M,
+          s = r + 15 * M;
+     noStroke(), fill(C[3]), drw_box(l, o, i, s), noStroke(), fill(C[4]), beginShape(), vertex(t, n), vertex(i, o), vertex(l, o), endShape(CLOSE), beginShape(), vertex(e, r), vertex(l, s), vertex(l, o), endShape(CLOSE), noStroke(), fill(_), drw_box(e, n, t, r), stroke(C[3]), strokeWeight(10 * M), strokeCap(PROJECT)
+}
+
+function p_hp(e) {
+     for (let n of e) {
+          let t = 0,
+               r = 0;
+          n.i &gt; 1 &amp;&amp; (n.i == e.length - 1 &amp;&amp; (r = rnd_num_p(.1, .5)), xline(n.x1, n.x2, n.y, t, r))
+     }
+}
+
+function p_pl(e) {
+     for (let n of e) {
+          let t = 0,
+               r = 0;
+          0 == n.i &amp;&amp; (t = rnd_num_p(.1, .25)), n.i == e.length - 1 &amp;&amp; (r = rnd_num_p(.1, .25)), xline(n.x1, n.x2, n.y, t, r)
+     }
+}
+
+function p_ca(e) {
+     for (let n of e) r_ca(n.x1, n.x2, n.y)
+}
+
+function p_la(e) {
+     for (let n of e) r_la(n.x1, n.x2, n.y)
+}
+
+function p_ra(e) {
+     for (let n of e) r_ra(n.x1, n.x2, n.y)
+}
+
+function r_ca(e, n, t) {
+     let r = rnd_num_p(0, .3);
+     xline(e, n, t, lp = r, rp = r)
+}
+
+function r_la(e, n, t) {
+     xline(e, n, t, lp = 0, rp = rnd_num_p(.1, .5))
+}
+
+function r_ra(e, n, t) {
+     xline(e, n, t, lp = rnd_num_p(.1, .5), rp = 0)
+}
+
+function xline(e, n, t, r = 0, _ = 0) {
+     let l = n - e;
+     line(e + l * r, t, n - l * _, t)
+}
+
+function drw_box(e, n, t, r) {
+     rect(e, n, t - e, r - n)
+}
+
+function setup() {
+     createCanvas(DIM, DIM), background(C[5]);
+     for (let e = 0; e &lt; Gs.length; e++) {
+          let n = Gs[e],
+               t = Math.min.apply(Math, n.map(e =&gt; e.x1)),
+               r = Math.min.apply(Math, n.map(e =&gt; e.y1)),
+               _ = Math.max.apply(Math, n.map(e =&gt; e.x2)),
+               l = Math.max.apply(Math, n.map(e =&gt; e.y2)),
+               o = get_lines(t, r, _, l),
+               i = rnd_arr([C[1], C[2]]);
+          if (e &lt; 2 &amp; n.length &gt; 1) {
+               let e = l - r,
+                    n = _ - t;
+               rnd_num() &gt; .5 ? (shadow_box(t, r, t + n * rnd_num(.5, 1), r + e / 2.5, i), shadow_box(t, r + e / 1.75, t + n * rnd_num(.5, 1), l, i)) : (shadow_box(t, r, t + n * rnd_num(.75, 1), r + e / 5, i), noStroke(), fill(C[3]), drw_box(t, r + e / 2.5, t + n * rnd_num(.5, 1), r + e / 2), drw_box(t, r + e / 1.7, t + n * rnd_num(.5, 1), r + e / 1.3), drw_box(t, r + e / 1.15, t + n * rnd_num(.5, 1), r + e / 1))
+          } else shadow_box(t, r, _, l, i);
+          if (e &lt; 2) {
+               if (1 == n.length) {
+                    let e = NUMS[NUM1];
+                    strokeJoin(ROUND), strokeWeight(15 * M), stroke(C[4]), noFill();
+                    let n = _ - 15 * M,
+                         t = r + 15 * M,
+                         l = n - 125 * M,
+                         o = t + 125 * M;
+                    if (drw_shp(e, get_boxp(n, t, l, o), !1), NUM2 &gt; 0) {
+                         drw_shp(NUMS[NUM2], get_boxp(n - 90 * M, t, l - 90 * M, o), !1)
+                    }
+               }
+          } else if (rnd_num() &gt; .6) {
+               let e = rnd_arr(SHAPES_C);
+               RA_SHAPE = rnd_int() &gt; .5;
+               let n = t + 15 * M,
+                    l = r + 15 * M,
+                    i = n + 115 * M;
+               RA_SHAPE &amp;&amp; (i = (n = _ - 15 * M) - 115 * M);
+               let s = get_boxp(n, l, i, l + 115 * M, RA_SHAPE);
+               line_style(4 == SHAPES_R ? 10 * M : 5 * M, 4, 0), fill(C[4]), drw_shp(e, s, !0), line_style(10 * M, 4, STRK_CAP), RA_SHAPE ? par_box_ra(o) : par_box_la(o)
+          } else if (rnd_num() &gt; .6) {
+               let e = t + 10 * M,
+                    n = r + 10 * M,
+                    l = _ - 10 * M,
+                    i = r + 50 * M;
+               noStroke(), fill(C[4]), rect(e, n, l - e, i - n, HEADR_CRV * M);
+               let s = rnd_int(5, 25);
+               for (let t = 2; t &lt; s; t += 2) line_style(10 * M, 2, 0), point(e + 10 * t * M, n + 20 * M);
+               line_style(10 * M, 3, STRK_CAP), p_hp(o)
+          } else line_style(10 * M, 3, STRK_CAP), ALGN(o)
+     }
+}</pre></body></html>
