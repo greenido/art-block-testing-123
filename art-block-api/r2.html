@@ -1,0 +1,260 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      tokenData = tokenData.hashes[0];
+
+let hashPairs = new array(254);
+for (let i = 0; i < 63; i++) {
+     Sting hex = tokenData.substring(i + 2, i + 4);
+     hashPairs[i] = unhex(hex);
+}
+for (let i = 0; i < 32; i++) {
+     Sting hex = concat(tokenData.substring(i + 2, i + 3), tokenData.substring(i + 34, i + 35));
+     hashPairs[i + 63] = unhex(hex);
+}
+for (let i = 0; i < 64; i++) {
+     Sting hex = concat(tokenData.substring(i + 2, i + 3), tokenData.substring(65 - i, 66 - i));
+     hashPairs[i + 95] = unhex(hex);
+}
+for (let i = 0; i < 63; i++) {
+     Sting hex = concat(tokenData.substring(65 - i, 66 - i), tokenData.substring(64 - i, 65 - i));
+     hashPairs[i + 159] = unhex(hex);
+}
+for (let i = 0; i < 32; i++) {
+     Sting hex = concat(tokenData.substring(65 - i, 66 - i), tokenData.substring(33 - i, 34 - i));
+     hashPairs[i + 222] = unhex(hex);
+}
+let margin;
+let grid;
+let unit;
+let rmin;
+let rmax;
+let r;
+let[] xreps = new let[10];
+let[] yreps = new let[10];
+let hue;
+let chue;
+let vmin;
+let vmax;
+let valuerange;
+let rarity;
+let c;
+color c1;
+color c2;
+color c3;
+let s;
+let step;
+let orientation;
+let i;
+let j;
+let xa;
+let ya;
+let xb;
+let yb;
+let x1;
+let y1;
+let x2;
+let y2;
+void setup() {
+     size(Math.floor(Math.min(window.innerWidth, window.innerHeight) / 72) * 72, Math.floor(Math.min(window.innerWidth, window.innerHeight) / 72) * 72);
+     margin = 0;
+     rectMode(CORNERS);
+     colorMode(HSB, 359, 100, 100, 1);
+     noStroke();
+     grid = 36;
+     unit = width / grid;
+     rmin = 20;
+     rmax = 40;
+     xreps = {
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          3,
+          4,
+          5,
+          6,
+          7
+     };
+     yreps = {
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          3,
+          4,
+          5,
+          6,
+          7
+     };
+     vmin = 70;
+     vmax = 90;
+}
+void draw() {
+     background(0, 0, 100);
+     hue = round(map(hashPairs[0], 0, 255, 0, 359));
+     chue = hue + 180;
+     if (chue > 359) {
+          chue = chue - 360;
+     }
+     ahue1 = hue + 15;
+     if (ahue1 > 359) {
+          ahue1 = ahue1 - 360;
+     }
+     ahue2 = hue + 30;
+     if (ahue2 > 359) {
+          ahue2 = ahue2 - 360;
+     }
+     valuerange = round(map(hashPairs[1], 0, 255, vmin, vmax));
+     c = floor(map(hashPairs[2], 0, 255, 0, 2.9999999999));
+     rarity = hashPairs[3];
+     if (c == 0) {
+          c1 = color(hue, 100, 100);
+          c2 = color(hue, 100 - valuerange, 100);
+          c3 = color(hue, 100, 100 - valuerange);
+     }
+     if (c == 1) {
+          c1 = color(hue, 100 - valuerange, 100);
+          c2 = color(hue, 100, 100 - valuerange);
+          c3 = color(hue, 100, 100);
+     }
+     if (c == 2) {
+          c1 = color(hue, 100, 100 - valuerange);
+          c2 = color(hue, 100, 100);
+          c3 = color(hue, 100 - valuerange, 100);
+     }
+     if (rarity > 226) {
+          valuerange = vmax;
+          c1 = color(hue, 100 - valuerange, 100);
+          c2 = color(hue, 100 - valuerange / 2, 100);
+          c3 = color(hue, 100, 100);
+     }
+     if (rarity > 239) {
+          valuerange = vmax;
+          c1 = color(hue, 100, 100 - valuerange);
+          c2 = color(hue, 100, 100 - valuerange / 2);
+          c3 = color(hue, 100, 100);
+     }
+     if (rarity > 252) {
+          c1 = color(hue, 100, 100 - valuerange);
+          c2 = color(hue, 100, 100);
+          c3 = color(chue, 100, 100);
+     }
+     background(c1);
+     r = round(map(hashPairs[4], 0, 255, rmin, rmax));
+     for (i = 0; i < r; i++) {
+          s = floor(map(hashPairs[i + 5], 0, 255, 0, 1.9999999999));
+          if (s == 0) {
+               fill(c2);
+               step = 0;
+          }
+          if (s == 1) {
+               fill(c3);
+               step = 1;
+          }
+          xa = 2 * round(map(hashPairs[i + 45], 0, 255, 0, (width / (2 * unit)) - 1)) + step + 1;
+          ya = 2 * round(map(hashPairs[i + 85], 0, 255, 0, (height / (2 * unit)) - 1)) + step + 1;
+          if (i == 0) {
+               fill(c2);
+               step = 0;
+               xa = 1;
+               ya = 2 * round(map(hashPairs[i + 85], 0, 255, 0, (height / (2 * unit)) - 1)) + step + 1;
+          }
+          if (i == 1) {
+               fill(c2);
+               step = 0;
+               xa = 2 * round(map(hashPairs[i + 45], 0, 255, 0, (width / (2 * unit)) - 1)) + step + 1;
+               ya = 1;
+          }
+          if (i == 2) {
+               fill(c3);
+               step = 1;
+               xa = width / unit;
+               ya = 2 * round(map(hashPairs[i + 85], 0, 255, 0, (height / (2 * unit)) - 1)) + step + 1;
+          }
+          if (i == 3) {
+               fill(c3);
+               step = 1;
+               xa = 2 * round(map(hashPairs[i + 45], 0, 255, 0, (width / (2 * unit)) - 1)) + step + 1;
+               ya = height / unit;
+          }
+          xb = xa + 2 * xreps[round(map(hashPairs[i + 125], 0, 255, 0, 9))];
+          if (xb < 1 || xb > width / unit - 1) {
+               xb = xa - 2 * xreps[round(map(hashPairs[i + 125], 0, 255, 0, 9))];
+          }
+          yb = ya + 2 * yreps[round(map(hashPairs[i + 165], 0, 255, 0, 9))];
+          if (yb < 1 || yb > height / unit - 1) {
+               yb = ya - 2 * xreps[round(map(hashPairs[i + 165], 0, 255, 0, 9))];
+          }
+          x1 = xa;
+          x2 = xb;
+          y1 = ya;
+          y2 = yb;
+          if (xa > xb) {
+               x1 = xb;
+               x2 = xa;
+          }
+          if (ya > yb) {
+               y1 = yb;
+               y2 = ya;
+          }
+          if (x2 > (width / unit) - 1) {
+               x2 = (width / unit) - 1;
+          }
+          if (y2 > (height / unit) - 1) {
+               y2 = (height / unit) - 1;
+          }
+          orientation = floor(map(hashPairs[i + 205], 0, 255, 0, 1.9999999999));
+          if (orientation == 0) {
+               for (j = 0; x1 + 2 * j < x2; j++) {
+                    rect(((x1 + 2 * j) * unit) + margin, (y1 * unit) + margin, ((x1 + ((2 * j) + 1)) * unit) + margin, (y2 * unit) + margin);
+               }
+          }
+          if (orientation > 0) {
+               for (j = 0; y1 + 2 * j < y2; j++) {
+                    rect((x1 * unit) + margin, ((y1 + 2 * j) * unit) + margin, (x2 * unit) + margin, ((y1 + ((2 * j) + 1)) * unit) + margin);
+               }
+          }
+     }
+     noLoop();
+}</pre></body></html>
+    </script>
+  </body>
+</html>

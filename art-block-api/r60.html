@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      var t = 0;
+let spins = 100;
+let delta = 0.001;
+let noiseDelta = 10;
+let seed;
+let hash;
+
+let WIDTH = window.innerWidth;
+let HEIGHT = window.innerHeight;
+let DIM = Math.min(WIDTH, HEIGHT);
+let BASEDIM = 2000;
+
+function setup() {
+
+     // canvas setup
+     createCanvas(DIM, DIM);
+     stroke(0, 120);
+     noFill();
+     background(0);
+     noLoop();
+
+     // entropy
+     hash = tokenData.hash; // random_hash();
+     seed = parseInt(hash.slice(0, 16), 16);
+     noiseSeed(seed);
+     noiseDelta = 100 * drand(seed);
+}
+
+// deterministic random function
+function drand(seed) {
+     seed ^= seed << 13;
+     seed ^= seed >> 17;
+     seed ^= seed << 5;
+     return ((seed < 0 ? ~seed + 1 : seed) % 1000) / 1000
+}
+
+function plan1(offsetPx) {
+     return [(DIM + offsetPx) * noise(t + noiseDelta * 11) - offsetPx / 2,
+          DIM * noise(t + noiseDelta * 13),
+          DIM * noise(t + noiseDelta * 17),
+          (DIM + offsetPx) * noise(t + noiseDelta * 19) - offsetPx / 2,
+          (DIM + offsetPx) * noise(t + noiseDelta) - offsetPx / 2,
+          DIM * noise(t + noiseDelta * 2),
+          DIM * noise(t + noiseDelta * 3),
+          (DIM + offsetPx) * noise(t + noiseDelta * 4) - offsetPx / 2
+     ];
+}
+
+function draw() {
+     spins = 750 + 2750 * drand(seed);
+     let offsetPx = DIM / BASEDIM * 300;
+     if (drand(seed) > .95) {
+          offsetPx = 3000 * DIM / BASEDIM;
+     }
+     for (let i = 0; i < spins; i++) {
+          plan = plan1(offsetPx);
+          var r = 255 * noise(t + 10);
+          var g = 255 * noise(t + 20);
+          var b = 255 * noise(t + 102);
+          stroke(r, g, b, 20);
+          strokeWeight(2 * DIM / BASEDIM);
+          bezier(plan[0], plan[4], plan[1], plan[5], plan[2], plan[6], plan[3], plan[7]);
+          t += delta;
+     }
+}
+    </script>
+  </body>
+</html>

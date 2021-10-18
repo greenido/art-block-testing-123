@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      var seedA = parseInt(tokenData.hash.slice(0, 16), 16);
+let azonosito = parseInt(tokenData.tokenId),
+     propKey = [],
+     propValue = [],
+     isPaused = !1,
+     cFrameCount = 0,
+     itsStage = 0,
+     A = [0],
+     canvas, frameA, frameB, frameC, frameD, frameE, aX, aY, aR, aXp, aYp, aRp, bX, bY, bR, bXp, bYp, bRp, cX, cY, cR, cXp, cYp, cRp, dX, dY, dR, dXp, dYp, dRp, eX, eY, eR, eXp, eYp, eRp, fX, fY, fR, fXp, fYp, fRp, bRad, cRad, dRad, bRadp, cRadp, dRadp, pdotColR, pdotColG, pdotColB, pdotColA, dpdotColR, dpdotColG, dpdotColB, dpdotColA, pdotMul, dpdotMul, pulses = 0,
+     pulseInterval, thecols = [
+          [35, 43, 43, 255],
+          [248, 248, 255, 255],
+          [255, 223, 0, 255],
+          [255, 5, 5, 255],
+          [46, 255, 83, 255],
+          [254, 125, 5, 255],
+          [215, 25, 144, 255],
+          [0, 184, 200, 255],
+          [9, 120, 255, 255],
+          [0, 0, 0, 255]
+     ],
+     colnames = ["Ghost Black", "Ghost White", "Yellow", "Red", "Green", "Orange", "Pink", "Cyan", "Blue", "Black"],
+     bgcol = [255, 255, 255, 255],
+     fgcol = [0, 0, 0, 255],
+     thecolsalt = [
+          [70, 60, 254, 255],
+          [84, 200, 100, 255],
+          [230, 0, 154, 255],
+          [255, 100, 29, 255]
+     ],
+     interval = 120,
+     stageAdvance, which = -1;
+
+function AreAffinitous(p, e, s, a, i, o) {
+     return Math.abs(p - a) < s / 2 + o / 2 && Math.abs(e - i) < s / 2 + o / 2
+}
+
+function setup() {
+     window.location.search;
+     which = azonosito, 999999 < which && (which -= 1e6 * int(which / 1e6)), propKey.push("ID"), propValue.push(which), interval = int(map(rnd(), 0, 1, 75, 125)), 2 != which && 61 != which && 173 != which && 313 != which && 11 != which && 89 != which && 211 != which && 349 != which && 29 != which && 107 != which && 233 != which && 367 != which && 43 != which && 149 != which && 277 != which && 383 != which || (interval = int(map(rnd(), 0, 1, 115, 125))), propKey.push("Speed"), propValue.push(50 - (interval - 75) + 75), outputsize = windowWidth >= windowHeight ? windowHeight : windowWidth, createCanvas(outputsize, outputsize), setAttributes("antialias", !0), background(bgcol), setsize(), pulseInterval = int(map(rnd(), 0, 1, 0, 100)) < 80 ? int(map(rnd(), 0, 1, 3, 5)) : int(map(rnd(), 0, 1, 2, 7)), propKey.push("Transition Interval"), propValue.push(pulseInterval), colrnum = int(map(rnd(), 0, 1, 0, 384));
+     let p;
+     p = colrnum < 6 ? 5 : colrnum < 12 ? 6 : colrnum < 18 ? 8 : colrnum < 36 ? 4 : colrnum < 60 ? 7 : colrnum < 90 ? 0 : colrnum < 126 ? 1 : colrnum < 168 ? 2 : colrnum < 216 ? 3 : 9, pdotColR = thecols[p][0], pdotColG = thecols[p][1], pdotColB = thecols[p][2], pdotColA = thecols[p][3], isRandom = !0, 0 < which && (oldcidx = p, p = -1, 2 != which && 61 != which && 173 != which && 313 != which || (p = 0), 11 != which && 89 != which && 211 != which && 349 != which || (p = 1), 29 != which && 107 != which && 233 != which && 367 != which || (p = 2), 43 != which && 149 != which && 277 != which && 383 != which || (p = 3), 0 <= p && (isRandom = !1, pdotColR = thecolsalt[p][0], pdotColG = thecolsalt[p][1], pdotColB = thecolsalt[p][2], pdotColA = thecolsalt[p][3], bgcol = [0, 0, 0, 255], fgcol = [255, 255, 255, 255]), p = oldcidx), propKey.push("Type"), isRandom ? propValue.push("Generated") : propValue.push("Curated"), propKey.push("Color"), 383 == which ? propValue.push("Rainbow") : propValue.push(colnames[p]), dpdotColR = (pdotColR - fgcol[0]) / interval, dpdotColG = (pdotColG - fgcol[1]) / interval, dpdotColB = (pdotColB - fgcol[2]) / interval, dpdotColA = (pdotColA - 255) / interval, pdotUndulates = int(map(rnd(), 0, 1, 0, 100)), pdotMul = 1 + map(rnd(), 0, 1, .3, .8), dpdotMul = (pdotMul - 1) / interval, aX = .2 * size, aY = size / 2, aR = 0, bX = .3 * size, bY = .4 * size, bR = 0, bRad = size / 7, cX = .5 * size, cY = .4 * size, cR = 0, cRad = size / 18, dX = .5 * size, dY = .6 * size, dR = 0, dRad = size / 18, eX = .75 * size, eY = size / 2, eR = HALF_PI / 3, fX = .75 * size, fY = size / 2, fR = HALF_PI / 3 * -1, aXp = size * map(rnd(), 0, 1, .2, .8), aYp = size * map(rnd(), 0, 1, .2, .8), aRp = 3.14 * map(rnd(), 0, 1, -1, 1), aRp = 3.14 * (.125 * int(map(rnd(), 0, 1, 0, 16)) - 1), bXp = size * map(rnd(), 0, 1, .2, .8), bYp = size * map(rnd(), 0, 1, .2, .8), bRp = 3.14 * map(rnd(), 0, 1, -1, 1), bRadp = map(rnd(), 0, 1, size / 18, size / 5), cXp = size * map(rnd(), 0, 1, .2, .8), cYp = size * map(rnd(), 0, 1, .2, .8), cRp = 3.14 * map(rnd(), 0, 1, -1, 1), cRadp = map(rnd(), 0, 1, size / 18, size / 5), dXp = size * map(rnd(), 0, 1, .2, .8), dYp = size * map(rnd(), 0, 1, .2, .8), dRp = 3.14 * map(rnd(), 0, 1, -1, 1), dRadp = map(rnd(), 0, 1, size / 18, size / 5), eXp = size * map(rnd(), 0, 1, .2, .8), eYp = size * map(rnd(), 0, 1, .2, .8), eRp = 3.14 * map(rnd(), 0, 1, -1, 1), eRp = 3.14 * (.125 * int(map(rnd(), 0, 1, 0, 16)) - 1), fXp = size * map(rnd(), 0, 1, .2, .8), fYp = size * map(rnd(), 0, 1, .2, .8), fRp = 3.14 * map(rnd(), 0, 1, -1, 1), fRp = 3.14 * (.125 * int(map(rnd(), 0, 1, 0, 16)) - 1), configNum = map(rnd(), 0, 1, 0, 100), configNumB = map(rnd(), 0, 1, 0, 100), isRandom && (0 <= configNum && configNum < 2 && (fXp = aXp, fYp = aYp, fRp = aRp, propKey.push("Composition"), propValue.push("Pclipse")), 2 <= configNum && configNum < 6 && (eXp = aXp, eYp = aYp, eRp = aRp, propKey.push("Composition"), propValue.push("Pclipse")), 6 <= configNum && configNum < 13 && (fXp = eXp, fYp = eYp, fRp = eRp, propKey.push("Composition"), propValue.push("Xclipse")), 13 <= configNum && configNum < 23 && (fXp = aXp, fYp = size - aYp, fRp = -1 * aRp, propKey.push("Composition"), propValue.push("Crossover")), 23 <= configNum && configNum < 33 && (eXp = aXp, eYp = size - aYp, eRp = -1 * aRp, propKey.push("Composition"), propValue.push("Crossover")), 33 <= configNum && configNum < 43 && (fXp = eXp, fYp = size - eYp, fRp = -1 * eRp, propKey.push("Composition"), propValue.push("Reflections")), 43 <= configNum && configNum < 53 && (fXp = size - aXp, fYp = aYp, fRp = -1 * aRp, propKey.push("Composition"), propValue.push("Lazy Crossover")), 53 <= configNum && configNum < 63 && (eXp = size - aXp, eYp = aYp, eRp = -1 * aRp, propKey.push("Composition"), propValue.push("Lazy Crossover")), 63 <= configNum && configNum < 73 && (fXp = size - eXp, fYp = eYp, fRp = -1 * eRp, propKey.push("Composition"), propValue.push("Lazy Reflections")), 0 <= configNumB && configNumB <= 9 && (bXp = cXp + (size / 50 * map(rnd(), 0, 1, .9, 1.1) - size / 50 / 2), bYp = cYp + (size / 50 * map(rnd(), 0, 1, .9, 1.1) - size / 50 / 2), bRadp = .8 * cRadp, propKey.push("Composition"), propValue.push("Hostile Takeover")), 10 <= configNumB && configNumB <= 33 && (bXp = dXp + (size / 50 * map(rnd(), 0, 1, .9, 1.1) - size / 50 / 2), bYp = dYp + (size / 50 * map(rnd(), 0, 1, .9, 1.1) - size / 50 / 2), bRadp = .8 * dRadp, propKey.push("Composition"), propValue.push("Preferential Treatment"))), 2 == which && (aXp = .5 * size, aYp = .75 * size, aRp = 1.57, bXp = .4 * size, bYp = .63 * size, bRp = 0, bRadp = size / 10, cXp = .4 * size, cYp = .45 * size, cRp = 0, cRadp = size / 18, dXp = .6 * size, dYp = .45 * size, dRp = 0, dRadp = size / 18, eXp = .5 * size, eYp = .3 * size, eRp = 3.14 * .4, fXp = .5 * size, fYp = .3 * size, fRp = 3.14 * -.4, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 11 == which && (aXp = .2 * size, aYp = .45 * size, aRp = 0, bXp = .5 * size, bYp = .55 * size, bRp = 0, bRadp = size / 6, cXp = .675 * size, cYp = .5 * size, cRp = 0, cRadp = size / 14, dXp = .65 * size, dYp = .65 * size, dRp = 0, dRadp = size / 14, eXp = .275 * size, eYp = .5 * size, eRp = 0, fXp = .35 * size, fYp = .55 * size, fRp = -0, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval), 29 == which && (aXp = .5 * size, aYp = .5 * size, aRp = 1.57, bXp = .5 * size, bYp = .385 * size, bRp = 0, bRadp = size / 9, dXp = .5 * size, dYp = .6 * size, dRp = 0, dRadp = size / 14, cXp = .5 * size, cYp = .35 * size, cRp = 0, cRadp = size / 6, eXp = .5 * size, eYp = .5 * size, eRp = 1.57, fXp = .5 * size, fYp = .5 * size, fRp = 1.57, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Hostile Takeover"), propKey.push("Composition"), propValue.push("Isolated")), 43 == which && (aXp = .5 * size, aYp = .6 * size, aRp = 1.57, bXp = .5 * size, bYp = .375 * size, bRp = 0, bRadp = size / 9, cXp = .4 * size, cYp = .75 * size, cRp = 0, cRadp = size / 14, dXp = .6 * size, dYp = .75 * size, dRp = 0, dRadp = size / 14, eXp = .3 * size, eYp = .35 * size, eRp = 3.14 * .8, fXp = .7 * size, fYp = .35 * size, fRp = 3.14 * .2, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 61 == which && (aXp = .54 * size, aYp = .5 * size, aRp = 0, bXp = .4 * size, bYp = .5 * size, bRp = 0, bRadp = size / 9, cXp = .675 * size, cYp = .65 * size, cRp = 0, cRadp = size / 14, dXp = .675 * size, dYp = .35 * size, dRp = 0, dRadp = size / 14, eXp = .6 * size, eYp = .39325 * size, eRp = 2.355, fXp = .6 * size, fYp = .60675 * size, fRp = .785, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Reflections")), 89 == which && (aXp = .5 * size, aYp = .485 * size, aRp = 0, bXp = .5 * size, bYp = .25 * size, bRp = 0, bRadp = size / 4, cXp = .35 * size, cYp = .5 * size, cRp = 0, cRadp = size / 12, dXp = .65 * size, dYp = .5 * size, dRp = 0, dRadp = size / 12, eXp = .62 * size, eYp = .75 * size, eRp = 2.355, fXp = .38 * size, fYp = .75 * size, fRp = .785, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 107 == which && (aXp = .48 * size, aYp = .55 * size, aRp = 0, bXp = .55 * size, bYp = .5 * size, bRp = 0, bRadp = size / 9, cXp = .675 * size, cYp = .575 * size, cRp = 0, cRadp = size / 14, dXp = .675 * size, dYp = .425 * size, dRp = 0, dRadp = size / 14, eXp = .6 * size, eYp = .39325 * size, eRp = .785, fXp = .6 * size, fYp = .60675 * size, fRp = 2.355, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Reflections")), 149 == which && (aXp = .5 * size, aYp = .5 * size, aRp = 1.57, bXp = .5 * size, bYp = .5 * size, bRp = 0, bRadp = size / 5, cXp = .5 * size, cYp = .65 * size, cRp = 0, cRadp = size / 14, dXp = .5 * size, dYp = .35 * size, dRp = 0, dRadp = size / 14, eXp = .5 * size, eYp = .5 * size, eRp = 3.14 * -.2, fXp = .5 * size, fYp = .5 * size, fRp = 3.14 * .2, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 173 == which && (aXp = .25 * size, aYp = .5 * size, aRp = 0, bXp = .5 * size, bYp = .5 * size, bRp = 0, bRadp = size / 6, cXp = .65 * size, cYp = .5 * size, cRp = 0, cRadp = size / 14, dXp = .35 * size, dYp = .5 * size, dRp = 0, dRadp = size / 14, eXp = .5 * size, eYp = .5 * size, eRp = 3.14 * -.2, fXp = .5 * size, fYp = .5 * size, fRp = 3.14 * .2, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 211 == which && (aXp = .5 * size, aYp = .63 * size, aRp = 1.57, bXp = .5 * size, bYp = .45 * size, bRp = 0, bRadp = size / 6, cXp = .6 * size, cYp = .3 * size, cRp = 0, cRadp = size / 14, dXp = .4 * size, dYp = .3 * size, dRp = 0, dRadp = size / 14, eXp = .35 * size, eYp = .5 * size, eRp = 3.14 * -.2, fXp = .65 * size, fYp = .5 * size, fRp = 3.14 * .2, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Reflections")), 233 == which && (aXp = .3 * size, aYp = .4 * size, aRp = 0, bXp = .3 * size, bYp = .65 * size, bRp = 0, bRadp = size / 8, cXp = .5 * size, cYp = .65 * size, cRp = 0, cRadp = size / 14, dXp = .7 * size, dYp = .65 * size, dRp = 0, dRadp = size / 14, eXp = .5 * size, eYp = .4 * size, eRp = 0, fXp = .7 * size, fYp = .4 * size, fRp = 0, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("At Attention")), 277 == which && (aXp = .4 * size, aYp = .5 * size, aRp = 0, bXp = .425 * size, bYp = .5 * size, bRp = 0, bRadp = size / 5, cXp = .63 * size, cYp = size * (.5 - .218), cRp = 0, cRadp = size / 14, dXp = .63 * size, dYp = .718 * size, dRp = 0, dRadp = size / 14, eXp = .513 * size, eYp = .6 * size, eRp = -.785, fXp = .513 * size, fYp = .4 * size, fRp = .785, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Reflections")), 313 == which && (aXp = .625 * size, aYp = .625 * size, aRp = .785, bXp = .425 * size, bYp = .425 * size, bRp = 0, bRadp = size / 8, cXp = .59 * size, cYp = .37 * size, cRp = 0, cRadp = size / 21, dXp = .59 * size, dYp = .48 * size, dRp = 0, dRadp = size / 21, eXp = .4 * size, eYp = .25 * size, eRp = -1.57, fXp = .25 * size, fYp = .4 * size, fRp = 0, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval), 349 == which && (aXp = .3 * size, aYp = .478 * size, aRp = 3.14 * -.2, bXp = .26 * size, bYp = .425 * size, bRp = 0, bRadp = size / 8, cXp = .4 * size, cYp = .62 * size, cRp = 0, cRadp = size / 21, dXp = .4 * size, dYp = .425 * size, dRp = 0, dRadp = size / 21, eXp = .7 * size, eYp = .5 * size, eRp = 0, fXp = .5975 * size, fYp = .478 * size, fRp = 3.14 * .2, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval), 367 == which && (eXp = .325 * size, eYp = .5 * size, eRp = -0, bXp = .325 * size, bYp = .5 * size, bRp = 0, bRadp = size / 6, cXp = .4 * size, cYp = .62 * size, cRp = 0, cRadp = size / 17, dXp = .25 * size, dYp = .38 * size, dRp = 0, dRadp = size / 17, fXp = .6 * size, fYp = size / 2, fRp = HALF_PI / 3, aXp = .6 * size, aYp = size / 2, aRp = HALF_PI / 3 * -1, pdotMul = .75, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Crossover")), 383 == which && (eXp = .2 * size, eYp = size / 2, eRp = PI + 0, bXp = .3 * size, bYp = .4 * size, bRp = 0, bRadp = size / 9, dXp = .5 * size, dYp = .4 * size, dRp = 0, dRadp = size / 18, cXp = .5 * size, cYp = .6 * size, cRp = 0, cRadp = size / 18, fXp = .75 * size, fYp = size / 2, fRp = PI + HALF_PI / 3, aXp = .75 * size, aYp = size / 2, aRp = PI + HALF_PI / 3 * -1, pdotMul = 1.25, dpdotMul = (pdotMul - 1) / interval, propKey.push("Composition"), propValue.push("Lazy Crossover"), propKey.push("Composition"), propValue.push("Rebound")), daX = (aXp - aX) / interval, daY = (aYp - aY) / interval, daR = (aRp - aR) / interval, dbX = (bXp - bX) / interval, dbY = (bYp - bY) / interval, dbR = (bRp - bR) / interval, dcX = (cXp - cX) / interval, dcY = (cYp - cY) / interval, dcR = (cRp - cR) / interval, ddX = (dXp - dX) / interval, ddY = (dYp - dY) / interval, ddR = (dRp - dR) / interval, deX = (eXp - eX) / interval, deY = (eYp - eY) / interval, deR = (eRp - eR) / interval, dfX = (fXp - fX) / interval, dfY = (fYp - fY) / interval, dfR = (fRp - fR) / interval, dbRad = (bRadp - bRad) / interval, dcRad = (cRadp - cRad) / interval, ddRad = (dRadp - dRad) / interval, canvas = createGraphics(size, size), canvas.background(0), angleMode(DEGREES), canvas.push(), canvas.clear(), canvas.background(bgcol), canvas.pop(), canvas.stroke(fgcol), canvas.fill(fgcol), canvas.push(), canvas.translate(aX, aY), canvas.rotate(aR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(eX, eY), canvas.rotate(eR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(fX, fY), canvas.rotate(fR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(bX, bY), canvas.rotate(bR), canvas.circle(0, 0, bRad), canvas.pop(), canvas.push(), canvas.translate(cX, cY), canvas.rotate(cR), canvas.circle(0, 0, cRad), canvas.pop(), canvas.push(), canvas.translate(dX, dY), canvas.rotate(dR), canvas.circle(0, 0, dRad), canvas.pop(), stageAdvance = !1, curhue = 15, 1 <= pdotMul ? (propKey.push("Pulse Direction"), propValue.push("Contractive")) : (propKey.push("Pulse Direction"), propValue.push("Expansive")), which % 7 == 0 && (propKey.push("Composition"), propValue.push("b:x"))
+}
+
+function mouseClicked() {
+     isPaused = !isPaused
+}
+
+function draw() {
+     isPaused || cFrameCount++, 383 == which && (curhue < 360 && cFrameCount % 4 == 0 ? curhue += 1 : cFrameCount % 4 == 0 && (curhue = 0), colorMode(HSB, 255), thisHueAdjustedCol = color("hsl(" + curhue + ", 80%, 50%)"), pdotColR = red(thisHueAdjustedCol), pdotColG = green(thisHueAdjustedCol), pdotColB = blue(thisHueAdjustedCol), pdotColA = 255, colorMode(RGB, 255), dpdotColR = (pdotColR - fgcol[0]) / interval, dpdotColG = (pdotColG - fgcol[1]) / interval, dpdotColB = (pdotColB - fgcol[2]) / interval, dpdotColA = (pdotColA - 255) / interval), canvas.push(), canvas.clear(), canvas.background(bgcol), canvas.pop(), canvas.stroke(fgcol), canvas.fill(fgcol);
+     let p = int((interval / 2 + cFrameCount) % interval),
+          e = (interval / 2 + cFrameCount) % interval;
+     e < interval / 4 * 1 ? e *= 4 : e = e >= interval / 4 * 3 ? interval - 4 * (e - (interval / 4 * 3 - 1)) : interval;
+     interval, e;
+     p == interval - 1 && (pulses++, pulses % pulseInterval == 0 && (stageAdvance = !0)), 1 == stageAdvance && 0 == p && (itsStage < 3 ? itsStage += 1 : itsStage = 0, 0 == itsStage && (stageAdvance = !1), 2 == itsStage && (stageAdvance = !1)), curpdotMul = 1, 2 == itsStage ? (p = 0, pdotCol = [fgcol[0] + e * dpdotColR, fgcol[1] + e * dpdotColG, fgcol[2] + e * dpdotColB, 255 + e * dpdotColA]) : 3 == itsStage ? (p, pdotCol = fgcol, pdotCol = [fgcol[0] + e * dpdotColR, fgcol[1] + e * dpdotColG, fgcol[2] + e * dpdotColB, 255 + e * dpdotColA]) : 0 == itsStage ? (p = interval, pdotCol = [fgcol[0] + e * dpdotColR, fgcol[1] + e * dpdotColG, fgcol[2] + e * dpdotColB, 255 + e * dpdotColA], curpdotMul = 1 + dpdotMul * e) : 1 == itsStage && (p = interval - p, pdotCol = fgcol, pdotCol = [fgcol[0] + e * dpdotColR, fgcol[1] + e * dpdotColG, fgcol[2] + e * dpdotColB, 255 + e * dpdotColA]), canvas.stroke(pdotCol), canvas.strokeWeight(size / 350), canvas.push(), canvas.push(), canvas.translate(eX + p * deX, eY + p * deY), canvas.rotate(eR + p * deR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(fX + p * dfX, fY + p * dfY), canvas.rotate(fR + p * dfR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(aX + p * daX, aY + p * daY), canvas.rotate(aR + p * daR), canvas.rect(0 - size / 30 / 2, 0 - size / 3 / 2, size / 30, size / 3), canvas.pop(), canvas.push(), canvas.translate(cX + p * dcX, cY + p * dcY), canvas.rotate(cR + p * dcR), canvas.circle(0, 0, curpdotMul * (cRad + p * dcRad)), canvas.pop(), canvas.push(), 383 == which ? 0 == p ? canvas.translate(bX + p * dbX, bY + (interval - e) / interval * 107.75 * (dbY + 4.4)) : canvas.translate(bX + p * dbX, bY + (interval - e) / interval * 112 * (dbY + 4.4)) : which % 7 == 0 ? (tdist = curpdotMul * (bRad + p * dbRad) / 6, 0 == p ? canvas.translate(bX + p * dbX, bY + p * dbY + e / interval * (size / 5)) : canvas.translate(bX + p * dbX, bY + p * dbY)) : canvas.translate(bX + p * dbX, bY + p * dbY), canvas.rotate(bR + p * dbR), canvas.strokeWeight(size / 350), canvas.stroke(color(pdotColR, pdotColG, pdotColB, pdotColA)), canvas.fill(pdotCol), canvas.circle(0, 0, curpdotMul * (bRad + p * dbRad)), canvas.pop(), canvas.push(), canvas.translate(dX + p * ddX, dY + p * ddY), canvas.rotate(dR + p * ddR), canvas.circle(0, 0, curpdotMul * (dRad + p * ddRad)), canvas.pop(), canvas.pop(), image(canvas, 0, 0, outputsize, outputsize)
+}
+
+function polygon(e, s, a, p) {
+     var i = TWO_PI / p;
+     beginShape();
+     for (let p = 0; p < TWO_PI; p += i) {
+          var o = e + cos(p) * a,
+               d = s + sin(p) * a;
+          vertex(o, d)
+     }
+     endShape(CLOSE)
+}
+
+function setsize() {
+     size = outputsize < 2400 ? 2400 : outputsize + outputsize / 4, halfsize = size / 2, freedom = size / 10
+}
+
+function rnd() {
+     return seedA ^= seedA << 13, seedA ^= seedA >> 17, ((seedA ^= seedA << 5) < 0 ? 1 + ~seedA : seedA) % 1e3 / 1e3
+}
+
+function hashInt(p) {
+     return A[0] = 0 | p, A[0] -= A[0] << 6, A[0] ^= A[0] >>> 17, A[0] -= A[0] << 9, A[0] ^= A[0] << 4, A[0] -= A[0] << 3, A[0] ^= A[0] << 10, A[0] ^= A[0] >>> 15, A[0]
+}
+    </script>
+  </body>
+</html>

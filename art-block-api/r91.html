@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      var size, fg, bg, hexval = tokenData.hash,
+     time = 0;
+
+function setup() {
+     size = min(windowWidth, windowHeight), createCanvas(size, size), parseInt(subHex(6)) < 255 * invertedIncidence ? (fg = color(46, 46, 46, 255), bg = color(228, 216, 180)) : (fg = color(228, 216, 180), bg = color(46, 46, 46, 255)), frameRate(60), noiseSeed(42069)
+}
+
+function draw() {
+     background(bg), stroke(fg), translate(width / 2, height / 2), (new System).draw(), time = parseInt(subHex(0)) % 4 == 0 ? time - .005 : time + .005
+}
+const minOrbits = 10,
+     maxOrbits = 1,
+     minPlanetSpeed = .1,
+     maxPlanetSpeed = 3,
+     minMoonSpeed = .5,
+     maxMoonSpeed = 10,
+     moonRadius = 1.1,
+     minMoonDistance = .001,
+     binaryDistance = .6,
+     ringsIncidence = .2,
+     moonIncidence = .2,
+     binaryIncidence = .05,
+     invertedIncidence = .05,
+     ufoIncidence = .01,
+     minStarRadius = .03,
+     maxStarRadius = .08,
+     distFromStar = .05,
+     distBetweenOrbits = .015,
+     extraOrbitsRadius = 0,
+     minPlanetRadius = .004,
+     maxPlanetRadius = .018,
+     minRingOrbit = .001,
+     maxRingOrbit = .018;
+class System {
+     constructor() {
+          this.binary = !1, this.radius = map(parseInt(subHex(0)), 0, 255, minStarRadius, maxStarRadius), parseInt(subHex(62)) < 255 * binaryIncidence && (this.binary = !0, this.radius /= 2.1), this.planets = [], this.createOrbits()
+     }
+     createOrbits() {
+          var i = map(parseInt(subHex(1)), 0, 255, minOrbits, maxOrbits),
+               s = this.radius,
+               e = distFromStar;
+          this.binary && (e *= 1.1);
+          for (var t = 0, n = 0, a = 0; a < i; a++) {
+               a > 0 && (s = this.planets[a - 1].orbit, e = this.planets[a - 1].radius, this.planets[a - 1].ufo && (e *= 2), t = (this.planets[a - 1].ring.x + this.planets[a - 1].ring.y) / 2, n = this.planets[a - 1].radius * moonRadius + minMoonDistance);
+               var r = s + e + t + n + .002 + distBetweenOrbits + map(parseInt(subHex(22 + a)), 0, 255, 0, extraOrbitsRadius);
+               this.planets.push(new Planet(a, r))
+          }
+     }
+     draw() {
+          fill(fg), this.binary ? (circle(cos(2 * time) * this.radius * binaryDistance * size, sin(2 * time) * this.radius * binaryDistance * size, this.radius * size), circle(cos(2 * time + PI) * this.radius * binaryDistance * size, sin(2 * time + PI) * this.radius * binaryDistance * size, this.radius * size)) : circle(0, 0, this.radius * size);
+          for (var i = 0; i < this.planets.length; i++) this.planets[i].draw()
+     }
+}
+class Planet {
+     constructor(i, s) {
+          this.radius = map(parseInt(subHex(2 + i)), 0, 255, minPlanetRadius, maxPlanetRadius), this.speed = map(parseInt(subHex(12 + i)), 0, 255, minPlanetSpeed, maxPlanetSpeed), this.orbit = s + this.radius;
+          var e = map(parseInt(subHex(32 + i)), 0, 255, 0, this.radius + maxRingOrbit),
+               t = map(parseInt(subHex(42 + i)), 0, 255, this.radius, this.radius + maxRingOrbit);
+          this.ring = {
+               x: e,
+               y: t
+          }, this.ringRotation = map(parseInt(subHex(52 + i)), 0, 255, 0, PI), parseInt(subHex(42 + i)) < 255 * (1 - ringsIncidence) && (this.ring = {
+               x: 0,
+               y: 0
+          }), parseInt(subHex(42 + i)) < 255 * ufoIncidence && (this.ufo = !0, this.orbit += this.radius), parseInt(subHex(52 + i)) > 255 * (1 - moonIncidence) && (this.moon = !0), this.moon ? this.orbit += max((this.ring.x + this.ring.y) / 2, (this.radius * moonRadius + minMoonDistance) / 2 + .01) : this.orbit += (this.ring.x + this.ring.y) / 2, this.moonSpeed = map(noise(this.speed), 0, 1, minMoonSpeed, maxMoonSpeed)
+     }
+     draw() {
+          noFill(), strokeWeight(5e-4 * size), stroke(fg), circle(0, 0, this.orbit * size), fill(fg), strokeWeight(.001 * size);
+          var i = cos(time * this.speed + 10 * this.speed) * this.orbit * size / 2,
+               s = sin(time * this.speed + 10 * this.speed) * this.orbit * size / 2;
+          if (this.ufo) {
+               this.radius < .01 && (this.radius = .01), arc(i, s, this.radius * size, this.radius * size, PI + PI / 5, 0 - PI / 5, PIE), stroke(bg);
+               var e = this.radius * size * 2,
+                    t = this.radius * size * .5;
+               ellipse(i, s, e, t), fill(bg);
+               var n = .3 * e;
+               ellipse(i, s + 1, n, .3 * t), fill(fg), stroke(fg), line(i + n / 2 - 1, s + 1, i + n / 2 + 1, s + t), line(i, s + 1, i, s + t), line(i - n / 2 + 1, s + 1, i - n / 2 - 1, s + t)
+          } else noStroke(), circle(i, s, this.radius * size);
+          noFill(), stroke(fg), 0 == this.ring.x && 0 == this.ring.y || (push(), translate(i, s), rotate(this.ringRotation), ellipse(0, 0, this.ring.x * size, this.ring.y * size), pop()), this.moon && !this.ufo && (push(), translate(i, s), stroke(fg), fill(fg), circle(cos(time * this.moonSpeed) * (this.radius * moonRadius + minMoonDistance) * size, sin(time * this.moonSpeed) * (this.radius * moonRadius + minMoonDistance) * size, .002 * size), pop())
+     }
+}
+
+function subHex(i) {
+     return i += 2, "0x" + hexval.substring(i, i + 2)
+}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        All The Projects 🎉
+      </h1>
+
+      <h3>
+        <ul>
+          <li>r25</li>
+          <li>r26</li>
+          <li>r35</li>
+          <li>r37</li>
+          <li>r40</li>
+          <li>r41</li>
+          <li>r48</li>
+          <li>r49</li>
+          <li>r50</li>
+          <li>r52</li>
+          <li>r53</li>
+          <li>r54</li>
+          <li>r57</li>
+          <li>r58</li>
+          <li>r60</li>
+          <li>r65</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          <li>🟪</li>
+          
+        </ul>
+
+      </h3>
+      <div id="main"></div>
+    </center>
+    <script>
+      let allLinks = "";
+      for (let i = 4; i < 101; i++) {
+        allLinks += "<a href='r" + i + ".html' target='_blank'>" + i + "🔺</a> <br/><br/>";
+      }
+      document.getElementById("main").innerHTML = allLinks;
+    </script>
+  </body>
+</html>

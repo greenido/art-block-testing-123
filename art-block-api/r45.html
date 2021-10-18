@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      SS = tokenData.hash;
+let DD = SS.substring(2, SS.length);
+const BB = DD.split("").map(e => parseInt(Number("0x" + e), 10) % 2),
+     II = DD.split("").map(e => parseInt(Number("0x" + e), 10)),
+     CC = DD.match(/.{2}/g).map(e => parseInt(Number("0x" + e), 10));
+let WIDTH = window.innerWidth,
+     HEIGHT = window.innerHeight,
+     DIM = Math.min(WIDTH, HEIGHT);
+const HW = DIM;
+
+function setup() {
+     createCanvas(HW, HW), frameRate(24), noFill()
+}
+
+function draw() {
+     for (background(0, 0, 0), strokeWeight(HW / 1e4), OO = (o = CC[22] * II[5] * II[9], o < 100 && BB[3] ? o = o * CC[10] * 30 : o > 5e3 && BB[3] && (o = o * CC[15] * 1.2), o + frameCount), X = 0; X <= HW; X += HW / 19)
+          for (Y = 0; Y <= HW; Y += HW / 50) rotate(1e-5 * -OO), point(X, Y), push(), stroke(CC[2] + BB[3], 0, 0 + Y, 150), point(Y, X), line(X, Y, Y, X), line(Y, X, X, X), pop(), line(X, Y, Y, Y), push(), stroke(CC[2] - Y, 100, OO % 255, 150), square(X, Y, Y), stroke(CC[2] - Y, Y, OO % 255, CC[21]), BB[22] && BB[5] ? strokeWeight(CC[31]) : BB[13] && strokeWeight(255), square(Y, X, X), rotate(1e-5 * OO), pop();
+     for (X = 0; X <= HW; X += HW / 19)
+          for (Y = 0; Y <= HW; Y += HW / 19) rotate(1e-5 * OO), stroke(CC[2] - Y, 0 + Y, 100 + Y, 150), strokeWeight(HW / 800), line(X, Y, HW, Y), stroke(CC[4], OO % 255, OO % 255 / 2, 50), line(X, Y, X, HW), stroke(CC[4], 0 + Y, X - 1, 150), push(), BB[3] && (stroke(CC[9], 0 + Y, X - 1, CC[5]), mouseIsPressed && Y > HW / 2 && BB[9] && strokeWeight(HW / 10), triangle(X, X, Y, Y, X, Y)), BB[5] && (stroke(CC[9], OO % 255, X - 1, CC[2]), circle(X, X, HW / 10)), pop(), mouseIsPressed && Y > HW / 2 && BB[7] && (stroke(CC[9] + X, 0 + .8 * Y, X / Y + Y, 255), rotate(OO / 2 * .001)), circle(X, Y, HW / 19), rotate(OO / 2 * 1e-4), push(), strokeWeight(HW / 100), stroke(CC[8] + X, 0 + Y, X / Y + Y, .6 * CC[1]), mouseIsPressed && X > HW / 2 && Y < HW / 2 && stroke(CC[9] + X, 0 + .8 * Y, X / Y + Y, 200), square(Y, X, HW / 19), rotate(1e-5 * -OO), pop()
+}
+    </script>
+  </body>
+</html>

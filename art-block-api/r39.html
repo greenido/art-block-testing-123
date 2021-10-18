@@ -1,0 +1,270 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script>
+      // Token Ids: 10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008,10000009,10000010,10000011,10000012,10000013,10000014,10000015,10000016,10000017,10000018,10000019,10000020,10000021,10000022,10000023,10000024,10000025,10000026,10000027,10000028,10000029,10000030,10000031,10000032,10000033,10000034,10000035,10000036,10000037,10000038,10000039,10000040,10000041,10000042,10000043,10000044,10000045,10000046,10000047,10000048,10000049,10000050,10000051,10000052,10000053,10000054,10000055,10000056,10000057,10000058,10000059,10000060,10000061,10000062,10000063,10000064,10000065,10000066,10000067,10000068,10000069,10000070,10000071,10000072,10000073,10000074,10000075,10000076,10000077,10000078,10000079,10000080,10000081,10000082,10000083,10000084,10000085,10000086,10000087,10000088,10000089,10000090,10000091,10000092,10000093,10000094,10000095,10000096,10000097,10000098,10000099
+      let tokenData = {
+        hash:
+          "0x2ed5912b84b7777777777772735e5a45416a5a723172a643ca545bee87be96c2",
+        //"0x2ed5912b84b45dad487dd392735e5a45416a5a723172a643ca545bee87be96c2", 0x9C238282Db349A20d501c5bfeE13ed29ae5a451C",
+        tokenId: "500005"
+      };
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>
+        5 🍾
+      </h1>
+      <a href="https://api.artblocks.io/project/5">project 5</a>
+    </center>
+    <script>
+      let hashString = tokenData.hash;
+let seed = parseInt(hashString.slice(0, 16), 16);
+
+
+
+var num; //
+let particle = [];
+
+var t;
+
+
+let dim;
+let multiplier;
+let xp;
+let xp1;
+let xp2;
+let xp3;
+let constrast_set;
+
+function setup() {
+
+     dim = windowHeight > windowWidth ? windowWidth : windowHeight;
+     multiplier = dim / 3600;
+     cnv = createCanvas(dim, dim);
+     xp = map(rnd(), 0, 1, 0, 1); //trails
+     xp1 = map(rnd(), 0, 1, 0, 1); //Background
+
+
+
+
+     num = 3000
+     if (this.xp <= 0.15) {
+          num = 1500
+     } else if (this.xp > 0.15 & this.xp <= 0.30) {
+          num = 1500
+
+     } else if (this.xp > 0.3 & this.xp <= 0.45) {
+          num = 1500
+     } else if (this.xp > 0.45 & this.xp <= 0.5) {
+          num = floor(3000 / 4)
+
+     }
+
+
+     if (xp1 >= 0.95) {
+
+          background(50);
+     } else {
+          background(255);
+     }
+     strokeWeight(multiplier);
+
+     if (xp > 0.45) {
+          t = new Target(new createVector(dim / 2, dim / 2));
+     } else if (xp <= 0.15) {
+          t = new Target(new createVector(dim / 2, dim));
+
+     } else if (xp > 0.15 & xp <= 0.3) {
+          t = new Target(new createVector(dim, dim / 2));
+
+     } else if (xp > 0.3 & xp <= 0.45) {
+          t = new Target(new createVector(0, dim / 2));
+     }
+
+
+     for (let i = 0; i < num; i++) {
+
+          particle.push(new Particle(new createVector(map(rnd(), 0, 1, 50 * multiplier, dim - (50 * multiplier)), map(rnd(), 0, 1, 50 * multiplier, dim - (50 * multiplier))), xp));
+
+     }
+}
+
+function draw() {
+
+
+     t.move();
+
+     t.update();
+
+     t.Border_lock();
+     for (let i = 0; i < num; i++) {
+          particle[i].seek(t.location);
+          particle[i].update();
+          //particle[i].display();
+
+     }
+     if (xp > 0.45 & xp < 0.5) {
+          if (frameCount == 750) {
+
+               noLoop();
+
+          }
+     } else {
+          if (frameCount == 1000) {
+
+               noLoop();
+
+          }
+     }
+
+
+}
+
+
+
+
+class Target {
+     constructor(position) {
+
+          this.location = position.copy();
+          this.velocity = createVector(0, 0);
+          this.acceleration = new createVector(map(rnd(), 0, 1, -10 * multiplier, 10 * multiplier), map(rnd(), 0, 1, -10 * multiplier, 10 * multiplier));
+          this.maxspeed = map(rnd(), 0, 1, 50 * multiplier, 100 * multiplier);
+     }
+
+
+     move() {
+          this.velocity.add(this.acceleration);
+          this.velocity.limit(this.maxspeed);
+          this.location.add(this.velocity);
+          this.acceleration.mult(0);
+     }
+
+     update() {
+          var f = createVector(map(rnd(), 0, 1, -15 * multiplier, 15 * multiplier), map(rnd(), 0, 1, -15 * multiplier, 15 * multiplier));
+          this.acceleration.add(f);
+
+     }
+
+
+     Border_lock() {
+
+          if (this.location.x > width) {
+               this.location.x = width;
+               this.velocity.x *= -1;
+          } else if (this.location.x < 0) {
+
+               this.location.x = 0;
+               this.velocity.x *= -1;
+
+          }
+
+          if (this.location.y > height) {
+               this.location.y = height;
+               this.velocity.y *= -1;
+
+          } else if (this.location.y < 0) {
+               this.location.y = 0;
+               this.velocity.y *= -1;
+
+          }
+
+     }
+
+
+
+}
+
+function Particle(lo, x) {
+
+
+     this.location = lo;
+     this.velocity = createVector(map(rnd(), 0, 1, 10 * multiplier, 2 * dim / 10 * multiplier), map(rnd(), 0, 1, -dim / 10 * multiplier, dim / 10 * multiplier));
+     this.acceleration = createVector(0, 0);
+     this.maxspeed = map(rnd(), 0, 1, 10 * multiplier, 100 * multiplier);
+     this.maxforce = map(rnd(), 0, 1, 0 * multiplier, 10 * multiplier);
+     this.xp = x;
+}
+
+Particle.prototype.update = function() {
+     var l1 = this.location.copy();
+     this.velocity.add(this.acceleration);
+     this.velocity.limit(this.maxspeed);
+     this.location.add(this.velocity);
+     this.acceleration.mult(0);
+     var l2 = this.location.copy();
+     if (xp1 >= 0.95) {
+          stroke(255, 10);
+     } else {
+          stroke(0, 10);
+     }
+     line(l1.x, l1.y, l2.x, l2.y);
+     if (this.xp <= 0.20) { //Mirror from bottom
+          line(dim - l1.x, l1.y, dim - l2.x, l2.y);
+     } else if (this.xp > 0.20 & this.xp <= 0.40) { //Mirror from Side
+
+          line(dim - l1.x, dim - l1.y, dim - l2.x, dim - l2.y);
+
+     } else if (this.xp > 0.4 & this.xp <= 0.6) { //Water from left
+          line(l1.x, dim - l1.y, l2.x, dim - l2.y);
+
+     } else if (this.xp > 0.6 & this.xp <= 0.7) { //4way
+          line(dim - l1.x, l1.y, dim - l2.x, l2.y);
+          line(dim - l1.x, dim - l1.y, dim - l2.x, dim - l2.y);
+          line(l1.x, dim - l1.y, l2.x, dim - l2.y);
+     }
+
+
+}
+
+
+
+Particle.prototype.applyForce = function(force) {
+     this.acceleration.add(force);
+
+}
+
+
+Particle.prototype.seek = function(target) {
+
+     var desired = p5.Vector.sub(target, this.location);
+     desired.normalize();
+     desired.mult(this.maxspeed);
+     var steer = p5.Vector.sub(desired, this.velocity);
+     steer.limit(this.maxforce);
+     this.acceleration.add(steer);
+}
+
+function rnd() {
+
+
+     seed ^= seed << 13;
+
+     seed ^= seed >> 17;
+
+     seed ^= seed << 5;
+
+     return (((seed < 0) ? ~seed + 1 : seed) % 1000) / 1000;
+}
+    </script>
+  </body>
+</html>
